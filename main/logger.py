@@ -24,7 +24,7 @@ def main():
     stream_handler.setFormatter(formatter)
     stream_handler.setLevel(logging.INFO)
 
-    file_dir = os.path.join("main", "initiate", "root_component", "util", "info.log")
+    file_dir = os.path.join("main", "logs", "info.log")
     file_handler = logging.FileHandler("." + "\\" + file_dir)
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.DEBUG)
