@@ -54,22 +54,22 @@ class LoginWindow(Login):
                 pwd = p_file.read()
                 p_file.close()
                 
-                passwd = self._crypto.decrypt(pwd, key)
+                self.passwd = self._crypto.decrypt(pwd, key)
             else:
                 Exception
             
             # 2. This connects to Log_connect database
-            self.conn = conn = pg2.connect(database='Budget', user='postgres', password=passwd)
+            self.conn = pg2.connect(database='Budget_USER', user='postgres', password=self.passwd)
             
             # application will not close as long as this is 0
             self.button_close_event = 0
             # 3. Creates Table if it does not exist
             cursor = self.conn.execute("""CREATE TABLE IF NOT EXISTS login 
                                        (user_id SERIAL UNIQUE PRIMARY KEY, 
-                                       username_key BLOB NOT NULL, 
-                                       username BLOB UNIQUE NOT NULL, 
-                                       budget_password BLOB NOT NULL, 
-                                       budget_password_key BLOB NOT NULL)""")
+                                       username_key TEXT NOT NULL, 
+                                       username TEXT UNIQUE NOT NULL, 
+                                       budget_password TEXT NOT NULL, 
+                                       budget_password_key TEXT NOT NULL)""")
             
             # 4. Gets database login data
             cursor = self.conn.execute("SELECT username_key, username, password_key, password, user_id FROM login")
