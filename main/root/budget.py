@@ -1,5 +1,4 @@
 ##########  Python IMPORTs  ############################################################
-from PyQt6.QtWidgets import QMainWindow
 from pathlib import Path
 ########################################################################################
 
@@ -13,6 +12,7 @@ from PyQt6.QtCore import QRect
 import helper.root_functions as rfunc
 import helper.root_vriables as rvar
 from pages.dashboard import Dashboard
+import utils.resources # Do not remove. Needed for images
 ########################################################################################
 
 class Budget:
@@ -113,9 +113,7 @@ class Budget:
         self.stackedWidget.setCurrentWidget(self.dashboard_page)
         
         # Watchlist: -> Main Page
-        self.watchlist = Dashboard(self.main_page,
-                                   self.binance_us.pairs, 
-                                   self.notification)
+        self.watchlist = Dashboard(self.dashboard_page, self.conn)
         
         
     

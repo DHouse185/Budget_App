@@ -11,38 +11,75 @@ QWidget#side_menu {
     border-radius: 16px;
     font: 14pt "Nirmala UI";
 }
-QWidget#watchlist_widget {
-    background-color: #636272;
-    color: #ffffff;
-    border: 5px solid #636272;
-    border-radius: 8px;
-    font: 14pt "Nirmala UI";
-}
-QWidget#trades_widget {
-    background-color: #636272;
-    color: #ffffff;
-    border: 5px solid #636272;
-    border-radius: 8px;
-    font: 14pt "Nirmala UI";
-}
-QWidget#strategy_scrollAreaWidgetContents {
-    background-color: #2c2c2c;
-    color: #ffffff;
-    border: 5px solid #636272;
-    border-radius: 8px;
-    font: 14pt "Nirmala UI";
-}
-QLabel#side_menu_title {
-    background-color: #4e5564;
-    color: #ffffff;
-    border: none;
-    font: 28pt "Nirmala UI";
-}
-QLabel#binance_label_symbol {
+QLabel#Dashboard_Title {
     background-color: none;
     color: #ffffff;
     border: none;
-    font: 14pt "Nirmala UI";
+    font: 20pt "Nirmala UI";
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
 }
 QPushButton {
     background-color: #4d4d4d;
@@ -54,14 +91,6 @@ QPushButton {
 QPushButton:hover {
     background-color: #5a5a5a;
     border: 1px solid #5a5a5a;
-}
-QPushButton#side_menu_button {
-    background-image: url(:/button_image/Burger_button.png);
-    background-color: #4d4d4d;
-    border: 1px solid #4d4d4d;
-    border-radius: 4px;
-    color: #ffffff;
-    padding: 5px;
 }
 QPushButton#side_menu_button:hover {
     background-image: url(:/button_image/Burger_button_hover.png);
