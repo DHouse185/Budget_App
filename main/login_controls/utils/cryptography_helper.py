@@ -19,7 +19,6 @@ class Login_Cryptography:
         ### 3. use the key and encrypt pwd
         keytouse = Fernet(refKeybyt)
         myPass = (keytouse.decrypt(encpwdbyt))
-        
         return str(myPass.decode('utf-8'))
         
     def encrypt_it(self, text: str):

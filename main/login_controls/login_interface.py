@@ -31,9 +31,6 @@ class LoginWindow(Login):
         self.setWindowTitle("Login Window")
         self.log = logger
         
-        # application will not close as long as this is 0
-        self.button_close_event = 0
-        
         self._initializer()
         self.pushButton_login.clicked.connect(self.login)
         self.pushButton_create_account.clicked.connect(self._creating_account)
@@ -43,26 +40,28 @@ class LoginWindow(Login):
             # 1. Initiate Login_Cryptography 
             self._crypto = Login_Cryptography()
             
-            pg_directory = os.path.join("C:", "Users", "D'Andre House", "Codes", "PGA")
+            pg_directory = os.path.join("C:\\Users", "D'Andre House", "Codes", "PGA")
             
             if os.path.exists(pg_directory):
                 # Key
                 k_file = open(pg_directory + '\k.txt')
-                key = k_file.read()
+                key = ''.join(k_file.readlines())
+                key = bytes(key, 'utf-8')
                 k_file.close()
                 
                 # Password
                 p_file = open(pg_directory + '\w.txt')
-                pwd = p_file.read()
+                pwd = ''.join(p_file.readlines())
+                pwd = bytes(pwd, 'utf-8')
                 p_file.close()
                 
                 self.passwd = self._crypto.decrypt(pwd, key)
             else:
+                print(f"could not find file directory {pg_directory}")
                 Exception
             
             # 2. This connects to Log_connect database
             self.conn = pg2.connect(database='Budget_USER', user='postgres', password=self.passwd)
-            
             
             # 3. Creates Table if it does not exist
             self.cur = self.conn.cursor()
@@ -75,11 +74,16 @@ class LoginWindow(Login):
             self.conn.commit()
     
             # 4. Gets database login data
-            self.cur.execute("SELECT username_key, username, password_key, password, user_id FROM login")
+            self.cur.execute("SELECT username_key, username, budget_password_key, budget_password, user_id FROM login")
             # Remember for this list username is 0 element, password is 1 element
             self._sql_login_data = self.cur.fetchall()
             self.conn.commit()
-
+            
+            print(self._sql_login_data)
+            
+            # application will not close as long as this is 0
+            self.button_close_event = 0
+        
             if not self._sql_login_data:
                 button = QMessageBox.question(self, "No Login Information",
                                     "Welcome! There does not seem to be any login information."
@@ -96,8 +100,9 @@ class LoginWindow(Login):
                     # signals to login_handler to close application
                     self.button_close_event = 1
                     
-        except Exception:
+        except Exception as e:
             self.log.error("An error occurred")
+            self.log.error(e)
         
     def login(self):
         """"
