@@ -24,8 +24,12 @@ def main():
     stream_handler.setFormatter(formatter)
     stream_handler.setLevel(logging.INFO)
 
-    file_dir = os.path.join("main", "logs", "info.log")
-    file_handler = logging.FileHandler("." + "\\" + file_dir)
+    file_dir = os.path.join("main", "logs")
+    
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    
+    file_handler = logging.FileHandler("." + "\\" + file_dir + "\\" + "info.log")
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.DEBUG)
 

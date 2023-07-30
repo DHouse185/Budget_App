@@ -13,11 +13,12 @@ import sys
 ##########  Created files IMPORTS  #####################################################
 import logger
 from login_controls.login_interface import LoginWindow
-from root.root import Root
+#from root.root import Root
 ########################################################################################
 
 # Set up logger
 log = logger.main()
+# log.debug()
 
 if __name__ == "__main__":
     
@@ -30,7 +31,8 @@ if __name__ == "__main__":
         
     if login.exec() == 1:
         user_id = login.user_id
-        root_h = Root(log, user_id)
+        print("success")
+        #root_h = Root(log, user_id)
         
     else:
         login.reject()

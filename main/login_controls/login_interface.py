@@ -8,10 +8,10 @@ import psycopg2 as pg2
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-from utils.cryptography_helper import Login_Cryptography 
+from login_controls.utils.cryptography_helper import Login_Cryptography 
 # UIs
-from gui.login import Login
-from gui.create_account import Create_Account
+from login_controls.gui.login import Login
+from login_controls.gui.create_account import Create_Account
 ########################################################################################
 
 class LoginWindow(Login):
@@ -31,6 +31,8 @@ class LoginWindow(Login):
         self.setWindowTitle("Login Window")
         self.log = logger
         
+        # application will not close as long as this is 0
+        self.button_close_event = 0
         
         self._initializer()
         self.pushButton_login.clicked.connect(self.login)
@@ -61,20 +63,22 @@ class LoginWindow(Login):
             # 2. This connects to Log_connect database
             self.conn = pg2.connect(database='Budget_USER', user='postgres', password=self.passwd)
             
-            # application will not close as long as this is 0
-            self.button_close_event = 0
+            
             # 3. Creates Table if it does not exist
-            cursor = self.conn.execute("""CREATE TABLE IF NOT EXISTS login 
+            self.cur = self.conn.cursor()
+            self.cur.execute("""CREATE TABLE IF NOT EXISTS login 
                                        (user_id SERIAL UNIQUE PRIMARY KEY, 
                                        username_key TEXT NOT NULL, 
                                        username TEXT UNIQUE NOT NULL, 
                                        budget_password TEXT NOT NULL, 
                                        budget_password_key TEXT NOT NULL)""")
-            
+            self.conn.commit()
+    
             # 4. Gets database login data
-            cursor = self.conn.execute("SELECT username_key, username, password_key, password, user_id FROM login")
+            self.cur.execute("SELECT username_key, username, password_key, password, user_id FROM login")
             # Remember for this list username is 0 element, password is 1 element
-            self._sql_login_data = cursor.fetchall()
+            self._sql_login_data = self.cur.fetchall()
+            self.conn.commit()
 
             if not self._sql_login_data:
                 button = QMessageBox.question(self, "No Login Information",
@@ -174,7 +178,9 @@ class CreateAccount(Create_Account):
                 save_user_pass_query = f"""INSERT INTO login (username_key, username, password_key, password)
                     VALUES (?, ?, ?, ?)""" 
                 binary_tuple = (memoryview(username_key), memoryview(username), memoryview(password_key), memoryview(password))
-                self.sql_connection.execute(save_user_pass_query, binary_tuple)
+                self.cur = self.sql_connection.cursor()
+                self.cur.execute(save_user_pass_query, binary_tuple)
+                
                 # Commit Change
                 self.sql_connection.commit()
                 q_button = QMessageBox.information(self, "Account Created",
