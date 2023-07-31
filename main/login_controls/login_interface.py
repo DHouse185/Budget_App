@@ -1,5 +1,6 @@
 ########## Python IMPORTs  #############################################################
 import os
+import sys
 ########################################################################################
 
 ########## Third Party Python IMPORTs  #################################################
@@ -30,10 +31,12 @@ class LoginWindow(Login):
         self.setupUi(self)
         self.setWindowTitle("Login Window")
         self.log = logger
-        
-        self._initializer()
         self.pushButton_login.clicked.connect(self.login)
         self.pushButton_create_account.clicked.connect(self._creating_account)
+        self.start = False
+        
+        self._initializer()
+        
     
     def _initializer(self):
         try:
@@ -67,10 +70,10 @@ class LoginWindow(Login):
             self.cur = self.conn.cursor()
             self.cur.execute("""CREATE TABLE IF NOT EXISTS login 
                                        (user_id SERIAL UNIQUE PRIMARY KEY, 
-                                       username_key TEXT NOT NULL, 
-                                       username TEXT UNIQUE NOT NULL, 
-                                       budget_password TEXT NOT NULL, 
-                                       budget_password_key TEXT NOT NULL)""")
+                                       username_key BYTEA NOT NULL, 
+                                       username BYTEA UNIQUE NOT NULL, 
+                                       budget_password BYTEA NOT NULL, 
+                                       budget_password_key BYTEA NOT NULL)""")
             self.conn.commit()
     
             # 4. Gets database login data
@@ -79,31 +82,46 @@ class LoginWindow(Login):
             self._sql_login_data = self.cur.fetchall()
             self.conn.commit()
             
-            print(self._sql_login_data)
+            self.closeEvent = self.close_Event
             
-            # application will not close as long as this is 0
-            self.button_close_event = 0
-        
             if not self._sql_login_data:
                 button = QMessageBox.question(self, "No Login Information",
                                     "Welcome! There does not seem to be any login information."
                                     + " This must be your first time using the application.\n\n"
                                     + "Please create a new account."
                                     + " Clicking close will exit the program", 
-                                    QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Close)
+                                    QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Close, QMessageBox.StandardButton.Close)
                 
                 if button == QMessageBox.StandardButton.Ok:
-                    self.button_close_event = 0
                     self._creating_account()
-                if button == QMessageBox.StandardButton.Close:
+                elif button == QMessageBox.StandardButton.Close:
                     self.conn.close()
                     # signals to login_handler to close application
-                    self.button_close_event = 1
+                    self.button_close_event = True
+                    sys.exit()
+            
+            if self._sql_login_data:
+                self.start = True
+                # application will not close as long as this is 0
+                self.button_close_event = False
                     
         except Exception as e:
             self.log.error("An error occurred")
             self.log.error(e)
-        
+    
+    def close_Event(self, event):
+        """
+        Custom close event handler\n
+        closes:\n
+        Main Application\n
+        Binance US websocket
+        """
+        self.conn.close()
+        event.accept()
+        self.destroy()
+        if self.exec() != 1:
+            sys.exit()
+    
     def login(self):
         """"
         Emmitted when Login button is clicked
@@ -111,8 +129,8 @@ class LoginWindow(Login):
         """
         try:
             for element in self._sql_login_data:
-                if self.lineEdit_username.text() == self._crypto.decrypt(element[1], element[0]): 
-                    if self.lineEdit_password.text() == self._crypto.decrypt(element[3], element[2]):
+                if self.lineEdit_username.text() == self._crypto.decrypt(bytes(element[1]), bytes(element[0])): 
+                    if self.lineEdit_password.text() == self._crypto.decrypt(bytes(element[3]), bytes(element[2])):
                         self.user_id = element[4]
                         self.accept()
                         self.conn.close() # Will connect to a different database in budget program
@@ -129,9 +147,8 @@ class LoginWindow(Login):
         """
         From the LoginWindow class Create Account Window is called
         """
-        self.account_creation = CreateAccount(self.conn, self.log)
+        self.account_creation = CreateAccount(self.conn, self.log, self)
         self.account_creation.show()
-        self._initializer()
             
 class CreateAccount(Create_Account):
     """
@@ -140,11 +157,13 @@ class CreateAccount(Create_Account):
     
     Thread: Main Thread
     """
-    def __init__(self, sql_connect, logger):
+    def __init__(self, sql_connect, logger, login: LoginWindow):
         super().__init__()
         self.setupUi(self)
+        self.closeEvent = self.close_Event
         self.sql_connection = sql_connect
         self.log = logger
+        self.login = login
         self._initializer()
         self.pushButton_create.clicked.connect(self.create_account)
     
@@ -180,18 +199,31 @@ class CreateAccount(Create_Account):
                 username_key, username = self._crypto.encrypt_it(username)
                 password_key, password = self._crypto.encrypt_it(password)
                 # Inserting encryption and their key to sql database
-                save_user_pass_query = f"""INSERT INTO login (username_key, username, password_key, password)
-                    VALUES (?, ?, ?, ?)""" 
-                binary_tuple = (memoryview(username_key), memoryview(username), memoryview(password_key), memoryview(password))
+                save_user_pass_query = """INSERT INTO login (username_key, username, budget_password_key, budget_password)
+                    VALUES (%s, %s, %s, %s)""" 
+                binary_tuple = (username_key, username, password_key, password,)
                 self.cur = self.sql_connection.cursor()
                 self.cur.execute(save_user_pass_query, binary_tuple)
                 
                 # Commit Change
                 self.sql_connection.commit()
                 q_button = QMessageBox.information(self, "Account Created",
-                                    """Welcome! Account has been successfully created!""", 
-                                    QMessageBox.StandardButton.Ok)
+                                    """Welcome! Account has been successfully created!\n
+                                    Please reload the application.""", 
+                                    QMessageBox.StandardButton.Ok, QMessageBox.StandardButton.Ok)
                 if q_button.Ok:
-                    self.destroy()
+                    self.close()
+                    
         except Exception as e:
             self.log.error(e)
+            
+    def close_Event(self, event):
+        """
+        Custom close event handler\n
+        closes:\n
+        Main Application\n
+        Binance US websocket
+        """
+        self.sql_connection.close()
+        event.accept()
+        self.destroy()
