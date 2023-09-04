@@ -11,9 +11,9 @@ import psycopg2 as pg2
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import helper.root_functions as rfunc
-import helper.root_vriables as rvar
-from budget import Budget
+import root.helper.root_functions as rfunc
+import root.helper.root_variables as rvar
+from root.budget import Budget
 ########################################################################################
 
 class Root:
@@ -21,7 +21,7 @@ class Root:
         self.user_id = user_id
         pwd = rfunc.pwd_retrieval()
         
-        self.conn = pg2.connect(database='Budget', user='postgres', password=pwd)
+        self.conn = pg2.connect(database='Budget_Test', user='postgres', password=pwd)
         logger.debug("Connecting to database successful")
         
         self.Form = QMainWindow()

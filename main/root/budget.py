@@ -3,19 +3,21 @@ from pathlib import Path
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget
+from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QScrollArea
 from PyQt6.QtGui import QAction
 from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import helper.root_functions as rfunc
-import helper.root_vriables as rvar
-from pages.dashboard import Dashboard
-import utils.resources # Do not remove. Needed for images
+import root.helper.root_functions as rfunc
+import root.helper.root_variables as rvar
+from root.pages.dashboard import Dashboard
+from root.pages.transactions import Transactions
+from root.database import Database
+import root.utils.resources # Do not remove. Needed for images
 ########################################################################################
 
-class Budget:
+class Budget(QWidget):
     def __init__(self,
                  MainWindow: QMainWindow,
                  logger,
@@ -28,37 +30,39 @@ class Budget:
         
         # Prepare MainWindow
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1920, 1080)
+        MainWindow.resize(1920, 1118)
         MainWindow.setWindowTitle("Budget")
         
         # Gives Mainwindow dark mode style
         MainWindow.setStyleSheet(Path(rvar.DARK_MODE).read_text())
+        
         # Replace QMainWindow closeEvent with one of our own
         MainWindow.closeEvent = self.closeEvent
-        MainWindow.setMaximumSize(1920, 1080)
+        MainWindow.setMaximumSize(1920, 1118)
         
         # Begin the main parent widget of the main window
         # Mainwindow -> central widget
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setGeometry(QRect(0, 0, 1920, 1065))
+        self.centralwidget.setGeometry(QRect(0, 0, 1920, 1103))
         
         # Menu Bar
         # Mainwindow -> Menu Bar
+        # Apply menu bar to MainWindow
+        self.menu_bar = MainWindow.menuBar()
+        self.menu_bar.setGeometry(QRect(0, 0, 1920, 15))
+        
+        # Create action for menu bar
         self.actionSave_Workspace = QAction(MainWindow)
         self.actionSave_Workspace.setObjectName(u"actionSave_Workspace")
         self.actionSave_Workspace.setText("Save Workspace")
         
         # Action of "Save Workspace" in menu bar
         #               self.actionSave_Workspace.triggered.connect(self._save_workspace)
-        # Apply menu bar to MainWindow
-        self.menu_bar = MainWindow.menuBar()
-        self.menu_bar.setGeometry(QRect(0, 0, 1920, 15))
         
-        # On the menu bar there were be a menu called "Workspace"
+        # On the menu bar there will be a menu called "Workspace"
         workspace_menu = self.menu_bar.addMenu('&Workspace')
         #           workspace_menu.addAction(self.actionSave_Workspace)
-        
         
         # Prepare Pages (i.e. Stack Widgets) for Main Window
         # Mainwindow -> central widget -> StackWidget
@@ -112,10 +116,14 @@ class Budget:
         # Make the main page the main page upon initializing
         self.stackedWidget.setCurrentWidget(self.dashboard_page)
         
-        # Watchlist: -> Main Page
-        self.watchlist = Dashboard(self.dashboard_page, self.conn)
+        # Database
+        self.database = Database(self.conn)
         
+        # Dashboard: -> Main Page
+        self.dashboard = Dashboard(self.dashboard_page, self.database)
         
+        # Transaction -> Transactions Page
+        self.transaction = Transactions(self.transaction_page, self.database)
     
     
     def closeEvent(self, event):
@@ -142,3 +150,6 @@ class Budget:
         # Close event will be ignored if neither are selected
         else:
             event.ignore()
+            
+    def update(self):
+        ...

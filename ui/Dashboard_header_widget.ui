@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dashboard_header_widget</class>
+ <widget class="QWidget" name="Dashboard_header_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>130</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>341</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>26</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 26pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Financial Dashboard</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="YTD_label">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>40</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Spend YTD:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Eating_out_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/eating_out_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Eating_out_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Eating_out_label">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Eating-Out</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Grocery_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/grocery_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Grocery_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Grocery_label">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Grocery</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Transportation_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/transportation_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Transportation_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Transportation_label">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Transportation</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Free_Expense_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/Free_expense_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Free_expense_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>1100</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Free_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Free Expense</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Investment_label">
+   <property name="geometry">
+    <rect>
+     <x>1210</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Investment</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Investment_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>1210</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/investments_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Investment_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>1280</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bills_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>1460</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bills_label">
+   <property name="geometry">
+    <rect>
+     <x>1390</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Bills</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bills_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>1390</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/bills_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Support_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>1640</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Support_label">
+   <property name="geometry">
+    <rect>
+     <x>1570</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Support</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Support_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>1570</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/support_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bills_Spent_label_2">
+   <property name="geometry">
+    <rect>
+     <x>1820</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>1750</x>
+     <y>80</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Goal</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Goal_Image_label">
+   <property name="geometry">
+    <rect>
+     <x>1750</x>
+     <y>10</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/images/goal_label_61x61.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>125</y>
+     <width>1920</width>
+     <height>10</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #181818;</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

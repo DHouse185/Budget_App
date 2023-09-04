@@ -1,0 +1,29 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/bills_label_61x61.png</file>
+    <file>images/eating_out_label_61x61.png</file>
+    <file>images/Free_expense_label_61x61.png</file>
+    <file>images/goal_label_61x61.png</file>
+    <file>images/grocery_label_61x61.png</file>
+    <file>images/investments_label_61x61.png</file>
+    <file>images/support_label_61x61.png</file>
+    <file>images/transportation_label_61x61.png</file>
+    <file>images/grocery_label_61x61.png</file>
+    <file>images/pngaaa.com-848656.png</file>
+    <file>images/pngaaa.com-1261106.png</file>
+    <file>images/pngaaa.com-1433501.png</file>
+    <file>images/pngaaa.com-1507355.png</file>
+    <file>images/pngaaa.com-2138453.png</file>
+    <file>images/pngaaa.com-2182093.png</file>
+    <file>images/pngaaa.com-2384833.png</file>
+    <file>images/pngaaa.com-2914571.png</file>
+    <file>images/pngaaa.com-3584133.png</file>
+    <file>images/pngaaa.com-3630058.png</file>
+    <file>images/pngaaa.com-3703023.png</file>
+    <file>images/pngaaa.com-4811513.png</file>
+    <file>images/pngaaa.com-5608354.png</file>
+    <file>images/pngaaa.com-5608378.png</file>
+    <file>images/pngaaa.com-5651969.png</file>
+    <file>images/pngaaa.com-6602955.png</file>
+  </qresource>
+</RCC>

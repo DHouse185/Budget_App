@@ -15,18 +15,18 @@ from PyQt6.QtCore import Qt, QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import helper.root_functions as rfunc
-import helper.root_vriables as rvar
+import root.helper.root_functions as rfunc
+import root.helper.root_vriables as rvar
 # from pages.dashboard import Dashboard
 ########################################################################################
 
 class Header:
-    def __init__(self, dashboard, database_conn):
+    def __init__(self, parent, database):
         super().__init__()
         # Create header widget for Dashboard
         # Mainwindow -> central widget -> StackWidget -> Dashboard Page
         # -> header_widget
-        self.header_widget = QWidget(dashboard)
+        self.header_widget = QWidget(parent)
         self.header_widget.setObjectName(u"Dashboard_header_widget")
         self.header_widget.setGeometry(QRect(0, 0, 1960, 250))
         

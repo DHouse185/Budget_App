@@ -1,2 +1,42 @@
 2023-07-30 15:05:49,478   MainThread - ERROR :: 99   An error occurred
 2023-07-30 15:07:45,509   MainThread - ERROR :: 100  An error occurred
+2023-07-30 15:12:39,250   MainThread - ERROR :: 102  An error occurred
+2023-07-30 15:18:16,304   MainThread - ERROR :: 103  An error occurred
+2023-07-30 15:19:13,166   MainThread - ERROR :: 104  An error occurred
+2023-07-30 15:20:58,055   MainThread - ERROR :: 104  An error occurred
+2023-07-30 15:23:21,840   MainThread - ERROR :: 104  An error occurred
+2023-07-30 15:26:26,160   MainThread - ERROR :: 103  An error occurred
+2023-07-30 15:26:26,160   MainThread - ERROR :: 104  Fernet key must be 32 url-safe base64-encoded bytes.
+2023-07-30 15:32:04,241   MainThread - ERROR :: 104  An error occurred
+2023-07-30 15:32:04,243   MainThread - ERROR :: 105  Fernet key must be 32 url-safe base64-encoded bytes.
+2023-07-30 15:45:28,398   MainThread - ERROR :: 106  An error occurred
+2023-07-30 15:45:28,399   MainThread - ERROR :: 107  Fernet key must be 32 url-safe base64-encoded bytes.
+2023-07-30 15:47:30,337   MainThread - ERROR :: 106  An error occurred
+2023-07-30 15:47:30,338   MainThread - ERROR :: 107  column "password_key" does not exist
+LINE 1: SELECT username_key, username, password_key, password, user_...
+                                       ^
+
+2023-07-31 17:32:55,203   MainThread - ERROR :: 218  syntax error at or near ","
+LINE 2:                     VALUES (?, ?, ?, ?)
+                                     ^
+
+2023-07-31 17:45:02,964   MainThread - ERROR :: 219  syntax error at or near ","
+LINE 2:                     VALUES (?, ?, ?, ?)
+                                     ^
+
+2023-07-31 17:56:58,069   MainThread - ERROR :: 143  Invalid base64-encoded string: number of data characters (89) cannot be 1 more than a multiple of 4
+2023-07-31 17:57:05,584   MainThread - ERROR :: 143  Invalid base64-encoded string: number of data characters (89) cannot be 1 more than a multiple of 4
+2023-07-31 18:00:17,129   MainThread - ERROR :: 143  string argument without an encoding
+2023-07-31 18:02:52,837   MainThread - ERROR :: 147  string argument without an encoding
+2023-07-31 18:06:00,956   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:06,473   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:17,053   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:17,420   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:17,744   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:18,087   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:18,416   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:06:18,771   MainThread - ERROR :: 151  string argument without an encoding
+2023-07-31 18:07:38,123   MainThread - ERROR :: 151  descriptor 'tobytes' for 'memoryview' objects doesn't apply to a 'str' object
+2023-07-31 18:15:53,668   MainThread - ERROR :: 151  descriptor 'tobytes' for 'memoryview' objects doesn't apply to a 'int' object
+2023-07-31 18:36:03,006   MainThread - ERROR :: 110  An error occurred
+2023-07-31 18:36:03,007   MainThread - ERROR :: 111  'CreateAccount' object has no attribute 'to_login'

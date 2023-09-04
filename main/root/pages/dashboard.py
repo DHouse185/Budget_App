@@ -3,33 +3,55 @@ from pathlib import Path
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget
+from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QScrollArea
 from PyQt6.QtGui import QAction
 from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import helper.root_functions as rfunc
-import helper.root_vriables as rvar
-from pages.components.dashboard_header import Header 
+import root.helper.root_functions as rfunc
+import root.helper.root_vriables as rvar
+from root.database import Database
+from root.pages.components.dashboard_header import Header 
+from root.pages.components.expense_bar_graph import Expense_Bar_Graph
 ########################################################################################
 
 
 
-class Dashboard:
+class Dashboard(QWidget):
     """
     Dashboard page that contains and manage all components on the dashboard page
     """
-    def __init__(self, page, database_conn):
-        super().__init__()
+    def __init__(self, page, database: Database):
+        super(page).__init__()
         
+        self.setGeometry(QRect(0, 0, 1920, 1065))
+        self.setObjectName("Dashboard")
         # self.db = Workspace()
         
         # self.notification = notification
         self.dashboard_page = page
-        self.database_conn = database_conn
+        self.database = database
         
-        self.header = Header(self.dashboard_page)
+        # Configure Dashboard to be scrollable
+        self.scrollarea = QScrollArea(self) 
+        self.scrollarea.setObjectName("Dashboard_scrollArea")
+        self.scrollarea.setWidgetResizable(True)
+        self.scrollarea.height(1065)
+        self.scrollarea.width(1920)
+        self.scrollarea.setMaximumSize(1920, 1065)
+        
+        self.scrollareacontent = QWidget()
+        
+        
+        self.header = Header(self.scrollareacontent, self.database)
+        self.expense_bar_graph = Expense_Bar_Graph()
+        
+        self.scrollarea.setWidget(self.scrollareacontent)
+        
+        
+        
+        
         
         
         

@@ -1,5 +1,6 @@
 ########## Python IMPORTs  #############################################################
 import os
+from datetime import datetime
 ########################################################################################
 
 ########## Third Party Python IMPORTs  #################################################
@@ -43,17 +44,19 @@ def encrypt_it(text: str):
     return key, encryptedPWD
 
 def pwd_retrieval() -> str:
-    pg_directory = os.path.join("C:", "Users", "D'Andre House", "Codes", "PGA")
+    pg_directory = os.path.join("C:\\Users", "D'Andre House", "Codes", "PGA")
     try:    
         if os.path.exists(pg_directory):
             # Key
             k_file = open(pg_directory + '\k.txt')
-            key = k_file.read()
+            key = ''.join(k_file.readlines())
+            key = bytes(key, 'utf-8')
             k_file.close()
             
             # Password
             p_file = open(pg_directory + '\w.txt')
-            pwd = p_file.read()
+            pwd = ''.join(p_file.readlines())
+            pwd = bytes(pwd, 'utf-8')
             p_file.close()
             
             passwd = decrypt(pwd, key)
@@ -64,3 +67,6 @@ def pwd_retrieval() -> str:
             
     except Exception:
         print("Could not access files to access the database")
+        
+def number_of_days(date_1: datetime, date_2: datetime):  
+        return (date_2 - date_1).days 

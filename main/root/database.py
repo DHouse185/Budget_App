@@ -11,9 +11,9 @@ import psycopg2 as pg2
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import helper.root_functions as rfunc
-import helper.root_vriables as rvar
-import utils.resources # Do not remove. Needed for images
+import root.helper.root_functions as rfunc
+import root.helper.root_vriables as rvar
+import root.utils.resources # Do not remove. Needed for images
 ########################################################################################
 
 class Database:
@@ -22,7 +22,7 @@ class Database:
         self.connection = database_conn
         self.cur = self.connection.cursor()
         self.create_tables()
-        self.transaction_data = self.retrieve_initial_data()
+        self.start_up_transaction_data = self.retrieve_initial_data()
         
     def create_tables(self):
         # Create category table
