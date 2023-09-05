@@ -12,7 +12,7 @@ from PyQt6.QtCore import QRect
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.pages.dashboard import Dashboard
-from root.pages.transactions import Transactions
+# from root.pages.transactions import Transactions
 from root.database import Database
 import root.utils.resources # Do not remove. Needed for images
 ########################################################################################
@@ -38,13 +38,13 @@ class Budget(QWidget):
         
         # Replace QMainWindow closeEvent with one of our own
         MainWindow.closeEvent = self.closeEvent
-        MainWindow.setMaximumSize(1920, 1118)
+        MainWindow.setMaximumSize(1920, 1128)
         
         # Begin the main parent widget of the main window
         # Mainwindow -> central widget
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setGeometry(QRect(0, 0, 1920, 1103))
+        self.centralwidget.setGeometry(QRect(0, 25, 1920, 1103))
         
         # Menu Bar
         # Mainwindow -> Menu Bar
@@ -69,7 +69,7 @@ class Budget(QWidget):
         self.stackedWidget = QStackedWidget(self.centralwidget)
         #   self.stackedWidget.stackUnder(self.notification)
         self.stackedWidget.setObjectName(u"Main_stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 0, 1920, 1065))
+        self.stackedWidget.setGeometry(QRect(0, 0, 1920, 1103))
         
         # Starting Dashboard
         # Mainwindow -> central widget -> StackWidget -> Dashboard Page
@@ -117,13 +117,13 @@ class Budget(QWidget):
         self.stackedWidget.setCurrentWidget(self.dashboard_page)
         
         # Database
-        self.database = Database(self.conn)
+        # self.database = Database(self.conn)
         
         # Dashboard: -> Main Page
-        self.dashboard = Dashboard(self.dashboard_page, self.database)
+        self.dashboard = Dashboard(self.dashboard_page) #, self.database)
         
         # Transaction -> Transactions Page
-        self.transaction = Transactions(self.transaction_page, self.database)
+        # self.transaction = Transactions(self.transaction_page, self.database)
     
     
     def closeEvent(self, event):

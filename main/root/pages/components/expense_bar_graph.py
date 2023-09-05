@@ -23,7 +23,7 @@ from PyQt6.QtCore import Qt, QRect
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
-import root.helper.root_vriables as rvar
+import root.helper.root_variables as rvar
 # from pages.dashboard import Dashboard
 ########################################################################################
 

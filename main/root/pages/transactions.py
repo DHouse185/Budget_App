@@ -13,7 +13,7 @@ from PyQt6.QtCore import QModelIndex, QRect, QAbstractTableModel, Qt
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
-import root.helper.root_vriables as rvar
+import root.helper.root_variables as rvar
 from root.database import Database
 from root.pages.components.dashboard_header import Header 
 ########################################################################################
@@ -44,7 +44,7 @@ class TableModel(QAbstractTableModel):
 
 class TransactionTable(QWidget):
     def __init__(self, dataframe: pd.DataFrame, parent: QWidget):
-        super(parent).__init__()
+        super().__init__(parent)
         self.setGeometry(QRect(763, 5, 1152, 852))
         self.setObjectName("Transaction_Table_Widget")
         
@@ -67,7 +67,7 @@ class TransactionTable(QWidget):
 
 class Transaction_Stats(QWidget):
     def __init__(self, dataframe: pd.DataFrame, parent: QWidget):
-        super(parent).__init__()
+        super().__init__(parent)
         self.setGeometry(QRect(5, 5, 738, 532))
         self.setObjectName("Transaction_Stat_Table_Widget")
         self.dataframe = dataframe
@@ -107,7 +107,7 @@ class Transactions(QWidget):
     Transaction page that Shows a table of all transactions that has occurred
     """
     def __init__(self, page, database: Database):
-        super(page).__init__()
+        super().__init__(page)
         self.setGeometry(QRect(0, 0, 1920, 1065))
         self.setObjectName("Dashboard")
         

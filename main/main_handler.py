@@ -1,19 +1,16 @@
 ##########  Python IMPORTs  ############################################################
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QMainWindow
 import sys
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import logger
 from login_controls.login_interface import LoginWindow
-from root.root import Root
+from root.root_file import Root
 ########################################################################################
-# Set up logger
-log = logger.main()
 
 class Start:
-    def __init__(self):
-        
+    def __init__(self, log):
+        app = QApplication(sys.argv)
         login = LoginWindow(log)
         
         if login.start:
@@ -22,11 +19,16 @@ class Start:
                 login.show()
         
             if login.exec() == 1:
+                Form = QMainWindow()
                 user_id = login.user_id
-                print("success")
-                root_h = Root(log, user_id)
+                self.initiate_program(log, user_id, Form)
 
             else:
                 login.reject()
+                
+        # Stops application from closing upon initialization    
+        sys.exit(app.exec()) 
             
-    
+    def initiate_program(self, log, user_id, Form):
+        print("success")
+        root_h = Root(Form, log, user_id)

@@ -1,12 +1,12 @@
 # This is were the main program is managed
 
 ########## Python IMPORTs  #############################################################
-import os
+#import os
 ########################################################################################
 
 ##########  Python IMPORTs  ############################################################
 from PyQt6.QtWidgets import QMainWindow
-import sys
+#import sys
 import psycopg2 as pg2
 ########################################################################################
 
@@ -17,17 +17,17 @@ from root.budget import Budget
 ########################################################################################
 
 class Root:
-    def __init__(self, logger, user_id):
+    def __init__(self, Form: QMainWindow, logger, user_id):
         self.user_id = user_id
         pwd = rfunc.pwd_retrieval()
         
         self.conn = pg2.connect(database='Budget_Test', user='postgres', password=pwd)
+        print("Initialized")
         logger.debug("Connecting to database successful")
         
-        self.Form = QMainWindow()
-        self.ui = Budget(self.Form, 
+        # self.Form = QMainWindow()
+        self.ui = Budget(Form, 
                        logger,
                        self.conn)
-        self.Form.show()
-        
+        Form.show()
         
