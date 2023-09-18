@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/Burger_button.png</file>
+    <file>images/Burger_button_click.png</file>
+    <file>images/Burger_button_hover.png</file>
     <file>images/bills_label_61x61.png</file>
     <file>images/eating_out_label_61x61.png</file>
     <file>images/Free_expense_label_61x61.png</file>

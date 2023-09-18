@@ -262,7 +262,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 }</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>3</number>
   </property>
   <widget class="QWidget" name="Dashboard_page">
    <widget class="QScrollArea" name="Dashboard_scrollArea">
@@ -1859,7 +1859,7 @@ font: 16pt
         <height>1841</height>
        </rect>
       </property>
-      <widget class="QLabel" name="Month_title_label">
+      <widget class="QLabel" name="month_title_label">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1880,7 +1880,7 @@ text-decoration: underline;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Sunday_label">
+      <widget class="QLabel" name="sunday_label">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1906,7 +1906,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Monday_label">
+      <widget class="QLabel" name="monday_label">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -1932,7 +1932,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Tuesday_label">
+      <widget class="QLabel" name="tuesday_label">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -1958,7 +1958,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Wednesday_label">
+      <widget class="QLabel" name="wednesday_label">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -1984,7 +1984,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Thursday_label">
+      <widget class="QLabel" name="thursday_label">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -2010,7 +2010,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Friday_label">
+      <widget class="QLabel" name="friday_label">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -2036,7 +2036,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Sunday_label_2">
+      <widget class="QLabel" name="Saturday_label">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -2062,7 +2062,7 @@ border: 2px solid #000000;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_1">
+      <widget class="QLabel" name="date_label_1">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2090,7 +2090,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_2">
+      <widget class="QLabel" name="date_label_2">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -2118,7 +2118,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_3">
+      <widget class="QLabel" name="date_label_3">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2146,7 +2146,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_4">
+      <widget class="QLabel" name="date_label_4">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2174,7 +2174,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_5">
+      <widget class="QLabel" name="date_label_5">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -2202,7 +2202,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_6">
+      <widget class="QLabel" name="date_label_6">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -2230,7 +2230,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_7">
+      <widget class="QLabel" name="date_label_7">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -2258,7 +2258,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_1">
+      <widget class="QLabel" name="date_Credit_label_1">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2286,7 +2286,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_1">
+      <widget class="QLabel" name="date_Dedit_label_1">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2314,7 +2314,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_1">
+      <widget class="QLabel" name="date_Expense_label_1">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -2345,7 +2345,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_2">
+      <widget class="QLabel" name="date_Dedit_label_2">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -2373,7 +2373,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_2">
+      <widget class="QLabel" name="date_Expense_label_2">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -2404,7 +2404,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_2">
+      <widget class="QLabel" name="date_Credit_label_2">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -2432,7 +2432,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_3">
+      <widget class="QLabel" name="date_Expense_label_3">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2463,7 +2463,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_3">
+      <widget class="QLabel" name="date_Dedit_label_3">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2491,7 +2491,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_3">
+      <widget class="QLabel" name="date_Credit_label_3">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2519,7 +2519,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_4">
+      <widget class="QLabel" name="date_Credit_label_4">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2547,7 +2547,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_4">
+      <widget class="QLabel" name="date_Expense_label_4">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2578,7 +2578,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_4">
+      <widget class="QLabel" name="date_Dedit_label_4">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2606,7 +2606,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_5">
+      <widget class="QLabel" name="date_Expense_label_5">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -2637,7 +2637,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_5">
+      <widget class="QLabel" name="date_Credit_label_5">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -2665,7 +2665,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_5">
+      <widget class="QLabel" name="date_Dedit_label_5">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -2693,7 +2693,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_6">
+      <widget class="QLabel" name="date_Expense_label_6">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -2724,7 +2724,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_6">
+      <widget class="QLabel" name="date_Dedit_label_6">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -2752,7 +2752,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_6">
+      <widget class="QLabel" name="date_Credit_label_6">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -2780,7 +2780,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_7">
+      <widget class="QLabel" name="date_Expense_label_7">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -2811,7 +2811,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_7">
+      <widget class="QLabel" name="date_Credit_label_7">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -2839,7 +2839,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_7">
+      <widget class="QLabel" name="date_Dedit_label_7">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -2867,7 +2867,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_10">
+      <widget class="QLabel" name="date_Credit_label_10">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2895,7 +2895,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_11">
+      <widget class="QLabel" name="date_Expense_label_11">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2926,7 +2926,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_10">
+      <widget class="QLabel" name="date_label_10">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -2954,7 +2954,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_11">
+      <widget class="QLabel" name="date_Dedit_label_11">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -2982,7 +2982,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_12">
+      <widget class="QLabel" name="date_Credit_label_12">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3010,7 +3010,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_12">
+      <widget class="QLabel" name="date_Dedit_label_12">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3038,7 +3038,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_9">
+      <widget class="QLabel" name="date_Credit_label_9">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -3066,7 +3066,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_13">
+      <widget class="QLabel" name="date_Dedit_label_13">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3094,7 +3094,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_13">
+      <widget class="QLabel" name="date_Expense_label_13">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3125,7 +3125,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_8">
+      <widget class="QLabel" name="date_label_8">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -3153,7 +3153,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_10">
+      <widget class="QLabel" name="date_Expense_label_10">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -3184,7 +3184,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_8">
+      <widget class="QLabel" name="date_Credit_label_8">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -3212,7 +3212,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_12">
+      <widget class="QLabel" name="date_Expense_label_12">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3243,7 +3243,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_9">
+      <widget class="QLabel" name="date_Dedit_label_9">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -3271,7 +3271,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_8">
+      <widget class="QLabel" name="date_Dedit_label_8">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -3299,7 +3299,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_8">
+      <widget class="QLabel" name="date_Expense_label_8">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -3330,7 +3330,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_11">
+      <widget class="QLabel" name="date_Credit_label_11">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -3358,7 +3358,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_14">
+      <widget class="QLabel" name="date_Expense_label_14">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3389,7 +3389,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_11">
+      <widget class="QLabel" name="date_label_11">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -3417,7 +3417,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_12">
+      <widget class="QLabel" name="date_label_12">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3445,7 +3445,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_14">
+      <widget class="QLabel" name="date_label_14">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3473,7 +3473,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_9">
+      <widget class="QLabel" name="date_label_9">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -3501,7 +3501,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_9">
+      <widget class="QLabel" name="date_Expense_label_9">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -3532,7 +3532,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_14">
+      <widget class="QLabel" name="date_Dedit_label_14">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3560,7 +3560,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_10">
+      <widget class="QLabel" name="date_Dedit_label_10">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -3588,7 +3588,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_13">
+      <widget class="QLabel" name="date_label_13">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3616,7 +3616,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_13">
+      <widget class="QLabel" name="date_Credit_label_13">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3644,7 +3644,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_14">
+      <widget class="QLabel" name="date_Credit_label_14">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3672,7 +3672,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_20">
+      <widget class="QLabel" name="date_Expense_label_20">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3703,7 +3703,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_19">
+      <widget class="QLabel" name="date_Expense_label_19">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3734,7 +3734,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_21">
+      <widget class="QLabel" name="date_Expense_label_21">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3765,7 +3765,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_17">
+      <widget class="QLabel" name="date_Dedit_label_17">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -3793,7 +3793,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_20">
+      <widget class="QLabel" name="date_label_20">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -3821,7 +3821,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_19">
+      <widget class="QLabel" name="date_label_19">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -3849,7 +3849,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_18">
+      <widget class="QLabel" name="date_Dedit_label_18">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -3877,7 +3877,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_15">
+      <widget class="QLabel" name="date_Expense_label_15">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -3908,7 +3908,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_18">
+      <widget class="QLabel" name="date_label_18">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -3936,7 +3936,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_16">
+      <widget class="QLabel" name="date_Dedit_label_16">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -3964,7 +3964,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_21">
+      <widget class="QLabel" name="date_label_21">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -3992,7 +3992,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_17">
+      <widget class="QLabel" name="date_Expense_label_17">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4023,7 +4023,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_15">
+      <widget class="QLabel" name="date_Credit_label_15">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4051,7 +4051,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_15">
+      <widget class="QLabel" name="date_label_15">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4079,7 +4079,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_20">
+      <widget class="QLabel" name="date_Credit_label_20">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -4107,7 +4107,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_17">
+      <widget class="QLabel" name="date_Credit_label_17">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4135,7 +4135,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_15">
+      <widget class="QLabel" name="date_Dedit_label_15">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4163,7 +4163,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_20">
+      <widget class="QLabel" name="date_Dedit_label_20">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -4191,7 +4191,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_21">
+      <widget class="QLabel" name="date_Dedit_label_21">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -4219,7 +4219,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_16">
+      <widget class="QLabel" name="date_Expense_label_16">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4250,7 +4250,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_17">
+      <widget class="QLabel" name="date_label_17">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4278,7 +4278,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_18">
+      <widget class="QLabel" name="date_Credit_label_18">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4306,7 +4306,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_16">
+      <widget class="QLabel" name="date_Credit_label_16">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4334,7 +4334,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_19">
+      <widget class="QLabel" name="date_Credit_label_19">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -4362,7 +4362,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_16">
+      <widget class="QLabel" name="date_label_16">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4390,7 +4390,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_21">
+      <widget class="QLabel" name="date_Credit_label_21">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -4418,7 +4418,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_18">
+      <widget class="QLabel" name="date_Expense_label_18">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4449,7 +4449,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_19">
+      <widget class="QLabel" name="date_Dedit_label_19">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -4477,7 +4477,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_22">
+      <widget class="QLabel" name="date_Credit_label_22">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4505,7 +4505,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_22">
+      <widget class="QLabel" name="date_label_22">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4533,7 +4533,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_22">
+      <widget class="QLabel" name="date_Expense_label_22">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4564,7 +4564,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_22">
+      <widget class="QLabel" name="date_Dedit_label_22">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -4592,7 +4592,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_23">
+      <widget class="QLabel" name="date_Expense_label_23">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4623,7 +4623,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_23">
+      <widget class="QLabel" name="date_label_23">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4651,7 +4651,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_23">
+      <widget class="QLabel" name="date_Credit_label_23">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4679,7 +4679,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_23">
+      <widget class="QLabel" name="date_Dedit_label_23">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -4707,7 +4707,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_24">
+      <widget class="QLabel" name="date_Credit_label_24">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4735,7 +4735,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_24">
+      <widget class="QLabel" name="date_Expense_label_24">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4766,7 +4766,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_24">
+      <widget class="QLabel" name="date_Dedit_label_24">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4794,7 +4794,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_24">
+      <widget class="QLabel" name="date_label_24">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -4822,7 +4822,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_25">
+      <widget class="QLabel" name="date_Credit_label_25">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4850,7 +4850,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_25">
+      <widget class="QLabel" name="date_Expense_label_25">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4881,7 +4881,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_25">
+      <widget class="QLabel" name="date_Dedit_label_25">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4909,7 +4909,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_25">
+      <widget class="QLabel" name="date_label_25">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -4937,7 +4937,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_26">
+      <widget class="QLabel" name="date_Expense_label_26">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -4968,7 +4968,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_26">
+      <widget class="QLabel" name="date_Dedit_label_26">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -4996,7 +4996,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_26">
+      <widget class="QLabel" name="date_Credit_label_26">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5024,7 +5024,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_26">
+      <widget class="QLabel" name="date_label_26">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5052,7 +5052,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_27">
+      <widget class="QLabel" name="date_Expense_label_27">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5083,7 +5083,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_27">
+      <widget class="QLabel" name="date_Dedit_label_27">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5111,7 +5111,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_27">
+      <widget class="QLabel" name="date_Credit_label_27">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5139,7 +5139,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_27">
+      <widget class="QLabel" name="date_label_27">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5167,7 +5167,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_28">
+      <widget class="QLabel" name="date_Dedit_label_28">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -5195,7 +5195,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_28">
+      <widget class="QLabel" name="date_Credit_label_28">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -5223,7 +5223,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_28">
+      <widget class="QLabel" name="date_label_28">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -5251,7 +5251,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_28">
+      <widget class="QLabel" name="date_Expense_label_28">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -5282,7 +5282,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_29">
+      <widget class="QLabel" name="date_Expense_label_29">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -5313,7 +5313,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_29">
+      <widget class="QLabel" name="date_label_29">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -5341,7 +5341,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_29">
+      <widget class="QLabel" name="date_Credit_label_29">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -5369,7 +5369,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_29">
+      <widget class="QLabel" name="date_Dedit_label_29">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -5397,7 +5397,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_30">
+      <widget class="QLabel" name="date_Credit_label_30">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -5425,7 +5425,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_30">
+      <widget class="QLabel" name="date_Dedit_label_30">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -5453,7 +5453,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_30">
+      <widget class="QLabel" name="date_label_30">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -5481,7 +5481,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_30">
+      <widget class="QLabel" name="date_Expense_label_30">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -5512,7 +5512,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_31">
+      <widget class="QLabel" name="date_Dedit_label_31">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -5540,7 +5540,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_31">
+      <widget class="QLabel" name="date_label_31">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -5568,7 +5568,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_31">
+      <widget class="QLabel" name="date_Credit_label_31">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -5596,7 +5596,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_31">
+      <widget class="QLabel" name="date_Expense_label_31">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -5627,7 +5627,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_32">
+      <widget class="QLabel" name="date_Expense_label_32">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -5658,7 +5658,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_32">
+      <widget class="QLabel" name="date_Credit_label_32">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -5686,7 +5686,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_32">
+      <widget class="QLabel" name="date_label_32">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -5714,7 +5714,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_32">
+      <widget class="QLabel" name="date_Dedit_label_32">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -5742,7 +5742,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_33">
+      <widget class="QLabel" name="date_Expense_label_33">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5773,7 +5773,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_33">
+      <widget class="QLabel" name="date_label_33">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5801,7 +5801,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_33">
+      <widget class="QLabel" name="date_Credit_label_33">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5829,7 +5829,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_33">
+      <widget class="QLabel" name="date_Dedit_label_33">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -5857,7 +5857,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_34">
+      <widget class="QLabel" name="date_label_34">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5885,7 +5885,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_34">
+      <widget class="QLabel" name="date_Credit_label_34">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5913,7 +5913,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_34">
+      <widget class="QLabel" name="date_Expense_label_34">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5944,7 +5944,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_34">
+      <widget class="QLabel" name="date_Dedit_label_34">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -5972,7 +5972,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_35">
+      <widget class="QLabel" name="date_Expense_label_35">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6003,7 +6003,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_35">
+      <widget class="QLabel" name="date_Dedit_label_35">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6031,7 +6031,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_35">
+      <widget class="QLabel" name="date_label_35">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6059,7 +6059,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_35">
+      <widget class="QLabel" name="date_Credit_label_35">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6087,7 +6087,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_36">
+      <widget class="QLabel" name="date_Credit_label_36">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -6115,7 +6115,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_36">
+      <widget class="QLabel" name="date_Dedit_label_36">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -6143,7 +6143,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_36">
+      <widget class="QLabel" name="date_label_36">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -6171,7 +6171,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_36">
+      <widget class="QLabel" name="date_Expense_label_36">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -6202,7 +6202,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_37">
+      <widget class="QLabel" name="date_Dedit_label_37">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -6230,7 +6230,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_37">
+      <widget class="QLabel" name="date_label_37">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -6258,7 +6258,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_37">
+      <widget class="QLabel" name="date_Credit_label_37">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -6286,7 +6286,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_37">
+      <widget class="QLabel" name="date_Expense_label_37">
        <property name="geometry">
         <rect>
          <x>217</x>
@@ -6317,7 +6317,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_38">
+      <widget class="QLabel" name="date_Dedit_label_38">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -6345,7 +6345,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_38">
+      <widget class="QLabel" name="date_Credit_label_38">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -6373,7 +6373,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_38">
+      <widget class="QLabel" name="date_label_38">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -6401,7 +6401,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_38">
+      <widget class="QLabel" name="date_Expense_label_38">
        <property name="geometry">
         <rect>
          <x>434</x>
@@ -6432,7 +6432,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_39">
+      <widget class="QLabel" name="date_Expense_label_39">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -6463,7 +6463,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_39">
+      <widget class="QLabel" name="date_label_39">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -6491,7 +6491,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_39">
+      <widget class="QLabel" name="date_Dedit_label_39">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -6519,7 +6519,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_39">
+      <widget class="QLabel" name="date_Credit_label_39">
        <property name="geometry">
         <rect>
          <x>651</x>
@@ -6547,7 +6547,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_40">
+      <widget class="QLabel" name="date_Dedit_label_40">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -6575,7 +6575,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_40">
+      <widget class="QLabel" name="date_label_40">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -6603,7 +6603,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_40">
+      <widget class="QLabel" name="date_Credit_label_40">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -6631,7 +6631,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_40">
+      <widget class="QLabel" name="date_Expense_label_40">
        <property name="geometry">
         <rect>
          <x>868</x>
@@ -6662,7 +6662,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_41">
+      <widget class="QLabel" name="date_Credit_label_41">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -6690,7 +6690,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_41">
+      <widget class="QLabel" name="date_Dedit_label_41">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -6718,7 +6718,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_41">
+      <widget class="QLabel" name="date_Expense_label_41">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -6749,7 +6749,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_41">
+      <widget class="QLabel" name="date_label_41">
        <property name="geometry">
         <rect>
          <x>1085</x>
@@ -6777,7 +6777,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Dedit_label_42">
+      <widget class="QLabel" name="date_Dedit_label_42">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6805,7 +6805,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_label_42">
+      <widget class="QLabel" name="date_label_42">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6833,7 +6833,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Expense_label_42">
+      <widget class="QLabel" name="date_Expense_label_42">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6864,7 +6864,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="Date_Credit_label_42">
+      <widget class="QLabel" name="date_Credit_label_42">
        <property name="geometry">
         <rect>
          <x>1302</x>
@@ -6953,6 +6953,461 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
        <string notr="true">font: 11pt &quot;Nirmala UI&quot;;</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="10" column="1">
+        <widget class="QLabel" name="Amount_Balance_Left_in_Budget_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="32" column="1">
+        <widget class="QLabel" name="Amount_Predicted_Monthly_Expense_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLabel" name="Amount_Budget_For_Year_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="1">
+        <widget class="QLabel" name="Amount_January_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="1">
+        <widget class="QLabel" name="Amount_April_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="Planned_Savings_label">
+         <property name="text">
+          <string>Planned Savings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="27" column="0">
+        <widget class="QLabel" name="Daily_Average_Expense_label">
+         <property name="text">
+          <string>Daily Average Expense</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="Amount_Current_Expense_Balance_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="1">
+        <widget class="QLabel" name="Amount_March_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="26" column="0">
+        <widget class="QLabel" name="Daily_Expense_Goal_label">
+         <property name="text">
+          <string>Daily Expense Goal</string>
+         </property>
+        </widget>
+       </item>
+       <item row="19" column="1">
+        <widget class="QLabel" name="Amount_July_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0">
+        <widget class="QLabel" name="March_Earning_label">
+         <property name="text">
+          <string>March Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QLabel" name="January_Earning_label">
+         <property name="text">
+          <string>January Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="Current_Expense_Balance_label">
+         <property name="text">
+          <string>Current Expense Balance</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Max_Days_label">
+         <property name="text">
+          <string>Max Days</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1">
+        <widget class="QLabel" name="Amount_Balance_Left_in_Budget_Salary_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="24" column="0">
+        <widget class="QLabel" name="December_Earning_label">
+         <property name="text">
+          <string>December Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="28" column="0">
+        <widget class="QLabel" name="Current_Savings_Daily_label">
+         <property name="text">
+          <string>Current Savings (Daily)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="Days_Passed_label">
+         <property name="text">
+          <string>Days Passed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="31" column="1">
+        <widget class="QLabel" name="Amount_Weekly_Average_Expense_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="33" column="1">
+        <widget class="QLabel" name="Amount_Predicted_Total_Savings_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="Amount_Days_Passed_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0">
+        <widget class="QLabel" name="April_Earning_label">
+         <property name="text">
+          <string>April Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="25" column="1">
+        <widget class="QLabel" name="Amount_Yearly_Earnings_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="1">
+        <widget class="QLabel" name="Amount_August_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="25" column="0">
+        <widget class="QLabel" name="Yearly_Earnings_label">
+         <property name="text">
+          <string>Yearly Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="0">
+        <widget class="QLabel" name="October_Earning_label">
+         <property name="text">
+          <string>October Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QLabel" name="Amount_Planned_Savings_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="Left_in_Budget_label">
+         <property name="text">
+          <string>Left in Budget</string>
+         </property>
+        </widget>
+       </item>
+       <item row="19" column="0">
+        <widget class="QLabel" name="July_Earning_label">
+         <property name="text">
+          <string>July Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="Total_Spent_label">
+         <property name="text">
+          <string>Total Spent</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="Starting_Budget_label">
+         <property name="text">
+          <string>Starting Budget</string>
+         </property>
+        </widget>
+       </item>
+       <item row="21" column="1">
+        <widget class="QLabel" name="Amount_September_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="0">
+        <widget class="QLabel" name="May_Earning_label">
+         <property name="text">
+          <string>May Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="Amount_Max_Days_label">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="30" column="0">
+        <widget class="QLabel" name="Weekly_Expense_Goal_label">
+         <property name="text">
+          <string>Weekly Expense Goal</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="Balance_Left_in_Budget_Salary_label">
+         <property name="text">
+          <string>Balance - Left in Budget + Left Salary</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="29" column="1">
+        <widget class="QLabel" name="Amount_New_Daily_Expense_Planned_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="0">
+        <widget class="QLabel" name="August_Earning_label">
+         <property name="text">
+          <string>August Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="32" column="0">
+        <widget class="QLabel" name="Predicted_Monthly_Expense_label">
+         <property name="text">
+          <string>Predicted Monthly Expense</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="February_Earnings_label">
+         <property name="text">
+          <string>February Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="23" column="1">
+        <widget class="QLabel" name="Amount_November_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="1">
+        <widget class="QLabel" name="Amount_October_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="23" column="0">
+        <widget class="QLabel" name="November_Earning_label">
+         <property name="text">
+          <string>November Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="33" column="0">
+        <widget class="QLabel" name="Predicted_Total_Savings_label">
+         <property name="text">
+          <string>Predicted Total Savings</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="0">
+        <widget class="QLabel" name="June_Earning_label">
+         <property name="text">
+          <string>June Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="27" column="1">
+        <widget class="QLabel" name="Amount_Daily_Average_Expense_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="Left_To_Spend_label">
+         <property name="text">
+          <string>Left To Spend</string>
+         </property>
+        </widget>
+       </item>
+       <item row="30" column="1">
+        <widget class="QLabel" name="Amount_Weekly_Expense_Goal_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLabel" name="Amount_Total_Spent_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="1">
+        <widget class="QLabel" name="Amount_May_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="21" column="0">
+        <widget class="QLabel" name="September_Earning_label">
+         <property name="text">
+          <string>September Earnings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="1">
+        <widget class="QLabel" name="Amount_February_Earnings_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="28" column="1">
+        <widget class="QLabel" name="Amount_Current_Savings_Daily_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="Budget_For_Year_label">
+         <property name="text">
+          <string>Budget For Year</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="Amount_Left_To_Spend_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLabel" name="Amount_Left_in_Budget_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
+       <item row="31" column="0">
+        <widget class="QLabel" name="Weekly_Average_Expense_label">
+         <property name="text">
+          <string>Weekly Average Expense</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="24" column="1">
+        <widget class="QLabel" name="Amount_December_Earning_label_2">
+         <property name="text">
+          <string>$1,555,555.00</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0" colspan="2">
         <widget class="QComboBox" name="Stats_Year_comboBox">
          <property name="styleSheet">
@@ -7005,411 +7460,8 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
          </item>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="Max_Days_label">
-         <property name="text">
-          <string>Max Days</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="Amount_Max_Days_label">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="Days_Passed_label">
-         <property name="text">
-          <string>Days Passed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="Amount_Days_Passed_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="Starting_Budget_label">
-         <property name="text">
-          <string>Starting Budget</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="Amount_Starting_Budget_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="Current_Expense_Balance_label">
-         <property name="text">
-          <string>Current Expense Balance</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="Amount_Current_Expense_Balance_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="Current_ProfitLoss_label">
-         <property name="text">
-          <string>Current Profit/Loss</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="Amount_Current_ProfitLoss_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="Budget_For_Year_label">
-         <property name="text">
-          <string>Budget For Year</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <widget class="QLabel" name="Amount_Budget_For_Year_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="Total_Spent_label">
-         <property name="text">
-          <string>Total Spent</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLabel" name="Amount_Total_Spent_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="Left_To_Spend_label">
-         <property name="text">
-          <string>Left To Spend</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QLabel" name="Amount_Left_To_Spend_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="Left_in_Budget_label">
-         <property name="text">
-          <string>Left in Budget</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QLabel" name="Amount_Left_in_Budget_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="Balance_Left_in_Budget_label">
-         <property name="text">
-          <string>Balance - Left in Budget</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <widget class="QLabel" name="Amount_Balance_Left_in_Budget_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="Balance_Left_in_Budget_Salary_label">
-         <property name="text">
-          <string>Balance - Left in Budget + Left Salary</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="1">
-        <widget class="QLabel" name="Amount_Balance_Left_in_Budget_Salary_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="Planned_Savings_label">
-         <property name="text">
-          <string>Planned Savings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="1">
-        <widget class="QLabel" name="Amount_Planned_Savings_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="January_Earning_label">
-         <property name="text">
-          <string>January Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="1">
-        <widget class="QLabel" name="Amount_January_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
-        <widget class="QLabel" name="February_Earnings_label">
-         <property name="text">
-          <string>February Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="1">
-        <widget class="QLabel" name="Amount_February_Earnings_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="0">
-        <widget class="QLabel" name="March_Earning_label">
-         <property name="text">
-          <string>March Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="1">
-        <widget class="QLabel" name="Amount_March_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="16" column="0">
-        <widget class="QLabel" name="April_Earning_label">
-         <property name="text">
-          <string>April Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="16" column="1">
-        <widget class="QLabel" name="Amount_April_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="17" column="0">
-        <widget class="QLabel" name="May_Earning_label">
-         <property name="text">
-          <string>May Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="17" column="1">
-        <widget class="QLabel" name="Amount_May_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="18" column="0">
-        <widget class="QLabel" name="June_Earning_label">
-         <property name="text">
-          <string>June Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="18" column="1">
-        <widget class="QLabel" name="Amount_June_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="19" column="0">
-        <widget class="QLabel" name="July_Earning_label">
-         <property name="text">
-          <string>July Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="19" column="1">
-        <widget class="QLabel" name="Amount_July_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="20" column="0">
-        <widget class="QLabel" name="August_Earning_label">
-         <property name="text">
-          <string>August Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="20" column="1">
-        <widget class="QLabel" name="Amount_August_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="0">
-        <widget class="QLabel" name="September_Earning_label">
-         <property name="text">
-          <string>September Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="1">
-        <widget class="QLabel" name="Amount_September_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="22" column="0">
-        <widget class="QLabel" name="October_Earning_label">
-         <property name="text">
-          <string>October Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="22" column="1">
-        <widget class="QLabel" name="Amount_October_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="23" column="0">
-        <widget class="QLabel" name="November_Earning_label">
-         <property name="text">
-          <string>November Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="23" column="1">
-        <widget class="QLabel" name="Amount_November_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="24" column="0">
-        <widget class="QLabel" name="December_Earning_label">
-         <property name="text">
-          <string>December Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="24" column="1">
-        <widget class="QLabel" name="Amount_December_Earning_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="25" column="0">
-        <widget class="QLabel" name="Yearly_Earnings_label">
-         <property name="text">
-          <string>Yearly Earnings</string>
-         </property>
-        </widget>
-       </item>
-       <item row="25" column="1">
-        <widget class="QLabel" name="Amount_Yearly_Earnings_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="26" column="0">
-        <widget class="QLabel" name="Daily_Expense_Goal_label">
-         <property name="text">
-          <string>Daily Expense Goal</string>
-         </property>
-        </widget>
-       </item>
        <item row="26" column="1">
         <widget class="QLabel" name="Amount_Daily_Expense_Goal_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="27" column="0">
-        <widget class="QLabel" name="Daily_Average_Expense_label">
-         <property name="text">
-          <string>Daily Average Expense</string>
-         </property>
-        </widget>
-       </item>
-       <item row="27" column="1">
-        <widget class="QLabel" name="Amount_Daily_Average_Expense_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-        </widget>
-       </item>
-       <item row="28" column="0">
-        <widget class="QLabel" name="Current_Savings_Daily_label">
-         <property name="text">
-          <string>Current Savings (Daily)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="28" column="1">
-        <widget class="QLabel" name="Amount_Current_Savings_Daily_label_2">
          <property name="text">
           <string>$1,555,555.00</string>
          </property>
@@ -7425,93 +7477,41 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
          </property>
         </widget>
        </item>
-       <item row="29" column="1">
-        <widget class="QLabel" name="Amount_New_Daily_Expense_Planned_label_2">
+       <item row="5" column="1">
+        <widget class="QLabel" name="Amount_Current_ProfitLoss_label_2">
          <property name="text">
           <string>$1,555,555.00</string>
          </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
-       <item row="30" column="0">
-        <widget class="QLabel" name="Weekly_Expense_Goal_label">
+       <item row="5" column="0">
+        <widget class="QLabel" name="Current_ProfitLoss_label">
          <property name="text">
-          <string>Weekly Expense Goal</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
+          <string>Current Profit/Loss</string>
          </property>
         </widget>
        </item>
-       <item row="30" column="1">
-        <widget class="QLabel" name="Amount_Weekly_Expense_Goal_label_2">
+       <item row="3" column="1">
+        <widget class="QLabel" name="Amount_Starting_Budget_label_2">
          <property name="text">
           <string>$1,555,555.00</string>
          </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
-       <item row="31" column="0">
-        <widget class="QLabel" name="Weekly_Average_Expense_label">
+       <item row="10" column="0">
+        <widget class="QLabel" name="Balance_Left_in_Budget_label">
          <property name="text">
-          <string>Weekly Average Expense</string>
+          <string>Balance - Left in Budget</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="31" column="1">
-        <widget class="QLabel" name="Amount_Weekly_Average_Expense_label_2">
+       <item row="18" column="1">
+        <widget class="QLabel" name="Amount_June_Earning_label_2">
          <property name="text">
           <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="32" column="0">
-        <widget class="QLabel" name="Predicted_Monthly_Expense_label">
-         <property name="text">
-          <string>Predicted Monthly Expense</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="32" column="1">
-        <widget class="QLabel" name="Amount_Predicted_Monthly_Expense_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="33" column="0">
-        <widget class="QLabel" name="Predicted_Total_Savings_label">
-         <property name="text">
-          <string>Predicted Total Savings</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="33" column="1">
-        <widget class="QLabel" name="Amount_Predicted_Total_Savings_label_2">
-         <property name="text">
-          <string>$1,555,555.00</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -8083,7 +8083,7 @@ QPushButton:pressed {
       <x>0</x>
       <y>0</y>
       <width>1751</width>
-      <height>741</height>
+      <height>641</height>
      </rect>
     </property>
     <widget class="QTableWidget" name="tableWidget">
@@ -14363,7 +14363,7 @@ QPushButton:pressed {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-10</y>
+             <y>0</y>
              <width>945</width>
              <height>450</height>
             </rect>

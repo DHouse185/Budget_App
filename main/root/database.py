@@ -13,7 +13,6 @@ import psycopg2 as pg2
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
-import root.utils.resources # Do not remove. Needed for images
 ########################################################################################
 
 class Database:
@@ -21,7 +20,8 @@ class Database:
         super().__init__()
         self.connection = database_conn
         self.cur = self.connection.cursor()
-        # self.create_tables()
+        self.create_tables()
+        self._dummy_data = self.dummy_data()
         # self.start_up_transaction_data = self.retrieve_initial_data()
         
     def create_tables(self):
@@ -60,7 +60,7 @@ class Database:
                          (transaction_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
                          transaction_date DATE NOT NULL,
                          transaction_name TEXT,
-                         amount NUMERICAL(13, 2) NOT NULL);""")
+                         amount NUMERIC(13, 2) NOT NULL);""")
         self.connection.commit()
         
         # create transaction data table
@@ -99,6 +99,21 @@ class Database:
         start_up_results = self.cur.fetchall()
         start_up_df = pd.DataFrame(start_up_results, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
         start_up_df.index = start_up_df['Date']
+        self.connection.commit()
+        
+        return start_up_df
+    
+    def dummy_data(self) -> pd.DataFrame:
+        """
+        Gets initial transaction data to be utilized by the 
+        appication upon start up.
+        Returns: pd.dataframe
+        """
+        self.cur.execute("""SELECT * FROM transaction_data_test;""")
+        
+        start_up_results = self.cur.fetchall()
+        start_up_df = pd.DataFrame(start_up_results, columns=['transaction_id', 'category_id', 'sub_category_id', 'account_id', 'category_type_id', 'month_id'])
+        start_up_df.index = start_up_df['transaction_id']
         self.connection.commit()
         
         return start_up_df

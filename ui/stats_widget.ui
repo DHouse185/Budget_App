@@ -1,0 +1,1231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>390</width>
+    <height>1650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 11pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="amount_June_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>870</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="balance_Left_in_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>481</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Balance - Left in Budget</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Starting_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>141</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="current_ProfitLoss_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>238</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Profit/Loss</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Current_ProfitLoss_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>238</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Daily_Average_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1308</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="november_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1113</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>November Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_New_Daily_Expense_Planned_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1405</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="balance_Left_in_Budget_Salary_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>530</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Balance - Left in Budget + Left Salary</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="september_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1016</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>September Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="weekly_Expense_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1454</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Weekly Expense Goal</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="march_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>724</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>March Earnings</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="stats_Year_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>372</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>2023</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2022</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2021</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2020</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2019</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2018</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2017</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2016</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2015</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="amount_Left_in_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>433</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_January_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>627</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_May_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>822</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="max_Days_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>44</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Max Days</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="daily_Average_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1308</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Daily Average Expense</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="planned_Savings_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>579</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Planned Savings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Current_Expense_Balance_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>190</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="current_Expense_Balance_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Expense Balance</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Budget_For_Year_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>287</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Balance_Left_in_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>481</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_April_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>773</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="july_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>919</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>July Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Predicted_Monthly_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1551</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_in_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>433</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Left in Budget</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="weekly_Average_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1502</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Weekly Average Expense</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="budget_For_Year_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>287</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Budget For Year</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Total_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>336</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_February_Earnings_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>676</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_October_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1065</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="daily_Expense_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1259</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Daily Expense Goal</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="august_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>968</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>August Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_August_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>968</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Yearly_Earnings_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1211</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="december_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1162</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>December Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Planned_Savings_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>579</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="february_Earnings_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>676</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>February Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="october_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1065</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>October Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="predicted_Monthly_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1551</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Predicted Monthly Expense</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Days_Passed_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>93</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Weekly_Average_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1502</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="april_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>773</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>April Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Balance_Left_in_Budget_Salary_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>530</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Max_Days_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>44</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Weekly_Expense_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1454</y>
+     <width>119</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Predicted_Total_Savings_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1599</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Left_To_Spend_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>384</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="predicted_Total_Savings_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1599</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Predicted Total Savings</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="total_Spent_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>336</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Total Spent</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="new_Daily_Expense_Planned_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1405</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>New Daily Expense (Planned)</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_July_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>919</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Daily_Expense_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1259</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="may_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>822</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>May Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="starting_Budget_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>141</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Starting Budget</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_September_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1016</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_To_Spend_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>384</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Left To Spend</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="january_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>627</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>January Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="days_Passed_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>93</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Days Passed</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_December_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1162</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_March_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>724</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="yearly_Earnings_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1211</y>
+     <width>247</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Yearly Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="june_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>870</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>June Earnings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_November_Earning_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1113</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_Current_Savings_Daily_label">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>1356</y>
+     <width>119</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="current_Savings_Daily_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1356</y>
+     <width>247</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current Savings (Daily)</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,21 +1,37 @@
-QWidget {
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1740</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
         background-color: #2c2c2c;
         color: #ffffff;
         border: none;
-        font: 14pt "Nirmala UI";
+        font: 14pt &quot;Nirmala UI&quot;;
 }
 QWidget#side_menu {
     background-color: #4e5564;
     color: #ffffff;
     border: 1px solid #4e5564;
     border-radius: 16px;
-    font: 14pt "Nirmala UI";
+    font: 14pt &quot;Nirmala UI&quot;;
 }
 QLabel#Dashboard_Title {
     background-color: none;
     color: #ffffff;
     border: none;
-    font: 20pt "Nirmala UI";
+    font: 20pt &quot;Nirmala UI&quot;;
 }
 QLabel#Eat_Out_Image {
     background-image: url(:/images/pngaaa.com-2384833.png);
@@ -92,25 +108,17 @@ QPushButton:hover {
     background-color: #5a5a5a;
     border: 1px solid #5a5a5a;
 }
-QPushButton#side_menu_button {
-    background-image: url(:/images/images/Burger_button.png);
-    background-color: #4d4d4d;
-    border: 1px solid #4d4d4d;
-    border-radius: 4px;
-    color: #ffffff;
-    padding: 5px;
-}
 QPushButton#side_menu_button:hover {
-    background-image: url(:/images/images/Burger_button_hover.png);
+    background-image: url(:/button_image/Burger_button_hover.png);
     background-color: #5a5a5a;
     border: 1px solid #5a5a5a;
 }
 QPushButton#side_menu_button:pressed {
-    background-image: url(:/images/images/Burger_button_click.png);
+    background-image: url(:/button_image/Burger_button_click.png);
     background-color: #5a5a5a;
     border: 1px solid #5a5a5a;
 }
-/* QPushButton#remove_button_watchlist {
+QPushButton#remove_button_watchlist {
     background-color: #ff0000;
     border: 1px solid #ffffff;
     border-radius: 4px;
@@ -184,7 +192,7 @@ QPushButton#Yellow_button:hover {
 QPushButton#Yellow_button:pressed {
     background-color: #81960f;
     border: 1px solid #a3a3a3;
-} */
+}
 QCheckBox {
     color: #ffffff;
 }
@@ -251,20 +259,167 @@ QTabBar::tab {
 QTabBar::tab:selected, QTabBar::tab:hover {
     background-color: #3a3a3a;
     color: white;
-}
-QTableView#transaction_table {
+}</string>
+  </property>
+  <widget class="QTableWidget" name="budget_plan_tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1733</width>
+     <height>641</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableView {
 	alternate-background-color: #9f9f9f;
 }
-QTableView QHeaderView#transaction_table {
+QTableView QHeaderView {
 	border-bottom: 2px solid white;
 }
-QTableView QHeaderView::section#transaction_table {
+QTableView QHeaderView::section {
 	color: #ffffff;
 	background: #000000;
 	border: 2px;
 }
-QTableView QTableCornerButton::section#transaction_table {
+QTableView QTableCornerButton::section {
     color: #ffffff;
 	background: #000000;
 	border-bottom: 2px solid white;
-}
+}</string>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>148</number>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>50</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>50</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>January</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>February</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>March</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>April</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>May</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>June</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>July</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>August</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>September</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>October</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>November</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>December</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Earnings</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Food</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Bills</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Grocery</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Transportation</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Free Expense</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Investment</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Support</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Starting Budget</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Total</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Left Amount</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

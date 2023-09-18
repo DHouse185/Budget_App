@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1910</width>
+    <height>251</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="month_col_Investment_label">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="income_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>113</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_label">
+   <property name="geometry">
+    <rect>
+     <x>7</x>
+     <y>124</y>
+     <width>100</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Spent</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Transportation_label">
+   <property name="geometry">
+    <rect>
+     <x>615</x>
+     <y>167</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="transportation_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>615</x>
+     <y>38</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Transportation</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Eating_Out_label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>124</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Free_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>783</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="bill_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>1117</x>
+     <y>38</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Bills</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Bills_label">
+   <property name="geometry">
+    <rect>
+     <x>1117</x>
+     <y>167</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Investment_label">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Transportation_label">
+   <property name="geometry">
+    <rect>
+     <x>615</x>
+     <y>124</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Eating_Out_label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>81</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Sum_Total_label">
+   <property name="geometry">
+    <rect>
+     <x>1620</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>1452</x>
+     <y>167</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="eating_out_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>38</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Eating Out</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Groceries_label">
+   <property name="geometry">
+    <rect>
+     <x>448</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Sum_Total_label">
+   <property name="geometry">
+    <rect>
+     <x>1620</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="free_expense_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>783</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Free Expense</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="month_progress_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>7</x>
+     <y>4</y>
+     <width>267</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>January</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>February</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>March</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>April</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>May</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>June</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>July</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>August</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>September</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>October</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>November</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>December</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="month_col_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>1452</x>
+     <y>81</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_label">
+   <property name="geometry">
+    <rect>
+     <x>7</x>
+     <y>167</y>
+     <width>100</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Left</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Eating_Out_label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>167</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Investment_label">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="investment_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Investment</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="income_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>113</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Income</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="groceries_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>448</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Groceries</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Support_label">
+   <property name="geometry">
+    <rect>
+     <x>1285</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="investment_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sum_Total_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>1620</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Sum Total</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="support_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>1285</x>
+     <y>38</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Support</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Profit_Loss_label">
+   <property name="geometry">
+    <rect>
+     <x>1787</x>
+     <y>124</y>
+     <width>112</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Support_label">
+   <property name="geometry">
+    <rect>
+     <x>1285</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="free_Expense_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>783</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="support_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>1285</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_label">
+   <property name="geometry">
+    <rect>
+     <x>7</x>
+     <y>81</y>
+     <width>100</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>January</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="eating_Out_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>210</y>
+     <width>162</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Groceries_label">
+   <property name="geometry">
+    <rect>
+     <x>448</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Income_label">
+   <property name="geometry">
+    <rect>
+     <x>113</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Groceries_label">
+   <property name="geometry">
+    <rect>
+     <x>448</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Support_label">
+   <property name="geometry">
+    <rect>
+     <x>1285</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Bills_label">
+   <property name="geometry">
+    <rect>
+     <x>1117</x>
+     <y>81</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>7</x>
+     <y>38</y>
+     <width>100</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Month</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Profit_Loss_label">
+   <property name="geometry">
+    <rect>
+     <x>1787</x>
+     <y>81</y>
+     <width>112</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="goal_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>1452</x>
+     <y>38</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Goal</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="groceries_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>448</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Transportation_label">
+   <property name="geometry">
+    <rect>
+     <x>615</x>
+     <y>81</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Income_label">
+   <property name="geometry">
+    <rect>
+     <x>113</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="goal_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>1452</x>
+     <y>210</y>
+     <width>162</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="profit_Loss_progress_label">
+   <property name="geometry">
+    <rect>
+     <x>1787</x>
+     <y>38</y>
+     <width>112</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 222, 0);
+color: rgb(0, 0, 0);
+font: 16pt
+</string>
+   </property>
+   <property name="text">
+    <string>Profit/Loss</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="bills_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>1117</x>
+     <y>210</y>
+     <width>162</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left_col_Income_label">
+   <property name="geometry">
+    <rect>
+     <x>113</x>
+     <y>167</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Free_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>783</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="sum_Total_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>1620</x>
+     <y>210</y>
+     <width>161</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Bills_label">
+   <property name="geometry">
+    <rect>
+     <x>1117</x>
+     <y>124</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Goal_label">
+   <property name="geometry">
+    <rect>
+     <x>1452</x>
+     <y>124</y>
+     <width>162</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_col_Sum_Total_label">
+   <property name="geometry">
+    <rect>
+     <x>1620</x>
+     <y>81</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spent_col_Free_Expense_label">
+   <property name="geometry">
+    <rect>
+     <x>783</x>
+     <y>124</y>
+     <width>161</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="transportation_progressBar">
+   <property name="geometry">
+    <rect>
+     <x>615</x>
+     <y>210</y>
+     <width>162</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
