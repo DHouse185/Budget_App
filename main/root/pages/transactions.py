@@ -24,7 +24,7 @@ class TableModel(QAbstractTableModel):
         super(TableModel, self).__init__()
         self._data = data
         
-    def get_data(self, index, role):
+    def data(self, index, role):
         if role == Qt.ItemDataRole.DisplayRole:
             value = self._data.iloc[index.row(), index.column()]
             return str(value)
@@ -105,8 +105,8 @@ class Transactions(QWidget):
                                                  border-bottom: 2px solid white;\n
                                              }""")
         self.transaction_table.setGeometry(QRect(415, 0, 1490, 1230))
-        self.transaction_table.horizontalHeader().setDefaultSectionSize(250)
-        self.transaction_model = TableModel(database._dummy_data)
+        self.transaction_table.horizontalHeader().setDefaultSectionSize(200)
+        self.transaction_model = TableModel(database.start_up_transaction_data)
         self.transaction_table.setModel(self.transaction_model)
         
         #self.header = Header(self.scrollAreaWidgetContents) #, self.database

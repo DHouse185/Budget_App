@@ -22,7 +22,7 @@ class Database:
         self.cur = self.connection.cursor()
         self.create_tables()
         self._dummy_data = self.dummy_data()
-        # self.start_up_transaction_data = self.retrieve_initial_data()
+        self.start_up_transaction_data = self.retrieve_initial_data()
         
     def create_tables(self):
         # Create category table
@@ -54,6 +54,20 @@ class Database:
                          (month_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
                          month VARCHAR(10) NOT NULL);""")
         self.connection.commit()
+        # self.cur.execute("""INSERT INTO month_test (month) VALUES
+        #                     ('January'),
+        #                     ('February'),
+        #                     ('March'),
+        #                     ('April'),
+        #                     ('May'),
+        #                     ('June'),
+        #                     ('July'),
+        #                     ('August'),
+        #                     ('September'),
+        #                     ('October'),
+        #                     ('November'),
+        #                     ('December');""")
+        # self.connection.commit()
         
         # create transaction table
         self.cur.execute("""CREATE TABLE IF NOT EXISTS transaction_test
@@ -81,7 +95,7 @@ class Database:
         Returns: pd.dataframe
         """
         self.cur.execute("""SELECT transaction_test.transaction_date, account_test.account, transaction_test.transaction_name, 
-                            transaction_test.amount, category_test.category, sub_category_test.subcategory,
+                            transaction_test.amount, category_test.category, sub_category_test.sub_category,
                             category_type_test.category_type
                             FROM transaction_test
                             INNER JOIN transaction_data_test
@@ -98,7 +112,9 @@ class Database:
         
         start_up_results = self.cur.fetchall()
         start_up_df = pd.DataFrame(start_up_results, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
-        start_up_df.index = start_up_df['Date']
+        print(start_up_df)
+        start_up_df = start_up_df.set_index('Date')
+        print(start_up_df)
         self.connection.commit()
         
         return start_up_df
