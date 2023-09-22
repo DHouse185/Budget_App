@@ -4,6 +4,7 @@ from pathlib import Path
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
 import pandas as pd
+import numpy as np
 from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget
 from PyQt6.QtGui import QAction
 from PyQt6.QtCore import QRect
@@ -21,7 +22,7 @@ class Database:
         self.connection = database_conn
         self.cur = self.connection.cursor()
         self.create_tables()
-        self._dummy_data = self.dummy_data()
+        #self._dummy_data = self.dummy_data()
         self.start_up_transaction_data = self.retrieve_initial_data()
         
     def create_tables(self):
@@ -74,19 +75,44 @@ class Database:
                          (transaction_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
                          transaction_date DATE NOT NULL,
                          transaction_name TEXT,
-                         amount NUMERIC(13, 2) NOT NULL);""")
-        self.connection.commit()
-        
-        # create transaction data table
-        self.cur.execute("""CREATE TABLE IF NOT EXISTS transaction_data_test
-                         (transaction_id INTEGER REFERENCES transaction_test(transaction_id),
+                         amount NUMERIC(13, 2) NOT NULL,
                          category_id INTEGER REFERENCES category_test(category_id),
                          sub_category_id INTEGER REFERENCES sub_category_test(sub_category_id),
                          account_id INTEGER REFERENCES account_test(account_id),
                          category_type_id INTEGER REFERENCES category_type_test(category_type_id),
-                         month_id INTEGER REFERENCES month_test(month_id)
-                         );""")
+                         month_id INTEGER REFERENCES month_test(month_id));""")
         self.connection.commit()
+        
+        # Create monthly budget table
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS month_budget_test
+                         (month_year_id INTEGER UNIQUE NOT NULL PRIMARY KEY,
+                         month_id INTEGER REFERENCES month_test(month_id) NOT NULL,
+                         earnings NUMERIC(13, 2) NOT NULL,
+                         food NUMERIC(13, 2) NOT NULL,
+                         bills NUMERIC(13, 2) NOT NULL,
+                         grocery NUMERIC(13, 2) NOT NULL,
+                         transportation NUMERIC(13, 2) NOT NULL,
+                         free_expense NUMERIC(13, 2) NOT NULL,
+                         investment NUMERIC(13, 2) NOT NULL,
+                         support NUMERIC(13, 2) NOT NULL,
+                         goal NUMERIC(13, 2) NOT NULL,
+                         starting_budget NUMERIC(13, 2) NOT NULL,
+                         total NUMERIC(13, 2) GENERATED ALWAYS AS (food + bills + grocery + transportation + free_expense + investment + support) STORED NOT NULL,
+                         left_amount NUMERIC(13, 2) GENERATED ALWAYS AS (earnings - (food + bills + grocery + transportation + free_expense + investment + support)) STORED NOT NULL,
+                         expected_ending_budget NUMERIC(13, 2) GENERATED ALWAYS AS (starting_budget + earnings - (food + bills + grocery + transportation + free_expense + investment + support)) STORED NOT NULL);""")
+        self.connection.commit()
+        
+        # Create dummmy data for month_budget_test
+        # self.cur.execute("""INSERT INTO month_budget_test (month_year_id, 
+        #                     month_id, earnings, food, bills, grocery,
+        #                     transportation, free_expense, investment, support,
+        #                     goal, starting_budget) VALUES
+        #                     (12023, 1, 4631.45, 200, 2000, 150, 200, 1000, 250, 200, 150, 6000),
+        #                     (22023, 2, 6600.00, 200, 2000, 150, 200, 1200, 250, 200, 150, 6000),
+        #                     (32023, 3, 5001.45, 200, 2000, 150, 200, 1000, 250, 200, 150, 6000),
+        #                     (42023, 4, 4501.27, 170, 2000, 150, 200, 1000, 250, 200, 150, 6000),
+        #                     (52023, 5, 3531.15, 130, 2000, 150, 200, 600, 250, 200, 150, 8000);""")
+        # self.connection.commit()
         
     def retrieve_initial_data(self) -> pd.DataFrame:
         """
@@ -98,16 +124,14 @@ class Database:
                             transaction_test.amount, category_test.category, sub_category_test.sub_category,
                             category_type_test.category_type
                             FROM transaction_test
-                            INNER JOIN transaction_data_test
-                            ON transaction_test.transaction_id = transaction_data_test.transaction_id
                             INNER JOIN account_test
-                            ON account_test.account_id = transaction_data_test.account_id
+                            ON account_test.account_id = transaction_test.account_id
                             INNER JOIN category_test
-                            ON category_test.category_id = transaction_data_test.category_id
+                            ON category_test.category_id = transaction_test.category_id
                             INNER JOIN sub_category_test
-                            ON sub_category_test.sub_category_id = transaction_data_test.sub_category_id
+                            ON sub_category_test.sub_category_id = transaction_test.sub_category_id
                             INNER JOIN category_type_test
-                            ON category_type_test.category_type_id = transaction_data_test.category_type_id
+                            ON category_type_test.category_type_id = transaction_test.category_type_id
                             ORDER BY transaction_test.transaction_date;""")
         
         start_up_results = self.cur.fetchall()
@@ -119,17 +143,39 @@ class Database:
         
         return start_up_df
     
-    def dummy_data(self) -> pd.DataFrame:
+    def retrieve_dashboard_month_progress(self, month: int, year: str) -> pd.DataFrame:
         """
-        Gets initial transaction data to be utilized by the 
+        Gets month budget data to be utilized by the 
         appication upon start up.
         Returns: pd.dataframe
         """
-        self.cur.execute("""SELECT * FROM transaction_data_test;""")
+        print(f'month: {month}')
+        month_budget_id = int((int(month) * 10000) + int(year))
+        self.cur.execute(f"""SELECT month_test.month, earnings, food, grocery, transportation, 
+                         free_expense, investment, bills, support, goal, total, left_amount
+                         FROM month_budget_test
+                         INNER JOIN month_test
+                         ON month_test.month_id = month_budget_test.month_id
+                         WHERE month_year_id = {month_budget_id};""")
         
-        start_up_results = self.cur.fetchall()
-        start_up_df = pd.DataFrame(start_up_results, columns=['transaction_id', 'category_id', 'sub_category_id', 'account_id', 'category_type_id', 'month_id'])
-        start_up_df.index = start_up_df['transaction_id']
+        query_results = self.cur.fetchall()
+        # query_array = np.array(query_results)
+        print(query_results)
         self.connection.commit()
         
-        return start_up_df
+        return query_results
+    
+    # def dummy_data(self) -> pd.DataFrame:
+    #     """
+    #     Gets initial transaction data to be utilized by the 
+    #     appication upon start up.
+    #     Returns: pd.dataframe
+    #     """
+    #     self.cur.execute("""SELECT * FROM transaction_data_test;""")
+        
+    #     start_up_results = self.cur.fetchall()
+    #     start_up_df = pd.DataFrame(start_up_results, columns=['transaction_id', 'category_id', 'sub_category_id', 'account_id', 'category_type_id', 'month_id'])
+    #     start_up_df.index = start_up_df['transaction_id']
+    #     self.connection.commit()
+        
+    #     return start_up_df

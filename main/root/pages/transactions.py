@@ -88,22 +88,7 @@ class Transactions(QWidget):
         
         self.transaction_table = QTableView(self.scrollAreaWidgetContents)
         self.transaction_table.setObjectName('transaction_table')
-        self.transaction_table.setStyleSheet("""QTableView {\n
-                                                 alternate-background-color: #9f9f9f;\n
-                                             }\n
-                                             QTableView QHeaderView {\n
-                                                 border-bottom: 2px solid white;\n
-                                             }\n
-                                             QTableView QHeaderView::section {\n
-                                                 color: #ffffff;\n
-                                                 background: #000000;\n
-                                                 border: 2px;\n
-                                             }\n
-                                             QTableView QTableCornerButton::section {\n
-                                                 color: #ffffff;\n
-                                                 background: #000000;\n
-                                                 border-bottom: 2px solid white;\n
-                                             }""")
+        self.transaction_table.setStyleSheet(rvar.DARK_MODE_TRANS_TABLE)
         self.transaction_table.setGeometry(QRect(415, 0, 1490, 1230))
         self.transaction_table.horizontalHeader().setDefaultSectionSize(200)
         self.transaction_model = TableModel(database.start_up_transaction_data)

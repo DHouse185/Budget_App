@@ -142,7 +142,7 @@ class Budget(QWidget):
         self.database = Database(self.conn)
         
         # Dashboard: -> Main Page
-        self.dashboard = Dashboard(self.dashboard_page) #, self.database)
+        self.dashboard = Dashboard(self.dashboard_page, self.database)
         
         # Transaction -> Transactions Page
         self.transaction = Transactions(self.transaction_page, self.database)
