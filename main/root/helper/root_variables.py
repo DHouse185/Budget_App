@@ -37,3 +37,14 @@ month_dict ={
     'November' : 11,
     'December' : 12,
 }
+category_dict = {
+    'Food'           : 1,
+    'Bills'          : 2,
+    'Grocery'        : 3,
+    'Free Expense'   : 4,
+    'Earnings'       : 5,
+    'Transportation' : 6,
+    'Investment'     : 7,
+    'Support'        : 8,
+    'Payment'        : 9,
+}

@@ -1,5 +1,7 @@
 ##########  Python IMPORTs  ############################################################
 from pathlib import Path
+from datetime import datetime
+import calendar
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -50,6 +52,12 @@ class Database:
                          category_type VARCHAR(100) NOT NULL);""")
         self.connection.commit()
         
+        # Create category table
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS accounting_type_test
+                         (accounting_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+                         accounting VARCHAR(10) NOT NULL);""")
+        self.connection.commit()
+        
         # Create Months table
         self.cur.execute("""CREATE TABLE IF NOT EXISTS month_test
                          (month_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
@@ -80,7 +88,8 @@ class Database:
                          sub_category_id INTEGER REFERENCES sub_category_test(sub_category_id),
                          account_id INTEGER REFERENCES account_test(account_id),
                          category_type_id INTEGER REFERENCES category_type_test(category_type_id),
-                         month_id INTEGER REFERENCES month_test(month_id));""")
+                         month_id INTEGER REFERENCES month_test(month_id),
+                         accounting_id INTEGER REFERENCES accounting_type_test(accounting_id));""")
         self.connection.commit()
         
         # Create monthly budget table
@@ -159,8 +168,44 @@ class Database:
                          WHERE month_year_id = {month_budget_id};""")
         
         query_results = self.cur.fetchall()
-        # query_array = np.array(query_results)
         print(query_results)
+        self.connection.commit()
+        
+        return query_results
+    
+    def retrieve_dashboard_spent_progress(self, category_id: int, month: str, year: str) -> pd.DataFrame:
+        """
+        Gets month spent data to be utilized by the 
+        appication upon start up.
+        Returns: pd.dataframe
+        """
+        cat_id_num = rvar.category_dict[category_id]
+        print(f"cat_id_num:{cat_id_num}")
+        
+        print(f'month: {month}')
+        print(f'month: {year}')
+        month_budget_id = str((int(month) * 10000) + int(year))
+        
+        # Get first day of the month
+        date_1 = datetime(year=int(month_budget_id[1:]), month=int(month_budget_id[0:1]), day=1)
+        first_date = f"{date_1.strftime('%Y-%m-%d')}"
+        print(f"first_date:{first_date}")
+        
+        # Get last day of the month
+        months_range = calendar.monthrange(date_1.year, date_1.month)
+        days_in_month = months_range[1]
+        date_2 = datetime(year=int(month_budget_id[1:]), month=int(month_budget_id[0:1]), day=int(days_in_month))
+        last_date = f"{date_2.strftime('%Y-%m-%d')}"
+        print(f"last_date:{last_date}")
+        
+        self.cur.execute(f"""SELECT SUM(amount) FROM transaction_test
+                         WHERE 
+                         transaction_date BETWEEN SYMMETRIC '{first_date}' AND '{last_date}' 
+                         AND category_id = {cat_id_num};""")
+        
+        query_results = self.cur.fetchall()
+        # query_array = np.array(query_results)
+        print(f"amount: {query_results}")
         self.connection.commit()
         
         return query_results
