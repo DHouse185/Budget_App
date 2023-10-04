@@ -229,16 +229,20 @@ class Budget(QWidget):
         
     def change_to_dashboard_page(self):
         self.stackedWidget.setCurrentWidget(self.dashboard_page)
+        self.side_menu_trigger()
         return
      
     def change_to_calendar_page(self):
         self.stackedWidget.setCurrentWidget(self.calendar_page)
+        self.side_menu_trigger()
         return        
     
     def change_to_transaction_page(self):
         self.stackedWidget.setCurrentWidget(self.transaction_page)
+        self.side_menu_trigger()
         return  
     
     def change_to_monthly_budget_page(self):
         self.stackedWidget.setCurrentWidget(self.monthly_budget_page)
+        self.side_menu_trigger()
         return          

@@ -652,7 +652,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
     <string>July Earnings</string>
    </property>
   </widget>
-  <widget class="QLabel" name="amount_Predicted_Monthly_Expense_label">
+  <widget class="QLabel" name="amount_Predicted_Yearly_Expense_label">
    <property name="geometry">
     <rect>
      <x>263</x>
@@ -853,7 +853,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
     <string>October Earnings</string>
    </property>
   </widget>
-  <widget class="QLabel" name="predicted_Monthly_Expense_label">
+  <widget class="QLabel" name="predicted_Yearly_Expense_label">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -863,7 +863,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
     </rect>
    </property>
    <property name="text">
-    <string>Predicted Monthly Expense</string>
+    <string>Predicted Yearly Expense</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>

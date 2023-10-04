@@ -70,3 +70,13 @@ def pwd_retrieval() -> str:
         
 def number_of_days(date_1: datetime, date_2: datetime):  
         return (date_2 - date_1).days 
+    
+def query_print_results(query_function):
+    def commit(*args, **kwargs):
+        query_results = query_function(*args, **kwargs)
+                
+        print(query_results)
+                
+        return query_results
+                
+    return commit

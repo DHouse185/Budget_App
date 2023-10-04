@@ -48,3 +48,11 @@ category_dict = {
     'Support'        : 8,
     'Payment'        : 9,
 }
+table_dict ={
+    'category_test'        : 'category', 
+    'sub_category_test'    : 'sub_category',
+    'account_test'         : 'account',
+    'category_type_test'   : 'category_type',
+    'accounting_type_test' : 'accounting',
+    'month_test'           : 'month',
+}

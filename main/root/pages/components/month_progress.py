@@ -93,7 +93,7 @@ class Month_progress(Ui_Form):
                     spent_sum += 0
                     
                 elif idx == 9:
-                    label.setText(f"${str(spent_sum)}")
+                    label.setText(f"${str(round(spent_sum, 2))}")
                     
                 elif idx == 10:
                     pr_loss = round(earnings - spent_sum, 2)
@@ -160,7 +160,7 @@ class Month_progress(Ui_Form):
                     spent_sum += 0
                     
                 elif idx == 9:
-                    label.setText(f"${str(spent_sum)}")
+                    label.setText(f"${str(round(spent_sum, 2))}")
                     
                 elif idx == 10:
                     pr_loss = round(earnings - spent_sum, 2)
@@ -177,10 +177,15 @@ class Month_progress(Ui_Form):
             for idx, progress in enumerate(self.progressbar_array):
                 budget_amount = round(float(self.budget_array[idx + 1].text().split('$')[1]), 2)
                 spent_amount = round(float(self.spent_array[idx].text().split('$')[1]), 2)
-                progress_calc = int((spent_amount / budget_amount) * 100)
-                if progress_calc > 100:
+                try:
+                    progress_calc = int((spent_amount / budget_amount) * 100)
+                    if progress_calc > 100:
+                        progress_calc = 100
+                    progress.setValue(progress_calc)
+                    
+                except ZeroDivisionError:
                     progress_calc = 100
-                progress.setValue(progress_calc)
+                    progress.setValue(progress_calc)
         
         except IndexError:
             print("No data for this timeframe: list index out of range")
