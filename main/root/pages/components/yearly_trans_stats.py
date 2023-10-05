@@ -136,7 +136,5 @@ class Yearly_Stats(Ui_Form):
         self.amount_Weekly_Average_Expense_label.setText(f"${weekly_avg_exp}")
         self.amount_Predicted_Yearly_Expense_label.setText(f"${predicted_yearly_expense}")
         self.amount_Predicted_Total_Savings_label.setText(f"${predicted_savings}")
-        # self.tables_array = ['category_test', 'sub_category_test', 'account_test', 'category_type_test',
-        #                      'accounting_type_test', 'month_test']
-        # self.create_table_dict()
+
         

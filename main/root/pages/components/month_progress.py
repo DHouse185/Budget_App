@@ -58,12 +58,12 @@ class Month_progress(Ui_Form):
         try:
             # Fill data for budget section
             cb_month = rvar.month_dict[self.month_progress_comboBox.currentText()]
-            print(f"cb_month: {cb_month}")
+            # print(f"cb_month: {cb_month}")
             self.budget_data = self.database.retrieve_dashboard_month_progress(
                 cb_month,
                 self.Stats_Year_comboBox.currentText()
                 )
-            print(self.budget_data)
+            # print(self.budget_data)
             for idx, label in enumerate(self.budget_array):
                 text = self.budget_data[0][idx]
                 if idx == 0:
@@ -80,7 +80,7 @@ class Month_progress(Ui_Form):
                         self.category_array[idx],
                         cb_month,
                         self.Stats_Year_comboBox.currentText())
-                    print(self.spent_data)
+                    # print(self.spent_data)
                     text = self.spent_data[0][0]
                     label.setText(f"${str(text)}")
                     spent_sum += round(float(text), 2)
@@ -125,12 +125,12 @@ class Month_progress(Ui_Form):
         try:
             # Fill data for budget section
             cb_month = rvar.month_dict[self.month_progress_comboBox.currentText()]
-            print(f"cb_month: {cb_month}")
+            # print(f"cb_month: {cb_month}")
             self.budget_data = self.database.retrieve_dashboard_month_progress(
                 cb_month,
                 self.Stats_Year_comboBox.currentText()
                 )
-            print(self.budget_data)
+            # print(self.budget_data)
             for idx, label in enumerate(self.budget_array):
                 text = self.budget_data[0][idx]
                 if idx == 0:
@@ -147,7 +147,7 @@ class Month_progress(Ui_Form):
                         self.category_array[idx],
                         cb_month,
                         self.Stats_Year_comboBox.currentText())
-                    print(self.spent_data)
+                    # print(self.spent_data)
                     text = self.spent_data[0][0]
                     label.setText(f"${str(text)}")
                     spent_sum += round(float(text), 2)

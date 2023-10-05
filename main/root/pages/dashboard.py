@@ -16,6 +16,7 @@ from root.pages.components.dashboard_header import Header
 from root.pages.components.button_content import ButtonContent 
 from root.pages.components.top_5_expenses_db import Top_5 
 from root.pages.components.month_progress import Month_progress
+from root.pages.components.doughnut_chart import Doughnut
 # from root.pages.components.expense_bar_graph import Expense_Bar_Graph
 ########################################################################################
 
@@ -65,6 +66,7 @@ class Dashboard(QWidget):
         self.button_content = ButtonContent(self.scrollAreaWidgetContents)
         self.top_5 = Top_5(self.scrollAreaWidgetContents)
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
+        self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
         # self.expense_bar_graph = Expense_Bar_Graph()
         
         self.dashboard_scrollArea.setWidget(self.scrollAreaWidgetContents)

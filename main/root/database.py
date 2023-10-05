@@ -146,9 +146,9 @@ class Database:
         
         start_up_results = self.cur.fetchall()
         start_up_df = pd.DataFrame(start_up_results, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
-        print(start_up_df)
+        #print(start_up_df)
         start_up_df = start_up_df.set_index('Date')
-        print(start_up_df)
+        #print(start_up_df)
         self.connection.commit()
         
         return start_up_df
@@ -158,7 +158,7 @@ class Database:
                          WHERE {row} = {criteria};""")
         
         query_results = self.cur.fetchall()
-        print(query_results)
+        #print(query_results)
         self.connection.commit()
         
         return query_results
@@ -169,7 +169,7 @@ class Database:
         self.cur.execute(f"""SELECT {column} FROM {table};""")
         
         query_results = self.cur.fetchall()
-        print(query_results)
+        #print(query_results)
         self.connection.commit()
         
         return query_results
@@ -178,6 +178,15 @@ class Database:
         self.cur.execute(f"""SELECT SUM({table}.{column})
                         FROM {table}
                         WHERE {rows} = {criteria};""")
+        
+        query_results = self.cur.fetchall()
+        #print(query_results)
+        self.connection.commit()
+        
+        return query_results
+    
+    def query_column(self, table, column):
+        self.cur.execute(f"""SELECT {table}.{column} FROM {table};""")
         
         query_results = self.cur.fetchall()
         print(query_results)
@@ -192,10 +201,10 @@ class Database:
         appication upon start up.
         Returns: pd.dataframe
         """
-        print(self)
+        #print(self)
         for month_int in rvar.month_dict.values():
-            print(year)
-            print(month_int)
+            # print(year)
+            # print(month_int)
             month_budget = self.retrieve_dashboard_month_progress(month_int, year)
             
             if not month_budget:
@@ -226,9 +235,9 @@ class Database:
         appication upon start up.
         Returns: pd.dataframe
         """
-        print(f'self: {self}')
-        print(f'month: {month}')
-        print(f'year: {year}')
+        # print(f'self: {self}')
+        # print(f'month: {month}')
+        # print(f'year: {year}')
         month_budget_id = int((int(month) * 10000) + int(year))
         self.cur.execute(f"""SELECT month_test.month, earnings, food, grocery, transportation, 
                          free_expense, investment, bills, support, goal, total, left_amount
@@ -250,10 +259,10 @@ class Database:
         Returns: pd.dataframe
         """
         cat_id_num = rvar.category_dict[category_id]
-        print(f"cat_id_num:{cat_id_num}")
+        # print(f"cat_id_num:{cat_id_num}")
         
-        print(f'month: {month}')
-        print(f'month: {year}')
+        # print(f'month: {month}')
+        # print(f'month: {year}')
         month_budget_id = str((int(month) * 10000) + int(year))
         
         # Get first day of the month
@@ -261,27 +270,27 @@ class Database:
             
             date_1 = datetime(year=int(month_budget_id[1:]), month=int(month_budget_id[0:1]), day=1)
             first_date = f"{date_1.strftime('%Y-%m-%d')}"
-            print(f"first_date:{first_date}")
+            # print(f"first_date:{first_date}")
             
             # Get last day of the month
             months_range = calendar.monthrange(date_1.year, date_1.month)
             days_in_month = months_range[1]
             date_2 = datetime(year=int(month_budget_id[1:]), month=int(month_budget_id[0:1]), day=int(days_in_month))
             last_date = f"{date_2.strftime('%Y-%m-%d')}"
-            print(f"last_date:{last_date}")
+            # print(f"last_date:{last_date}")
         
         elif int(month_budget_id) > 99999:
             
             date_1 = datetime(year=int(month_budget_id[2:]), month=int(month_budget_id[0:2]), day=1)
             first_date = f"{date_1.strftime('%Y-%m-%d')}"
-            print(f"first_date:{first_date}")
+            # print(f"first_date:{first_date}")
             
             # Get last day of the month
             months_range = calendar.monthrange(date_1.year, date_1.month)
             days_in_month = months_range[1]
             date_2 = datetime(year=int(month_budget_id[2:]), month=int(month_budget_id[0:2]), day=int(days_in_month))
             last_date = f"{date_2.strftime('%Y-%m-%d')}"
-            print(f"last_date:{last_date}")
+            # print(f"last_date:{last_date}")
         
         self.cur.execute(f"""SELECT SUM(amount) FROM transaction_test
                          WHERE 
@@ -294,7 +303,7 @@ class Database:
         if not query_results[0][0]:
             query_results = [(0,)]
         # query_array = np.array(query_results)
-        print(f"amount: {query_results}")
+        # print(f"amount: {query_results}")
         
         return query_results
     

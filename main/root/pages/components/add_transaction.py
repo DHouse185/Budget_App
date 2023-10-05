@@ -82,10 +82,10 @@ class Add_Transaction(Ui_Form):
         
         for _, account in enumerate(accounts):  
             self.accounts_dict[account[1]] = account[0]
-            print(f"""raw : {accounts}
-                  [0] before: {accounts[0]}
-                  element[0] : {account[0]}
-                  element[1] : {account[1]}""")
+            # print(f"""raw : {accounts}
+            #       [0] before: {accounts[0]}
+            #       element[0] : {account[0]}
+            #       element[1] : {account[1]}""")
             print(self.accounts_dict)
             
         # Add category type
