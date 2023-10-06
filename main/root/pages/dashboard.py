@@ -17,6 +17,7 @@ from root.pages.components.button_content import ButtonContent
 from root.pages.components.top_5_expenses_db import Top_5 
 from root.pages.components.month_progress import Month_progress
 from root.pages.components.doughnut_chart import Doughnut
+from root.pages.components.line_chart import LineChart
 # from root.pages.components.expense_bar_graph import Expense_Bar_Graph
 ########################################################################################
 
@@ -67,6 +68,7 @@ class Dashboard(QWidget):
         self.top_5 = Top_5(self.scrollAreaWidgetContents)
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
         self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
+        self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)
         # self.expense_bar_graph = Expense_Bar_Graph()
         
         self.dashboard_scrollArea.setWidget(self.scrollAreaWidgetContents)
@@ -82,18 +84,16 @@ class Dashboard(QWidget):
 #         self.graphicsView_2.setGeometry(QtCore.QRect(0, 510, 681, 391))
 #         self.graphicsView_2.setStyleSheet("background-color: rgb(30, 30, 30);")
 #         self.graphicsView_2.setObjectName("graphicsView_2")
+
 #         self.graphicsView_3 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
 #         self.graphicsView_3.setGeometry(QtCore.QRect(0, 900, 681, 401))
 #         self.graphicsView_3.setStyleSheet("background-color: rgb(8, 0, 118);")
 #         self.graphicsView_3.setObjectName("graphicsView_3")
+
 #         self.graphicsView_4 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
 #         self.graphicsView_4.setGeometry(QtCore.QRect(1220, 130, 690, 821))
 #         self.graphicsView_4.setStyleSheet("background-color: rgb(48, 0, 0);")
 #         self.graphicsView_4.setObjectName("graphicsView_4")
-#         self.graphicsView_5 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
-#         self.graphicsView_5.setGeometry(QtCore.QRect(680, 130, 540, 540))
-#         self.graphicsView_5.setStyleSheet("background-color: rgb(0, 39, 33);")
-#         self.graphicsView_5.setObjectName("graphicsView_5")
         
         
 #         self.graphicsView_6 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
