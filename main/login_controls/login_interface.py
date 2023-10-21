@@ -82,8 +82,7 @@ class LoginWindow(Login):
             self._sql_login_data = self.cur.fetchall()
             self.conn.commit()
             self.lineEdit_username.setText('DHouse185')
-            self.lineEdit_password.setText('Dh41144185')
-            
+                        
             self.closeEvent = self.close_Event
             
             if not self._sql_login_data:

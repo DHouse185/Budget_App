@@ -52,7 +52,7 @@ class Transactions(QWidget):
     def __init__(self, page, database: Database):
         super().__init__(page)
         self.setGeometry(QRect(0, 0, 1920, 1065))
-        self.setObjectName("Dashboard")
+        self.setObjectName("Transaction")
         
         # self.db = Workspace()
         
@@ -72,7 +72,7 @@ class Transactions(QWidget):
         self.transaction_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.transaction_scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.transaction_scrollArea.setWidgetResizable(True)
-        self.transaction_scrollArea.setObjectName("Dashboard_scrollArea")
+        self.transaction_scrollArea.setObjectName("Transaction_scrollArea")
         
         # Transaction Scroll Area contents
         self.scrollAreaWidgetContents = QWidget()

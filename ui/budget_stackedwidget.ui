@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>1103</height>
+    <height>1439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2280,10 +2280,16 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <number>1</number>
        </property>
        <property name="text">
-        <string>$                                              -</string>
+        <string>$                          1,555,555.00</string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
        </property>
       </widget>
       <widget class="QLabel" name="date_Dedit_label_1">
@@ -2426,10 +2432,10 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
         <number>1</number>
        </property>
        <property name="text">
-        <string>$                                              -</string>
+        <string>$                          -</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="date_Expense_label_3">
@@ -6903,7 +6909,7 @@ font: 700 12pt &quot;Nirmala UI&quot;;</string>
       <x>0</x>
       <y>0</y>
       <width>1920</width>
-      <height>1065</height>
+      <height>1091</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -8243,6 +8249,16 @@ QTableView QTableCornerButton::section {
        <string>Left Amount</string>
       </property>
      </column>
+     <item row="0" column="0">
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item row="1" column="0">
+      <property name="text">
+       <string/>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QWidget" name="Month_Budget_outlook_widget" native="true">
@@ -13974,7 +13990,7 @@ QPushButton:pressed {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1910</width>
+       <width>100</width>
        <height>1500</height>
       </rect>
      </property>
@@ -14364,7 +14380,7 @@ QPushButton:pressed {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>945</width>
+             <width>100</width>
              <height>450</height>
             </rect>
            </property>

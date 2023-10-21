@@ -54,7 +54,7 @@ class Yearly_Stats(Ui_Form):
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
-        print(self.transaction_df)
+        # print(self.transaction_df)
         
         self.year_starting_budg = self.database.starting_budget(self.year)
         self.amount_Starting_Budget_label.setText(f"${self.year_starting_budg[0][0]}")
@@ -70,7 +70,7 @@ class Yearly_Stats(Ui_Form):
         # Set Earnings for months
         self.yearly_earnings = 0
         for idx, label in enumerate(self.month_earning_label_list):
-            # Get first dy of the month
+            # Get first day of the month
             date_1 = datetime.datetime(year=int(self.year), month=(idx + 1), day=1)
             first_date = f"{date_1.strftime('%Y-%m-%d')}"
             

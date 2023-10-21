@@ -19,6 +19,8 @@ import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.pages.dashboard import Dashboard
 from root.pages.transactions import Transactions
+from root.pages.calendar import Calendar
+from root.pages.monthly_budget import Monthly_Budget
 from root.database import Database
 from root.component.side_menu_widget import Side_Menu
 import root.utils.resources # Do not remove. Needed for images
@@ -144,8 +146,14 @@ class Budget(QWidget):
         # Dashboard: -> Main Page
         self.dashboard = Dashboard(self.dashboard_page, self.database)
         
+        # Dashbord -> Calendar Page
+        self.calendar = Calendar(self.calendar_page, self.database)
+        
         # Transaction -> Transactions Page
         self.transaction = Transactions(self.transaction_page, self.database)
+        
+        # Monthly Budget -> Monthly Budget Page
+        self.monthly_budget = Monthly_Budget(self.monthly_budget_page, self.database)
         
         # Triggers and events
         self.side_menu_button.clicked.connect(self.side_menu_trigger)

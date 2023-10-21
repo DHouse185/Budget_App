@@ -86,7 +86,7 @@ class Add_Transaction(Ui_Form):
             #       [0] before: {accounts[0]}
             #       element[0] : {account[0]}
             #       element[1] : {account[1]}""")
-            print(self.accounts_dict)
+            # print(self.accounts_dict)
             
         # Add category type
         category_types = self.database.get_all_data_w_id('category_type_test')
@@ -142,9 +142,9 @@ class Add_Transaction(Ui_Form):
         date_month = date.toString("MMMM")
         date_formatted = date.toString("yyyy-MM-dd")
         
-        print(date_month)
+        # print(date_month)
         month_id = rvar.month_dict[date_month]
-        print(month_id)
+        # print(month_id)
         
         description = self.description_lineEdit.text()
         
@@ -180,5 +180,5 @@ class Add_Transaction(Ui_Form):
             else:
                 pass
                 
-        print(transaction_list)
+        # print(transaction_list)
         self.database.insert_transaction_data(transaction_list)

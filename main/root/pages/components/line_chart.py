@@ -94,7 +94,7 @@ class LineChart(QWidget):
                 if exp_amount > max_amount:
                     max_amount = exp_amount
 
-        print(f"Line Series List: \n...\n{self.line_series_list}")
+        # print(f"Line Series List: \n...\n{self.line_series_list}")
         
         self.chart = QChart()
         self.chart.setTheme(QChart.ChartTheme.ChartThemeDark)

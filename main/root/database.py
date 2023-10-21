@@ -154,6 +154,9 @@ class Database:
         return start_up_df
     
     def single_data_request(self, table, column, row, criteria):
+        """SELECT {table}.{column} FROM {table}
+            WHERE {row} = {criteria};"""
+            
         self.cur.execute(f"""SELECT {table}.{column} FROM {table}
                          WHERE {row} = {criteria};""")
         
@@ -167,6 +170,19 @@ class Database:
         if column is None:
             column = '*'
         self.cur.execute(f"""SELECT {column} FROM {table};""")
+        
+        query_results = self.cur.fetchall()
+        #print(query_results)
+        self.connection.commit()
+        
+        return query_results
+    
+    def all_data_request_w_criteria(self, table, row, criteria):
+        """SELECT {table}.{column} FROM {table}
+            WHERE {row} = {criteria};"""
+            
+        self.cur.execute(f"""SELECT * FROM {table}
+                         WHERE {row} = {criteria};""")
         
         query_results = self.cur.fetchall()
         #print(query_results)
@@ -189,10 +205,20 @@ class Database:
         self.cur.execute(f"""SELECT {table}.{column} FROM {table};""")
         
         query_results = self.cur.fetchall()
-        print(query_results)
+        # print(query_results)
         self.connection.commit()
         
         return query_results
+    
+    def update_value(self, table, column, row, criteria, value):
+        """UPDATE {table}
+            SET {column} = {value}
+            WHERE {row} = {criteria};"""
+            
+        self.cur.execute(f"""UPDATE {table} SET {column} = {value}
+                         WHERE {row} = {criteria};""")
+        
+        self.connection.commit()
         
     def month_budget_check(self, year=datetime.now().year):
         # if no data is entered in the database for month budget
@@ -227,6 +253,59 @@ class Database:
         self.connection.commit()
         
         return None
+    
+    def month_budget_check_stats(self, parent, year: str):
+        # if no data is entered in the database for month budget
+        """
+        Gets month budget data to be utilized by the 
+        appication upon start up.
+        Returns: pd.dataframe
+        """
+        #print(self)
+        
+        # Test 1
+        m_int = rvar.month_dict["January"]
+        month_budget = self.retrieve_dashboard_month_progress(m_int, year)
+        
+        if not month_budget:
+            # Validate Input
+            ret = QMessageBox.question(parent, "No Data Available",
+                                    f"There seems to be no data available for the year {year}. Do you want to make template data for this year?",
+                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel)
+            
+            # If User decides to add psuedo data
+            if ret == QMessageBox.StandardButton.Yes:
+            
+                for month_int in rvar.month_dict.values():
+
+                    month_budget = self.retrieve_dashboard_month_progress(month_int, year)
+                    
+                    # Test 2
+                    if not month_budget:
+                
+                        month_budget_id = int((int(month_int) * 10000) + int(year))
+                    
+                        self.cur.execute(f"""INSERT INTO month_budget_test
+                                (month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense,
+                                investment, support, goal, starting_budget)
+                                VALUES ({month_budget_id}, {month_int}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                                ;""")
+                        self.connection.commit()
+                        
+                QMessageBox.information(parent, "Success",
+                                "Data has been successfully created for the year {year}.",
+                                QMessageBox.StandardButton.Ok)    
+                            
+                return True
+                            
+            # If user chooses not to add psuedo data
+            elif ret == QMessageBox.StandardButton.Cancel:
+
+                return False
+        
+        # query_results = self.cur.fetchall()
+        # print(query_results)
+        return True
     
     @rfunc.query_print_results
     def retrieve_dashboard_month_progress(self, month: int, year: str) -> pd.DataFrame:
@@ -307,11 +386,67 @@ class Database:
         
         return query_results
     
+    def category_budget(self, year: int, month: int, column: str):
+        table = "month_budget_test"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
     def starting_budget(self, year: int):
         table = "month_budget_test"
         column = "starting_budget"
         row = "month_year_id"
         criteria = 10000 + int(year)
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
+    def starting_budget_month(self, year: int, month: int):
+        table = "month_budget_test"
+        column = "starting_budget"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
+    def change_budget(self, year: int, month: int, column: str, value: str):
+        table = "month_budget_test"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        
+        self.update_value(table, column, row, criteria, value)
+    
+    def month_budget(self, year: int, month: int):
+        table = "month_budget_test"
+        column = "total"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
+    def savings_for_month(self, year: int, month: int):
+        table = "month_budget_test"
+        column = "left_amount"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
+    def earnings_for_month(self, year: int, month: int):
+        table = "month_budget_test"
+        column = "earnings"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
         
         results = self.single_data_request(table, column, row, criteria)
         
@@ -335,6 +470,18 @@ class Database:
         data_table = table
         
         results = self.all_data_request(data_table)
+        
+        return results
+    
+    def budget_for_year_table(self, year: int):
+        """
+        SELECT * FROM table 
+        WHERE month_year_id - month_id = year 
+        """
+        data_table = "month_budget_test"
+        rows = "month_year_id - month_id * 10000"
+        
+        results = self.all_data_request_w_criteria(data_table, rows, year)
         
         return results
     
@@ -365,6 +512,13 @@ class Database:
         
         return results
     
+    def category_budget_for_year(self, year, column):
+        table = "month_budget_test"
+        rows = "month_year_id - month_id * 10000"
+        
+        results = self.sum_single_data_request(table, column, rows, year)
+        
+        return results
     
     def insert_transaction_data(self, transaction_list: list):
         """
