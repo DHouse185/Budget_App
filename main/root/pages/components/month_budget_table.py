@@ -88,7 +88,7 @@ class Month_Budget_Table(Ui_Form):
                 self.budget_plan_tableWidget.setItem(j, i, item)
                 
         self.itemchange = 0
-        self.budget_plan_tableWidget.itemChanged.connect(self.adjust_budget)
+        # self.budget_plan_tableWidget.itemChanged.connect(self.adjust_budget)
         # budget_plan_results = self.database.budget_for_year_table(self.year)
         # print(f"budget_plan_results: {budget_plan_results}")
         # self.budget_plan_df = pd.DataFrame(budget_plan_results) #, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])

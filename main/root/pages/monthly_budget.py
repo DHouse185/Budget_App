@@ -6,7 +6,7 @@ from datetime import datetime
 ##########  Python THIRD PARTY IMPORTs  ################################################
 import pandas as pd
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QTableView, QScrollArea, QSizePolicy, QAbstractScrollArea
+from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QTableView, QScrollArea, QSizePolicy, QAbstractScrollArea, QTableWidgetItem
 from PyQt6.QtGui import QAction
 from PyQt6.QtCore import QModelIndex, QRect, QAbstractTableModel, Qt, QSize
 ########################################################################################
@@ -17,6 +17,7 @@ import root.helper.root_variables as rvar
 from root.database import Database
 from root.pages.components.month_budget_table import Month_Budget_Table 
 from root.pages.components.month_budget_stats import Month_Budget_Stats 
+from root.pages.components.monthly_budget_lc import MB_LineChart 
 ########################################################################################
             
 class Monthly_Budget(QWidget):
@@ -66,10 +67,14 @@ class Monthly_Budget(QWidget):
         self.month_budget_statistics = Month_Budget_Stats(self.scrollAreaWidgetContents, self.database)
         self.data_year = self.month_budget_statistics.year
         self.month_budget_tbl = Month_Budget_Table(self.scrollAreaWidgetContents, self.database, self.data_year)
+        self.line_chart_wid = MB_LineChart(self.scrollAreaWidgetContents, 
+                                           self.month_budget_tbl.budget_plan_tableWidget,
+                                           self.data_year)
         
         self.monthly_budget_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
         self.month_budget_statistics.month_budget_year_comboBox.currentTextChanged.connect(self.year_change)
+        self.month_budget_tbl.budget_plan_tableWidget.itemChanged.connect(self.update_data)
         
     def year_change(self, year: str):
         self.data_year = year
@@ -81,3 +86,9 @@ class Monthly_Budget(QWidget):
         else:
             self.month_budget_tbl.update_table(self.data_year)
             self.month_budget_tbl.budget_plan_tableWidget.viewport().update()
+            
+    def update_data(self, item: QTableWidgetItem):
+        self.month_budget_tbl.adjust_budget(item)
+        self.month_budget_statistics.change_stats(self.data_year)
+        self.line_chart_wid.update_data(self.month_budget_tbl.budget_plan_tableWidget)
+        

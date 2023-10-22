@@ -79,6 +79,7 @@ class Database:
         #                     ('December');""")
         # self.connection.commit()
         
+        # Create account table with months and values
         # create transaction table
         self.cur.execute("""CREATE TABLE IF NOT EXISTS transaction_test
                          (transaction_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
@@ -293,7 +294,7 @@ class Database:
                         self.connection.commit()
                         
                 QMessageBox.information(parent, "Success",
-                                "Data has been successfully created for the year {year}.",
+                                f"Data has been successfully created for the year {year}.",
                                 QMessageBox.StandardButton.Ok)    
                             
                 return True

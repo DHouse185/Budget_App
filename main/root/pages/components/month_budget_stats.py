@@ -100,7 +100,7 @@ class Month_Budget_Stats(Ui_Form):
                                 QMessageBox.StandardButton.Ok)    
             
         return check
-            
+  
     def change_stats(self, year):
         
         for category in self.categories:
