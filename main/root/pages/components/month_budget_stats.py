@@ -57,8 +57,8 @@ class Month_Budget_Stats(Ui_Form):
                 
         self.label_check_list = [''.join(ele.text().split('Total ')) for ele in self.label_list]
         self.label_check_list = [''.join(ele.split(' :')) for ele in self.label_check_list]
-        
-        print(self.label_check_list)
+        # For Debugging purposes
+        # print(self.label_check_list)
 
         self.new_label_dict = dict()
         
@@ -66,8 +66,9 @@ class Month_Budget_Stats(Ui_Form):
            for label in self.label_check_list:
                if label in text:
                    self.new_label_dict[label.lower()] = self.label_dict[text] 
-                   
-        print(self.new_label_dict)
+        
+        # For Debugging purposes           
+        # print(self.new_label_dict)
         
         for category in self.categories:
             category_title = category.replace('_', ' ')

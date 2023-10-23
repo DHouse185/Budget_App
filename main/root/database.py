@@ -94,6 +94,15 @@ class Database:
                          accounting_id INTEGER REFERENCES accounting_type_test(accounting_id));""")
         self.connection.commit()
         
+        # create portfolio management table
+        # Will Need to correct table naming
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS account_managment_test
+                         (month_year_id INTEGER UNIQUE NOT NULL PRIMARY KEY,
+						  month_id INTEGER REFERENCES month_test(month_id) NOT NULL,
+						  account_id INTEGER REFERENCES account_test(account_id) NOT NULL,
+						  amount NUMERIC(13, 2) NOT NULL);""")
+        self.connection.commit()
+
         # Create monthly budget table
         self.cur.execute("""CREATE TABLE IF NOT EXISTS month_budget_test
                          (month_year_id INTEGER UNIQUE NOT NULL PRIMARY KEY,
@@ -160,6 +169,21 @@ class Database:
             
         self.cur.execute(f"""SELECT {table}.{column} FROM {table}
                          WHERE {row} = {criteria};""")
+        
+        query_results = self.cur.fetchall()
+        #print(query_results)
+        self.connection.commit()
+        
+        return query_results
+    
+    def single_data_request_2(self, table, column, row, criteria, row_2, criteria_2):
+        """SELECT {table}.{column} FROM {table}
+            WHERE {row} = {criteria}
+            AND {row_2} = {criteria_2};"""
+            
+        self.cur.execute(f"""SELECT {table}.{column} FROM {table}
+                         WHERE {row} = {criteria}
+                         AND {row_2} = {criteria_2};""")
         
         query_results = self.cur.fetchall()
         #print(query_results)
@@ -453,6 +477,18 @@ class Database:
         
         return results
     
+    def portfolio_month_amount(self, year: int, month: int, account_id: int):
+        table = "account_managment_test"
+        column = "amount"
+        row = "month_year_id"
+        criteria = (10000 * month) + int(year)
+        row_2 = "account_id"
+        criteria_2 = account_id
+        
+        results = self.single_data_request_2(table, column, row, criteria, row_2, criteria_2)
+        
+        return results
+    
     def get_all_data_no_id(self, table: str):
         """
         'SELECT {CATEGORY} FROM {table} method
@@ -535,6 +571,7 @@ class Database:
                          {transaction_list[6]}, {transaction_list[7]}, {transaction_list[8]});""")
 
         self.connection.commit()
+        # For Debugging purposes
         print('Transaction added')
     
     

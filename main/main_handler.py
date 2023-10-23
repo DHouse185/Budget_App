@@ -15,6 +15,7 @@ class Start:
         
         if login.start:
             if not login.button_close_event:
+                # For Debugging purposes
                 print("entered")
                 login.show()
         
@@ -30,5 +31,6 @@ class Start:
         sys.exit(app.exec()) 
             
     def initiate_program(self, log, user_id, Form):
+        # For Debugging purposes
         print("success")
         root_h = Root(Form, log, user_id)

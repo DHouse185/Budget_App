@@ -116,6 +116,7 @@ class Month_progress(Ui_Form):
                 progress.setValue(progress_calc)
                 
         except IndexError:
+            # For Debugging purposes
             print("No data for this timeframe: list index out of range")
             
     def select_month_year(self):
@@ -188,6 +189,7 @@ class Month_progress(Ui_Form):
                     progress.setValue(progress_calc)
         
         except IndexError:
+            # For Debugging purposes
             print("No data for this timeframe: list index out of range")
             
     def update_data(self):

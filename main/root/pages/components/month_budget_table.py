@@ -82,8 +82,9 @@ class Month_Budget_Table(Ui_Form):
                     item.setFlags(Qt.ItemFlag.ItemIsEnabled)
                 # item = self.budget_plan_tableWidget.item(j, i)
                 results = self.database.category_budget(self.year, rvar.month_dict[row], column)
-                print('results: ')
-                print(results[0][0])
+                # For Debugging purposes
+                # print('results: ')
+                # print(results[0][0])
                 item.setText(f"${results[0][0]}")
                 self.budget_plan_tableWidget.setItem(j, i, item)
                 
@@ -119,9 +120,11 @@ class Month_Budget_Table(Ui_Form):
                                     f"{value} is not a valid number")
                     value = self.database.category_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column])
                     value = value[0][0]
-                    print(f"Value after Error: {value}")
+                    # For Debugging purposes
+                    # print(f"Value after Error: {value}")
                     item.setText(f"${value}")
-                    print(f"Changed cell at column {column}, row {row} to {value}")
+                    # For Debugging purposes
+                    # print(f"Changed cell at column {column}, row {row} to {value}")
                     self.itemchange = 0
                     
                     return
@@ -133,8 +136,10 @@ class Month_Budget_Table(Ui_Form):
                 value = self.database.category_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column])
                 value = value[0][0]
                 
+                # For Debugging purposes
                 print(f"Cancelled change -- value changed to {value}")
                 item.setText(f"${value}")
+                # For Debugging purposes
                 print(f"Changed cell at column {column}, row {row} to {value}")
                 self.itemchange = 0
                 
@@ -150,9 +155,11 @@ class Month_Budget_Table(Ui_Form):
                 return
             
             item.setText(f"${value}")
+            # For Debugging purposes
             print(f"Changed cell at column {column}, row {row} to {value}")
             
             self.database.change_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column], str(value))
+            # For Debugging purposes
             print("Database updated")
             
             changing_columns = ['expected_ending_budget', 'left_amount', 'total']
@@ -161,19 +168,22 @@ class Month_Budget_Table(Ui_Form):
             for i, column in enumerate(changing_columns):
                 col = col_len - i
                 altered_item = self.budget_plan_tableWidget.item(row, col)
-                print(f"Altered Item text Before Change: {altered_item.text()}")
+                # For Debugging purposes
+                # print(f"Altered Item text Before Change: {altered_item.text()}")
                 
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 results = self.database.category_budget(self.year, rvar.month_dict[self.row_names[row]], column)
-                print('results: ')
-                print(results[0][0])
+                # For Debugging purposes
+                # print('results: ')
+                # print(results[0][0])
                 altered_item.setText(f"${results[0][0]}")
                 
-                # Print statements for debugging:
-                print(f"Altered column: {col}")
-                print(f"Altered row: {row} ")
+                # For Debugging purposes
+                # print(f"Altered column: {col}")
+                # print(f"Altered row: {row} ")
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEnabled)
-                print(f"Altered Item text: {altered_item.text()}")
+                # For Debugging purposes
+                # print(f"Altered Item text: {altered_item.text()}")
             
             self.budget_plan_tableWidget.viewport().update()
             self.itemchange = 0
@@ -191,8 +201,9 @@ class Month_Budget_Table(Ui_Form):
                     item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 
                 results = self.database.category_budget(self.year, rvar.month_dict[row], column)
-                print('results: ')
-                print(results[0][0])
+                # For Debugging purposes
+                # print('results: ')
+                # print(results[0][0])
                 item.setText(f"${results[0][0]}")
                 
                 if i >= len(self.columns) - 3:

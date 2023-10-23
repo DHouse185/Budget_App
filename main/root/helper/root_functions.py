@@ -66,6 +66,7 @@ def pwd_retrieval() -> str:
             Exception
             
     except Exception:
+        # For Debugging purposes
         print("Could not access files to access the database")
         
 def number_of_days(date_1: datetime, date_2: datetime):  
@@ -74,8 +75,9 @@ def number_of_days(date_1: datetime, date_2: datetime):
 def query_print_results(query_function):
     def commit(*args, **kwargs):
         query_results = query_function(*args, **kwargs)
-                
-        print(query_results)
+        
+        # For Debugging purposes        
+        #print(query_results)
                 
         return query_results
                 

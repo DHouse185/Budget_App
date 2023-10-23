@@ -1,0 +1,2819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1910</width>
+    <height>810</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QScrollArea" name="portfolio_scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1901</width>
+     <height>811</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2550</width>
+      <height>930</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>2550</width>
+      <height>930</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>167715</height>
+     </size>
+    </property>
+    <widget class="QLabel" name="Account_label_1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Chase Checking :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Chase Savings :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Chase Freedom Unlimited :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>230</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Capital One Savor One :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>280</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Stocks and Bonds (65:35) :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>330</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>IRA :</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>380</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ledger : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>430</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Robinhood : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>480</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Binance US : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>530</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Other Crypto Wallets : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_11">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>580</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Blackrock Money Market : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_12">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>630</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TD AmeriTrade : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_13">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>680</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account 13 : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_14">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>730</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account 14 : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_15">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>780</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account 15 : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_16">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>830</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account 16 : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Account_label_17">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>880</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Account 17 : </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="Stats_Year_comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>241</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14pt &quot;Nirmala UI&quot;;</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>2023</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2022</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2021</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2020</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2019</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2018</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2017</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2016</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2015</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>20</y>
+       <width>2271</width>
+       <height>901</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_9">
+      <item row="17" column="8">
+       <widget class="QLabel" name="Sep_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="2">
+       <widget class="QLabel" name="Mar_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="3">
+       <widget class="QLabel" name="Apr_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="5">
+       <widget class="QLabel" name="Jun_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="6">
+       <widget class="QLabel" name="Jul_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="8">
+       <widget class="QLabel" name="Sep_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0">
+       <widget class="QLabel" name="Jan_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="7">
+       <widget class="QLabel" name="Aug_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="8">
+       <widget class="QLabel" name="Sep_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="Jan_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="Jan_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QLabel" name="Sep_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="10">
+       <widget class="QLabel" name="Oct_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QLabel" name="Jul_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="7">
+       <widget class="QLabel" name="Aug_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="3">
+       <widget class="QLabel" name="Apr_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QLabel" name="Apr_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="Jan_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="Jan_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="6">
+       <widget class="QLabel" name="Jul_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QLabel" name="May_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="3">
+       <widget class="QLabel" name="Apr_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="6">
+       <widget class="QLabel" name="Jul_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="6">
+       <widget class="QLabel" name="Jul_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLabel" name="Apr_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="Mar_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLabel" name="Jan_label_25">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="11">
+       <widget class="QLabel" name="Nov_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="Jan_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="2">
+       <widget class="QLabel" name="Mar_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="May_label">
+        <property name="text">
+         <string>May</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="5">
+       <widget class="QLabel" name="Jun_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="Jan_label_24">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="Aug_label">
+        <property name="text">
+         <string>August</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="8">
+       <widget class="QLabel" name="Sep_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QLabel" name="Jan_label_28">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QLabel" name="Sep_label">
+        <property name="text">
+         <string>September</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="Jan_label">
+        <property name="text">
+         <string>January</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QLabel" name="Mar_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="11">
+       <widget class="QLabel" name="Nov_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="8">
+       <widget class="QLabel" name="Sep_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="6">
+       <widget class="QLabel" name="Jul_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="8">
+       <widget class="QLabel" name="Sep_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="10">
+       <widget class="QLabel" name="Oct_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="Jan_label_21">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="4">
+       <widget class="QLabel" name="May_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="6">
+       <widget class="QLabel" name="Jul_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <widget class="QLabel" name="Jan_label_33">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="13">
+       <widget class="QLabel" name="Dec_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QLabel" name="Jan_label_29">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="13">
+       <widget class="QLabel" name="Dec_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QLabel" name="Jun_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="3">
+       <widget class="QLabel" name="Apr_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="6">
+       <widget class="QLabel" name="Jul_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="13">
+       <widget class="QLabel" name="Dec_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="6">
+       <widget class="QLabel" name="Jul_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="10">
+       <widget class="QLabel" name="Oct_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="Jan_label_19">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="7">
+       <widget class="QLabel" name="Aug_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="7">
+       <widget class="QLabel" name="Aug_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="Jun_label">
+        <property name="text">
+         <string>June</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="4">
+       <widget class="QLabel" name="May_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="5">
+       <widget class="QLabel" name="Jun_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="3">
+       <widget class="QLabel" name="Apr_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="11">
+       <widget class="QLabel" name="Nov_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5">
+       <widget class="QLabel" name="Jun_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QLabel" name="Jan_label_27">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="5">
+       <widget class="QLabel" name="Jun_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="11">
+       <widget class="QLabel" name="Nov_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="Jan_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="Jan_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="Apr_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QLabel" name="Oct_label">
+        <property name="text">
+         <string>October</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="2">
+       <widget class="QLabel" name="Mar_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="11">
+       <widget class="QLabel" name="Nov_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="8">
+       <widget class="QLabel" name="Sep_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="13">
+       <widget class="QLabel" name="Dec_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="7">
+       <widget class="QLabel" name="Aug_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="7">
+       <widget class="QLabel" name="Aug_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="Mar_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="7">
+       <widget class="QLabel" name="Aug_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="2">
+       <widget class="QLabel" name="Mar_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="Jan_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="Mar_label">
+        <property name="text">
+         <string>March</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="7">
+       <widget class="QLabel" name="Aug_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="Jan_label_23">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="5">
+       <widget class="QLabel" name="Jun_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="Jan_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="Jul_label">
+        <property name="text">
+         <string>July</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="7">
+       <widget class="QLabel" name="Aug_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="Jan_label_20">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="7">
+       <widget class="QLabel" name="Aug_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="13">
+       <widget class="QLabel" name="Dec_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="Jan_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="13">
+       <widget class="QLabel" name="Dec_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <widget class="QLabel" name="May_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="5">
+       <widget class="QLabel" name="Jun_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="10">
+       <widget class="QLabel" name="Oct_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLabel" name="Jun_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="6">
+       <widget class="QLabel" name="Jul_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="11">
+       <widget class="QLabel" name="Nov_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="8">
+       <widget class="QLabel" name="Sep_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="Jan_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="8">
+       <widget class="QLabel" name="Sep_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="Mar_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="13">
+       <widget class="QLabel" name="Dec_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="Feb_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="13">
+       <widget class="QLabel" name="Dec_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="7">
+       <widget class="QLabel" name="Aug_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <widget class="QLabel" name="Jan_label_30">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="6">
+       <widget class="QLabel" name="Jul_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="10">
+       <widget class="QLabel" name="Oct_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="4">
+       <widget class="QLabel" name="May_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="4">
+       <widget class="QLabel" name="May_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="7">
+       <widget class="QLabel" name="Aug_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="Jul_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="6">
+       <widget class="QLabel" name="Jul_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="Apr_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="13">
+       <widget class="QLabel" name="Dec_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="13">
+       <widget class="QLabel" name="Dec_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="4">
+       <widget class="QLabel" name="May_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="5">
+       <widget class="QLabel" name="Jun_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <widget class="QLabel" name="Jan_label_32">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="11">
+       <widget class="QLabel" name="Nov_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="Apr_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="7">
+       <widget class="QLabel" name="Aug_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="7">
+       <widget class="QLabel" name="Aug_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="13">
+       <widget class="QLabel" name="Dec_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="Mar_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="6">
+       <widget class="QLabel" name="Jul_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="2">
+       <widget class="QLabel" name="Mar_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="11">
+       <widget class="QLabel" name="Nov_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="8">
+       <widget class="QLabel" name="Sep_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="8">
+       <widget class="QLabel" name="Sep_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLabel" name="May_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="13">
+       <widget class="QLabel" name="Dec_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="7">
+       <widget class="QLabel" name="Aug_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="4">
+       <widget class="QLabel" name="May_label_5">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="11">
+       <widget class="QLabel" name="Nov_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="Jan_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="10">
+       <widget class="QLabel" name="Oct_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="8">
+       <widget class="QLabel" name="Sep_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="4">
+       <widget class="QLabel" name="May_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="5">
+       <widget class="QLabel" name="Jun_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="8">
+       <widget class="QLabel" name="Sep_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="11">
+       <widget class="QLabel" name="Nov_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="13">
+       <widget class="QLabel" name="Dec_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="3">
+       <widget class="QLabel" name="Apr_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="Mar_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="QLabel" name="Apr_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="7">
+       <widget class="QLabel" name="Aug_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="Jan_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="13">
+       <widget class="QLabel" name="Dec_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="8">
+       <widget class="QLabel" name="Sep_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="8">
+       <widget class="QLabel" name="Sep_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="Mar_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="13">
+       <widget class="QLabel" name="Dec_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="13">
+       <widget class="QLabel" name="Dec_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="6">
+       <widget class="QLabel" name="Jul_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QLabel" name="Jan_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLabel" name="Jun_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLabel" name="Aug_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="8">
+       <widget class="QLabel" name="Sep_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="2">
+       <widget class="QLabel" name="Mar_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="5">
+       <widget class="QLabel" name="Jun_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLabel" name="May_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLabel" name="Jan_label_26">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="Apr_label">
+        <property name="text">
+         <string>April</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLabel" name="Apr_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="5">
+       <widget class="QLabel" name="Jun_label_7">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="3">
+       <widget class="QLabel" name="Apr_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="10">
+       <widget class="QLabel" name="Oct_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="2">
+       <widget class="QLabel" name="Mar_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="5">
+       <widget class="QLabel" name="Jun_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="4">
+       <widget class="QLabel" name="May_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="6">
+       <widget class="QLabel" name="Jul_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="11">
+       <widget class="QLabel" name="Nov_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="11">
+       <widget class="QLabel" name="Nov_label">
+        <property name="text">
+         <string>November</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="4">
+       <widget class="QLabel" name="May_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="13">
+       <widget class="QLabel" name="Dec_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <widget class="QLabel" name="Jul_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="11">
+       <widget class="QLabel" name="Nov_label_4">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="Jan_label_22">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="Mar_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <widget class="QLabel" name="Jan_label_31">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="4">
+       <widget class="QLabel" name="May_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="13">
+       <widget class="QLabel" name="Dec_label">
+        <property name="text">
+         <string>December</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QLabel" name="May_label_8">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="10">
+       <widget class="QLabel" name="Oct_label_3">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="11">
+       <widget class="QLabel" name="Nov_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="3">
+       <widget class="QLabel" name="Apr_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="3">
+       <widget class="QLabel" name="Apr_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="2">
+       <widget class="QLabel" name="Mar_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="11">
+       <widget class="QLabel" name="Nov_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="Jan_label_1">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="2">
+       <widget class="QLabel" name="Mar_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="5">
+       <widget class="QLabel" name="Jun_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="Jan_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="11">
+       <widget class="QLabel" name="Nov_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="Jan_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QLabel" name="Jun_label_6">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="11">
+       <widget class="QLabel" name="Nov_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="May_label_2">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="4">
+       <widget class="QLabel" name="May_label_9">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="Feb_label">
+        <property name="text">
+         <string>February</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="3">
+       <widget class="QLabel" name="Apr_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="11">
+       <widget class="QLabel" name="Nov_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="10">
+       <widget class="QLabel" name="Oct_label_10">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="10">
+       <widget class="QLabel" name="Oct_label_11">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="10">
+       <widget class="QLabel" name="Oct_label_12">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="10">
+       <widget class="QLabel" name="Oct_label_13">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="10">
+       <widget class="QLabel" name="Oct_label_14">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="10">
+       <widget class="QLabel" name="Oct_label_15">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="10">
+       <widget class="QLabel" name="Oct_label_16">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="10">
+       <widget class="QLabel" name="Oct_label_17">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="10">
+       <widget class="QLabel" name="Oct_label_18">
+        <property name="text">
+         <string>$1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

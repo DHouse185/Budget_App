@@ -94,19 +94,22 @@ class MB_LineChart(QWidget):
         for row in range(len(self.months_rng)):
                 
             series_item = budget_table.item(row, col_query)
-            print(f"Series Item text Before Change: {series_item.text()}")
+            # For Debugging purposes
+            # print(f"Series Item text Before Change: {series_item.text()}")
             data_point = series_item.text().replace('$', '')
             data_point = float(data_point)
-            print('Data point results 1: ')
-            print(data_point)
+            # For Debugging purposes
+            # print('Data point results 1: ')
+            # print(data_point)
             
             data_point = float("{:.2f}".format(data_point))
-            print('Data point results 2: ')
-            print(data_point)
+            # For Debugging purposes
+            # print('Data point results 2: ')
+            # print(data_point)
             
-            # Print statements for debugging:
-            print(f"Altered column: {col_query}")
-            print(f"Altered row: {row} ")
+            # For Debugging purposes
+            # print(f"Altered column: {col_query}")
+            # print(f"Altered row: {row} ")
         
             self.qline.append(QPointF(row, data_point))
             
@@ -175,17 +178,20 @@ class MB_LineChart(QWidget):
         for row in range(len(self.months_rng)):
                 
             series_item = budget_table.item(row, col_query)
+            # For Debugging purposes
             print(f"Series Item text Before Change: {series_item.text()}")
             data_point = series_item.text().replace('$', '')
             data_point = float(data_point)
+            # For Debugging purposes
             print('Data point results 1: ')
             print(data_point)
             
             data_point = float("{:.2f}".format(data_point))
+            # For Debugging purposes
             print('Data point results 2: ')
             print(data_point)
             
-            # Print statements for debugging:
+            # For Debugging purposes
             print(f"Altered column: {col_query}")
             print(f"Altered row: {row} ")
         

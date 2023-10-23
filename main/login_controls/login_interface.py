@@ -60,6 +60,7 @@ class LoginWindow(Login):
                 
                 self.passwd = self._crypto.decrypt(pwd, key)
             else:
+                # For Debugging purposes
                 print(f"could not find file directory {pg_directory}")
                 Exception
             

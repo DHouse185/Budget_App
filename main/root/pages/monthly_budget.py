@@ -59,7 +59,7 @@ class Monthly_Budget(QWidget):
         sizePolicy_2.setVerticalStretch(0)
         sizePolicy_2.setHeightForWidth(self.scrollAreaWidgetContents.sizePolicy().hasHeightForWidth())
         self.scrollAreaWidgetContents.setSizePolicy(sizePolicy_2)
-        self.scrollAreaWidgetContents.setMinimumSize(QSize(0, 1845))
+        self.scrollAreaWidgetContents.setMinimumSize(QSize(0, 1100))
         self.scrollAreaWidgetContents.setMaximumSize(QSize(1920, 30000))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         
