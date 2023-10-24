@@ -167,7 +167,7 @@ class Portfolio_Widget(QWidget):
 
 
         # For debugging purposes
-        pp.pprint(self.account_dict)  # Pretty print the data
+        # pp.pprint(self.account_dict)  # Pretty print the data
 
         self.portfolio_scrollArea.setWidget(self.scrollAreaWidgetContents)
 

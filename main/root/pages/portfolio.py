@@ -16,6 +16,8 @@ import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.database import Database
 from root.pages.components.portfolio_widget import Portfolio_Widget
+from root.pages.components.portfolio_stats import Portfolio_Stats
+from root.pages.components.portfolio_lc import Portfolio_LineChart
 ########################################################################################
             
 class Portfolio(QWidget):
@@ -62,15 +64,18 @@ class Portfolio(QWidget):
         
         # Portfolio widget
         self.portfolio_wid = Portfolio_Widget(self.portfolio_main_scrollAreaWidgetContents, self.database)
-        # Portfolio widget - year var.
-        # Portfolio widget - dict stats var.
-        
+        self.year = self.portfolio_wid.year
+        self.account_dictionary = self.portfolio_wid.account_dict        
         
         # Update and stats widget
         # year var. & dict stats var. pass to -> stats Widget
+        self.portfolio_wid = Portfolio_Stats(self.portfolio_main_scrollAreaWidgetContents, self.database, self.year, self.account_dictionary)
         
         # Chart widget
         # pass dict stats widget var. -> chart widget
+        self.line_chart_wid = Portfolio_LineChart(self.portfolio_main_scrollAreaWidgetContents, 
+                                    self.account_dictionary,
+                                    self.year)
         
         # Signals
         # Update signal

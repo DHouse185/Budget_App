@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>970</width>
+    <height>835</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="Monthly_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>950</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>950</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 4px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Monthly</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>955</width>
+     <height>440</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>955</width>
+     <height>440</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>943</width>
+     <height>440</height>
+    </size>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents_6">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>945</width>
+      <height>450</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>450</height>
+     </size>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>1</y>
+       <width>941</width>
+       <height>431</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_12">
+      <item row="0" column="0">
+       <widget class="QLabel" name="Expenses_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 2.5px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Expenses</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="input_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 2.5px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 2.5px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Cost</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 2.5px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Percentage</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="rent_mortgage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Rent / Mortgage</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QFrame" name="add_frame_2">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="rent_mortgage_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="rent_mortgage_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="grocery_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Grocery</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QFrame" name="add_frame_3">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="grocery_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="grocery_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="eating_out_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Eating Out</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QFrame" name="add_frame_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>49</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_5">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="eating_out_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="eating_out_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="transportation_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Transportation</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QFrame" name="add_frame_5">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="transportation_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QLabel" name="transportation_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="free_money_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Free Money</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QFrame" name="add_frame_8">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_10">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="free_money_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="QLabel" name="free_money_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="donation_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Donation</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QFrame" name="add_frame_7">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_9">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="donation_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLabel" name="donation_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="investment_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>Investment</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QFrame" name="add_frame_6">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid #000000;
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_8">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>5</y>
+           <width>211</width>
+           <height>39</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="investment_cost_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>$ 1,555,555.55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLabel" name="investment_percentage_label">
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+        </property>
+        <property name="text">
+         <string>55%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="add_frame">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>500</y>
+     <width>235</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #000000;
+background-color: #000000;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="add_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>6</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="Save_frame">
+   <property name="geometry">
+    <rect>
+     <x>489</x>
+     <y>500</y>
+     <width>235</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #000000;
+background-color: #000000;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="Save_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>6</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="minus_frame">
+   <property name="geometry">
+    <rect>
+     <x>249</x>
+     <y>500</y>
+     <width>234</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #000000;
+background-color: #000000;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="minus_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>6</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #c30000;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #ff5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #8c0000;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="Save_frame_2">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>500</y>
+     <width>233</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>233</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #000000;
+background-color: #000000;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="Load_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>6</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="total_cost_label">
+   <property name="geometry">
+    <rect>
+     <x>489</x>
+     <y>550</y>
+     <width>474</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>$ 1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="total_label">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>550</y>
+     <width>475</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Total</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Monthly_label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>610</y>
+     <width>955</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 4px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Need for Lifestyle</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="hourly_wage_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>775</y>
+     <width>475</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Average Hourly Wage (80 hrs)</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="monthly_wage_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>664</y>
+     <width>475</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Monthly Wage</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="bi_weekly_wage_cost_label">
+   <property name="geometry">
+    <rect>
+     <x>491</x>
+     <y>720</y>
+     <width>474</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>$ 1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="hourly_wage_cost_label">
+   <property name="geometry">
+    <rect>
+     <x>491</x>
+     <y>775</y>
+     <width>474</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>$ 1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="monthly_wage_cost_label">
+   <property name="geometry">
+    <rect>
+     <x>491</x>
+     <y>664</y>
+     <width>474</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>$ 1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="bi_weekly_wage_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>720</y>
+     <width>475</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Nirmala UI&quot;;
+color: #7300ff;
+border: 1px solid #000000;</string>
+   </property>
+   <property name="text">
+    <string>Average Bi-Weekly Wage (80 hrs)</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -79,30 +79,83 @@ class Database:
         #                     ('December');""")
         # self.connection.commit()
         
-        # Create account table with months and values
-        # create transaction table
-        self.cur.execute("""CREATE TABLE IF NOT EXISTS transaction_test
-                         (transaction_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
-                         transaction_date DATE NOT NULL,
-                         transaction_name TEXT,
-                         amount NUMERIC(13, 2) NOT NULL,
-                         category_id INTEGER REFERENCES category_test(category_id),
-                         sub_category_id INTEGER REFERENCES sub_category_test(sub_category_id),
-                         account_id INTEGER REFERENCES account_test(account_id),
-                         category_type_id INTEGER REFERENCES category_type_test(category_type_id),
-                         month_id INTEGER REFERENCES month_test(month_id),
-                         accounting_id INTEGER REFERENCES accounting_type_test(accounting_id));""")
-        self.connection.commit()
         
-        # create portfolio management table
-        # Will Need to correct table naming
-        self.cur.execute("""CREATE TABLE IF NOT EXISTS account_managment_test
-                         (month_year_id INTEGER UNIQUE NOT NULL PRIMARY KEY,
-						  month_id INTEGER REFERENCES month_test(month_id) NOT NULL,
-						  account_id INTEGER REFERENCES account_test(account_id) NOT NULL,
-						  amount NUMERIC(13, 2) NOT NULL);""")
-        self.connection.commit()
+        
+        # Check if the table exists by querying the information schema
+        self.cur.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'transaction_test');")
 
+        # Fetch the result
+        table_exists_1 = self.cur.fetchone()[0]
+
+        if table_exists_1:
+            print(f"The table 'transaction_test' exists.")
+            
+        else:
+            print(f"The table 'transaction_test' does not exist.")
+            
+            # Create account table with months and values
+            # create transaction table
+            self.cur.execute("""CREATE TABLE IF NOT EXISTS transaction_test
+                            (transaction_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+                            transaction_date DATE NOT NULL,
+                            transaction_name TEXT,
+                            amount NUMERIC(13, 2) NOT NULL,
+                            category_id INTEGER REFERENCES category_test(category_id),
+                            sub_category_id INTEGER REFERENCES sub_category_test(sub_category_id),
+                            account_id INTEGER REFERENCES account_test(account_id),
+                            category_type_id INTEGER REFERENCES category_type_test(category_type_id),
+                            month_id INTEGER REFERENCES month_test(month_id),
+                            accounting_id INTEGER REFERENCES accounting_type_test(accounting_id));""")
+            
+            self.connection.commit()
+            
+            self.cur.execute("""ALTER TABLE transaction_test
+                             DROP CONSTRAINT transaction_test_account_id_fkey;
+                             
+                             ALTER TABLE transaction_test
+                             ADD CONSTRAINT transaction_test_account_id_fkey
+                             FOREIGN KEY (account_id) 
+                             REFERENCES account_test(account_id) 
+                             ON DELETE CASCADE;"""
+                             )
+            
+            self.connection.commit()
+        
+        # Check if the table exists by querying the information schema
+        self.cur.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'account_management_test');")
+
+        # Fetch the result
+        table_exists_2 = self.cur.fetchone()[0]
+
+        if table_exists_2:
+            print(f"The table 'account_management_test' exists.")
+            
+        else:
+            print(f"The table 'account_management_test' does not exist.")
+            
+            # create portfolio management table
+            # Will Need to correct table naming
+            self.cur.execute("""CREATE TABLE IF NOT EXISTS account_management_test
+                            (month_year_account_id INTEGER NOT NULL PRIMARY KEY,
+                            month_year_id INTEGER NOT NULL,
+                            month_id INTEGER REFERENCES month_test(month_id) NOT NULL,
+                            account_id INTEGER REFERENCES account_test(account_id) NOT NULL,
+                            amount NUMERIC(13, 2) NOT NULL);""")
+        
+            self.connection.commit()
+            
+            self.cur.execute("""ALTER TABLE account_management_test
+                             DROP CONSTRAINT account_management_test_account_id_fkey;
+                             
+                             ALTER TABLE account_management_test
+                             ADD CONSTRAINT account_management_test_account_id_fkey
+                             FOREIGN KEY (account_id) 
+                             REFERENCES account_test(account_id) 
+                             ON DELETE CASCADE;"""
+                             )
+            
+            self.connection.commit()
+            
         # Create monthly budget table
         self.cur.execute("""CREATE TABLE IF NOT EXISTS month_budget_test
                          (month_year_id INTEGER UNIQUE NOT NULL PRIMARY KEY,
@@ -478,10 +531,10 @@ class Database:
         return results
     
     def portfolio_month_amount(self, year: int, month: int, account_id: int):
-        table = "account_managment_test"
+        table = "account_management_test"
         column = "amount"
-        row = "month_year_id"
-        criteria = (10000 * month) + int(year)
+        row = "month_year_account_id"
+        criteria = (1000000 * account_id) + (10000 * month) + int(year)
         row_2 = "account_id"
         criteria_2 = account_id
         
@@ -573,7 +626,95 @@ class Database:
         self.connection.commit()
         # For Debugging purposes
         print('Transaction added')
+        
+    def insert_account_data(self, year, month, account_id, amount):
+        """
+        month_year_id = (10000 * int(month)) + int(year)
+        self.cur.execute(f'INSERT INTO account_management_test 
+                         (month_year_account_id, month_year_id, month_id, account_id, amount)
+                         VALUES
+                         ('{month_year_id}', '{month}', {account_id}, {amount});')
+        """
+        month_year_id = (10000 * int(month)) + int(year)
+        month_year_account_id = (1000000 * account_id) + (10000 * month) + int(year)
+        
+        if month == 0:
+            month = 1
+            
+        self.cur.execute(f"""SELECT * FROM account_management_test 
+                                 WHERE month_year_account_id = {month_year_account_id}
+                                 AND month_year_id = {month_year_id}
+                                 AND account_id = {int(account_id)}
+                                 AND month_id = {int(month)};""")
+        
+        query = self.cur.fetchall()
+        
+        print(f"query: {query}")
+        self.connection.commit()
+        
+        if query == []:
+            self.cur.execute(f"""INSERT INTO account_management_test 
+                            (month_year_account_id, month_year_id, month_id, account_id, amount)
+                            VALUES
+                            ({month_year_account_id}, {month_year_id}, {month}, {account_id}, {amount});""")
+
+            self.connection.commit()
+            
+            # For Debugging purposes
+            print('Account data added')
+        
+        if query != []:
+            self.cur.execute(f"""UPDATE account_management_test SET amount = {amount}
+                             WHERE month_year_account_id = {month_year_account_id}
+                             AND month_year_id = {month_year_id}
+                             AND account_id = {account_id}
+                             AND month_id = {month};""")
+
+            self.connection.commit()
+            
+            # For Debugging purposes
+            print('Account data updated')
     
+    def add_account(self, account_name: str):
+        table = "account_test"
+        
+        self.cur.execute(f"""SELECT * FROM {table} 
+                          WHERE account = '{account_name}';""")
+        
+        query = self.cur.fetchall()
+        self.connection.commit()
+        
+        if query == []:
+            self.cur.execute(f"""INSERT INTO {table} 
+                            (account)
+                            VALUES ('{account_name}');""")
+
+            self.connection.commit()
+            
+            # For Debugging purposes
+            print('Account added')
+            return True
+        
+        if query != []:
+            return False
+        
+    def account_id_request(self, account_name: str):
+        table = "account_test"
+        column = "account_id"
+        row = "account"
+        criteria = f"'{account_name}'"
+        
+        results = self.single_data_request(table, column, row, criteria)
+        
+        return results
+    
+    def remove_account(self, account_name: str, account_id: str):
+
+        self.cur.execute(f"""DELETE FROM account_test
+                         WHERE account = '{account_name}'
+                         AND account_id = {account_id};""")
+
+        self.connection.commit()
     
     
     # def dummy_data(self) -> pd.DataFrame:

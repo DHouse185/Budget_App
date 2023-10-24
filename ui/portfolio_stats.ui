@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="update_account_label_6">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 20pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Total :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_year_start_total_label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>200</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_last_month_change_label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>350</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="evaluate_Month_label_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>130</y>
+     <width>181</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Evaluate Month</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>590</y>
+     <width>911</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_9">
+    <item row="0" column="0">
+     <widget class="QLabel" name="remove_account_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Remove Account</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="month_remove_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Month</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QComboBox" name="remove_account_comboBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>45</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Chase Freedom Unlimited</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Chase Checking</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QDateEdit" name="remove_month_dateEdit">
+      <property name="dateTime">
+       <datetime>
+        <hour>0</hour>
+        <minute>0</minute>
+        <second>0</second>
+        <year>2023</year>
+        <month>1</month>
+        <day>1</day>
+       </datetime>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2024</year>
+        <month>12</month>
+        <day>31</day>
+       </date>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2015</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>M/yyyy</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="remove_confirm_pushButton">
+      <property name="maximumSize">
+       <size>
+        <width>164</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #c30000;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #ff5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #8c0000;
+    border: 1px solid #5a5a5a;
+}</string>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="update_account_label_8">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>130</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 20pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>$1,555,555.00</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>500</y>
+     <width>911</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_10">
+    <item row="1" column="1">
+     <widget class="QDoubleSpinBox" name="add_account_doubleSpinBox">
+      <property name="maximum">
+       <double>1000000000.990000009536743</double>
+      </property>
+      <property name="singleStep">
+       <double>0.010000000000000</double>
+      </property>
+      <property name="value">
+       <double>1555555.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="update_account_label_9">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Add Account</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="add_month_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Month</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="account_name_lineEdit">
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="add_amount_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Amount</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QDateEdit" name="add_month_dateEdit">
+      <property name="dateTime">
+       <datetime>
+        <hour>0</hour>
+        <minute>0</minute>
+        <second>0</second>
+        <year>2023</year>
+        <month>1</month>
+        <day>1</day>
+       </datetime>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2024</year>
+        <month>12</month>
+        <day>31</day>
+       </date>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2015</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>M/yyyy</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="add_confirm_pushButton">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="month_change_label">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>390</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change For Month :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_exp_end_label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>430</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="exp_end_label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>390</y>
+     <width>161</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Expected End Value For Year :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="year_start_total_label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>160</y>
+     <width>161</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Starting Total For Year :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="month_end_label">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>290</y>
+     <width>161</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ending Total For Month :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_6">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>911</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_11">
+    <item row="1" column="0">
+     <widget class="QComboBox" name="update_account_comboBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>45</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Chase Freedom Unlimited</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Chase Checking</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QDoubleSpinBox" name="update_amount_doubleSpinBox">
+      <property name="maximum">
+       <double>1000000000.990000009536743</double>
+      </property>
+      <property name="singleStep">
+       <double>0.010000000000000</double>
+      </property>
+      <property name="value">
+       <double>1555555.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="update_amount_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Amount</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="update_confirm_pushButton">
+      <property name="maximumSize">
+       <size>
+        <width>164</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #0003bb;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #4446d1;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+    background-color: #000277;
+    border: 1px solid #5a5a5a;
+}</string>
+      </property>
+      <property name="text">
+       <string>Update</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="update_month_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Month</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QDateEdit" name="update_month_dateEdit">
+      <property name="dateTime">
+       <datetime>
+        <hour>0</hour>
+        <minute>0</minute>
+        <second>0</second>
+        <year>2023</year>
+        <month>1</month>
+        <day>1</day>
+       </datetime>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2024</year>
+        <month>12</month>
+        <day>31</day>
+       </date>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2015</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>M/yyyy</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="update_account_label_10">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Update Account</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QCheckBox" name="start_checkBox">
+      <property name="maximumSize">
+       <size>
+        <width>15</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4">
+     <widget class="QLabel" name="start_label">
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;Nirmala UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QDateEdit" name="evaluate_Month_dateEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>170</y>
+     <width>299</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2023</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="maximumDate">
+    <date>
+     <year>2024</year>
+     <month>12</month>
+     <day>31</day>
+    </date>
+   </property>
+   <property name="minimumDate">
+    <date>
+     <year>2015</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+   <property name="displayFormat">
+    <string>M/yyyy</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="last_month_change_label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>310</y>
+     <width>161</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Portfolio Change From Last Month :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="avg_change_label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>230</y>
+     <width>161</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Average Portfolio Change This Year :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="start_month_label">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>210</y>
+     <width>161</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Starting Total For Month :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_avg_change_label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>270</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_start_month_label">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>250</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_month_change_label">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>390</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="amount_month_end_label">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>330</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
