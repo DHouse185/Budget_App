@@ -82,7 +82,6 @@ class LoginWindow(Login):
             # Remember for this list username is 0 element, password is 1 element
             self._sql_login_data = self.cur.fetchall()
             self.conn.commit()
-            self.lineEdit_username.setText('DHouse185')
                         
             self.closeEvent = self.close_Event
             
