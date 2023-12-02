@@ -592,6 +592,50 @@ QPushButton:pressed {
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="average_actualy_m_wage_label_12">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>660</y>
+     <width>150</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 500 16pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>$1,555,555.55</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="average_actualy_m_wage_label_13">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>580</y>
+     <width>201</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 500 16pt &quot;Nirmala UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Yearly Wage After Taxes :</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

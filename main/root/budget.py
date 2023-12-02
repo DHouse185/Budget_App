@@ -22,6 +22,7 @@ from root.pages.transactions import Transactions
 from root.pages.calendar import Calendar
 from root.pages.monthly_budget import Monthly_Budget
 from root.pages.portfolio import Portfolio
+from root.pages.budget_planning import Budget_Planning
 from root.database import Database
 from root.component.side_menu_widget import Side_Menu
 import root.utils.resources # Do not remove. Needed for images
@@ -159,6 +160,9 @@ class Budget(QWidget):
         # Monthly Budget -> Portfolio Page
         self.portfolio = Portfolio(self.portfolio_page, self.database)
         
+        # Monthly Budget -> Portfolio Page
+        self.budget_planning = Budget_Planning(self.budget_planning_page, self.database)
+        
         # Triggers and events
         self.side_menu_button.clicked.connect(self.side_menu_trigger)
         self.side_menu.dashboard_pushButton.clicked.connect(self.change_to_dashboard_page)
@@ -166,6 +170,7 @@ class Budget(QWidget):
         self.side_menu.transaction_pushButton.clicked.connect(self.change_to_transaction_page)
         self.side_menu.monthly_budget_pushButton.clicked.connect(self.change_to_monthly_budget_page)
         self.side_menu.portfolio_pushButton.clicked.connect(self.change_to_portfolio_page)
+        self.side_menu.budget_planning_pushButton.clicked.connect(self.change_to_budget_planning_page)
     
     
     def closeEvent(self, event):
@@ -263,4 +268,9 @@ class Budget(QWidget):
     def change_to_portfolio_page(self):
         self.stackedWidget.setCurrentWidget(self.portfolio_page)
         self.side_menu_trigger()
-        return         
+        return        
+    
+    def change_to_budget_planning_page(self):
+        self.stackedWidget.setCurrentWidget(self.budget_planning_page)
+        self.side_menu_trigger()
+        return    

@@ -180,7 +180,7 @@ class Portfolio_Stats(Ui_Form):
         account_ = self.update_account_comboBox.currentText()
         query_account = [item for item in self.q_name_ls if item[0] == account_]
         account_id = query_account[0][2]
-        print(account_id)
+        # print(account_id)
         
         # get amount
         amount = self.update_amount_doubleSpinBox.value()
@@ -195,13 +195,13 @@ class Portfolio_Stats(Ui_Form):
             
         self.database.insert_account_data(update_year, update_month, account_id, amount)
         
-        print("Successfully updated")
+        # print("Successfully updated")
         
     def add_account(self):
         # get account
         account_ = self.account_name_lineEdit.text()
 
-        print(account_)
+        # print(account_)
         
         # get amount
         amount = self.add_account_doubleSpinBox.value()
@@ -230,9 +230,9 @@ class Portfolio_Stats(Ui_Form):
             elif add_ac:
                 account_id_ = self.database.account_id_request(account_)
                 account_id_ = account_id_[0][0]
-                print(account_id_)
+                # print(account_id_)
                 self.database.insert_account_data(update_year, update_month, account_id_, amount)
-                print("Successfully updated")
+                # print("Successfully updated")
     
     def remove_account(self):
         account_ = self.remove_account_comboBox.currentText()
@@ -266,5 +266,5 @@ class Portfolio_Stats(Ui_Form):
                     elif find_account != []:
                         
                         self.database.remove_account(account_, account_id)
-                        print("Successfully removed")        
+                        # print("Successfully removed")        
         

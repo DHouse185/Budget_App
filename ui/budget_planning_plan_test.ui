@@ -779,7 +779,7 @@ border: 2.5px solid #000000;</string>
    <property name="widgetResizable">
     <bool>true</bool>
    </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+   <widget class="QWidget" name="scrollAreaWidgetContent">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -794,6 +794,19 @@ border: 2.5px solid #000000;</string>
       <height>400</height>
      </size>
     </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>60</y>
+       <width>101</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Jaja</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

@@ -122,7 +122,7 @@ class Portfolio_Widget(QWidget):
 
         # Create dictionary with year dictionary for each account
         for account in self.account_dict.values():
-            print(account)
+            # print(account)
             account["year"][self.year] = dict()
             account["year"][self.year]["year"] = int(self.year)
             account["year"][self.year]["data"] = list()
@@ -270,8 +270,8 @@ class Portfolio_Widget(QWidget):
                             average = 0
 
                         if chronological_list[-1][0] == (month -1):
-                            print(chronological_list[-1][0])
-                            print(average)
+                            # print(chronological_list[-1][0])
+                            # print(average)
                             year["expected_data"].append((month, (float(chronological_list[-1][1]) * (1 + average))))
                         else:
                             year["expected_data"].append((month, ((year["expected_data"][-1][1]) * (1 + average))))

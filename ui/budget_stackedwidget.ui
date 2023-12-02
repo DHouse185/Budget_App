@@ -262,7 +262,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 }</string>
   </property>
   <property name="currentIndex">
-   <number>3</number>
+   <number>5</number>
   </property>
   <widget class="QWidget" name="Dashboard_page">
    <widget class="QScrollArea" name="Dashboard_scrollArea">
@@ -13990,7 +13990,7 @@ QPushButton:pressed {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
+       <width>1910</width>
        <height>1500</height>
       </rect>
      </property>
@@ -14380,7 +14380,7 @@ QPushButton:pressed {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>100</width>
+             <width>945</width>
              <height>450</height>
             </rect>
            </property>

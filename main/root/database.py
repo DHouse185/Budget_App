@@ -78,12 +78,29 @@ class Database:
         #                     ('November'),
         #                     ('December');""")
         # self.connection.commit()
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS states_test
+                         (state_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+                         state_name VARCHAR(100),
+                         tax_percent NUMERIC(5, 3) NOT NULL);""")
+        self.connection.commit()
+
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS states_income_tax_test
+                         (year INTEGER NOT NULL,
+                         state_id INTEGER REFERENCES states_test(state_id),
+                         single_filer_rates NUMERIC (6, 5),
+                         single_filer_brackets INTEGER,
+                         married_filing_jointly_rates NUMERIC (6, 5),
+                         married_filing_jointly_brackets INTEGER,
+                         standard_deduction_single INTEGER,
+                         standard_deduction_couple INTEGER,
+                         personal_exemption_single INTEGER,
+                         personal_exemption_couple INTEGER,
+                         personal_exemption_dependent INTEGER);""")
         
-        
+        self.connection.commit()
         
         # Check if the table exists by querying the information schema
         self.cur.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'transaction_test');")
-
         # Fetch the result
         table_exists_1 = self.cur.fetchone()[0]
 
@@ -715,6 +732,28 @@ class Database:
                          AND account_id = {account_id};""")
 
         self.connection.commit()
+        
+    def retrieve_states(self):
+        table = "states_test"
+        column = "state_name"
+        
+        result = self.query_column(table, column)
+        
+        return result
+    
+    def get_state_tax_bracket(self, state):
+        
+        self.cur.execute(f"""SELECT states_income_tax_test.single_filer_rates, states_income_tax_test.single_filer_brackets
+                         FROM states_income_tax_test
+                         INNER JOIN states_test
+                         ON states_income_tax_test.state_id = states_test.state_id
+                         WHERE states_test.state_name = '{state}';""")
+        
+        query_results = self.cur.fetchall()
+        # print(query_results)
+        self.connection.commit()
+        
+        return query_results
     
     
     # def dummy_data(self) -> pd.DataFrame:
@@ -731,3 +770,11 @@ class Database:
     #     self.connection.commit()
         
     #     return start_up_df
+    
+    
+    # """SELECT states_income_tax_test.single_filer_rates, states_income_tax_test.single_filer_brackets,
+    #                      states_income_tax_test.standard_deduction_single 
+    #                      FROM states_income_tax_test
+    #                      INNER JOIN states_test
+    #                      ON states_income_tax_test.state_id = states_test.state_id
+    #                      WHERE states_test.state_name = '{state}';""
