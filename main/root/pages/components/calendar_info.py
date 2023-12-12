@@ -1,5 +1,4 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
 import datetime
 import calendar
 import pandas as pd
@@ -7,15 +6,8 @@ import pandas as pd
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
-from PyQt6.QtGui import QAction
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -42,7 +34,7 @@ class Calendar_Img(Ui_Form):
         self.year = year
         self.month_title_label.setText(f"{self.month}")
         
-        self.transaction_df = self.database.start_up_transaction_data
+        self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         

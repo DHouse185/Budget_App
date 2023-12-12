@@ -1,21 +1,14 @@
 ########  Python IMPORTs  ############################################################
-from pathlib import Path
+from typing import List
 import datetime
 import calendar
 import pandas as pd
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QVBoxLayout,
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
-from PyQt6.QtCharts import QChart, QChartView, QPieSeries, QPieSlice, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
-from PyQt6.QtGui import QAction, QPainter, QPen, QColor
+from PyQt6.QtWidgets import QWidget, QVBoxLayout
+from PyQt6.QtCharts import QChart, QChartView, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
+from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import Qt, QRect, QPointF
 ########################################################################################
 
@@ -23,6 +16,7 @@ from PyQt6.QtCore import Qt, QRect, QPointF
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.database import Database
+from root.models import Category
 # from pages.dashboard import Dashboard
 ########################################################################################
 
@@ -36,7 +30,7 @@ class LineChart(QWidget):
         self.setObjectName("Line_chart")
         
         self.database = database
-        self.transaction_df = self.database.start_up_transaction_data
+        self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
@@ -44,7 +38,7 @@ class LineChart(QWidget):
         self.year = 2023
         
         self.months_rng = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        self.categories = self.database.query_column('category_test', 'category')
+        self.categories: List[Category] = [cat.category for cat in self.database.app_data['category']['old']]
         self.line_series_list = list()
         color_palatte = [Qt.GlobalColor.darkGreen, Qt.GlobalColor.darkRed, Qt.GlobalColor.darkBlue, 
                          Qt.GlobalColor.cyan, Qt.GlobalColor.blue, Qt.GlobalColor.gray, 
@@ -55,7 +49,7 @@ class LineChart(QWidget):
         
         for category in self.categories:
             qline = QLineSeries()
-            qline.setName(f"{category[0]}")
+            qline.setName(f"{category}")
             self.line_series_list.append(qline)
             
         # print(f"Line Series List: \n...\n{self.line_series_list}")

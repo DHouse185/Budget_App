@@ -1,20 +1,14 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
+from typing import Optional
+from decimal import Decimal
 import datetime
 import calendar
 import pandas as pd
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
-from PyQt6.QtGui import QAction
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -50,21 +44,39 @@ class Yearly_Stats(Ui_Form):
         self.days_passed = self.days_passed.tm_yday
         self.amount_Days_Passed_label.setText(f"{self.days_passed}")
         
-        self.transaction_df = self.database.start_up_transaction_data
+        self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
         # print(self.transaction_df)
         
-        self.year_starting_budg = self.database.starting_budget(self.year)
-        self.amount_Starting_Budget_label.setText(f"${self.year_starting_budg[0][0]}")
+        self.year_starting_budg: Optional[Decimal] = next(
+            (
+                start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["old"] 
+                if start_budg.month == 1 and start_budg.year == self.year
+                ),
+            0.00
+            )
+        self.amount_Starting_Budget_label.setText(f"${self.year_starting_budg}")
         self.budget_for_year = self.database.budget_for_year(self.year)
-        self.amount_Budget_For_Year_label.setText(f"${self.budget_for_year[0][0]}")
+        self.budget_for_year: Decimal = sum(
+            [
+                year_budg.total for year_budg in self.database.app_data["month_budget"]["old"] 
+                if year_budg.year == self.year
+                ]
+            )
+        self.amount_Budget_For_Year_label.setText(f"${self.budget_for_year}")
         self.total_spent = self.transaction_df.loc[self.transaction_df['Transaction Type'] == 'Expense', 'Amount'].sum() 
         self.amount_Total_Spent_label.setText(f"${self.total_spent}")
         self.planned_savings = self.database.savings_for_year(self.year)
-        self.amount_Planned_Savings_label.setText(f"${self.planned_savings[0][0]}")
-        self.left_in_budget_year = int(self.budget_for_year[0][0])-int(self.total_spent)
+        self.planned_savings: Decimal = sum(
+            [
+                plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["old"] 
+                if plan_sav.year == self.year
+                ]
+            )
+        self.amount_Planned_Savings_label.setText(f"${self.planned_savings}")
+        self.left_in_budget_year = int(self.budget_for_year)-int(self.total_spent)
         self.amount_Left_in_Budget_label.setText(f"${self.left_in_budget_year}")
         
         # Set Earnings for months
@@ -89,22 +101,27 @@ class Yearly_Stats(Ui_Form):
         
         self.amount_Yearly_Earnings_label.setText(f"${self.yearly_earnings}")
         
-        current_expense_balance = self.year_starting_budg[0][0] + self.yearly_earnings - self.total_spent
+        current_expense_balance = self.year_starting_budg + self.yearly_earnings - self.total_spent
         self.amount_Current_Expense_Balance_label.setText(f"${current_expense_balance}")
         
-        profit_loss = current_expense_balance - self.year_starting_budg[0][0]
+        profit_loss = current_expense_balance - self.year_starting_budg
         self.amount_Current_ProfitLoss_label.setText(f"{profit_loss}")
         
-        balance_left_in_budg = current_expense_balance - int(self.budget_for_year[0][0])
+        balance_left_in_budg = current_expense_balance - int(self.budget_for_year)
         self.amount_Balance_Left_in_Budget_label.setText(f"${balance_left_in_budg}")
         
-        earnings_for_year = self.database.earnings_for_year(self.year)
-        balance_left_in_budg_salary = balance_left_in_budg + earnings_for_year[0][0] - self.yearly_earnings
+        earnings_for_year: Decimal = sum(
+            [
+                year_earn.earnings for year_earn in self.database.app_data["month_budget"]["old"] 
+                if year_earn.year == self.year
+                ]
+            )
+        balance_left_in_budg_salary = balance_left_in_budg + earnings_for_year - self.yearly_earnings
         
         self.amount_Balance_Left_in_Budget_Salary_label.setText(f"${balance_left_in_budg_salary}")
         
         try:
-            daily_exp_goal = round((self.budget_for_year[0][0] / self.year_range), 2)
+            daily_exp_goal = round((self.budget_for_year / self.year_range), 2)
             self.amount_Daily_Expense_Goal_label.setText(f"${daily_exp_goal}")
 
         except ZeroDivisionError:

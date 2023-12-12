@@ -143,7 +143,7 @@ class Budget(QWidget):
         self.animation_creation()
         
         # Database
-        self.database = Database(self.conn)
+        self.database = Database(self.conn, self.logger)
         
         # Dashboard: -> Main Page
         self.dashboard = Dashboard(self.dashboard_page, self.database)

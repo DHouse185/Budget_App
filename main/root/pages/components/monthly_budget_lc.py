@@ -1,32 +1,14 @@
 ########  Python IMPORTs  ############################################################
-from pathlib import Path
-import datetime
-import calendar
-import pandas as pd
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QVBoxLayout,
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel,
-                             QTableWidgetItem,
-                             QTableWidget,
-                             QToolTip)
-from PyQt6.QtCharts import QChart, QChartView, QPieSeries, QPieSlice, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
-from PyQt6.QtGui import QAction, QPainter, QPen, QColor
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QTableWidget
+from PyQt6.QtCharts import QChart, QChartView, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
+from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import Qt, QRect, QPointF
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-import root.helper.root_functions as rfunc
-import root.helper.root_variables as rvar
-from root.database import Database
-# from pages.dashboard import Dashboard
 ########################################################################################
 
 # class ChartView(QChartView):

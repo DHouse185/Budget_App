@@ -1,23 +1,9 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
-import datetime
-import calendar
-import pandas as pd
-import decimal
-import typing
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel,
-                             QTableWidgetItem)
-from PyQt6.QtGui import QAction, QDoubleValidator
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtWidgets import QWidget, QMessageBox
+from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -44,12 +30,8 @@ class Month_Budget_Stats(Ui_Form):
         
         self.year = self.month_budget_year_comboBox.currentText()
         
-        category_query = self.database.query_column("category_test", "category")
-        self.categories = list()
+        self.categories = [cat.category for cat in self.database.app_data['category']['old']]
         
-        for column in category_query:
-            self.categories.append(column[0])
-
         self.categories.remove('Payment')
         self.categories.append('total')
         self.categories.append('left_amount')
@@ -74,18 +56,15 @@ class Month_Budget_Stats(Ui_Form):
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([getattr(cat_budg, category) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict[category_title.lower()].setText(f"${category_budget}")
         
     def change_year(self, year: str):
@@ -108,16 +87,13 @@ class Month_Budget_Stats(Ui_Form):
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = self.database.category_budget_for_year(self.year, category.lower())
-                category_budget = category_budget[0][0]
+                category_budget = sum([getattr(cat_budg, category) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
                 self.new_label_dict[category_title.lower()].setText(f"${category_budget}")

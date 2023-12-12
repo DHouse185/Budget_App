@@ -1,14 +1,9 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
-from datetime import datetime
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-import pandas as pd
-import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QTableView, QScrollArea, QSizePolicy, QAbstractScrollArea
-from PyQt6.QtGui import QAction
-from PyQt6.QtCore import QModelIndex, QRect, QAbstractTableModel, Qt, QSize
+from PyQt6.QtWidgets import QWidget, QScrollArea, QSizePolicy, QAbstractScrollArea
+from PyQt6.QtCore import QRect, Qt, QSize
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################

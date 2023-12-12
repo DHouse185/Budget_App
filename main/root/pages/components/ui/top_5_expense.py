@@ -10,7 +10,8 @@ from PyQt6.QtWidgets import (QWidget,
                              QFrame, 
                              QVBoxLayout, 
                              QProgressBar, 
-                             QHBoxLayout)
+                             QHBoxLayout,
+                             QApplication)
 from PyQt6.QtCore import (QRect, 
                           QMetaObject, 
                           QCoreApplication, 
@@ -375,11 +376,11 @@ class Ui_top_5_expense(object):
         top_5_expense.setWindowTitle(_translate("top_5_expense", "Form"))
         self.top_5_label.setText(_translate("top_5_expense", "Top 5"))
         self.top_5_Expense_label.setText(_translate("top_5_expense", "Expense"))
-        self.top_1_spent_label.setText(_translate("top_5_expense", "$1,555,555.00"))
-        self.top_2_spent_label.setText(_translate("top_5_expense", "$1,555,555.00"))
-        self.top_3_spent_label.setText(_translate("top_5_expense", "$1,555,555.00"))
-        self.top_4_spent_label.setText(_translate("top_5_expense", "$1,555,555.00"))
-        self.top_5_spent_label.setText(_translate("top_5_expense", "$1,555,555.00"))
+        self.top_1_spent_label.setText(_translate("top_5_expense", "$--"))
+        self.top_2_spent_label.setText(_translate("top_5_expense", "$--"))
+        self.top_3_spent_label.setText(_translate("top_5_expense", "$--"))
+        self.top_4_spent_label.setText(_translate("top_5_expense", "$--"))
+        self.top_5_spent_label.setText(_translate("top_5_expense", "$--"))
         self.top_1_desc_label.setText(_translate("top_5_expense", "Top 1"))
         self.top_2_desc_label.setText(_translate("top_5_expense", "Top 2"))
         self.top_3_desc_label.setText(_translate("top_5_expense", "Top 3"))

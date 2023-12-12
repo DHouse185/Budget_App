@@ -1,11 +1,10 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QScrollArea, QSizePolicy, QAbstractScrollArea
-from PyQt6.QtGui import QAction
+from PyQt6.QtWidgets import QWidget, QScrollArea, QSizePolicy, QAbstractScrollArea
 from PyQt6.QtCore import QRect, QSize, Qt
+import datetime
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -62,10 +61,11 @@ class Dashboard(QWidget):
         self.scrollAreaWidgetContents.setMinimumSize(QSize(0, 1600))
         self.scrollAreaWidgetContents.setMaximumSize(QSize(1920, 30000))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        
-        self.header = Header(self.scrollAreaWidgetContents) #, self.database)
+
         self.button_content = ButtonContent(self.scrollAreaWidgetContents)
-        self.top_5 = Top_5(self.scrollAreaWidgetContents)
+        self.year = datetime.datetime.now().year # Will change later after adding years to ButtonContent
+        self.header = Header(self.scrollAreaWidgetContents, self.database, self.year)
+        self.top_5 = Top_5(self.scrollAreaWidgetContents, self.database, self.year)
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
         self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
         self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)

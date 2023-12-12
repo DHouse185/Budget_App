@@ -1,21 +1,12 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
-import datetime
-import calendar
 import pandas as pd
+from typing import List
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QVBoxLayout,
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
+from PyQt6.QtWidgets import QWidget, QVBoxLayout
 from PyQt6.QtCharts import QChart, QChartView, QPieSeries, QPieSlice, QLegend
-from PyQt6.QtGui import QAction, QPainter, QPen, QColor
+from PyQt6.QtGui import QPainter, QPen
 from PyQt6.QtCore import Qt, QRect
 ########################################################################################
 
@@ -23,6 +14,7 @@ from PyQt6.QtCore import Qt, QRect
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.database import Database
+from root.models import Account
 # from pages.dashboard import Dashboard
 ########################################################################################
 
@@ -36,11 +28,10 @@ class Doughnut(QWidget):
         self.setObjectName("doughnut_chart")
         
         self.database = database
-        self.transaction_df = self.database.start_up_transaction_data
+        self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         
         self.total_spent = self.transaction_df.loc[self.transaction_df['Transaction Type'] == 'Expense', 'Amount'].sum() 
-        self.accounts = self.database.query_column('account_test', 'account')
-        self.accounts = self.accounts
+        self.accounts: List[Account] = [acc.account for acc in self.database.app_data['account']['old']]
         
         self.series = QPieSeries()
         color_palatte = [Qt.GlobalColor.darkGreen, Qt.GlobalColor.green, Qt.GlobalColor.blue, Qt.GlobalColor.darkBlue, 
@@ -53,10 +44,10 @@ class Doughnut(QWidget):
         account_spent_list = list()
         for account in self.accounts:
             # print(f'account: {account[0]}')
-            account_spent = self.transaction_df.loc[(self.transaction_df['Account'] == f'{account[0]}') & (self.transaction_df['Transaction Type'] == 'Expense'), 'Amount'].sum() 
+            account_spent = self.transaction_df.loc[(self.transaction_df['Account'] == f'{account}') & (self.transaction_df['Transaction Type'] == 'Expense'), 'Amount'].sum() 
             try:
                 spent_ratio = round((account_spent / self.total_spent), 2)
-                slice_ = QPieSlice(f'{account[0]}', spent_ratio)
+                slice_ = QPieSlice(f'{account}', spent_ratio)
                 slice_.setExploded()
                 slice_.setLabelVisible()
                 slice_.setPen(QPen(Qt.GlobalColor.darkGreen, 2))
@@ -71,7 +62,7 @@ class Doughnut(QWidget):
                 self.series.append(slice_)      
 
             except ZeroDivisionError:
-                slice_ = QPieSlice(f'{account[0]}', 0)
+                slice_ = QPieSlice(f'{account}', 0)
                 slice_.setExploded()
                 slice_.setLabelVisible()
                 slice_.setPen(QPen(Qt.darkGreen, 2))

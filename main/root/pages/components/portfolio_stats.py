@@ -1,19 +1,10 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
 import datetime
-
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
-from PyQt6.QtGui import QAction
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtWidgets import QWidget, QMessageBox
+from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -21,6 +12,7 @@ import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.pages.components.ui.portfolio_stats_widget import Ui_Form
 from root.database import Database
+from root.models import Account_Management, Account
 # from pages.dashboard import Dashboard
 ########################################################################################
 
@@ -193,8 +185,29 @@ class Portfolio_Stats(Ui_Form):
         if self.start_checkBox.isChecked() and update_month == 1:
             update_month = 0
             
-        self.database.insert_account_data(update_year, update_month, account_id, amount)
+        # self.database.insert_account_data(update_year, update_month, account_id, amount)
         
+        account = next(
+            (
+                acc for acc in self.database.app_data['account_management']['old'] if acc.year == update_year
+                and acc.month == update_month
+                and acc.account_id == account_id
+             ),
+            None)
+        if account is not None:
+            setattr(account, 'amount', amount)  
+        else:
+            self.database.app_data['account_management']['old'].append(
+                Account_Management(
+                    (
+                        (1000000 * account_id) + (10000 * update_month) + int(update_year),
+                        (10000 * int(update_month)) + int(update_year),
+                        update_month,
+                        account_id,
+                        amount
+                                    )
+                    )
+                )
         # print("Successfully updated")
         
     def add_account(self):
@@ -218,21 +231,46 @@ class Portfolio_Stats(Ui_Form):
         
         # If user chooses to change amount
         if ret == QMessageBox.StandardButton.Yes:
-                
-            add_ac = self.database.add_account(account_)
+            # add_ac = self.database.add_account(account_)
+            _ac = next((acc.account for acc in self.database.app_data['account']['old'] if acc.account == account_), False)
             
-            if not add_ac:
+            if not _ac:
                 QMessageBox.information(self.portfolio_stats, "Error",
                                     "Can't add the account. It would seem that there is already an account with that name",
                                     QMessageBox.StandardButton.Ok)
                 return
             
-            elif add_ac:
-                account_id_ = self.database.account_id_request(account_)
-                account_id_ = account_id_[0][0]
-                # print(account_id_)
-                self.database.insert_account_data(update_year, update_month, account_id_, amount)
-                # print("Successfully updated")
+            elif _ac:
+                account_id = max([id.id for id in self.database.app_data['account']['old']])  
+                self.database.app_data['account']['old'].append(Account((account_id, account_)))
+                # account_id_ = self.database.account_id_request(account_)
+                # account_id_ = account_id_[0][0]
+
+                # self.database.insert_account_data(update_year, update_month, account_id, amount)
+                account = next(
+                    (
+                        acc for acc in self.database.app_data['account_management']['old'] if acc.year == update_year
+                        and acc.month == update_month
+                        and acc.account_id == account_id
+                        ),
+                    None
+                    )
+                if account is not None:
+                    setattr(account, 'amount', amount)  
+                else:
+                    self.database.app_data['account_management']['old'].append(
+                        Account_Management(
+                            (
+                                (1000000 * account_id) + (10000 * update_month) + int(update_year),
+                                (10000 * int(update_month)) + int(update_year),
+                                update_month,
+                                account_id,
+                                amount
+                                            )
+                            )
+                        )
+                     # print("Successfully updated")
+
     
     def remove_account(self):
         account_ = self.remove_account_comboBox.currentText()
@@ -255,16 +293,17 @@ class Portfolio_Stats(Ui_Form):
                     query_account = [item for item in self.q_name_ls if item[0] == account_]
                     account_id = query_account[0][2]
                     
-                    find_account = self.database.account_id_request(account_)
+                    # find_account = self.database.account_id_request(account_)
+                    find_account = next((id for id in self.database.app_data['account']['old'] if id.account == account_ and id.id == account_id), None)
                     
-                    if find_account == []:
+                    if find_account is None:
                         QMessageBox.information(self.portfolio_stats, "Error",
                                     "Can't find the account. It would seem that the account is already removed",
                                     QMessageBox.StandardButton.Ok)
                         return
                     
-                    elif find_account != []:
+                    self.database.app_data['account']['old'].remove(find_account)
+                    # self.database.remove_account(account_, account_id)
                         
-                        self.database.remove_account(account_, account_id)
-                        # print("Successfully removed")        
+                    # print("Successfully removed")        
         

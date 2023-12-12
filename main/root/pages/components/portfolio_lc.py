@@ -1,25 +1,11 @@
 ########  Python IMPORTs  ############################################################
-from pathlib import Path
-import datetime
-import calendar
-import pandas as pd
 import typing
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QVBoxLayout,
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel,
-                             QTableWidgetItem,
-                             QTableWidget,
-                             QToolTip, QComboBox)
-from PyQt6.QtCharts import QChart, QChartView, QPieSeries, QPieSlice, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
-from PyQt6.QtGui import QAction, QPainter, QPen, QColor
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QComboBox
+from PyQt6.QtCharts import QChart, QChartView, QLegend, QBarCategoryAxis, QLineSeries, QValueAxis
+from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import Qt, QRect, QPointF, QSize
 ########################################################################################
 

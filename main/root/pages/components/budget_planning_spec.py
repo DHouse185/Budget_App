@@ -1,35 +1,25 @@
 ##########  Python IMPORTs  ############################################################
 from pathlib import Path
+import typing
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel,
-                             QFrame,
-                             QLineEdit,
-                             QVBoxLayout,
-                             QCheckBox,
-                             QHBoxLayout,
-                             QTableWidget,
-                             QTableWidgetItem)
-from PyQt6.QtGui import QAction, QRegularExpressionValidator, QFont
-from PyQt6.QtCore import Qt, QRect, QSize, QRegularExpression
+from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem
+from PyQt6.QtGui import QRegularExpressionValidator, QFont
+from PyQt6.QtCore import Qt, QRect, QRegularExpression
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.pages.components.ui.budget_planning_breakdown_widget import Ui_Form
+from root.database import Database
+from root.models import States
 # from pages.dashboard import Dashboard
 ########################################################################################
 
 class Budget_Breakdown(Ui_Form):
-    def __init__(self, parent, expense_dict, database):
+    def __init__(self, parent, expense_dict, database: Database):
         # Create header widget for Dashboard
         # Mainwindow -> central widget -> StackWidget -> Dashboard Page
         # -> top_5_expense
@@ -44,11 +34,8 @@ class Budget_Breakdown(Ui_Form):
         self.average_actualy_m_wage_lineEdit.setValidator(self._valid_float)
         self.current_savings_lineEdit.setValidator(self._valid_float)
         
-        states = self.database.retrieve_states()
-        self.states_ls = list()
-        for state in states:
-            self.states_ls.append(state[0])
-        states = states[0]
+        # states = self.database.retrieve_states()
+        self.states_ls: typing.List[str] = [state.state_name for state in self.database.app_data['states']['old']]
         self.state_comboBox.addItems(self.states_ls)
         self.amount_fica_label.setText("7.65 %")
         
@@ -155,7 +142,11 @@ class Budget_Breakdown(Ui_Form):
             total_after_tax = 0
             savings = round(float(savings), 2)
             state = self.state_comboBox.currentText()
-            state_tax_data = self.database.get_state_tax_bracket(state)
+            state_id = (id.id for id in self.database.app_data['states']['old'] if id.state_name == state)
+            # state_tax_data = self.database.get_state_tax_bracket(state)
+            state_tax_data: typing.List(typing.Tuple(float, int)) = [(filer.single_filer_rates, filer.single_filer_brackets) 
+                                                                     for filer in self.database.app_data['state_income_tax']['old']
+                                                                     if filer.state_id == state_id]
             federal_tax_data = [(0.1, 0), (0.12, 11001), (0.22, 44726), (0.24, 95376),
                                 (0.32, 182101), (0.35, 231251), (0.37, 578126)]
             fica_tax_data = [(0.0765, 0)]
@@ -236,9 +227,9 @@ class Budget_Breakdown(Ui_Form):
         else:
             self.amount_yearly_effective_tax.setText("0 %")
             
-    def calculate_number(self, value, rate_ranges):
+    def calculate_number(self, value: float, rate_ranges: typing.List[typing.Tuple[float, int]]) -> float:
         # Sort the rate_ranges by the lower bounds in descending order
-        if rate_ranges != []:
+        if rate_ranges is not []:
             rate_ranges = sorted(rate_ranges, key=lambda x: x[1], reverse=True)
 
         for rate, lower_bound in rate_ranges:

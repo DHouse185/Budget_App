@@ -1,24 +1,21 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
-import datetime
+from typing import List
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
-                             QMessageBox, 
-                             QStackedWidget, 
-                             QWidget,
-                             QGridLayout,
-                             QLabel)
-from PyQt6.QtGui import QAction
-from PyQt6.QtCore import Qt, QRect
+from PyQt6.QtWidgets import QWidget, QMessageBox
+from PyQt6.QtCore import QRect
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.database import Database
+from root.models import Account
+from root.models import Category_Type
+from root.models import Sub_Category
+from root.models import Category
+from root.models import Accounting_Type
 from root.pages.components.ui.add_transaction_widget import Ui_Form
 # from pages.dashboard import Dashboard
 ########################################################################################
@@ -39,35 +36,35 @@ class Add_Transaction(Ui_Form):
         self.create_table_dict()
         
         # Add Transfer to Accounts
-        self.accounts = self.database.get_all_data_no_id('account_test')
-        
+        self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['old']]
+
         for _, account in enumerate(self.accounts):  
-            self.transfer_To_comboBox.addItem(account[0])
-            self.account_comboBox.addItem(account[0])
+            self.transfer_To_comboBox.addItem(account)
+            self.account_comboBox.addItem(account)
             
         # Add category type
-        self.category_types = self.database.get_all_data_no_id('category_type_test')
+        self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['old']]
         
         for _, category_type in enumerate(self.category_types):  
-            self.category_Type_comboBox.addItem(category_type[0])
+            self.category_Type_comboBox.addItem(category_type)
             
         # Add sub categories
-        self.sub_categories = self.database.get_all_data_no_id('sub_category_test')
+        self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['old']]
         
         for _, sub_category in enumerate(self.sub_categories):  
-            self.sub_Category_comboBox.addItem(sub_category[0])
+            self.sub_Category_comboBox.addItem(sub_category)
             
         # Add Categories
-        self.categories = self.database.get_all_data_no_id('category_test')
+        self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['old']]
         
         for _, category in enumerate(self.categories):  
-            self.category_comboBox.addItem(category[0])
+            self.category_comboBox.addItem(category)
             
         # Add Accounting type
-        self.accountings = self.database.get_all_data_no_id('accounting_type_test')
+        self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['old']]
         
         for _, accounting in enumerate(self.accountings):  
-            self.credit_Debit_comboBox.addItem(accounting[0])
+            self.credit_Debit_comboBox.addItem(accounting)
             
         self.add_pushButton.clicked.connect(self.add_transaction)
            
@@ -78,10 +75,10 @@ class Add_Transaction(Ui_Form):
         self.categories_dict = dict()
         self.accountings_dict = dict()
         
-        accounts = self.database.get_all_data_w_id('account_test')
+        accounts: List[Account] = self.database.app_data['account']['old']
         
         for _, account in enumerate(accounts):  
-            self.accounts_dict[account[1]] = account[0]
+            self.accounts_dict[account.account] = account.id
             # print(f"""raw : {accounts}
             #       [0] before: {accounts[0]}
             #       element[0] : {account[0]}
@@ -89,28 +86,28 @@ class Add_Transaction(Ui_Form):
             # print(self.accounts_dict)
             
         # Add category type
-        category_types = self.database.get_all_data_w_id('category_type_test')
+        category_types: List[Category_Type] = self.database.app_data['category_type']['old']
         
         for _, category_type in enumerate(category_types):  
-            self.category_type_dict[category_type[1]] = category_type[0]
+            self.category_type_dict[category_type.category_type] = category_type.id
             
         # Add sub categories
-        sub_categories = self.database.get_all_data_w_id('sub_category_test')
+        sub_categories: List[Sub_Category] = self.database.app_data['sub_category']['old']
         
         for _, sub_category in enumerate(sub_categories):  
-            self.sub_categories_dict[sub_category[1]] = sub_category[0]
+            self.sub_categories_dict[sub_category.sub_category] = sub_category.id
             
         # Add Categories
-        categories = self.database.get_all_data_w_id('category_test')
+        categories: List[Category] = self.database.app_data['category']['old']
         
         for _, category in enumerate(categories):  
-            self.categories_dict[category[1]] = category[0]
+            self.categories_dict[category.category] = category.id
             
         # Add Accounting type
-        accountings = self.database.get_all_data_w_id('accounting_type_test')
+        accountings : List[Accounting_Type]= self.database.app_data['accounting_type']['old']
         
         for _, accounting in enumerate(accountings):  
-            self.accountings_dict[accounting[1]] = accounting[0]
+            self.accountings_dict[accounting.type] = accounting.id
             
     def add_transaction(self):
         
@@ -179,6 +176,8 @@ class Add_Transaction(Ui_Form):
                 return
             else:
                 pass
-                
+        
+        ############## WILL NEED TO UPDATE #####################        
         # print(transaction_list)
         self.database.insert_transaction_data(transaction_list)
+        ########################################################

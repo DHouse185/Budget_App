@@ -36,5 +36,5 @@ def main():
 
     logger.addHandler(stream_handler)
     logger.addHandler(file_handler)
-    
+
     return logger

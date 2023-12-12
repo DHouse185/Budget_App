@@ -1,7 +1,5 @@
 ##########  Python IMPORTs  ############################################################
-from pathlib import Path
 import datetime
-import calendar
 import pandas as pd
 import decimal
 import typing
@@ -9,23 +7,14 @@ import pprint
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow,
-                             QWidget,
-                             QMessageBox,
-                             QStackedWidget,
-                             QWidget,
-                             QGridLayout,
-                             QLabel,
-                             QTableWidgetItem,
-                             QScrollArea,
-                             QComboBox)
-from PyQt6.QtGui import QAction, QDoubleValidator
+from PyQt6.QtWidgets import QWidget, QLabel, QScrollArea, QComboBox
 from PyQt6.QtCore import Qt, QRect, QSize
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
+from root.models import Account
 from root.database import Database
 ########################################################################################
 pp = pprint.PrettyPrinter(indent=2)  # Create a PrettyPrinter object with an indentation of 4 spaces
@@ -96,7 +85,7 @@ class Portfolio_Widget(QWidget):
 
 
         # Get account list
-        account_ls = self.database.all_data_request("account_test")
+        account_ls: typing.List[Account] = self.database.app_data['account']['old']
 
         # For Debugging purposes
         # print(account_ls)
@@ -104,11 +93,11 @@ class Portfolio_Widget(QWidget):
         self.account_dict = dict()
 
         for account in account_ls:
-            self.account_dict[account[1]] = dict()
-            self.account_dict[account[1]]["query_name"] = account[1]
-            self.account_dict[account[1]]["name"] = account[1].replace("_", " ")
-            self.account_dict[account[1]]["account_id"] = account[0]
-            self.account_dict[account[1]]["year"] = dict()
+            self.account_dict[account.account] = dict()
+            self.account_dict[account.account]["query_name"] = account.account
+            self.account_dict[account.account]["name"] = account.account.replace("_", " ")
+            self.account_dict[account.account]["account_id"] = account.id
+            self.account_dict[account.account]["year"] = dict()
 
         # For Debugging purposes
         # pp.pprint(self.account_dict)
@@ -170,8 +159,7 @@ class Portfolio_Widget(QWidget):
         # pp.pprint(self.account_dict)  # Pretty print the data
 
         self.portfolio_scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-
+           
     def add_data(self):
         # Use year to get account data
         # Add data to account dictionary list
@@ -179,166 +167,141 @@ class Portfolio_Widget(QWidget):
         # Will Turn into function
 
         for year in range((int(self.year) - 1), (int(self.year) + 1), 1):
-
             for month in range(len(self.months_ls)):
-
                 if year == datetime.datetime.now().year and month > datetime.datetime.now().month:
                     break
                 sum_total = 0
 
                 for account in self.account_dict.values():
-
                     if account["name"] == "Total":
                         account["year"][str(year)]["data"].append((month, sum_total))
-
                     else:
-                        amount = self.database.portfolio_month_amount(account["year"][str(year)]["year"],
-                                                            month,
-                                                            account["account_id"])
+                        amount = self.get_account_amount(year, month, account)
+                        self.update_account_data(account, year, month, amount, sum_total)                      
+                        # print(len(self.account_dict))
 
-                        # If data is found for the requested month
-                        if amount != []:
-                            amount = amount[0][0]
-                            account["year"][str(year)]["data"].append((month, amount))
-                            sum_total += amount
+    def get_account_amount(self, year, month, account):
+        # return amount = self.database.portfolio_month_amount(account["year"][str(year)]["year"],
+                        #                                     month,
+                        #                                     account["account_id"])
+        return next(
+            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['old']
+            if mon_amount.month_id == month and mon_amount.id == account["account_id"] 
+            and mon_amount.year == account["year"][str(year)]["year"]),
+            None
+        )
 
-                        # If data is not found for the requested month
-                        else:
-                            # If the "not found" data is not the beginning of January
-                            if (month - 1) >= 0:
-                                # If there is data already filled into the "data" list for the previous month
-                                for data_point in account["year"][str(year)]["data"]:
-                                    # We make sure we are getting the right previous month
-                                    if data_point[0] == (month - 1):
-                                        amount = data_point[1]
-                                        account["year"][str(year)]["fill_in_data"].append((month, amount))
-                                        sum_total += amount
+    def update_account_data(self, account, year, month, amount, sum_total):
+        if amount is not None:
+            account["year"][str(year)]["data"].append((month, amount))
+            sum_total += amount
+        else:
+            # If data is not found for the requested month
+            sum_total = self.fill_in_data(account, year, month, sum_total)
 
-                                # If there is no data filled into the "data" list for the previous month
-                                if amount == []:
-                                    # We check if previous month data is available in "filled_in_data" list
-                                    for data_point in account["year"][str(year)]["fill_in_data"]:
-                                        # We make sure we are getting the right previous month from "filled_in_data"
-                                        if data_point[0] == (month - 1):
-                                            amount = data_point[1]
-                                            account["year"][str(year)]["fill_in_data"].append((month, amount))
-                                            sum_total += amount
+    def fill_in_data(self, account, year, month, sum_total):
+        # If the "not found" data is not the beginning of January
+        if (month - 1) >= 0:
+            sum_total = self.fill_in_from_previous_month(account, year, month, sum_total)
+        else:
+            # If the "not found" data is the beginning of January
+            sum_total = self.fill_in_from_previous_year(account, year, month, sum_total)
+        return sum_total
 
-                                    # If no data is found in "filled_in_data" list either, we just fill it in with 0
-                                    if amount == []:
-                                        account["year"][str(year)]["fill_in_data"].append((month, 0))
+    def fill_in_from_previous_month(self, account, year, month, sum_total):
+        for data_point in account["year"][str(year)]["data"]:
+            # If there is data already filled into the "data" list for the previous month
+            if data_point[0] == (month - 1):
+                # We make sure we are getting the right previous month
+                amount = data_point[1]
+                account["year"][str(year)]["fill_in_data"].append((month, amount))
+                sum_total += amount
+                break
+        # If there is no data filled into the "data" list for the previous month
+        else:
+            # We check if previous month data is available in "filled_in_data" list
+            for data_point in account["year"][str(year)]["fill_in_data"]:
+                # We make sure we are getting the right previous month from "filled_in_data
+                if data_point[0] == (month - 1):
+                    amount = data_point[1]
+                    account["year"][str(year)]["fill_in_data"].append((month, amount))
+                    sum_total += amount
+                    break
+            # If no data is found in "filled_in_data" list either, we just fill it in with 0
+            else:
+                account["year"][str(year)]["fill_in_data"].append((month, 0))
+        return sum_total
 
-                            # If the "not found" data is the beginning of January
-                            else:
-                                amount = self.database.portfolio_month_amount(account["year"][str(year)]["year"] - 1,
-                                                            12,
-                                                            account["account_id"])
-
-                                # If data was found in the previous year's December end
-                                if amount != []:
-                                    amount = amount[0][0]
-                                    account["year"][str(year)]["fill_in_data"].append((month, amount))
-                                    sum_total += amount
-
-                                # If data was not found in the previous year's December end
-                                else:
-                                    # Check previous year's December end Fill in data
-                                    account["year"][str(year)]["fill_in_data"].append((month, 0))
-
-        # print(len(self.account_dict))
-
+    def fill_in_from_previous_year(self, account, year, month, sum_total):
+        # amount = self.database.portfolio_month_amount(account["year"][str(year)]["year"] - 1,
+                                #                             12,
+                                #                             account["account_id"])
+        amount = next(
+            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['old']
+            if mon_amount.month_id == 12 and mon_amount.id == account["account_id"] 
+            and mon_amount.year == (account["year"][str(year)]["year"] - 1)),
+            None
+        )
+        # If data was found in the previous year's December end
+        if amount is not None:
+            account["year"][str(year)]["fill_in_data"].append((month, amount))
+            sum_total += amount
+        # If data was not found in the previous year's December end
+        else:
+            # Check previous year's December end Fill in data
+            account["year"][str(year)]["fill_in_data"].append((month, 0))
+        return sum_total
+    
     def percent_change(self):
-
         for account in self.account_dict.values():
             for year in account["year"].values():
                 data_only_list = year["data"]
                 fill_in_only_list = year["fill_in_data"]
-                percent_ls = list()
-                fill_in_perc_ls = list()
-                chronological_list = data_only_list + fill_in_only_list
-                chronological_list = sorted(chronological_list, key=lambda x: x[0])
+                percent_ls = []
+                fill_in_perc_ls = []
+                chronological_list = sorted(data_only_list + fill_in_only_list, key=lambda x: x[0])
                 year["sum"] = chronological_list[-1][1]
 
-                for month in range(len(self.months_ls)):
-                    if month == 0:
-                        pass
-                    elif year["year"] == datetime.datetime.now().year and month > datetime.datetime.now().month:
+                for month in range(1, len(self.months_ls)):
+                    if year["year"] == datetime.datetime.now().year and month > datetime.datetime.now().month:
                         try:
                             average = sum(item[1] for item in percent_ls) / len(percent_ls)
-
                         except ZeroDivisionError:
                             average = 0
 
-                        if chronological_list[-1][0] == (month -1):
-                            # print(chronological_list[-1][0])
-                            # print(average)
-                            year["expected_data"].append((month, (float(chronological_list[-1][1]) * (1 + average))))
-                        else:
-                            year["expected_data"].append((month, ((year["expected_data"][-1][1]) * (1 + average))))
+                        last_month = chronological_list[-1][0]
+                        prev_value = float(chronological_list[-1][1]) if last_month == (month - 1) else year["expected_data"][-1][1]
 
+                        year["expected_data"].append((month, prev_value * (1 + average)))
                     else:
+                        result_1 = next((float(item[1]) for item in data_only_list if item[0] == month), None)
+                        result_2 = next((float(item[1]) for item in data_only_list if item[0] == (month - 1)), None)
 
-                        # Find the tuple with the specified first element
-                        result_1 = [item for item in data_only_list if item[0] == month]
-                        # print(result_1)
+                        if result_1 is None:
+                            result_1 = next((float(item[1]) for item in fill_in_only_list if item[0] == month), None)
 
-                        if not result_1:
-                            result_1 = float([item for item in fill_in_only_list if item[0] == month][0][1])
-                            result_2 = [item for item in data_only_list if item[0] == (month - 1)]
+                            if result_2 is None:
+                                result_2 = next((float(item[1]) for item in fill_in_only_list if item[0] == (month - 1)), None)
 
-                            if not result_2:
                                 try:
-                                    result_2 = float([item for item in fill_in_only_list if item[0] == (month - 1)][0][1])
-                                    percent_change = float((result_1 - result_2) / abs(result_2)) * 100
-
-                                    fill_in_perc_ls.append((month, percent_change))
-
+                                    percent_change = (result_1 - result_2) / abs(result_2) * 100
                                 except ZeroDivisionError:
-                                    percent_change = float((result_1 - result_2) / (abs(result_2) + 1)) * 100
+                                    percent_change = (result_1 - result_2) / (abs(result_2) + 1) * 100
 
-                                    fill_in_perc_ls.append((month, percent_change))
-
+                                fill_in_perc_ls.append((month, percent_change))
                             else:
-                                try:
-                                    percent_change = float((result_1 - float(result_2[0][1])) / abs(float(result_2[0][1]))) * 100
-
-                                    fill_in_perc_ls.append((month, percent_change))
-
-                                except ZeroDivisionError:
-                                    percent_change = float((result_1 - float(result_2[0][1])) / (abs(float(result_2[0][1])) +1)) * 100
-
-                                    fill_in_perc_ls.append((month, percent_change))
-
+                                percent_change = (result_1 - result_2) / abs(result_2) * 100 if result_2 is not None else 0
+                                percent_ls.append((month, percent_change))
                         else:
-                            result_1 = float(result_1[0][1])
-                            result_2 = [item for item in data_only_list if item[0] == (month - 1)]
-
-                            if not result_2:
-                                try:
-                                    result_2 = float([item for item in fill_in_only_list if item[0] == (month - 1)][0][1])
-                                    percent_change = float((result_1 - result_2) / abs(result_2))
-
-                                    percent_ls.append((month, percent_change))
-
-                                except ZeroDivisionError:
-                                    percent_change = float((result_1 - result_2) / (abs(result_2) + 1))
-
-                                    percent_ls.append((month, percent_change))
-                            else:
-                                try:
-                                    percent_change = float((result_1 - float(result_2[0][1])) / abs(float(result_2[0][1])))
-                                    percent_ls.append((month, percent_change))
-
-                                except ZeroDivisionError:
-                                    percent_change = float((result_1 - float(result_2[0][1])) / (abs(float(result_2[0][1])) + 1))
-                                    percent_ls.append((month, percent_change))
+                            percent_change = (result_1 - result_2) / abs(result_2) * 100 if result_2 is not None else 0
+                            percent_ls.append((month, percent_change))
 
                 year["percent_change"] = percent_ls
                 year["fill_in_per_change"] = fill_in_perc_ls
                 year["unfiltered_data"] = chronological_list
-                try:
-                    year["average_change"] = sum(item[1] for item in percent_ls) / len(percent_ls) # Calculate the average
 
+                try:
+                    year["average_change"] = sum(item[1] for item in percent_ls) / len(percent_ls)
                 except ZeroDivisionError:
                     year["average_change"] = 0
 
@@ -413,7 +376,101 @@ class Portfolio_Widget(QWidget):
                 if v_param["code_name"] == "value":
                     value_label_y_start += v_param["y_space"]
 
+    # def percent_change(self):
 
+    #     for account in self.account_dict.values():
+    #         for year in account["year"].values():
+    #             data_only_list = year["data"]
+    #             fill_in_only_list = year["fill_in_data"]
+    #             percent_ls = list()
+    #             fill_in_perc_ls = list()
+    #             chronological_list = data_only_list + fill_in_only_list
+    #             chronological_list = sorted(chronological_list, key=lambda x: x[0])
+    #             year["sum"] = chronological_list[-1][1]
+
+    #             for month in range(len(self.months_ls)):
+    #                 if month == 0:
+    #                     pass
+    #                 elif year["year"] == datetime.datetime.now().year and month > datetime.datetime.now().month:
+    #                     try:
+    #                         average = sum(item[1] for item in percent_ls) / len(percent_ls)
+
+    #                     except ZeroDivisionError:
+    #                         average = 0
+
+    #                     if chronological_list[-1][0] == (month -1):
+    #                         # print(chronological_list[-1][0])
+    #                         # print(average)
+    #                         year["expected_data"].append((month, (float(chronological_list[-1][1]) * (1 + average))))
+    #                     else:
+    #                         year["expected_data"].append((month, ((year["expected_data"][-1][1]) * (1 + average))))
+
+    #                 else:
+
+    #                     # Find the tuple with the specified first element
+    #                     result_1 = [item for item in data_only_list if item[0] == month]
+    #                     # print(result_1)
+
+    #                     if not result_1:
+    #                         result_1 = float([item for item in fill_in_only_list if item[0] == month][0][1])
+    #                         result_2 = [item for item in data_only_list if item[0] == (month - 1)]
+
+    #                         if not result_2:
+    #                             try:
+    #                                 result_2 = float([item for item in fill_in_only_list if item[0] == (month - 1)][0][1])
+    #                                 percent_change = float((result_1 - result_2) / abs(result_2)) * 100
+
+    #                                 fill_in_perc_ls.append((month, percent_change))
+
+    #                             except ZeroDivisionError:
+    #                                 percent_change = float((result_1 - result_2) / (abs(result_2) + 1)) * 100
+
+    #                                 fill_in_perc_ls.append((month, percent_change))
+
+    #                         else:
+    #                             try:
+    #                                 percent_change = float((result_1 - float(result_2[0][1])) / abs(float(result_2[0][1]))) * 100
+
+    #                                 fill_in_perc_ls.append((month, percent_change))
+
+    #                             except ZeroDivisionError:
+    #                                 percent_change = float((result_1 - float(result_2[0][1])) / (abs(float(result_2[0][1])) +1)) * 100
+
+    #                                 fill_in_perc_ls.append((month, percent_change))
+
+    #                     else:
+    #                         result_1 = float(result_1[0][1])
+    #                         result_2 = [item for item in data_only_list if item[0] == (month - 1)]
+
+    #                         if not result_2:
+    #                             try:
+    #                                 result_2 = float([item for item in fill_in_only_list if item[0] == (month - 1)][0][1])
+    #                                 percent_change = float((result_1 - result_2) / abs(result_2))
+
+    #                                 percent_ls.append((month, percent_change))
+
+    #                             except ZeroDivisionError:
+    #                                 percent_change = float((result_1 - result_2) / (abs(result_2) + 1))
+
+    #                                 percent_ls.append((month, percent_change))
+    #                         else:
+    #                             try:
+    #                                 percent_change = float((result_1 - float(result_2[0][1])) / abs(float(result_2[0][1])))
+    #                                 percent_ls.append((month, percent_change))
+
+    #                             except ZeroDivisionError:
+    #                                 percent_change = float((result_1 - float(result_2[0][1])) / (abs(float(result_2[0][1])) + 1))
+    #                                 percent_ls.append((month, percent_change))
+
+    #             year["percent_change"] = percent_ls
+    #             year["fill_in_per_change"] = fill_in_perc_ls
+    #             year["unfiltered_data"] = chronological_list
+    #             try:
+    #                 year["average_change"] = sum(item[1] for item in percent_ls) / len(percent_ls) # Calculate the average
+
+    #             except ZeroDivisionError:
+    #                 year["average_change"] = 0
+    
 # account_dict = {'Roth-IRA': { 'account_id': 6,
 #                 'account_label': { 'name': <PyQt6.QtWidgets.QLabel object at 0x00000219B80A2E50>},
 #                 'name': 'Roth-IRA',
