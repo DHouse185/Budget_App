@@ -33,9 +33,9 @@ class Portfolio_LineChart(QWidget):
         self.account_comboBox.setMaximumSize(QSize(300, 45))
         self.account_comboBox.setObjectName("account_comboBox")
         
-        self.name_ls = list()
+        self.name_ls = list() 
                 
-        for account in self.account_dict.values():
+        for account in self.account_dict.values(): # Have this somewhere else in my code. Might be able to take it.
             name = account['name']
                         
             self.name_ls.append(name)
@@ -44,13 +44,13 @@ class Portfolio_LineChart(QWidget):
         
         # This is just for testing purposes
         
-        self.months_rng = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        self.months_rng = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] # Have this somewhere else in my code. Might be able to take it.
         
         self.account_name_box = self.account_comboBox.currentText()
         
         for account in self.account_dict.values():
             if account['name'] == self.account_name_box:
-                self.account_name = account['query_name']
+                self.account_name = account['query_name'] # Change to next statement
         
         self.qline_norm = QLineSeries()
         self.qline_norm.setName("Portfolio Chart")

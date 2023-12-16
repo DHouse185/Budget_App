@@ -128,7 +128,6 @@ class Budget_Breakdown(Ui_Form):
             
     def fill_table(self, total):
         check = self.actual_wage_check()
-        
         if check:
             savings = self.current_savings_lineEdit.text()
             if savings == "":
@@ -143,7 +142,6 @@ class Budget_Breakdown(Ui_Form):
             savings = round(float(savings), 2)
             state = self.state_comboBox.currentText()
             state_id = (id.id for id in self.database.app_data['states']['old'] if id.state_name == state)
-            # state_tax_data = self.database.get_state_tax_bracket(state)
             state_tax_data: typing.List(typing.Tuple(float, int)) = [(filer.single_filer_rates, filer.single_filer_brackets) 
                                                                      for filer in self.database.app_data['state_income_tax']['old']
                                                                      if filer.state_id == state_id]

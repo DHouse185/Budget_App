@@ -54,6 +54,11 @@ class Add_Transaction(Ui_Form):
         for _, sub_category in enumerate(self.sub_categories):  
             self.sub_Category_comboBox.addItem(sub_category)
             
+        ######### FOR DEBUGGING #################################    
+        # for index in range(self.category_comboBox.count()):
+            # item_text = self.category_comboBox.itemText(index)
+            # print(item_text)    
+            
         # Add Categories
         self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['old']]
         
@@ -76,7 +81,7 @@ class Add_Transaction(Ui_Form):
         self.accountings_dict = dict()
         
         accounts: List[Account] = self.database.app_data['account']['old']
-        
+        ######## POTENTIALLY ADD TO DATABASE APP_DATA? ######################################## 
         for _, account in enumerate(accounts):  
             self.accounts_dict[account.account] = account.id
             # print(f"""raw : {accounts}
@@ -108,7 +113,7 @@ class Add_Transaction(Ui_Form):
         
         for _, accounting in enumerate(accountings):  
             self.accountings_dict[accounting.type] = accounting.id
-            
+        ######## POTENTIALLY ADD TO DATABASE APP_DATA? ########################################             
     def add_transaction(self):
         
         # Validate Input

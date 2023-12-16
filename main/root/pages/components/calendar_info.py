@@ -70,8 +70,8 @@ class Calendar_Img(Ui_Form):
                 self.debit_list.append(0)
                 
             elif label < (months_range[1] + self.first_date_weekday):
-                date = datetime.datetime(year=int(self.year), month=(self.month_int), day=month_day)
-                date = f"{date.strftime('%Y-%m-%d')}"
+                date = (datetime.datetime(year=int(self.year), month=(self.month_int), day=month_day)).strftime('%Y-%m-%d')
+
                 self.date_label_list[label].setText(f"{month_day}")
                 
                 credit = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] == date)
@@ -93,11 +93,7 @@ class Calendar_Img(Ui_Form):
                     self.date_expense_label_list[label].setText("-")
                 else:
                     transaction_str = transactions.to_string(header=False, index=False).split('\n')
-                    # print(f"transactions {label} before full string conversion:")
-                    # print(transaction_str)
                     transaction_str = [''.join(ele.split('  ')) for ele in transaction_str]
-                    # print(f"transactions {label} string conversion:")
-                    # print(transaction_str)
                     self.date_expense_label_list[label].setText(", ".join( str(e) for e in transaction_str))
                     
                 month_day += 1

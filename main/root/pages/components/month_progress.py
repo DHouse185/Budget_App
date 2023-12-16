@@ -77,7 +77,7 @@ class Month_progress(Ui_Form):
                 self.category_array = ["Earnings", "Food", "Bills", "Grocery", "Transportation","Free Expense", "Investment", "Support", "Goal"]
                 spent_sum = 0
                 for idx, label in enumerate(self.spent_array):
-                    if idx <= 7:
+                    if idx <= 8:
                         text = sum(spent.amount for spent in self.database.app_data['transaction_data']['old'] 
                                    if spent.year == year 
                                    and spent.month == month_id 
@@ -89,10 +89,6 @@ class Month_progress(Ui_Form):
                             earnings = round(float(text), 2)
                             spent_sum -= round(float(text), 2)
                         
-                    elif idx == 8:
-                        label.setText(f"$0.00")
-                        spent_sum += 0
-                        
                     elif idx == 9:
                         label.setText(f"${str(round(spent_sum, 2))}")
                         
@@ -100,7 +96,7 @@ class Month_progress(Ui_Form):
                         pr_loss = round(earnings - spent_sum, 2)
                         label.setText(f"${str(pr_loss)}")
                         
-                # Fill data for left section
+                # Fill data for what's left section
                 for idx, label in enumerate(self.left_array):
                     budget_amount = round(float(self.budget_array[idx + 1].text().split('$')[1]), 2)
                     spent_amount = round(float(self.spent_array[idx].text().split('$')[1]), 2)

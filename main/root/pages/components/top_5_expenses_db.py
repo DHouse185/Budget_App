@@ -29,23 +29,27 @@ class Top_5(Ui_top_5_expense):
         self.year = year
         
         subcategory_totals = dict()
-
+        sub_category_ls = [trans.sub_category for trans in self.database.app_data['transaction_data']['old']]
         # Calculate the total amount for each subcategory
-        for sub_category in self.database.app_data['transaction_data']['old']:
-            subcategory_totals[sub_category.sub_category] += sub_category.amount
+        for sub_category in sub_category_ls:
+            subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['old'] if trans.sub_category == sub_category])
             
         # Named tuple to store subcategory information
         SubcategoryInfo = namedtuple('SubcategoryInfo', ['name', 'total_amount'])
         
         # Create a list of named tuples for each subcategory
         subcategory_info_list = [SubcategoryInfo(name=sub, total_amount=subcategory_totals[sub]) for sub in subcategory_totals]
+        self.database.app_data['sub_category_yearly_total'] = dict()
+        self.database.app_data['sub_category_yearly_total']['old'] = subcategory_info_list
 
         # Get the top five subcategories based on total amount
-        top_five_subcategories = sorted(subcategory_info_list, key=lambda x: x.total_amount, reverse=True)[:5]
+        top_five_subcategories = sorted(subcategory_info_list, key=lambda x: x.total_amount, reverse=True)[:5] 
         
         # Capture the total amount for the top five subcategories
-        total_amount_top_five = sum(sub.total_amount for sub in top_five_subcategories)
-
+        ############### Salary will get caught in this. Remove potentially?############
+        total_amount_top_five = sum(sub.total_amount for sub in top_five_subcategories) 
+        ###############################################################################
+        ############### Could be 0 if no transactions have occured. Add ZeroDivision Error? ####
 
         # print("Top five subcategories:", top_five_subcategories)
         

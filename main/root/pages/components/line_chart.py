@@ -59,14 +59,14 @@ class LineChart(QWidget):
         
         for idx, month_id in enumerate(rvar.month_dict.values()):
             # Get first day of the month
-            date_1 = datetime.datetime(year=int(self.year), month=(month_id), day=1)
-            first_date = f"{date_1.strftime('%Y-%m-%d')}"
+            # date_1 = datetime.datetime(year=int(self.year), month=(month_id), day=1)
+            first_date = (datetime.datetime(year=int(self.year), month=(month_id), day=1)).strftime('%Y-%m-%d')
             
             # Get last day of the month
             months_range = calendar.monthrange(int(self.year), (month_id))
             days_in_month = months_range[1]
-            date_2 = datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))
-            last_date = f"{date_2.strftime('%Y-%m-%d')}"
+            # date_2 = datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))
+            last_date = (datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))).strftime('%Y-%m-%d')
             
             for cat_num, line_serie in enumerate(self.line_series_list):
                 # print(f"\nself.categories[cat_num]: {self.categories[cat_num]}")
@@ -75,7 +75,7 @@ class LineChart(QWidget):
                 exp_amount = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
                                                                  & (self.transaction_df_no_date_idx['Date'] <= last_date)
                                                                  & (self.transaction_df_no_date_idx['Transaction Type'] == 'Expense')
-                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num][0]}'),
+                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}'),
                                                                  'Amount'].sum() 
                 line_serie.append(QPointF(idx, exp_amount))
                 

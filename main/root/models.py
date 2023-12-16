@@ -67,7 +67,7 @@ class Month_Budget:
         self.total = data[12]
         self.left_amount = data[13]
         self.expected_ending_budget = data[14]
-        self.year = (self.month * 10000) - self.id
+        self.year = self.id - (self.month * 10000)
         self.month_name = [month for month, month_id in rvar.month_dict.items() if month_id == self.month]
         
         self.dashbord_list = [self.month_name, self.earnings, self.food, self.grocery, self.transportation,

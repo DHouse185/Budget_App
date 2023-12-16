@@ -36,18 +36,16 @@ class Calendar_Stats(Ui_Form):
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
-        self.year = self.stats_Year_comboBox.currentText()
+        self.year = int(self.stats_Year_comboBox.currentText())
         self.month = self.stats_Month_comboBox.currentText()
         self.month_int = rvar.month_dict[self.month]
-        months_range = calendar.monthrange(int(self.year), (self.month_int))
-        self.month_range = months_range[1]
+        self.month_range = (calendar.monthrange(int(self.year), (self.month_int)))[1]
             
         self.amount_Max_Days_Months_label.setText(f"{self.month_range}")
         
         today_day = datetime.datetime.now()
         # Get first day of the month
         date_1 = datetime.datetime(year=int(self.year), month=(self.month_int), day=1)
-        # first_date = f"{date_1.strftime('%Y-%m-%d')}"
         if today_day <= date_1:
             self.amount_Days_Passed_Months_label.setText("0")
             self.days_passed = 0
@@ -65,7 +63,7 @@ class Calendar_Stats(Ui_Form):
                 start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["old"] 
                 if start_budg.month == self.month_int and start_budg.year == self.year
                 ),
-            None
+            0.00
             )
         self.amount_Starting_Budget_Months_label.setText(f"${self.month_starting_budg}")
         self.budget_for_month: Optional[Decimal] = next(
@@ -73,7 +71,7 @@ class Calendar_Stats(Ui_Form):
                 budg_for_mon.total for budg_for_mon in self.database.app_data["month_budget"]["old"] 
                 if budg_for_mon.month == self.month_int and budg_for_mon.year == self.year
                 ),
-            None
+            0.00
             )
         self.amount_Budget_For_Month_label.setText(f"${self.budget_for_month}")
         self.planned_savings: Optional[Decimal] = next(
@@ -81,7 +79,7 @@ class Calendar_Stats(Ui_Form):
                 plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["old"] 
                 if plan_sav.month == self.month_int and plan_sav.year == self.year
                 ),
-            None
+            0.00
             )
         self.amount_Planned_Savings_Months_label.setText(f"${self.planned_savings}")
         self.earnings_for_month: Optional[Decimal] = next(
@@ -89,15 +87,11 @@ class Calendar_Stats(Ui_Form):
                 earn_for_month.earnings for earn_for_month in self.database.app_data["month_budget"]["old"] 
                 if earn_for_month.month == self.month_int and earn_for_month.year == self.year
                 ),
-            None
+            0.00
             )
         
-        try:
-            self.daily_exp_goal = round((self.budget_for_month / self.month_range), 2)
-            self.amount_Daily_Expense_Goal_label.setText(f"${self.daily_exp_goal}")
-
-        except ZeroDivisionError:
-            self.amount_Daily_Expense_Goal_label.setText(f"$0.00")
+        self.daily_exp_goal = round((self.budget_for_month / self.month_range), 2) if self.month_range != 0 else Decimal(0.00)
+        self.amount_Daily_Expense_Goal_label.setText(f"${self.daily_exp_goal}")
             
         self.weekly_exp_goal = self.daily_exp_goal * 7
         self.amount_Weekly_Expense_Goal_label.setText(f"${self.weekly_exp_goal}")
@@ -107,8 +101,8 @@ class Calendar_Stats(Ui_Form):
         self.stats_debit_list = debit_list
         self.total_spent = sum(self.stats_debit_list)        
         self.amount_Total_Spent_Months_label.setText(f"${self.total_spent}")
-        self.left_in_budget_month = round(self.budget_for_month[0][0] - self.total_spent, 2)
-        self.amount_Left_in_Budget_Months_label.setText(f"${self.left_in_budget_month}")
+        self.left_in_budget_month = round(self.budget_for_month - self.total_spent, 2)
+        self.amount_Left_in_Budget_Months_label.setText(f"${self.left_in_budget_month}")  
         
         # Weeks earnings
         self.amount_Week_1_Earning_label.setText(f"${round(sum(self.stats_credit_list[0:7]), 2)}") 
@@ -120,34 +114,25 @@ class Calendar_Stats(Ui_Form):
         self.monthly_earnings = round(sum(self.stats_credit_list), 2)
         self.amount_Yearly_Earnings_label.setText(f"${self.monthly_earnings}")
 
-        self.current_expense_balance = self.month_starting_budg[0][0] + self.monthly_earnings - self.total_spent
+        self.current_expense_balance = self.month_starting_budg + self.monthly_earnings - self.total_spent
         self.amount_Current_Expense_Balance_Months_label.setText(f"${self.current_expense_balance}")
         
-        self.profit_loss = self.current_expense_balance - self.month_starting_budg[0][0]
+        self.profit_loss = self.current_expense_balance - self.month_starting_budg
         self.amount_Current_ProfitLoss_Months_label.setText(f"${self.profit_loss}")
         
-        self.balance_left_in_budg = self.current_expense_balance - int(self.budget_for_month[0][0])
+        self.balance_left_in_budg = self.current_expense_balance - int(self.budget_for_month)
         self.amount_Balance_Left_in_Budget_Months_label.setText(f"${self.balance_left_in_budg}")
         
-        self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month[0][0] - self.monthly_earnings
+        self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month - self.monthly_earnings
         self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${self.balance_left_in_budg_salary}")
-        
-        try:    
-            self.daily_avg_exp = round((self.total_spent / self.days_passed), 2)
-            self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
-        
-        except ZeroDivisionError:
-            self.amount_Daily_Average_Expense_label.setText(f"$0.00")
-            
+  
+        self.daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
+        self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
         self.current_savings = round((self.daily_exp_goal - self.daily_avg_exp), 2)
         self.amount_Current_Savings_Daily_label.setText(f"${self.current_savings}")
-        
-        try:
-            self.new_daily_expense = round((((self.daily_exp_goal * self.month_range) / (self.month_range - self.days_passed)) - (((self.daily_avg_exp * self.month_range)) / (self.month_range - self.days_passed))), 2)
-            self.amount_New_Daily_Expense_Planned_label.setText(f"${self.new_daily_expense}")
-            
-        except ZeroDivisionError:
-            self.amount_New_Daily_Expense_Planned_label.setText("$0.00")
+        self.new_daily_expense = round((((self.daily_exp_goal * self.month_range) / (self.month_range - self.days_passed)) - (((self.daily_avg_exp * self.month_range)) \
+            / (self.month_range - self.days_passed))), 2) if (self.month_range - self.days_passed) != 0 else Decimal(0.00)
+        self.amount_New_Daily_Expense_Planned_label.setText(f"${self.new_daily_expense}")
         
         weekly_avg_exp = self.daily_avg_exp * 7
         predicted_yearly_expense = self.daily_avg_exp * self.month_range
@@ -169,7 +154,6 @@ class Calendar_Stats(Ui_Form):
         today_day = datetime.datetime.now()
         # Get first day of the month
         date_1 = datetime.datetime(year=int(self.year), month=(self.month_int), day=1)
-        # first_date = f"{date_1.strftime('%Y-%m-%d')}"
         if today_day <= date_1:
             self.amount_Days_Passed_Months_label.setText("0")
             self.days_passed = 0
@@ -187,7 +171,7 @@ class Calendar_Stats(Ui_Form):
                 start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["old"] 
                 if start_budg.month == self.month_int and start_budg.year == self.year
                 ),
-            None
+            Decimal(0.00)
             )
         self.amount_Starting_Budget_Months_label.setText(f"${self.month_starting_budg}")
         self.budget_for_month: Optional[Decimal] = next(
@@ -195,7 +179,7 @@ class Calendar_Stats(Ui_Form):
                 budg_for_mon.total for budg_for_mon in self.database.app_data["month_budget"]["old"] 
                 if budg_for_mon.month == self.month_int and budg_for_mon.year == self.year
                 ),
-            None
+            Decimal(0.00)
             )
         self.amount_Budget_For_Month_label.setText(f"${self.budget_for_month}")
         self.planned_savings: Optional[Decimal] = next(
@@ -203,7 +187,7 @@ class Calendar_Stats(Ui_Form):
                 plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["old"] 
                 if plan_sav.month == self.month_int and plan_sav.year == self.year
                 ),
-            None
+            Decimal(0.00)
             )
         self.amount_Planned_Savings_Months_label.setText(f"${self.planned_savings}")
         self.earnings_for_month: Optional[Decimal] = next(
@@ -211,16 +195,11 @@ class Calendar_Stats(Ui_Form):
                 earn_for_month.earnings for earn_for_month in self.database.app_data["month_budget"]["old"] 
                 if earn_for_month.month == self.month_int and earn_for_month.year == self.year
                 ),
-            None
+            Decimal(0.00)
             )
         
-        try:
-            self.daily_exp_goal = round((self.budget_for_month / self.month_range), 2)
-            self.amount_Daily_Expense_Goal_label.setText(f"${self.daily_exp_goal}")
-
-        except ZeroDivisionError:
-            self.amount_Daily_Expense_Goal_label.setText(f"$0.00")
-            
+        self.daily_exp_goal = round((self.budget_for_month / self.month_range), 2) if self.month_range != 0 else Decimal(0.00)
+        self.amount_Daily_Expense_Goal_label.setText(f"${self.daily_exp_goal}")
         self.weekly_exp_goal = self.daily_exp_goal * 7
         self.amount_Weekly_Expense_Goal_label.setText(f"${self.weekly_exp_goal}")
     
@@ -244,7 +223,7 @@ class Calendar_Stats(Ui_Form):
 
         self.current_expense_balance = self.month_starting_budg + self.monthly_earnings - self.total_spent
         self.amount_Current_Expense_Balance_Months_label.setText(f"${self.current_expense_balance}")
-        
+
         self.profit_loss = self.current_expense_balance - self.month_starting_budg
         self.amount_Current_ProfitLoss_Months_label.setText(f"${self.profit_loss}")
         
@@ -253,36 +232,19 @@ class Calendar_Stats(Ui_Form):
         
         self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month - self.monthly_earnings
         self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${self.balance_left_in_budg_salary}")
-        
-        try:    
-            self.daily_avg_exp = round((self.total_spent / self.days_passed), 2)
-            self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
-        
-        except ZeroDivisionError:
-            self.amount_Daily_Average_Expense_label.setText(f"$0.00")
-        
-        # print(f"self.daily_exp_goal : {self.daily_exp_goal.__class__}")
-        # print(f"self.daily_avg_exp : {self.daily_avg_exp.__class__}")
-        # print(f"self.total_spent : {self.total_spent.__class__}")
-        # print(f"self.stats_debit_list : \n{self.stats_debit_list}")
+
+        self.daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
+        self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
             
         self.current_savings = round((self.daily_exp_goal - decimal.Decimal(self.daily_avg_exp)), 2)
         self.amount_Current_Savings_Daily_label.setText(f"${self.current_savings}")
-        
-        try:
-            if decimal.Decimal(self.month_range - self.days_passed) == 0:
-                ZeroDivisionError
-            else:
-                self.new_daily_expense = round((((decimal.Decimal(self.daily_exp_goal) * decimal.Decimal(self.month_range)) / (decimal.Decimal(self.month_range - self.days_passed))) - (((decimal.Decimal(self.daily_avg_exp * self.month_range))) / (decimal.Decimal(self.month_range - self.days_passed)))), 2)
-                self.amount_New_Daily_Expense_Planned_label.setText(f"${self.new_daily_expense}")
-            
-        except ZeroDivisionError:
-            self.amount_New_Daily_Expense_Planned_label.setText("$0.00")
-        
+
+        self.new_daily_expense = round((((decimal.Decimal(self.daily_exp_goal) * decimal.Decimal(self.month_range)) / (decimal.Decimal(self.month_range - self.days_passed))) \
+            - (((decimal.Decimal(self.daily_avg_exp * self.month_range))) / (decimal.Decimal(self.month_range - self.days_passed)))), 2) if decimal.Decimal(self.month_range - self.days_passed) != 0 else Decimal(0.00)
+        self.amount_New_Daily_Expense_Planned_label.setText(f"${self.new_daily_expense}")
         weekly_avg_exp = self.daily_avg_exp * 7
         predicted_yearly_expense = self.daily_avg_exp * self.month_range
         predicted_savings = self.current_savings * self.month_range
-        
         self.amount_Weekly_Average_Expense_label.setText(f"${weekly_avg_exp}")
         self.amount_Predicted_Monthly_Expense_label.setText(f"${predicted_yearly_expense}")
         self.amount_Predicted_Total_Savings_label.setText(f"${predicted_savings}")

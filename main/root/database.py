@@ -30,7 +30,6 @@ class Database:
         self.connection = database_conn
         self.logger = logger
         self.create_tables()
-        self.month_budget_check()
         self.initial_data()
 
     @contextmanager
@@ -454,10 +453,10 @@ class Database:
             table_exists_trans = cur.fetchone()[0]
 
             if table_exists_trans:
-                print(f"The table 'transaction_test' exists.")
+                self.logger.debug(f"The table 'transaction_test' exists.")
 
             else:
-                print(f"The table 'transaction_test' does not exist.")
+                self.logger.debug(f"The table 'transaction_test' does not exist.")
 
                 # Create account table with months and values
                 # create transaction table
@@ -491,10 +490,10 @@ class Database:
             table_exists_acc_man = cur.fetchone()[0]
 
             if table_exists_acc_man:
-                print(f"The table 'account_management_test' exists.")
+                self.logger.debug(f"The table 'account_management_test' exists.")
 
             else:
-                print(f"The table 'account_management_test' does not exist.")
+                self.logger.debug(f"The table 'account_management_test' does not exist.")
 
                 # create portfolio management table
                 # Will Need to correct table naming
@@ -521,7 +520,7 @@ class Database:
             table_exists_mon_bdg = cur.fetchone()[0]
 
             if table_exists_mon_bdg:
-                print(f"The table 'month_budget_test' exists.")
+                self.logger.debug(f"The table 'month_budget_test' exists.")
 
             else:
                 # Create monthly budget table
@@ -548,382 +547,236 @@ class Database:
         appication upon start up.
         Returns: pd.dataframe
         """
+
+        # APP TRANSACTION DATA
+        self.app_data = dict()
+        self.app_data['transaction_data'] = dict()
+        self.app_data['transaction_data']['old'] = list()
+
+        transaction_results = self.execute_query("""SELECT transaction_test.transaction_id, transaction_test.transaction_date, account_test.account,
+                            transaction_test.transaction_name, transaction_test.amount, category_test.category,
+                            sub_category_test.sub_category, category_type_test.category_type, payback_test.payback_name,
+                            transaction_test.payback_id, frequency_test.frequency, accounting_type_test.accounting
+                            FROM transaction_test
+                            INNER JOIN account_test
+                            ON account_test.account_id = transaction_test.account_id
+                            INNER JOIN category_test
+                            ON category_test.category_id = transaction_test.category_id
+                            INNER JOIN sub_category_test
+                            ON sub_category_test.sub_category_id = transaction_test.sub_category_id
+                            INNER JOIN category_type_test
+                            ON category_type_test.category_type_id = transaction_test.category_type_id
+                            INNER JOIN payback_test
+                            ON payback_test.payback_id = transaction_test.payback_id
+                            INNER JOIN frequency_test
+                            ON frequency_test.frequency_id = transaction_test.frequency_id
+                            INNER JOIN accounting_type_test
+                            ON accounting_type_test.accounting_id = transaction_test.accounting_id
+                            ORDER BY transaction_test.transaction_date;""")
+
+        for row in transaction_results:
+            transaction_obj = Transaction(row)
+
+            self.app_data['transaction_data']['old'].append(transaction_obj)
+
+        self.connection.commit()
+
+        # APP PANDAS DATAFRAME TRANSACTION DATA
+        self.app_data['transaction_dataframe'] = dict()
+        raw_df_data = list()
+
+        for transaction in self.app_data['transaction_data']['old']:
+            trans_data = (transaction.date, transaction.account, transaction.description, transaction.amount,
+                            transaction.category, transaction.sub_category, transaction.category_type)
+
+            raw_df_data.append(trans_data)
+
+        self.app_data['transaction_dataframe'] = pd.DataFrame(raw_df_data, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
+        self.app_data['transaction_dataframe'] = self.app_data['transaction_dataframe'].set_index('Date')
+
+        # APP MONTH BUDGET DATA
+        self.app_data['month_budget'] = dict()
+        self.app_data['month_budget']['old'] = list()
+
+        month_budget_results = self.execute_query("""SELECT month_year_id, month_id, earnings,
+                            food, bills, grocery,
+                            transportation, free_expense, investment,
+                            support, goal, starting_budget,
+                            total, left_amount, expected_ending_budget
+                            FROM month_budget_test;""")
+
+        for row in month_budget_results:
+            month_budg_obj = Month_Budget(row)
+
+            self.app_data['month_budget']['old'].append(month_budg_obj)
+
+        self.app_data['month_budget']['new'] = self.app_data['month_budget']['old']
+
+        self.connection.commit()
+
+        # APP ACCOUNTING TYPE DATA
+        self.app_data['accounting_type'] = dict()
+        self.app_data['accounting_type']['old'] = list()
+
+        accounting_type_results = self.execute_query("""SELECT accounting_id, accounting FROM accounting_type_test;""")
+
+        for row in accounting_type_results:
+            account_type_obj = Accounting_Type(row)
+
+            self.app_data['accounting_type']['old'].append(account_type_obj)
+
+        self.connection.commit()
+
+        # APP CATEGORY DATA
+        self.app_data['category'] = dict()
+        self.app_data['category']['old'] = list()
+
+        category_results = self.execute_query("""SELECT category_id, category FROM category_test;""")
+
+        for row in category_results:
+            cat_obj = Category(row)
+
+            self.app_data['category']['old'].append(cat_obj)
+
+        self.connection.commit()
+
+        # APP SUB CATEGORY DATA
+        self.app_data['sub_category'] = dict()
+        self.app_data['sub_category']['old'] = list()
+
+        sub_category_results = self.execute_query("""SELECT sub_category_id, sub_category FROM sub_category_test;""")
+
+        for row in sub_category_results:
+            sub_cat_obj = Sub_Category(row)
+
+            self.app_data['sub_category']['old'].append(sub_cat_obj)
+
+        self.connection.commit()
+
+        # APP ACCOUNT DATA
+        self.app_data['account'] = dict()
+        self.app_data['account']['old'] = list()
+
+        account_results = self.execute_query("""SELECT account_id, account FROM account_test;""")
+
+        for row in account_results:
+            account_obj = Account(row)
+
+            self.app_data['account']['old'].append(account_obj)
+
+        self.connection.commit()
+
+        # APP CATEGORY TYPE DATA
+        self.app_data['category_type'] = dict()
+        self.app_data['category_type']['old'] = list()
+
+        cate_type_results = self.execute_query("""SELECT category_type_id, category_type FROM category_type_test;""")
+
+        for row in cate_type_results:
+            cat_type_obj = Category_Type(row)
+
+            self.app_data['category_type']['old'].append(cat_type_obj)
+
+        self.connection.commit()
+
+        # APP MONTHS DATA
+        self.app_data['months'] = dict()
+        self.app_data['months']['old'] = list()
+
+        month_results = self.execute_query("""SELECT month_id, month FROM month_test;""")
+
+        for row in month_results:
+            month_obj = App_Month(row)
+
+            self.app_data['months']['old'].append(month_obj)
+
+        self.connection.commit()
+
+        # APP ACCOUNT MANAGEMENT DATA
+        self.app_data['account_management'] = dict()
+        self.app_data['account_management']['old'] = list()
+
+        account_manage_results = self.execute_query("""SELECT month_year_account_id, month_year_id, month_id, account_id, amount FROM account_management_test;""")
+
+        for row in account_manage_results:
+            account_mangement_obj = Account_Management(row)
+
+            self.app_data['account_management']['old'].append(account_mangement_obj)
+
+        self.connection.commit()
+
+        # APP GOAL DATA
+        self.app_data['goals'] = dict()
+        self.app_data['goals']['old'] = list()
+
+        goal_results = self.execute_query("""SELECT goal_id, goal_description, goal_account_id, goal_asset, goal_amount,
+                    goal_perc, goal_start_date, goal_end_date, goal_complete
+                    FROM goals_test;""")
+
+        for row in goal_results:
+            goal_obj = Goal(row)
+
+            self.app_data['goals']['old'].append(goal_obj)
+
+        self.connection.commit()
+
+        # APP FREQUENCY DATA
+        self.app_data['frequency'] = dict()
+        self.app_data['frequency']['old'] = list()
+
+        frequency_results = self.execute_query("""SELECT frequency_id, frequency, frequency_month, frequency_days FROM frequency_test;""")
+
+        for row in frequency_results:
+            frequency_obj = Frequency(row)
+
+            self.app_data['frequency']['old'].append(frequency_obj)
+
+        self.connection.commit()
+        
+        # APP States DATA
+        self.app_data['states'] = dict()
+        self.app_data['states']['old'] = list()
+
+        states_results = self.execute_query("""SELECT state_id, state_name, state_abbreviation FROM states_test;""")
+
+        for row in states_results:
+            states_obj = States(row)
+
+            self.app_data['states']['old'].append(states_obj)
+
+        self.connection.commit()
+        
+        # APP STATE INCOME TAXES DATA
+        self.app_data['state_income_tax'] = dict()
+        self.app_data['state_income_tax']['old'] = list()
+
+        state_income_tax_results = self.execute_query("""SELECT year, state_id, single_filer_rates,
+                            single_filer_brackets, married_filing_jointly_rates, married_filing_jointly_brackets,
+                            standard_deduction_single, standard_deduction_couple, personal_exemption_single,
+                            personal_exemption_couple, personal_exemption_dependent
+                            FROM states_income_tax_test;""")
+
+        for row in state_income_tax_results:
+            state_inc_tax_obj = States_Income_Taxes(row)
+
+            self.app_data['state_income_tax']['old'].append(state_inc_tax_obj)
+        
+        self.app_data['state_income_tax']['new'] = self.app_data['state_income_tax']['old']
+
+        self.connection.commit()
+    def insert_transaction_data(self, transaction_list: list):
+        """
+        list: [transaction_date (2023-01-01), transaction_name, amount (10.00), category_id,
+                sub_category_id, account_id, category_type_id, month_id, accounting_id]
+        """
         with self.cursor() as cur:
-
-            # APP TRANSACTION DATA
-
-            self.app_data = dict()
-            self.app_data['transaction_data'] = dict()
-            self.app_data['transaction_data']['old'] = list()
-
-            transaction_results = self.execute_query("""SELECT transaction_test.transaction_id, transaction_test.transaction_date, account_test.account,
-                                transaction_test.transaction_name, transaction_test.amount, category_test.category,
-                                sub_category_test.sub_category, category_type_test.category_type, payback_test.payback_name,
-                                transaction_test.payback_id, frequency_test.frequency, accounting_type_test.accounting
-                                FROM transaction_test
-                                INNER JOIN account_test
-                                ON account_test.account_id = transaction_test.account_id
-                                INNER JOIN category_test
-                                ON category_test.category_id = transaction_test.category_id
-                                INNER JOIN sub_category_test
-                                ON sub_category_test.sub_category_id = transaction_test.sub_category_id
-                                INNER JOIN category_type_test
-                                ON category_type_test.category_type_id = transaction_test.category_type_id
-                                INNER JOIN payback_test
-                                ON payback_test.payback_id = transaction_test.payback_id
-                                INNER JOIN frequency_test
-                                ON frequency_test.frequency_id = transaction_test.frequency_id
-                                INNER JOIN accounting_type_test
-                                ON accounting_type_test.accounting_id = transaction_test.accounting_id
-                                ORDER BY transaction_test.transaction_date;""")
-
-            for row in transaction_results:
-                transaction_obj = Transaction(row)
-
-                self.app_data['transaction_data']['old'].append(transaction_obj)
-
-            self.connection.commit()
-
-            print(self.app_data['transaction_data']['old'])
-
-            # APP PANDAS DATAFRAME TRANSACTION DATA
-
-            self.app_data['transaction_dataframe'] = dict()
-            raw_df_data = list()
-
-            for transaction in self.app_data['transaction_data']['old']:
-                trans_data = (transaction.date, transaction.account, transaction.description, transaction.amount,
-                              transaction.category, transaction.sub_category, transaction.category_type)
-
-                raw_df_data.append(trans_data)
-
-            self.app_data['transaction_dataframe'] = pd.DataFrame(raw_df_data, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
-            self.app_data['transaction_dataframe'] = self.app_data['transaction_dataframe'].set_index('Date')
-
-            # print(self.app_data['transaction_dataframe'])
-
-            # APP MONTH BUDGET DATA
-
-            self.app_data['month_budget'] = dict()
-            self.app_data['month_budget']['old'] = list()
-
-            month_budget_results = self.execute_query("""SELECT month_year_id, month_id, earnings,
-                                food, bills, grocery,
-                                transportation, free_expense, investment,
-                                support, goal, starting_budget,
-                                total, left_amount, expected_ending_budget
-                                FROM month_budget_test;""")
-
-            for row in month_budget_results:
-                month_budg_obj = Month_Budget(row)
-
-                self.app_data['month_budget']['old'].append(month_budg_obj)
-
-            self.app_data['month_budget']['new'] = self.app_data['month_budget']['old']
-
-            self.connection.commit()
-
-            # print(self.app_data['month_budget']['old'])
-
-            # APP ACCOUNTING TYPE DATA
-
-            self.app_data['accounting_type'] = dict()
-            self.app_data['accounting_type']['old'] = list()
-
-            accounting_type_results = self.execute_query("""SELECT accounting_id, accounting FROM accounting_type_test;""")
-
-            for row in accounting_type_results:
-                account_type_obj = Accounting_Type(row)
-
-                self.app_data['accounting_type']['old'].append(account_type_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['accounting_type']['old'])
-
-            # APP CATEGORY DATA
-
-            self.app_data['category'] = dict()
-            self.app_data['category']['old'] = list()
-
-            category_results = self.execute_query("""SELECT category_id, category FROM category_test;""")
-
-            for row in category_results:
-                cat_obj = Category(row)
-
-                self.app_data['category']['old'].append(cat_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['category']['old'])
-
-            # APP SUB CATEGORY DATA
-
-            self.app_data['sub_category'] = dict()
-            self.app_data['sub_category']['old'] = list()
-
-            sub_category_results = self.execute_query("""SELECT sub_category_id, sub_category FROM sub_category_test;""")
-
-            for row in sub_category_results:
-                sub_cat_obj = Sub_Category(row)
-
-                self.app_data['sub_category']['old'].append(sub_cat_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['sub_category']['old'])
-
-            # APP ACCOUNT DATA
-
-            self.app_data['account'] = dict()
-            self.app_data['account']['old'] = list()
-
-            account_results = self.execute_query("""SELECT account_id, account FROM account_test;""")
-
-            for row in account_results:
-                account_obj = Account(row)
-
-                self.app_data['account']['old'].append(account_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['account']['old'])
-
-            # APP CATEGORY TYPE DATA
-
-            self.app_data['category_type'] = dict()
-            self.app_data['category_type']['old'] = list()
-
-            cate_type_results = self.execute_query("""SELECT category_type_id, category_type FROM category_type_test;""")
-
-            for row in cate_type_results:
-                cat_type_obj = Category_Type(row)
-
-                self.app_data['category_type']['old'].append(cat_type_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['category_type']['old'])
-
-            # APP MONTHS DATA
-
-            self.app_data['months'] = dict()
-            self.app_data['months']['old'] = list()
-
-            month_results = self.execute_query("""SELECT month_id, month FROM month_test;""")
-
-            for row in month_results:
-                month_obj = App_Month(row)
-
-                self.app_data['months']['old'].append(month_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['months']['old'])
-
-            # APP ACCOUNT MANAGEMENT DATA
-
-            self.app_data['account_management'] = dict()
-            self.app_data['account_management']['old'] = list()
-
-            account_manage_results = self.execute_query("""SELECT month_year_account_id, month_year_id, month_id, account_id, amount FROM account_management_test;""")
-
-            for row in account_manage_results:
-                account_mangement_obj = Account_Management(row)
-
-                self.app_data['account_management']['old'].append(account_mangement_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['account_management']['old'])
-
-            # APP GOAL DATA
-
-            self.app_data['goals'] = dict()
-            self.app_data['goals']['old'] = list()
-
-            goal_results = self.execute_query("""SELECT goals_id, goal_description, goal_account_id, goal_asset, goal_amount,
-                        goal_perc, goal_start_date, goal_end_date, goal_complete
-                        FROM goals_test;""")
-
-            for row in goal_results:
-                goal_obj = Goal(row)
-
-                self.app_data['goals']['old'].append(goal_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['goals']['old'])
-
-            # APP FREQUENCY DATA
-
-            self.app_data['frequency'] = dict()
-            self.app_data['frequency']['old'] = list()
-
-            frequency_results = self.execute_query("""SELECT frequency_id, frequency, frequency_month, frequency_days FROM frequency_test;""")
-
-            for row in frequency_results:
-                frequency_obj = Frequency(row)
-
-                self.app_data['frequency']['old'].append(frequency_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['frequency']['old'])
-            
-            # APP States DATA
-
-            self.app_data['states'] = dict()
-            self.app_data['states']['old'] = list()
-
-            states_results = self.execute_query("""SELECT state_id, state_name, state_abbreviation FROM states_test;""")
-
-            for row in states_results:
-                states_obj = States(row)
-
-                self.app_data['states']['old'].append(states_obj)
-
-            self.connection.commit()
-
-            # print(self.app_data['states']['old'])
-            
-            # APP STATE INCOME TAXES DATA
-
-            self.app_data['state_income_tax'] = dict()
-            self.app_data['state_income_tax']['old'] = list()
-
-            state_income_tax_results = self.execute_query("""SELECT year, state_id, single_filer_rates,
-                                single_filer_brackets, married_filing_jointly_rates, married_filing_jointly_brackets,
-                                standard_deduction_single, standard_deduction_couple, personal_exemption_single,
-                                personal_exemption_couple, personal_exemption_dependent
-                                FROM states_income_tax_test;""")
-
-            for row in state_income_tax_results:
-                state_inc_tax_obj = States_Income_Taxes(row)
-
-                self.app_data['state_income_tax']['old'].append(state_inc_tax_obj)
-
-            self.app_data['state_income_tax']['new'] = self.app_data['state_income_tax']['old']
-
-            self.connection.commit()
-
-            # print(self.app_data['state_income_tax']['old'])
-
-    def single_data_request(self, table, column, row, criteria):
-        """SELECT {table}.{column} FROM {table}
-            WHERE {row} = {criteria};"""
-
-        self.cur.execute(f"""SELECT {table}.{column} FROM {table}
-                         WHERE {row} = {criteria};""")
-
-        query_results = self.cur.fetchall()
-        #print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def single_data_request_2(self, table, column, row, criteria, row_2, criteria_2):
-        """SELECT {table}.{column} FROM {table}
-            WHERE {row} = {criteria}
-            AND {row_2} = {criteria_2};"""
-
-        self.cur.execute(f"""SELECT {table}.{column} FROM {table}
-                         WHERE {row} = {criteria}
-                         AND {row_2} = {criteria_2};""")
-
-        query_results = self.cur.fetchall()
-        #print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def all_data_request(self, table, column=None):
-        if column is None:
-            column = '*'
-        self.cur.execute(f"""SELECT {column} FROM {table};""")
-
-        query_results = self.cur.fetchall()
-        #print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def all_data_request_w_criteria(self, table, row, criteria):
-        """SELECT {table}.{column} FROM {table}
-            WHERE {row} = {criteria};"""
-
-        self.cur.execute(f"""SELECT * FROM {table}
-                         WHERE {row} = {criteria};""")
-
-        query_results = self.cur.fetchall()
-        #print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def sum_single_data_request(self, table, column, rows, criteria):
-        self.cur.execute(f"""SELECT SUM({table}.{column})
-                        FROM {table}
-                        WHERE {rows} = {criteria};""")
-
-        query_results = self.cur.fetchall()
-        #print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def query_column(self, table, column):
-        self.cur.execute(f"""SELECT {table}.{column} FROM {table};""")
-
-        query_results = self.cur.fetchall()
-        # print(query_results)
-        self.connection.commit()
-
-        return query_results
-
-    def update_value(self, table, column, row, criteria, value):
-        """UPDATE {table}
-            SET {column} = {value}
-            WHERE {row} = {criteria};"""
-
-        self.cur.execute(f"""UPDATE {table} SET {column} = {value}
-                         WHERE {row} = {criteria};""")
-
-        self.connection.commit()
-
-    def month_budget_check(self, year=datetime.now().year):
-        # if no data is entered in the database for month budget
-        """
-        Gets month budget data to be utilized by the
-        appication upon start up.
-        Returns: pd.dataframe
-        """
-        #print(self)
-        for month_int in rvar.month_dict.values():
-            # print(year)
-            # print(month_int)
-            month_budget = self.retrieve_dashboard_month_progress(month_int, year)
-
-            if not month_budget:
-                month_budget_id = int((int(month_int) * 10000) + int(year))
-
-                self.cur.execute(f"""INSERT INTO month_budget_test
-                        (month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense,
-                        investment, support, goal, starting_budget)
-                        VALUES ({month_budget_id}, {month_int}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                        ;""")
-        # self.cur.execute(f"""SELECT month_test.month, earnings, food, grocery, transportation,
-        #                  free_expense, investment, bills, support, goal, total, left_amount
-        #                  FROM month_budget_test
-        #                  INNER JOIN month_test
-        #                  ON month_test.month_id = month_budget_test.month_id
-        #                  WHERE month_year_id = {month_budget_id};""")
-
-        # query_results = self.cur.fetchall()
-        # print(query_results)
-        self.connection.commit()
-
-        return None
+            self.execute_update(f"""INSERT INTO transaction_test (transaction_date, transaction_name,
+                            amount, category_id, sub_category_id, account_id, category_type_id,
+                            month_id, accounting_id)
+                            VALUES
+                            ('{transaction_list[0]}', '{transaction_list[1]}', {transaction_list[2]},
+                            {transaction_list[3]}, {transaction_list[4]}, {transaction_list[5]},
+                            {transaction_list[6]}, {transaction_list[7]}, {transaction_list[8]});""")
 
     def month_budget_check_stats(self, parent, year: str):
         # if no data is entered in the database for month budget
@@ -991,35 +844,71 @@ class Database:
         # query_results = self.cur.fetchall()
         # print(query_results)
         return True
+    
+    
+    # def single_data_request(self, table, column, row, criteria):
+    #     """SELECT {table}.{column} FROM {table}
+    #         WHERE {row} = {criteria};"""
 
-    # def category_budget(self, year: int, month: int, column: str):
-    #     table = "month_budget_test"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
+    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table}
+    #                      WHERE {row} = {criteria};""")
 
-    #     results = self.single_data_request(table, column, row, criteria)
+    #     query_results = self.cur.fetchall()
+    #     #print(query_results)
+    #     self.connection.commit()
 
-    #     return results
+    #     return query_results
 
-    # def starting_budget(self, year: int):
-    #     table = "month_budget_test"
-    #     column = "starting_budget"
-    #     row = "month_year_id"
-    #     criteria = 10000 + int(year)
+    # def single_data_request_2(self, table, column, row, criteria, row_2, criteria_2):
+    #     """SELECT {table}.{column} FROM {table}
+    #         WHERE {row} = {criteria}
+    #         AND {row_2} = {criteria_2};"""
 
-    #     results = self.single_data_request(table, column, row, criteria)
+    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table}
+    #                      WHERE {row} = {criteria}
+    #                      AND {row_2} = {criteria_2};""")
 
-    #     return results
+    #     query_results = self.cur.fetchall()
+    #     #print(query_results)
+    #     self.connection.commit()
 
-    # def starting_budget_month(self, year: int, month: int):
-    #     table = "month_budget_test"
-    #     column = "starting_budget"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
+    #     return query_results
 
-    #     results = self.single_data_request(table, column, row, criteria)
+    # def all_data_request(self, table, column=None):
+    #     if column is None:
+    #         column = '*'
+    #     self.cur.execute(f"""SELECT {column} FROM {table};""")
 
-    #     return results
+    #     query_results = self.cur.fetchall()
+    #     #print(query_results)
+    #     self.connection.commit()
+
+    #     return query_results
+
+
+    # def query_column(self, table, column):
+    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table};""")
+
+    #     query_results = self.cur.fetchall()
+    #     # print(query_results)
+    #     self.connection.commit()
+
+    #     return query_results
+
+    # def update_value(self, table, column, row, criteria, value):
+    #     """UPDATE {table}
+    #         SET {column} = {value}
+    #         WHERE {row} = {criteria};"""
+
+    #     self.cur.execute(f"""UPDATE {table} SET {column} = {value}
+    #                      WHERE {row} = {criteria};""")
+
+    #     self.connection.commit()
+
+
+
+
+
 
     # def change_budget(self, year: int, month: int, column: str, value: str):
     #     table = "month_budget_test"
@@ -1028,132 +917,8 @@ class Database:
 
     #     self.update_value(table, column, row, criteria, value)
 
-    # def month_budget(self, year: int, month: int):
-    #     table = "month_budget_test"
-    #     column = "total"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
 
-    #     results = self.single_data_request(table, column, row, criteria)
 
-    #     return results
-
-    # def savings_for_month(self, year: int, month: int):
-    #     table = "month_budget_test"
-    #     column = "left_amount"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
-
-    #     results = self.single_data_request(table, column, row, criteria)
-
-    #     return results
-
-    # def earnings_for_month(self, year: int, month: int):
-    #     table = "month_budget_test"
-    #     column = "earnings"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
-
-    #     results = self.single_data_request(table, column, row, criteria)
-
-    #     return results
-
-    def portfolio_month_amount(self, year: int, month: int, account_id: int):
-        table = "account_management_test"
-        column = "amount"
-        row = "month_year_account_id"
-        criteria = (1000000 * account_id) + (10000 * month) + int(year)
-        row_2 = "account_id"
-        criteria_2 = account_id
-
-        results = self.single_data_request_2(table, column, row, criteria, row_2, criteria_2)
-
-        return results
-
-    def get_all_data_no_id(self, table: str):
-        """
-        'SELECT {CATEGORY} FROM {table} method
-        """
-        data_table = table
-        table_category = rvar.table_dict[table]
-
-        results = self.all_data_request(data_table, table_category)
-
-        return results
-
-    def get_all_data_w_id(self, table: str):
-        """
-        'SELECT * FROM table' method
-        """
-        data_table = table
-
-        results = self.all_data_request(data_table)
-
-        return results
-
-    def budget_for_year_table(self, year: int):
-        """
-        SELECT * FROM table
-        WHERE month_year_id - month_id = year
-        """
-        data_table = "month_budget_test"
-        rows = "month_year_id - month_id * 10000"
-
-        results = self.all_data_request_w_criteria(data_table, rows, year)
-
-        return results
-
-    # def budget_for_year(self, year):
-    #     table = "month_budget_test"
-    #     column = "total"
-    #     rows = "month_year_id - month_id * 10000"
-
-    #     results = self.sum_single_data_request(table, column, rows, year)
-
-    #     return results
-
-    def savings_for_year(self, year):
-        table = "month_budget_test"
-        column = "left_amount"
-        rows = "month_year_id - month_id * 10000"
-
-        results = self.sum_single_data_request(table, column, rows, year)
-
-        return results
-
-    # def earnings_for_year(self, year):
-    #     table = "month_budget_test"
-    #     column = "earnings"
-    #     rows = "month_year_id - month_id * 10000"
-
-    #     results = self.sum_single_data_request(table, column, rows, year)
-
-    #     return results
-
-    def category_budget_for_year(self, year, column):
-        table = "month_budget_test"
-        rows = "month_year_id - month_id * 10000"
-
-        results = self.sum_single_data_request(table, column, rows, year)
-
-        return results
-
-    def insert_transaction_data(self, transaction_list: list):
-        """
-        list: [transaction_date (2023-01-01), transaction_name, amount (10.00), category_id,
-                sub_category_id, account_id, category_type_id, month_id, accounting_id]
-        """
-        with self.cursor() as cur:
-            self.execute_update(f"""INSERT INTO transaction_test (transaction_date, transaction_name,
-                            amount, category_id, sub_category_id, account_id, category_type_id,
-                            month_id, accounting_id)
-                            VALUES
-                            ('{transaction_list[0]}', '{transaction_list[1]}', {transaction_list[2]},
-                            {transaction_list[3]}, {transaction_list[4]}, {transaction_list[5]},
-                            {transaction_list[6]}, {transaction_list[7]}, {transaction_list[8]});""")
-
-            # For Debugging purposes
-            print('Transaction added')
 
     # def insert_account_data(self, year, month, account_id, amount):
     #     """
@@ -1226,16 +991,6 @@ class Database:
     #     if query != []:
     #         return False
 
-    # def account_id_request(self, account_name: str):
-    #     table = "account_test"
-    #     column = "account_id"
-    #     row = "account"
-    #     criteria = f"'{account_name}'"
-
-    #     results = self.single_data_request(table, column, row, criteria)
-
-    #     return results
-
     # def remove_account(self, account_name: str, account_id: str):
 
     #     self.cur.execute(f"""DELETE FROM account_test
@@ -1243,33 +998,3 @@ class Database:
     #                      AND account_id = {account_id};""")
 
     #     self.connection.commit()
-
-    # def retrieve_states(self):
-    #     table = "states_test"
-    #     column = "state_name"
-
-    #     result = self.query_column(table, column)
-
-    #     return result
-
-    # def get_state_tax_bracket(self, state):
-
-    #     self.cur.execute(f"""SELECT states_income_tax_test.single_filer_rates, states_income_tax_test.single_filer_brackets
-    #                      FROM states_income_tax_test
-    #                      INNER JOIN states_test
-    #                      ON states_income_tax_test.state_id = states_test.state_id
-    #                      WHERE states_test.state_name = '{state}';""")
-
-    #     query_results = self.cur.fetchall()
-    #     # print(query_results)
-    #     self.connection.commit()
-
-    #     return query_results
-
-
-    # """SELECT states_income_tax_test.single_filer_rates, states_income_tax_test.single_filer_brackets,
-    #                      states_income_tax_test.standard_deduction_single
-    #                      FROM states_income_tax_test
-    #                      INNER JOIN states_test
-    #                      ON states_income_tax_test.state_id = states_test.state_id
-    #                      WHERE states_test.state_name = '{state}';""
