@@ -4,12 +4,9 @@ from decimal import Decimal
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import (QMainWindow, 
-                             QWidget, 
+from PyQt6.QtWidgets import (QWidget, 
                              QVBoxLayout, 
                              QPushButton, 
-                             QGridLayout,
-                             QLabel,
                              QPushButton)
 from PyQt6.QtCharts import (QBarCategoryAxis, 
                             QBarSeries, 

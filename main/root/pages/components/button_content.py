@@ -28,7 +28,6 @@ class ButtonContent(Ui_Form):
         
         for button in self.month_button_list:
             button.setStyleSheet(rvar.BLUE_BUTTON_STYLE)
-            button.clicked.connect(lambda _, pb=button: self.select(pb))
             
         # MORE BUTTONS FOR YEARS
         row = 3
@@ -42,9 +41,10 @@ class ButtonContent(Ui_Form):
                 pushbutton.setStyleSheet(rvar.BLUE_BUTTON_STYLE)
             self.gridLayout.addWidget(pushbutton, row, column, 1, 1)
             self.year_button_list.append(pushbutton)
-            pushbutton.clicked.connect(lambda _, pb=pushbutton: self.select(pb))
             column += 1
             row += 1 if column > 3 else 0
+            
+        self.button_list = self.selected_month_list + self.year_button_list
     
     def select(self, pushbutton: QPushButton):
         text = pushbutton.text()

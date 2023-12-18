@@ -82,8 +82,10 @@ class Doughnut(QWidget):
             if slice_.percentage() > 0.05:
                 slice_.setLabelPosition(QPieSlice.LabelPosition.LabelInsideHorizontal)
                 label = f"<p align='center'>{f'{slice_.label()}'}<br>{round(slice_.percentage()*100, 2)}%<br>${account_spent_list[idx]}</p>"
-            elif slice_.percentage() <= 0.01:
+            elif slice_.percentage() <= 0.01 and slice_.percentage() > 0:
                 label = f"<p align='center'>{f'{slice_.label()}'} ~1%</p>"
+            elif slice_.percentage() == 0:
+                label = ''
             else:
                 label = f"<p align='center'>{f'{slice_.label()}'}<br>{round(slice_.percentage()*100, 2)}%</p>"
             slice_.setLabel(label)
@@ -94,7 +96,7 @@ class Doughnut(QWidget):
         chart.setTheme(QChart.ChartTheme.ChartThemeDark)
         chart.addSeries(self.series)
         chart.setTitle("Total Spend By Account")
-
+        chart.setAnimationOptions(QChart.AnimationOption.SeriesAnimations)
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignmentFlag.AlignRight)
         chart.legend().setMarkerShape(QLegend.MarkerShape.MarkerShapeCircle)

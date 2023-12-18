@@ -44,12 +44,12 @@ class Expense_Bar_Graph(QWidget):
         self.month_abbrv.sort(key=lambda x: rvar.month_dict[rvar.MONTHS_SHORT_DICT[x]])
             # COLLECT DATA FOR BARGRAPH
         self.data: List[Decimal] = self.collect_data()
-        self.month_set = QBarSet("Month")
+        month_set = QBarSet("Month")
         for value in self.data:
-            self.month_set.append(value)
+            month_set.append(value)
         # ADD BARSET TO BARSERIES
         self.bar_series = QBarSeries()
-        self.bar_series.append(self.month_set)
+        self.bar_series.append(month_set)
         # CREATE CHART AND CUSTOMIZE
         self.chart = QChart()
         self.chart.setTheme(QChart.ChartTheme.ChartThemeDark)
@@ -80,3 +80,24 @@ class Expense_Bar_Graph(QWidget):
     def collect_data(self) -> List[Decimal]:
         data: List[Decimal] = [sum([trans.amount for trans in self.transaction_data if trans.month == rvar.month_dict[month] and trans.accounting_type == 'Debit' and trans.year == self.year]) for month in self.month_list]
         return data
+    
+    def chart_update(self, month_ls: List[QPushButton], year: int):
+        self.year = year
+        self.bar_series.clear()
+        self.month_abbrv = [abbr.text() for abbr in month_ls]
+        self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]
+        # SORT DATA BY MONTH
+        self.month_list = sorted(self.month_list, key=lambda x: rvar.month_dict[x])
+        self.month_abbrv.sort(key=lambda x: rvar.month_dict[rvar.MONTHS_SHORT_DICT[x]])
+        self.axis_x.clear()
+        self.axis_x.append(self.month_abbrv)
+        # COLLECT DATA FOR BARGRAPH
+        self.data: List[Decimal] = self.collect_data()
+        month_set = QBarSet("Month")
+        for value in self.data:
+            month_set.append(value)
+        # ADD BARSET TO BARSERIES
+        self.bar_series.append(month_set)
+        min_amount = 0
+        max_amount = (Decimal(1000.00) + max(self.data))
+        self.axis_y.setRange(min_amount, max_amount)

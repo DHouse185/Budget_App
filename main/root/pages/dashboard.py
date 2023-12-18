@@ -2,7 +2,7 @@
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QWidget, QScrollArea, QSizePolicy, QAbstractScrollArea
+from PyQt6.QtWidgets import QWidget, QScrollArea, QSizePolicy, QAbstractScrollArea, QPushButton
 from PyQt6.QtCore import QRect, QSize, Qt
 import datetime
 ########################################################################################
@@ -18,7 +18,7 @@ from root.pages.components.month_progress import Month_progress
 from root.pages.components.doughnut_chart import Doughnut
 from root.pages.components.line_chart import LineChart
 from root.pages.components.expense_bar_graph import Expense_Bar_Graph
-# from root.pages.components.expense_bar_graph import Expense_Bar_Graph
+from root.pages.components.net_income_bar_graph import Net_Income_Bar_Graph
 ########################################################################################
 
 
@@ -72,29 +72,22 @@ class Dashboard(QWidget):
         self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
         self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)
         self.expense_bar_graph = Expense_Bar_Graph(self.scrollAreaWidgetContents, self.database, self.month_list, self.year)
-        # self.net_income = Net_Income_Bar_Graph()
-        # self.waterfall_chrt = Water_Fall_Chart()
+        self.net_income_chart = Net_Income_Bar_Graph(self.scrollAreaWidgetContents, self.database, self.month_list, self.year)
+        # self.waterfall_chart = Water_Fall_Chart()
         # self.tree_map = Tree_Map()
         
-        self.dashboard_scrollArea.setWidget(self.scrollAreaWidgetContents)
+        for button in self.button_content.button_list:
+            button.clicked.connect(lambda _, pb=button: self.button_click(pb))
             
-# """
-
+        self.dashboard_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
-#         self.graphicsView = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
-#         self.graphicsView.setGeometry(QtCore.QRect(0, 130, 681, 381))
-#         self.graphicsView.setStyleSheet("background-color: rgb(48, 0, 0);")
-#         self.graphicsView.setObjectName("graphicsView")
-#         self.graphicsView_2 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
-#         self.graphicsView_2.setGeometry(QtCore.QRect(0, 510, 681, 391))
-#         self.graphicsView_2.setStyleSheet("background-color: rgb(30, 30, 30);")
-#         self.graphicsView_2.setObjectName("graphicsView_2")
-
-#         self.graphicsView_3 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
-#         self.graphicsView_3.setGeometry(QtCore.QRect(0, 900, 681, 401))
-#         self.graphicsView_3.setStyleSheet("background-color: rgb(8, 0, 118);")
-#         self.graphicsView_3.setObjectName("graphicsView_3")
-
+    def button_click(self, push_button: QPushButton):
+        self.button_content.select(push_button)
+        self.year = self.button_content.year 
+        self.month_list = self.button_content.selected_month_list
+        self.expense_bar_graph.chart_update(self.month_list, self.year)
+        # self.top_5.update_list()
+# """
 #         self.graphicsView_4 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
 #         self.graphicsView_4.setGeometry(QtCore.QRect(1220, 130, 690, 821))
 #         self.graphicsView_4.setStyleSheet("background-color: rgb(48, 0, 0);")
