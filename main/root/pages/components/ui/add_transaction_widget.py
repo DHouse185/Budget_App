@@ -283,7 +283,7 @@ class Ui_Form(object):
         self.amount_doubleSpinBox.setGeometry(QtCore.QRect(20, 230, 301, 41))
         self.amount_doubleSpinBox.setMaximum(1000000000.99)
         self.amount_doubleSpinBox.setSingleStep(0.01)
-        self.amount_doubleSpinBox.setProperty("value", 1555555.0)
+        self.amount_doubleSpinBox.setProperty("value", 0.00)
         self.amount_doubleSpinBox.setObjectName("amount_doubleSpinBox")
         self.date_label = QtWidgets.QLabel(parent=Form)
         self.date_label.setGeometry(QtCore.QRect(340, 80, 91, 31))
@@ -351,6 +351,43 @@ class Ui_Form(object):
 "    border: 1px solid #5a5a5a;\n"
 "}")
         self.add_pushButton.setObjectName("add_pushButton")
+        self.payback_pushButton = QtWidgets.QPushButton(parent=Form)
+        self.payback_pushButton.setGeometry(QtCore.QRect(1110, 290, 161, 41))
+        self.payback_pushButton.setStyleSheet("""QPushButton {
+background-color: #0003bb;
+border: 1px solid #4d4d4d;
+border-radius: 4px;
+color: #ffffff;
+padding: 5px;
+}
+QPushButton:hover {
+background-color: #4446d1;
+border: 1px solid #ffffff;
+}
+QPushButton:pressed {
+background-color: #000277;
+border: 1px solid #a3a3a3;
+}""")
+        self.payback_pushButton.setObjectName("payback_pushButton")
+        self.remove_pushButton = QtWidgets.QPushButton(parent=Form)
+        self.remove_pushButton.setGeometry(QtCore.QRect(1290, 290, 161, 41))
+        self.remove_pushButton.setStyleSheet("QPushButton {\n"
+"    background-color: #c30000;\n"
+"    border: 1px solid #4d4d4d;\n"
+"    border-radius: 4px;\n"
+"    color: #ffffff;\n"
+"    padding: 5px;\n"
+"    font: 200 12pt\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #ff5a5a;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #8c0000;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}")
+        self.remove_pushButton.setObjectName("remove_pushButton")
         self.add_Transaction_label = QtWidgets.QLabel(parent=Form)
         self.add_Transaction_label.setGeometry(QtCore.QRect(20, 10, 241, 51))
         self.add_Transaction_label.setStyleSheet("font: 700 22pt \"Nirmala UI\";\n"
@@ -382,6 +419,13 @@ class Ui_Form(object):
         self.credit_Debit_comboBox = QtWidgets.QComboBox(parent=Form)
         self.credit_Debit_comboBox.setGeometry(QtCore.QRect(340, 230, 271, 41))
         self.credit_Debit_comboBox.setObjectName("credit_Debit_comboBox")
+        self.frequency_label = QtWidgets.QLabel(parent=Form)
+        self.frequency_label.setGeometry(QtCore.QRect(1070, 190, 121, 31))
+        self.frequency_label.setStyleSheet("font: 700 14pt \"Nirmala UI\";")
+        self.frequency_label.setObjectName("frequency_label")
+        self.frequency_comboBox = QtWidgets.QComboBox(parent=Form)
+        self.frequency_comboBox.setGeometry(QtCore.QRect(1070, 230, 400, 31))
+        self.frequency_comboBox.setObjectName("transfer_To_comboBox")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -399,9 +443,12 @@ class Ui_Form(object):
         self.discard_pushButton.setText(_translate("Form", "Discard"))
         self.sub_Category_label.setText(_translate("Form", "Sub-Category"))
         self.add_pushButton.setText(_translate("Form", "Add"))
+        self.payback_pushButton.setText(_translate("Form", "Payback"))
+        self.remove_pushButton.setText(_translate("Form", "Remove Transaction"))
         self.add_Transaction_label.setText(_translate("Form", "Add Transaction"))
         self.transfer_To_label.setText(_translate("Form", "Transfer To"))
         self.credit_Debit_label.setText(_translate("Form", "Credit/Debit"))
+        self.frequency_label.setText(_translate("Form", "Frequency"))
 
 
 if __name__ == "__main__":

@@ -586,12 +586,12 @@ class Database:
         raw_df_data = list()
 
         for transaction in self.app_data['transaction_data']['old']:
-            trans_data = (transaction.date, transaction.account, transaction.description, transaction.amount,
+            trans_data = (transaction.date, transaction.id, transaction.account, transaction.description, transaction.amount,
                             transaction.category, transaction.sub_category, transaction.category_type)
 
             raw_df_data.append(trans_data)
 
-        self.app_data['transaction_dataframe'] = pd.DataFrame(raw_df_data, columns=['Date', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
+        self.app_data['transaction_dataframe'] = pd.DataFrame(raw_df_data, columns=['Date', 'ID', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
         self.app_data['transaction_dataframe'] = self.app_data['transaction_dataframe'].set_index('Date')
 
         # APP MONTH BUDGET DATA

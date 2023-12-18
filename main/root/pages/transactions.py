@@ -92,7 +92,7 @@ class Transactions(QWidget):
         self.transaction_table.setObjectName('transaction_table')
         self.transaction_table.setStyleSheet(rvar.DARK_MODE_TRANS_TABLE)
         self.transaction_table.setGeometry(QRect(415, 420, 1490, 1230))
-        self.transaction_table.horizontalHeader().setDefaultSectionSize(200)
+        self.transaction_table.horizontalHeader().setDefaultSectionSize(175)
         self.transaction_model = TableModel(self.database.app_data['transaction_dataframe'])
         self.transaction_table.setModel(self.transaction_model)
         
