@@ -28,9 +28,10 @@ class Yearly_Stats(Ui_Form):
         self.stats = QWidget(parent=parent)
         self.setupUi(self.stats)
         self.stats.setGeometry(QRect(0, 0, 390, 1650))
-        
         self.database = database
-        
+        self.update_data()
+
+    def update_data(self):
         self.year = int(self.stats_Year_comboBox.currentText())
         
         if self.year % 4 == 0:
@@ -112,29 +113,18 @@ class Yearly_Stats(Ui_Form):
         
         self.amount_Balance_Left_in_Budget_Salary_label.setText(f"${balance_left_in_budg_salary}")
         
-        try:
-            daily_exp_goal = round((self.budget_for_year / self.year_range), 2)
-            self.amount_Daily_Expense_Goal_label.setText(f"${daily_exp_goal}")
-
-        except ZeroDivisionError:
-            self.amount_Daily_Expense_Goal_label.setText(f"$0.00")
+        daily_exp_goal = round((self.budget_for_year / self.year_range), 2) if self.year_range != 0 else Decimal(0.00)
+        self.amount_Daily_Expense_Goal_label.setText(f"${daily_exp_goal}")
         
-        try:    
-            daily_avg_exp = round((self.total_spent / self.days_passed), 2)
-            self.amount_Daily_Average_Expense_label.setText(f"${daily_avg_exp}")
-        
-        except ZeroDivisionError:
-            self.amount_Daily_Average_Expense_label.setText(f"$0.00")
+        daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
+        self.amount_Daily_Average_Expense_label.setText(f"${daily_avg_exp}")
             
         current_savings = round((daily_exp_goal - daily_avg_exp), 2)
         self.amount_Current_Savings_Daily_label.setText(f"${current_savings}")
         
-        try:
-            new_daily_expense = round((((daily_exp_goal * self.year_range) / (self.year_range - self.days_passed)) - (((daily_avg_exp * self.year_range)) / (self.year_range - self.days_passed))), 2)
-            self.amount_New_Daily_Expense_Planned_label.setText(f"${new_daily_expense}")
-            
-        except ZeroDivisionError:
-            self.amount_New_Daily_Expense_Planned_label.setText("$0.00")
+        new_daily_expense = round((((daily_exp_goal * self.year_range) / (self.year_range - self.days_passed)) - (((daily_avg_exp * self.year_range)) \
+            / (self.year_range - self.days_passed))), 2) if (self.year_range - self.days_passed) != 0 else Decimal(0.00)
+        self.amount_New_Daily_Expense_Planned_label.setText(f"${new_daily_expense}")
         
         weekly_exp_goal = daily_exp_goal * 7
         weekly_avg_exp = daily_avg_exp * 7
@@ -145,5 +135,3 @@ class Yearly_Stats(Ui_Form):
         self.amount_Weekly_Average_Expense_label.setText(f"${weekly_avg_exp}")
         self.amount_Predicted_Yearly_Expense_label.setText(f"${predicted_yearly_expense}")
         self.amount_Predicted_Total_Savings_label.setText(f"${predicted_savings}")
-
-        

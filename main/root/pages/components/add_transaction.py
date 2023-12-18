@@ -1,5 +1,7 @@
 ##########  Python IMPORTs  ############################################################
 from typing import List
+import random
+from decimal import Decimal
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -17,6 +19,7 @@ from root.models import Sub_Category
 from root.models import Category
 from root.models import Accounting_Type
 from root.models import Frequency
+from root.models import Transaction
 from root.pages.components.ui.add_transaction_widget import Ui_Form
 # from pages.dashboard import Dashboard
 ########################################################################################
@@ -68,7 +71,6 @@ class Add_Transaction(Ui_Form):
         for _, frequency in enumerate(self.frequencies):  
             self.frequency_comboBox.addItem(frequency)
             
-        self.add_pushButton.clicked.connect(self.add_check)
         self.discard_pushButton.clicked.connect(self.discard_check)
            
     def create_table_dict(self):
@@ -113,18 +115,18 @@ class Add_Transaction(Ui_Form):
         
         # If user chooses to exit the application
         if ret == QMessageBox.StandardButton.Yes:
-            self.add_transaction()
+            return self.add_transaction()
             
         # If user chooses not to close application
         elif ret == QMessageBox.StandardButton.Cancel:
-            return
+            return False
             
         # Close event will be ignored if neither are selected
         else:
             QMessageBox.information(self.add_trans_widget, "Error",
                                  "Something went wrong. Transaction was not added",
                                  QMessageBox.StandardButton.Ok)
-            return
+            return False
                         
     def add_transaction(self):
         account = self.account_comboBox.currentText()
@@ -132,6 +134,7 @@ class Add_Transaction(Ui_Form):
         
         # Grab Date
         date = self.date_dateEdit.dateTime()
+        date_datetime = date.toPyDateTime().date()
         date_month = date.toString("MMMM")
         date_formatted = date.toString("yyyy-MM-dd")        
         month_id = rvar.month_dict[date_month]        
@@ -140,6 +143,9 @@ class Add_Transaction(Ui_Form):
         accounting = self.credit_Debit_comboBox.currentText()
         accounting_id = self.accountings_dict[accounting]
         transfer_account = self.transfer_To_comboBox.currentText()
+        payback = 'None' # Fix Later
+        payback_id = 1 # Fix Later
+        frequency = self.frequency_comboBox.currentText()
         
         if transfer_account == 'None':
             pass
@@ -155,6 +161,9 @@ class Add_Transaction(Ui_Form):
         category_type = self.category_Type_comboBox.currentText()
         category_type_id = self.category_type_dict[category_type]
         
+        max_id = max([trans.id for trans in self.database.app_data['transaction_data']['old']])
+        trans_temp_id = random.randint((max_id + 1), (max_id + 10))
+        
         transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id]
         
         for _, check in enumerate(transaction_list):
@@ -162,14 +171,18 @@ class Add_Transaction(Ui_Form):
                 QMessageBox.information(self.add_trans_widget, "Empty input",
                                  "One of the inputs is not valid for adding to transactions",
                                  QMessageBox.StandardButton.Ok)
-                return
+                return False
             else:
                 pass
-        
+        transaction = Transaction((max_id, date_datetime, account, description, Decimal(amount), category, sub_category, category_type, payback, payback_id, frequency, accounting))
+        self.database.app_data['transaction_data']['old'].append(transaction) # Change to 'unsaved' or 'new' later
+        df2 = {'ID': trans_temp_id, 'Account': account, 'Description': description, 'Amount': Decimal(amount), 'Category': category, 'SubCategory': sub_category, 'Transaction Type': category_type}
+        self.database.app_data['transaction_dataframe'].loc[date_datetime] = df2
         ############## WILL NEED TO UPDATE #####################        
         # print(transaction_list)
-        self.database.insert_transaction_data(transaction_list)
+        # self.database.insert_transaction_data(transaction_list)
         ########################################################
+        return True
         
     def discard_check(self):
         # Validate Input

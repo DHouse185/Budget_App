@@ -43,7 +43,11 @@ class TableModel(QAbstractTableModel):
             
             if orientation == Qt.Orientation.Vertical:
                 return str(self._data.index[section])        
-            
+    
+    def resetData(self, updated_dataframe):
+        self.beginResetModel()
+        self._data = updated_dataframe
+        self.endResetModel()
             
 class Transactions(QWidget):
     """
@@ -101,8 +105,18 @@ class Transactions(QWidget):
         # Add Transaction Stats
         self.transaction_stats = Yearly_Stats(self.scrollAreaWidgetContents, self.database)
         # self.expense_bar_graph = Expense_Bar_Graph()
+        self.transaction_addition.add_pushButton.clicked.connect(self.add_transaction_to_table)
         
         self.transaction_scrollArea.setWidget(self.scrollAreaWidgetContents)
+        
+    def add_transaction_to_table(self):
+        trans_conf = self.transaction_addition.add_check()
+        if trans_conf:
+            updated_df = self.database.app_data['transaction_dataframe']
+            self.transaction_model.resetData(updated_df)
+            self.transaction_stats.update_data()
+            
+            # Add new transaction to a place to be added to Postgres sql
 
         
         
