@@ -20,21 +20,21 @@ from PyQt6.QtCharts import (QBarCategoryAxis,
                             QValueAxis, QLegend)
 from PyQt6.QtGui import QPainter
 from PyQt6.QtCore import Qt, QRect
+import numpy as np
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
 import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.database import Database
-# from pages.dashboard import Dashboard
 ########################################################################################
 
-class Expense_Bar_Graph(QWidget):
+class Net_Income_Bar_Graph(QWidget):
     def __init__(self, parent: QWidget, database_conn: Database, month_ls: List[QPushButton], year: int): # WILL ADD CATEGORY OPTION LATER
         # WILL ADD TREND LINE LATER
         super().__init__(parent=parent)
-        self.setGeometry(QRect(0, 130, 680, 380))
-        self.setObjectName("Expense_Bar_Graph")
+        self.setGeometry(QRect(0, 510, 680, 390))
+        self.setObjectName("Net_Income_Bar_Graph")
         self.transaction_data = database_conn.app_data['transaction_data']['old']
         self.year = year
         self.month_abbrv = [abbr.text() for abbr in month_ls]
@@ -47,6 +47,8 @@ class Expense_Bar_Graph(QWidget):
         self.month_set = QBarSet("Month")
         for value in self.data:
             self.month_set.append(value)
+        self.month_set.setBrush(Qt.GlobalColor.cyan)
+        self.month_set.setColor(Qt.GlobalColor.cyan)
         # ADD BARSET TO BARSERIES
         self.bar_series = QBarSeries()
         self.bar_series.append(self.month_set)
@@ -78,5 +80,7 @@ class Expense_Bar_Graph(QWidget):
         self.setLayout(layout)
         
     def collect_data(self) -> List[Decimal]:
-        data: List[Decimal] = [sum([trans.amount for trans in self.transaction_data if trans.month == rvar.month_dict[month] and trans.accounting_type == 'Debit' and trans.year == self.year]) for month in self.month_list]
+        expense_data: List[Decimal] = [sum([trans.amount for trans in self.transaction_data if trans.month == rvar.month_dict[month] and trans.accounting_type == 'Debit' and trans.year == self.year]) for month in self.month_list]
+        income_data: List[Decimal] = [sum([trans.amount for trans in self.transaction_data if trans.month == rvar.month_dict[month] and trans.accounting_type == 'Credit' and trans.year == self.year]) for month in self.month_list]
+        data: List[Decimal] = np.subtract(income_data, expense_data)
         return data

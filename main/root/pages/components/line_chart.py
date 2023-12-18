@@ -51,26 +51,18 @@ class LineChart(QWidget):
             qline = QLineSeries()
             qline.setName(f"{category}")
             self.line_series_list.append(qline)
-            
-        # print(f"Line Series List: \n...\n{self.line_series_list}")
-        
         max_amount = 0
         min_amount = 0
-        
         for idx, month_id in enumerate(rvar.month_dict.values()):
             # Get first day of the month
-            # date_1 = datetime.datetime(year=int(self.year), month=(month_id), day=1)
             first_date = (datetime.datetime(year=int(self.year), month=(month_id), day=1)).strftime('%Y-%m-%d')
             
             # Get last day of the month
             months_range = calendar.monthrange(int(self.year), (month_id))
             days_in_month = months_range[1]
-            # date_2 = datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))
             last_date = (datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))).strftime('%Y-%m-%d')
             
             for cat_num, line_serie in enumerate(self.line_series_list):
-                # print(f"\nself.categories[cat_num]: {self.categories[cat_num]}")
-                # print(f"\nself.categories[cat_num][0]: {self.categories[cat_num][0]}")
                 # Get earnings
                 exp_amount = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
                                                                  & (self.transaction_df_no_date_idx['Date'] <= last_date)
@@ -88,8 +80,6 @@ class LineChart(QWidget):
                 if exp_amount > max_amount:
                     max_amount = exp_amount
 
-        # print(f"Line Series List: \n...\n{self.line_series_list}")
-        
         self.chart = QChart()
         self.chart.setTheme(QChart.ChartTheme.ChartThemeDark)
         self.chart.setAnimationOptions(QChart.AnimationOption.SeriesAnimations)
@@ -104,44 +94,30 @@ class LineChart(QWidget):
             
         self.chart.setTitle(f"Expense Chart per Category for {self.year}")
         
-        # self.cat = list()
-        # for cat in self.categories:
-        #     self.cat.append(cat[0])
-            
         self._axis_x = QBarCategoryAxis()
         self._axis_x.append(self.months_rng)
         self.chart.addAxis(self._axis_x, Qt.AlignmentFlag.AlignBottom)
         
         for ls in self.line_series_list:
             ls.attachAxis(self._axis_x)
-
         self._axis_x.setRange("Jan", "Dec")
-        
         self._axis_y = QValueAxis()
         self.chart.addAxis(self._axis_y, Qt.AlignmentFlag.AlignLeft)
-        
         for ls2 in self.line_series_list:
             ls2.attachAxis(self._axis_y)
-
         # Needs to be changed
         if min_amount <= 50:
             min_amount = 0
         else:
             min_amount -= 50
-        
         max_amount += 100
         self._axis_y.setRange(min_amount, max_amount)
-        
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignmentFlag.AlignRight)
         self.chart.legend().setMarkerShape(QLegend.MarkerShape.MarkerShapeCircle)
-
         chart_view = QChartView(self.chart)
         chart_view.setRenderHint(QPainter.RenderHint.Antialiasing)
-
         # Create a layout to hold both the chart and the label
         layout = QVBoxLayout()
         layout.addWidget(chart_view)
-
         self.setLayout(layout)
-                
