@@ -67,6 +67,7 @@ class Calendar(QWidget):
         self.calendar_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
         self.calendar_stats.stats_Month_comboBox.currentTextChanged.connect(self.month_change)
+        self.calendar_stats.stats_Year_comboBox.currentTextChanged.connect(self.year_change)
         
     def month_change(self):
         self.calendar_stats.month_change_1()
@@ -75,6 +76,9 @@ class Calendar(QWidget):
         self.calendar_stats.month_change_2(self.calendar_img.credit_list, self.calendar_img.debit_list)
     
     def year_change(self):
-        ...
-
-        
+        self.calendar_stats.year = self.calendar_stats.stats_Year_comboBox.currentText()
+        self.calendar_img.year = self.calendar_stats.stats_Year_comboBox.currentText()
+        self.calendar_stats.month_change_1()
+        self.month = self.calendar_stats.month
+        self.calendar_img.month_change(self.month)
+        self.calendar_stats.month_change_2(self.calendar_img.credit_list, self.calendar_img.debit_list)

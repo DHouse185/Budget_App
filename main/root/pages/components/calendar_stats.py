@@ -143,7 +143,6 @@ class Calendar_Stats(Ui_Form):
         self.amount_Predicted_Total_Savings_label.setText(f"${predicted_savings}")
     
     def month_change_1(self):
-                
         self.month = self.stats_Month_comboBox.currentText()
         self.month_int = rvar.month_dict[self.month]
         months_range = calendar.monthrange(int(self.year), (self.month_int))
