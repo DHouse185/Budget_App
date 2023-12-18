@@ -63,13 +63,17 @@ class Dashboard(QWidget):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
 
         self.button_content = ButtonContent(self.scrollAreaWidgetContents)
-        self.year = datetime.datetime.now().year # Will change later after adding years to ButtonContent
+        self.year = self.button_content.year 
+        self.month_list = self.button_content.selected_month_list
         self.header = Header(self.scrollAreaWidgetContents, self.database, self.year)
         self.top_5 = Top_5(self.scrollAreaWidgetContents, self.database, self.year)
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
         self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
         self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)
         # self.expense_bar_graph = Expense_Bar_Graph()
+        # self.net_income = Net_Income_Bar_Graph()
+        # self.waterfall_chrt = Water_Fall_Chart()
+        # self.tree_map = Tree_Map()
         
         self.dashboard_scrollArea.setWidget(self.scrollAreaWidgetContents)
             

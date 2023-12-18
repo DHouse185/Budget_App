@@ -42,3 +42,7 @@ class Header(Ui_Dashboard_header_widget):
         self.bills_Spent_label.setText(f"${bills}")
         self.support_Spent_label.setText(f"${support}")
         # self.bills_Spent_label_2.setText(f"")
+        
+        # YEAR CHANGE UPDATE FUNCTION...
+        
+        # MONTH CHANGE UPDATE FUNCTION...

@@ -764,6 +764,10 @@ class Database:
         self.app_data['state_income_tax']['new'] = self.app_data['state_income_tax']['old']
 
         self.connection.commit()
+        
+        # EXTRA DATA RELATED TO APP
+        
+        
     def insert_transaction_data(self, transaction_list: list):
         """
         list: [transaction_date (2023-01-01), transaction_name, amount (10.00), category_id,

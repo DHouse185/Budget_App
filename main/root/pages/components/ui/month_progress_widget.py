@@ -609,13 +609,3 @@ class Ui_Form(object):
         self.Stats_Year_comboBox.setItemText(6, _translate("Form", "2017"))
         self.Stats_Year_comboBox.setItemText(7, _translate("Form", "2016"))
         self.Stats_Year_comboBox.setItemText(8, _translate("Form", "2015"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec())

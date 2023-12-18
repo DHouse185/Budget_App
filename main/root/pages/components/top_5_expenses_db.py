@@ -29,10 +29,10 @@ class Top_5(Ui_top_5_expense):
         self.year = year
         
         subcategory_totals = dict()
-        sub_category_ls = [trans.sub_category for trans in self.database.app_data['transaction_data']['old']]
+        sub_category_ls = [sub_c.sub_category for sub_c in self.database.app_data['sub_category']['old']]
         # Calculate the total amount for each subcategory
         for sub_category in sub_category_ls:
-            subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['old'] if trans.sub_category == sub_category])
+            subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['old'] if trans.sub_category == sub_category and trans.accounting_type != "Credit"])
             
         # Named tuple to store subcategory information
         SubcategoryInfo = namedtuple('SubcategoryInfo', ['name', 'total_amount'])
@@ -49,40 +49,37 @@ class Top_5(Ui_top_5_expense):
         ############### Salary will get caught in this. Remove potentially?############
         total_amount_top_five = sum(sub.total_amount for sub in top_five_subcategories) 
         ###############################################################################
-        ############### Could be 0 if no transactions have occured. Add ZeroDivision Error? ####
-
-        # print("Top five subcategories:", top_five_subcategories)
         
         # TOP 1
-        top_1_percent = round(float(top_five_subcategories[0].total_amount / total_amount_top_five), 2) * 100
+        top_1_percent = round(float(top_five_subcategories[0].total_amount / total_amount_top_five), 2) * 100 if total_amount_top_five != 0 else 0
         top_1_percent = int(top_1_percent)
         self.top_1_progressBar.setProperty("value", top_1_percent)
         self.top_1_spent_label.setText(f"${top_five_subcategories[0].total_amount}")
         self.top_1_desc_label.setText(f"{top_five_subcategories[0].name}")
         
         # TOP 2
-        top_2_percent = round(float(top_five_subcategories[1].total_amount / total_amount_top_five), 2) * 100
+        top_2_percent = round(float(top_five_subcategories[1].total_amount / total_amount_top_five), 2) * 100 if total_amount_top_five != 0 else 0
         top_2_percent = int(top_2_percent)
         self.top_2_progressBar.setProperty("value", top_2_percent)
         self.top_2_spent_label.setText(f"${top_five_subcategories[1].total_amount}")
         self.top_2_desc_label.setText(f"{top_five_subcategories[1].name}")
         
         # TOP 3
-        top_3_percent = round(float(top_five_subcategories[2].total_amount / total_amount_top_five), 2) * 100
+        top_3_percent = round(float(top_five_subcategories[2].total_amount / total_amount_top_five), 2) * 100 if total_amount_top_five != 0 else 0
         top_3_percent = int(top_3_percent)
         self.top_3_progressBar.setProperty("value", top_3_percent)
         self.top_3_spent_label.setText(f"${top_five_subcategories[2].total_amount}")
         self.top_3_desc_label.setText(f"{top_five_subcategories[2].name}")
         
         # TOP 4
-        top_4_percent = round(float(top_five_subcategories[3].total_amount / total_amount_top_five), 2) * 100
+        top_4_percent = round(float(top_five_subcategories[3].total_amount / total_amount_top_five), 2) * 100 if total_amount_top_five != 0 else 0
         top_4_percent = int(top_4_percent)
         self.top_4_progressBar.setProperty("value", top_4_percent)
         self.top_4_spent_label.setText(f"${top_five_subcategories[3].total_amount}")
         self.top_4_desc_label.setText(f"{top_five_subcategories[3].name}")
         
         # TOP 5
-        top_5_percent = round(float(top_five_subcategories[4].total_amount / total_amount_top_five), 2) * 100
+        top_5_percent = round(float(top_five_subcategories[4].total_amount / total_amount_top_five), 2) * 100 if total_amount_top_five != 0 else 0
         top_5_percent = int(top_5_percent)
         self.top_5_progressBar.setProperty("value", top_5_percent)
         self.top_5_spent_label.setText(f"${top_five_subcategories[4].total_amount}")
