@@ -92,6 +92,7 @@ class LineChart(QWidget):
         
         self.chart = QChart()
         self.chart.setTheme(QChart.ChartTheme.ChartThemeDark)
+        self.chart.setAnimationOptions(QChart.AnimationOption.SeriesAnimations)
         
         for line_series in self.line_series_list:
             if palette_num >= 14:

@@ -45,11 +45,6 @@ class ButtonContent(Ui_Form):
             pushbutton.clicked.connect(lambda _, pb=pushbutton: self.select(pb))
             column += 1
             row += 1 if column > 3 else 0
-            
-            # Create a list to add pushbuttons to.
-        # self.combined_list = self.month_button_list + self.year_button_list
-        # for p_button in self.combined_list:
-        #     p_button.clicked.connect(lambda push_button=button: self.select(pushbutton))
     
     def select(self, pushbutton: QPushButton):
         text = pushbutton.text()

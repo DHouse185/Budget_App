@@ -17,6 +17,7 @@ from root.pages.components.top_5_expenses_db import Top_5
 from root.pages.components.month_progress import Month_progress
 from root.pages.components.doughnut_chart import Doughnut
 from root.pages.components.line_chart import LineChart
+from root.pages.components.expense_bar_graph import Expense_Bar_Graph
 # from root.pages.components.expense_bar_graph import Expense_Bar_Graph
 ########################################################################################
 
@@ -70,7 +71,7 @@ class Dashboard(QWidget):
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
         self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
         self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)
-        # self.expense_bar_graph = Expense_Bar_Graph()
+        self.expense_bar_graph = Expense_Bar_Graph(self.scrollAreaWidgetContents, self.database, self.month_list, self.year)
         # self.net_income = Net_Income_Bar_Graph()
         # self.waterfall_chrt = Water_Fall_Chart()
         # self.tree_map = Tree_Map()

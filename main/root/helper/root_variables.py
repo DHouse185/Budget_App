@@ -29,7 +29,7 @@ DARK_MODE_TRANS_TABLE = ("""QTableView {\n
                         }""")
 MONTHS_SHORT_DICT = {
     "Jan" : "January",
-    "Feb" : "Februry",
+    "Feb" : "February",
     "Mar" : "March",
     "Apr" : "April",
     "May" : "May",
