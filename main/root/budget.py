@@ -188,6 +188,7 @@ class Budget(QWidget):
         if ret == QMessageBox.StandardButton.Close:
             self.conn.close()
             event.accept()
+            self.transaction.transaction_addition.payback_popup.destroy()
             self.destroy()
             
         # If user chooses not to close application

@@ -79,10 +79,10 @@ class Doughnut(QWidget):
 
         # label styling
         for idx, slice_ in enumerate(slices):
-            if slice_.percentage() > 0.05:
+            if slice_.percentage() > 0.1:
                 slice_.setLabelPosition(QPieSlice.LabelPosition.LabelInsideHorizontal)
                 label = f"<p align='center'>{f'{slice_.label()}'}<br>{round(slice_.percentage()*100, 2)}%<br>${account_spent_list[idx]}</p>"
-            elif slice_.percentage() <= 0.01 and slice_.percentage() > 0:
+            elif slice_.percentage() <= 0.1 and slice_.percentage() > 0:
                 label = f"<p align='center'>{f'{slice_.label()}'} ~1%</p>"
             elif slice_.percentage() == 0:
                 label = ''

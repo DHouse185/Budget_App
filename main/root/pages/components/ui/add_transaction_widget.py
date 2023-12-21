@@ -354,21 +354,14 @@ class Ui_Form(object):
         self.payback_pushButton = QtWidgets.QPushButton(parent=Form)
         self.payback_pushButton.setGeometry(QtCore.QRect(1110, 290, 161, 41))
         self.payback_pushButton.setStyleSheet("""QPushButton {
-background-color: #0003bb;
-border: 1px solid #4d4d4d;
-border-radius: 4px;
-color: #ffffff;
-padding: 5px;
-}
-QPushButton:hover {
-background-color: #4446d1;
-border: 1px solid #ffffff;
-}
-QPushButton:pressed {
-background-color: #000277;
-border: 1px solid #a3a3a3;
-}""")
+                                    background-color: #000277;
+                                    border: 1px solid #a3a3a3;
+                                    border-radius: 4px;
+                                    color: #ffffff;
+                                    padding: 5px;
+                                    }""" )
         self.payback_pushButton.setObjectName("payback_pushButton")
+        self.payback_pushButton.setEnabled(False)
         self.remove_pushButton = QtWidgets.QPushButton(parent=Form)
         self.remove_pushButton.setGeometry(QtCore.QRect(1290, 290, 161, 41))
         self.remove_pushButton.setStyleSheet("QPushButton {\n"

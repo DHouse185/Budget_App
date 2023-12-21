@@ -21,7 +21,7 @@ import root.helper.root_functions as rfunc
 import root.helper.root_variables as rvar
 from root.models import (Transaction, Month_Budget, Accounting_Type, Sub_Category,
                          Category, Account, Category_Type, App_Month, Account_Management,
-                         Goal, Frequency, States, States_Income_Taxes)
+                         Goal, Frequency, States, States_Income_Taxes, Payback)
 ########################################################################################
 
 class Database:
@@ -384,8 +384,8 @@ class Database:
                                 (payback_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
                                 payback_name VARCHAR(100) NOT NULL,
                                 payback_description VARCHAR(100) NOT NULL,
-                                payback_amount INTEGER NOT NULL,
-                                paid_back_amount INTEGER NOT NULL);""")
+                                payback_amount NUMERIC(13, 2) NOT NULL,
+                                paid_back_amount NUMERIC(13, 2) NOT NULL);""")
 
             # GOALS TABLE
 
@@ -717,6 +717,20 @@ class Database:
             goal_obj = Goal(row)
 
             self.app_data['goals']['old'].append(goal_obj)
+
+        self.connection.commit()
+        
+        # APP GOAL DATA
+        self.app_data['payback'] = dict()
+        self.app_data['payback']['old'] = list()
+
+        payback_results = self.execute_query("""SELECT payback_id, payback_name, payback_description, payback_amount, paid_back_amount
+                    FROM payback_test;""")
+
+        for row in payback_results:
+            payback_obj = Payback(row)
+
+            self.app_data['payback']['old'].append(payback_obj)
 
         self.connection.commit()
 

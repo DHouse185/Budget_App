@@ -156,6 +156,15 @@ class Frequency:
         self.frequency = data[1]
         self.month = data[2]
         self.days = data[3]
+        
+class Payback:
+    
+    def __init__(self, data: tuple):
+        self.payback_id = data[0]
+        self.payback_name = data[1]
+        self.payback_description = data[2]
+        self.payback_amount = data[3]
+        self.paid_back_amount = data[4]
 
 class States:
     def __init__(self, data: tuple):

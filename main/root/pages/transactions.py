@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 from PyQt6.QtWidgets import QMainWindow, QWidget, QMessageBox, QStackedWidget, QTableView, QScrollArea, QSizePolicy, QAbstractScrollArea
 from PyQt6.QtGui import QAction
-from PyQt6.QtCore import QModelIndex, QRect, QAbstractTableModel, Qt, QSize
+from PyQt6.QtCore import QModelIndex, QRect, QAbstractTableModel, Qt, QSize, QSortFilterProxyModel
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
@@ -19,6 +19,13 @@ from root.pages.components.add_transaction import Add_Transaction
 from root.pages.components.yearly_trans_stats import Yearly_Stats 
 ########################################################################################
 
+class FilterProxyModel(QSortFilterProxyModel):
+    def __init__(self):
+        super(FilterProxyModel, self).__init__()
+
+    def filterAcceptsRow(self, source_row, source_parent):
+        # CUSTOMIZE LATER TO IMPLEMENT FILTERING LOGIC
+        return True
 
 class TableModel(QAbstractTableModel):
     def __init__(self, data: pd.DataFrame):
@@ -48,6 +55,11 @@ class TableModel(QAbstractTableModel):
         self.beginResetModel()
         self._data = updated_dataframe
         self.endResetModel()
+        
+    def removeRow(self, row):
+        self.beginRemoveRows(QModelIndex(), row, row)
+        self._data = self._data.drop(self._data.index[row])
+        self.endRemoveRows()
             
 class Transactions(QWidget):
     """
@@ -99,13 +111,23 @@ class Transactions(QWidget):
         self.transaction_table.horizontalHeader().setDefaultSectionSize(175)
         self.transaction_model = TableModel(self.database.app_data['transaction_dataframe'])
         self.transaction_table.setModel(self.transaction_model)
-        
+        filter_model = FilterProxyModel()
+        filter_model.setSourceModel(self.transaction_model)
+        # SET FILTER MODEL FOR THE TABLE VIEW
+        self.transaction_table.setModel(filter_model)
+        # Set the filter key column (the column on which filtering will be applied)
+        filter_model.setFilterKeyColumn(-1)  # Set to -1 to filter on all columns
+
         # Add Transaction Widget
         self.transaction_addition = Add_Transaction(self.scrollAreaWidgetContents, self.database)
-        # Add Transaction Stats
         self.transaction_stats = Yearly_Stats(self.scrollAreaWidgetContents, self.database)
-        # self.expense_bar_graph = Expense_Bar_Graph()
+
         self.transaction_addition.add_pushButton.clicked.connect(self.add_transaction_to_table)
+        self.transaction_addition.remove_pushButton.clicked.connect(self.remove_selected_row)
+        # self.expense_bar_graph = Expense_Bar_Graph()
+        # Connect a signal (e.g., from a QLineEdit for user input) to update the filter
+        # For example, a QLineEdit named filterLineEdit:
+        # filterLineEdit.textChanged.connect(filter_model.setFilterRegExp)
         
         self.transaction_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
@@ -118,5 +140,30 @@ class Transactions(QWidget):
             
             # Add new transaction to a place to be added to Postgres sql
 
+    def remove_selected_row(self):
+        # Get the selected row index
+        selected_index = self.transaction_table.selectionModel().currentIndex()
+
+        if selected_index.isValid():
+            row = selected_index.row()
+            # Confirm the removal
+            
+            # Retrieve information about the row
+            row_data = {}
+            for col in range(self.transaction_model.columnCount(QModelIndex())):
+                col_name = str(self.transaction_model.headerData(col, Qt.Orientation.Horizontal, Qt.ItemDataRole.DisplayRole))
+                col_value = str(self.transaction_model.data(self.transaction_model.index(row, col), Qt.ItemDataRole.DisplayRole))
+                row_data[col_name] = col_value
+                
+            ret = QMessageBox.question(self, 'Confirmation', f'Do you want to remove the selected transactions with ID #{row_data["ID"]}?\n\nRow Data:\n{row_data}',
+                                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
+
+            if ret == QMessageBox.StandardButton.Yes:
+                # Utilizing the transaction ID# put in remove transaction dictionary. if in unsaved dictionary remove from that dictionary
+                transaction = next((trans for trans in self.database.app_data['transaction_data']['old'] if trans.id == int(row_data["ID"])), None)
+                if transaction is not None:
+                    self.database.app_data['transaction_data']['old'].remove(transaction)
+                # Remove the row from the model and DataFrame
+                self.transaction_model.removeRow(row)
         
         
