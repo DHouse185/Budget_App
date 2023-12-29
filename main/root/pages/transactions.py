@@ -165,5 +165,7 @@ class Transactions(QWidget):
                     self.database.app_data['transaction_data']['old'].remove(transaction)
                 # Remove the row from the model and DataFrame
                 self.transaction_model.removeRow(row)
+                self.transaction_stats.update_data()
+
         
         

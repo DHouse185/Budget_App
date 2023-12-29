@@ -11,43 +11,6 @@ from PyQt6.QtCore import Qt, QRect, QPointF
 ##########  Created files IMPORTS  #####################################################
 ########################################################################################
 
-# class ChartView(QChartView):
-#     def __init__(self, chart: QChart):
-#         super().__init__(chart)
-#         self.setMouseTracking(True)
-#         self.point_text = ""
-    
-#     def mouseMoveEvent(self, event):
-#         pos = event.pos()
-#         chart = self.chart()
-#         found_point = None
-#         # point = QPointF()
-#         # point.
-#         if chart:
-#             for series in chart.series():
-#                 for point in series.points():
-#                     point_pos = chart.mapToPosition(point)
-#                     if (point_pos - pos).manhattanLength() < 5:  # Set a tolerance for the hover area
-#                         found_point = point
-#                         break
-                    
-#                     # if point_pos.toPoint() == pos.toPointF():
-#                     #     QToolTip.showText(event.globalPos(), f"({point.x()}, {point.y()})")
-
-#         if found_point:
-#             self.point_text = f"({found_point.x()}, {found_point.y()})"
-#         else:
-#             self.point_text = ""
-
-#     def viewportEvent(self, event):
-#         if self.point_text:
-#             QToolTip.showText(event.screenPos(), self.point_text)
-#             return True  # Event has been handled
-#         else:
-#             QToolTip.hideText()
-#             return False  # Event has been handled
-
-
 class MB_LineChart(QWidget):
     def __init__(self, parent, budget_table: QTableWidget, year: str):
         # Create Transaction Addition widget for Transaction page
@@ -121,25 +84,10 @@ class MB_LineChart(QWidget):
         col_query = col_len - 1
         
         for row in range(len(self.months_rng)):
-                
             series_item = budget_table.item(row, col_query)
-            # For Debugging purposes
-            print(f"Series Item text Before Change: {series_item.text()}")
             data_point = series_item.text().replace('$', '')
             data_point = float(data_point)
-            # For Debugging purposes
-            print('Data point results 1: ')
-            print(data_point)
-            
             data_point = float("{:.2f}".format(data_point))
-            # For Debugging purposes
-            print('Data point results 2: ')
-            print(data_point)
-            
-            # For Debugging purposes
-            print(f"Altered column: {col_query}")
-            print(f"Altered row: {row} ")
-        
             self.qline.append(QPointF(row, data_point))
                     
             if row == 0:

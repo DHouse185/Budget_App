@@ -54,6 +54,7 @@ class Portfolio_Stats(Ui_Form):
         self.update_confirm_pushButton.clicked.connect(self.update_check)
         self.add_confirm_pushButton.clicked.connect(self.add_account)
         self.remove_confirm_pushButton.clicked.connect(self.remove_account)
+        self.evaluate_Month_dateEdit_2.dateChanged.connect(self.eval_month)
                     
     def eval_year(self): 
         account = next(account for account in self.account_dict.values() if account['name'] == "Total")
@@ -90,7 +91,7 @@ class Portfolio_Stats(Ui_Form):
             
     def eval_month(self):
         eval_date = self.evaluate_Month_dateEdit_2.date()
-        eval_month = eval_date.month() # This will never be 0 - 0 stands for Start
+        eval_month = eval_date.month() # This will never be 0 | 0 stands for Start
         eval_year = eval_date.year()
         
         if eval_year <= datetime.datetime.now().year:

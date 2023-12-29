@@ -51,8 +51,8 @@ class Portfolio_Widget(QWidget):
         self.stats_Year_comboBox.setStyleSheet("font: 14pt \"Nirmala UI\";")
         self.stats_Year_comboBox.setObjectName("stats_Year_comboBox")
         # Default years
-        default_years_list = ["2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"] # Place somewhere in Databse?
-        self.stats_Year_comboBox.addItems(default_years_list)
+        self.default_years_list = ["2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"] # Place somewhere in Databse?
+        self.stats_Year_comboBox.addItems(self.default_years_list)
         self.stats_Year_comboBox.setCurrentIndex(0)
         # Get year
         self.year = self.stats_Year_comboBox.currentText()
@@ -97,25 +97,16 @@ class Portfolio_Widget(QWidget):
 
         # Create dictionary with year dictionary for each account
         for account in self.account_dict.values():
-            account["year"][self.year] = dict()
-            account["year"][self.year]["year"] = int(self.year)
-            account["year"][self.year]["data"] = list()
-            account["year"][self.year]["percent_change"] = list()
-            account["year"][self.year]["fill_in_data"] = list()
-            account["year"][self.year]["fill_in_per_change"] = list()
-            account["year"][self.year]["expected_data"] = list()
-            account["year"][self.year]["average_change"] = 0
-            account["year"][self.year]["sum"] = 0
-            # JUST A SUBSTITUTE NOW FOR SHORTER DEBUGGING AND CHECK. WILL NEED TO CHANGE TO DO ALL ELIGIBLE YEARS 
-            account["year"][str(int(self.year) -1)] = dict()
-            account["year"][str(int(self.year) -1)]["year"] = int(self.year) -1
-            account["year"][str(int(self.year) -1)]["data"] = list()
-            account["year"][str(int(self.year) -1)]["percent_change"] = list()
-            account["year"][str(int(self.year) -1)]["fill_in_data"] = list()
-            account["year"][str(int(self.year) -1)]["fill_in_per_change"] = list()
-            account["year"][str(int(self.year) -1)]["expected_data"] = list()
-            account["year"][str(int(self.year) -1)]["average_change"] = 0
-            account["year"][str(int(self.year) -1)]["sum"] = 0
+            for year in self.default_years_list:
+                account["year"][year] = dict()
+                account["year"][year]["year"] = int(year)
+                account["year"][year]["data"] = list()
+                account["year"][year]["percent_change"] = list()
+                account["year"][year]["fill_in_data"] = list()
+                account["year"][year]["fill_in_per_change"] = list()
+                account["year"][year]["expected_data"] = list()
+                account["year"][year]["average_change"] = 0
+                account["year"][year]["sum"] = 0
 
         # Use year to get account data
         self.add_data()
@@ -134,7 +125,8 @@ class Portfolio_Widget(QWidget):
         # Add data to account dictionary list
         # Don't forget to update total list
 
-        for year in range((int(self.year) - 1), (int(self.year) + 1), 1):
+        for year in self.default_years_list:
+            year = int(year)
             for month in range(len(self.months_ls)):
                 if year == datetime.datetime.now().year and month > datetime.datetime.now().month: # break when it's current year and month
                     break
@@ -145,7 +137,7 @@ class Portfolio_Widget(QWidget):
                         account["year"][str(year)]["data"].append((month, sum_total))
                     else:
                         amount = self.get_account_amount(year, month, account)
-                        self.update_account_data(account, year, month, amount, sum_total)                      
+                        sum_total = self.update_account_data(account, year, month, amount, sum_total)                      
 
     def get_account_amount(self, year, month, account):
         return next(
@@ -162,6 +154,7 @@ class Portfolio_Widget(QWidget):
         else:
             # If data is not found for the requested month
             sum_total = self.fill_in_data(account, year, month, sum_total)
+        return sum_total
 
     def fill_in_data(self, account, year, month, sum_total):
         # If the "not found" data is not the beginning of January
@@ -270,7 +263,7 @@ class Portfolio_Widget(QWidget):
                 year["unfiltered_data"] = chronological_list
 
                 try:
-                    year["average_change"] = sum(item[1] for item in percent_ls) / len(percent_ls)
+                    year["average_change"] = round(sum(item[1] for item in percent_ls) / len(percent_ls), 2)
                 except ZeroDivisionError:
                     year["average_change"] = 0
 
@@ -309,12 +302,9 @@ class Portfolio_Widget(QWidget):
                     # Loop through all of the data that has been sorted chronologically
                     month = un_data[0] # get the month of the data point
                     text, fill = next(((item[1], False) for item in norm_data if item[0] == month), next(((item[1], True) for item in fill_data if item[0] == month), (Decimal(0.00), True)))
-                    # text = [item for item in norm_data if item[0] == month] # make sure we are getting the input data
-                    # text = str(text[1])
                     year["data_label"][month].setAlignment(Qt.AlignmentFlag.AlignCenter)
                     if fill: # input data not available for month
                         year["data_label"][month].setStyleSheet("font-weight: bold;") # Visually indicate that data is made up
-                        # text = [item for item in fill_data if item[0] == month] # CHANGES 
                     year["data_label"][month].setText(f"${text}")
                         
                     if str(year["year"]) == self.year: # make it visible 
@@ -324,22 +314,25 @@ class Portfolio_Widget(QWidget):
                         if param["code_name"] == "value":
                             year["data_label"][month].setGeometry(QRect(value_label_x_start, value_label_y_start, param["width"], param["height"]))
                             value_label_x_start += param["x_space"]
-                        
-                    # else: # if input data is available for month
-                    #     text = str(text[0][1])
-                    #     year["data_label"][month].setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    #     year["data_label"][month].setText(f"${text}")
-                        
-                    #     if str(year["year"]) == self.year: # make it visible 
-                    #         year["data_label"][month].setParent(self.scrollAreaWidgetContents)
-                        
-                    #     for param in self.widget_parameters:
-                    #         if param["code_name"] == "value":
-                    #             year["data_label"][month].setGeometry(QRect(value_label_x_start, value_label_y_start, param["width"], param["height"]))
-                    #             value_label_x_start += param["x_space"]
                 
                 value_label_x_start = 270
             
             for v_param in self.widget_parameters:
                 if v_param["code_name"] == "value":
                     value_label_y_start += v_param["y_space"]
+                    
+    def year_change(self, prev_year, new_year):
+        self.remove_prev_year_labels(prev_year=prev_year)
+        for account in self.account_dict.values():
+            account_year = account["year"][f'{new_year}']
+            for data_label in account_year['data_label']:
+                data_label.setParent(self.scrollAreaWidgetContents)
+                data_label.setVisible(True)  # Show labels for the newly selected year
+        
+    def remove_prev_year_labels(self, prev_year):
+        for account in self.account_dict.values():
+            account_year = account["year"][f'{prev_year}']
+            for data_label in account_year['data_label']:
+                data_label.setParent(None)
+                data_label.setVisible(False)  # Hide labels for the previous year
+                        

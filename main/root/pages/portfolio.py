@@ -48,7 +48,6 @@ class Portfolio(QWidget):
         self.portfolio_main_scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.portfolio_main_scrollArea.setWidgetResizable(True)
         self.portfolio_main_scrollArea.setObjectName("portfolio_main_scrollArea")
-
         
         self.portfolio_main_scrollAreaWidgetContents = QWidget()
         self.portfolio_main_scrollAreaWidgetContents.setEnabled(True)
@@ -69,7 +68,7 @@ class Portfolio(QWidget):
         
         # Update and stats widget
         # year var. & dict stats var. pass to -> stats Widget
-        self.portfolio_wid = Portfolio_Stats(self.portfolio_main_scrollAreaWidgetContents, self.database, self.year, self.account_dictionary)
+        self.portfolio_stats = Portfolio_Stats(self.portfolio_main_scrollAreaWidgetContents, self.database, self.year, self.account_dictionary)
         
         # Chart widget
         # pass dict stats widget var. -> chart widget
@@ -78,6 +77,10 @@ class Portfolio(QWidget):
                                     self.year)
         
         # Signals
+        self.portfolio_wid.stats_Year_comboBox.currentTextChanged.connect(self.update_year)
+        
+        # Evaluate signal
+        
         # Update signal
         
         # Add account signal
@@ -88,7 +91,14 @@ class Portfolio(QWidget):
         
         self.portfolio_main_scrollArea.setWidget(self.portfolio_main_scrollAreaWidgetContents)
         
+    def update_year(self):
+        self.prev_year = self.year
+        self.year = self.portfolio_wid.stats_Year_comboBox.currentText()
+        self.portfolio_stats.year = self.year
+        self.line_chart_wid.year = self.year
         
+        self.portfolio_stats.eval_year()
+        self.portfolio_wid.year_change(prev_year=self.prev_year, new_year=self.year)
     # def update_account(self):
     #     ...
     

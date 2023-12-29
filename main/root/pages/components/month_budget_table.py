@@ -100,19 +100,13 @@ class Month_Budget_Table(Ui_Form):
                          ),
                         Decimal(0.00)
                         )
-                    # For Debugging purposes
-                    # print(f"Value after Error: {value}")
                     item.setText(f"${value}")
-                    # For Debugging purposes
-                    # print(f"Changed cell at column {column}, row {row} to {value}")
                     self.itemchange = 0
                     
                     return
                     
             # If user chooses not to close application
             elif ret == QMessageBox.StandardButton.Cancel:
-                # results = self.database.category_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column])
-                # value = results[0][0]
                 value = next(
                         (
                             getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['old'] 
@@ -147,7 +141,10 @@ class Month_Budget_Table(Ui_Form):
             # self.database.change_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column], str(value))
             for month_budg in self.database.app_data['month_budget']['old']:
                 if month_budg.year == self.year and month_budg.month == rvar.month_dict[self.row_names[row]]:
-                    setattr(month_budg, self.columns[column], value)
+                    setattr(month_budg, self.columns[column].lower(), Decimal(value))
+                    month_budg.update()
+                    # Add change to update dictionary
+                    break
             ################# NEEDS UPDATE FOR SELF.DATABASE.APP_DATA['MONTH_BUDGET']['NEW']###############################
             
             # For Debugging purposes
@@ -159,25 +156,15 @@ class Month_Budget_Table(Ui_Form):
             for i, column in enumerate(changing_columns):
                 col = col_len - i
                 altered_item = self.budget_plan_tableWidget.item(row, col)
-                # For Debugging purposes
-                # print(f"Altered Item text Before Change: {altered_item.text()}")
                 
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]),
                     Decimal(0.00)
                     )
-                # For Debugging purposes
-                # print('results: ')
-                # print(results)
                 altered_item.setText(f"${results}")
                 
-                # For Debugging purposes
-                # print(f"Altered column: {col}")
-                # print(f"Altered row: {row} ")
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEnabled)
-                # For Debugging purposes
-                # print(f"Altered Item text: {altered_item.text()}")
             
             self.budget_plan_tableWidget.viewport().update()
             self.itemchange = 0
@@ -198,9 +185,6 @@ class Month_Budget_Table(Ui_Form):
                     (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
                     Decimal(0.00)
                     )
-                # For Debugging purposes
-                # print('results: ')
-                # print(results)
                 item.setText(f"${results}")
                 
                 if i >= len(self.columns) - 3:
@@ -208,16 +192,3 @@ class Month_Budget_Table(Ui_Form):
         
         self.itemchange = 0
                 
-#####################
-
-# EXAMPLE
-
-#####################
-
-# self._base_params_data_collect = [
-#             {"code_name": "exchange", "widget": QComboBox, "data_type": str, "values": r_var.EXCHANGES, "width": 200},
-#             {"code_name": "pairs", "widget": QComboBox, "data_type": str, "values": self.binance_symbols, "width": 150},
-#             {"code_name": "timeframe", "widget": QComboBox, "data_type": str, "values": r_var.TIME_FRAMES, "width": 150},
-#             {"code_name": "from_time", "widget": QDateEdit, "data_type": QDate, "width": 150},
-#             {"code_name": "to_time", "widget": QDateEdit, "data_type": QDate, "width": 150},
-#         ]

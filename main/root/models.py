@@ -68,7 +68,7 @@ class Month_Budget:
         self.left_amount = data[13]
         self.expected_ending_budget = data[14]
         self.year = self.id - (self.month * 10000)
-        self.month_name = [month for month, month_id in rvar.month_dict.items() if month_id == self.month]
+        self.month_name = next(month for month, month_id in rvar.month_dict.items() if month_id == self.month)
         
         self.dashbord_list = [self.month_name, self.earnings, self.food, self.grocery, self.transportation,
                               self.free_expense, self.investment, self.bills, self.support, self.goal,
@@ -85,6 +85,11 @@ class Month_Budget:
             'goal'           : 'goal',
             'free expense'   : 'free_expense'
         }
+    
+    def update(self):
+        self.total = self.food + self.bills + self.grocery + self.transportation + self.free_expense + self.investment + self.support
+        self.left_amount = self.earnings + self.total
+        self.expected_ending_budget = self.starting_budget + self.left_amount
         
 class Accounting_Type:
     
