@@ -134,8 +134,8 @@ class Budget_Breakdown(Ui_Form):
             total_earned = 0
             total_after_tax = 0
             savings = round(float(savings), 2)
-            state = self.state_comboBox.currentText()
-            state_id = (id.id for id in self.database.app_data['states']['old'] if id.state_name == state)
+            state_name = self.state_comboBox.currentText()
+            state_id = next(state.state_id for state in self.database.app_data['states']['old'] if state.state_name == state_name)
             state_tax_data: typing.List(typing.Tuple(float, int)) = [(filer.single_filer_rates, filer.single_filer_brackets) 
                                                                      for filer in self.database.app_data['state_income_tax']['old']
                                                                      if filer.state_id == state_id]
