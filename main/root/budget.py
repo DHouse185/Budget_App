@@ -189,6 +189,7 @@ class Budget(QWidget):
             self.conn.close()
             event.accept()
             self.transaction.transaction_addition.payback_popup.destroy()
+            self.budget_planning.budget_planning_plan.load_window.destroy()
             self.destroy()
             
         # If user chooses not to close application

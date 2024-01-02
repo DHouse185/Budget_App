@@ -127,7 +127,10 @@ class Budget_Planning(QWidget):
         self.budget_planning_breakdown.fill_table(monthly_spend)
         self.bp_linechart.fill_chart(self.budget_planning_breakdown.account_data_point)
         
-        self.amount_yearly_savings_label.setText(f"$ {self.budget_planning_breakdown.account_data_point[-1]}")
+        self.amount_yearly_savings_label.setText(f"$ {round(self.budget_planning_breakdown.account_data_point[-1], 2)}")
+        
+    def load(self):
+        ...
         
         
         

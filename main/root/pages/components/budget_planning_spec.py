@@ -1,10 +1,12 @@
 ##########  Python IMPORTs  ############################################################
 from pathlib import Path
 import typing
+import os
+import csv
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem
+from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QGridLayout, QPushButton
 from PyQt6.QtGui import QRegularExpressionValidator, QFont
 from PyQt6.QtCore import Qt, QRect, QRegularExpression
 ########################################################################################
@@ -43,14 +45,6 @@ class Budget_Breakdown(Ui_Form):
         self.create_table_items()
     
     def calc_wage_before_tax(self, monthly_wage: str):
-        # check = self.actual_wage_check()
-        
-        # if not check:
-        #     return check
-                
-        # planned_m_wage = monthly_wage.replace("$ ", "")
-        # if planned_m_wage == "- -":
-        #     return False
         planned_m_wage = monthly_wage
         
         self.mp_at = round((float(self.average_actualy_m_wage_lineEdit.text())), 2) - float(planned_m_wage) 
@@ -235,4 +229,4 @@ class Budget_Breakdown(Ui_Form):
                 return rate
 
         # If value doesn't match any range, return a default rate
-        return 0  # Or any other default calculation
+        return 0  # Or any other default calculation        
