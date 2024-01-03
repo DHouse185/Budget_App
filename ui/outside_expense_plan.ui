@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1890</width>
+    <height>630</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: none;
+        font: 14pt &quot;Nirmala UI&quot;;
+}
+QWidget#side_menu {
+    background-color: #4e5564;
+    color: #ffffff;
+    border: 1px solid #4e5564;
+    border-radius: 16px;
+    font: 14pt &quot;Nirmala UI&quot;;
+}
+QLabel#Dashboard_Title {
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    font: 20pt &quot;Nirmala UI&quot;;
+}
+QLabel#Eat_Out_Image {
+    background-image: url(:/images/pngaaa.com-2384833.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Grocery_Image {
+    background-image: url(:/images/pngaaa.com-2138453.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Transportation_Image {
+    background-image: url(:/images/pngaaa.com-2182093.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Free_Expense_Image {
+    background-image: url(:/images/pngaaa.com-1261106.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Bills_Image {
+    background-image: url(:/images/pngaaa.com-1433501.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Investment_Image {
+    background-image: url(:/images/pngaaa.com-3584133.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Support_Image {
+    background-image: url(:/images/pngaaa.com-2914571.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QLabel#Goal_Image {
+    background-image: url(:/images/pngaaa.com-848656.png);
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:hover {
+    background-image: url(:/button_image/Burger_button_hover.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#side_menu_button:pressed {
+    background-image: url(:/button_image/Burger_button_click.png);
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton#remove_button_watchlist {
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#remove_button_watchlist:hover {
+    background-color: #ff6c6c;
+    border: 1px solid #ffffff;
+}
+QPushButton#remove_button_watchlist:pressed {
+    background-color: #aa0000;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Add_strategy:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Add_strategy:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Activation {
+    background-color: #00ad0e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Activation:hover {
+    background-color: #67ff74;
+    border: 1px solid #ffffff;
+}
+QPushButton#Activation:pressed {
+    background-color: #006408;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Blue_button {
+    background-color: #0003bb;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Blue_button:hover {
+    background-color: #4446d1;
+    border: 1px solid #ffffff;
+}
+QPushButton#Blue_button:pressed {
+    background-color: #000277;
+    border: 1px solid #a3a3a3;
+}
+QPushButton#Yellow_button {
+    background-color: #a5bd1e;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton#Yellow_button:hover {
+    background-color: #e5ff54;
+    border: 1px solid #ffffff;
+}
+QPushButton#Yellow_button:pressed {
+    background-color: #81960f;
+    border: 1px solid #a3a3a3;
+}
+QCheckBox {
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 6px;
+}
+QTextEdit {
+    background-color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    color: #ffffff;
+    padding: 5px;
+    border-color: #ffffff;
+    border-radius: 20px;
+}
+QProgressBar {
+    border: 1px solid #444444;
+    border-radius: 7px;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 10pt;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #3a3a3a;
+    width: 5px;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #3a3a3a;
+    width: 10px;
+    margin: 16px 0 16px 0;
+}
+QScrollBar::handle:vertical {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QScrollBar:horizontal {
+    border: none;
+    background-color: #3a3a3a;
+    height: 10px;
+    margin: 0px 16px 0 16px;
+}
+QScrollBar::handle:horizontal {
+    background-color: #444444;
+    border-radius: 5px;
+}
+QTabWidget {
+    background-color: #2e2e2e;
+    border: none;
+}
+QTabBar::tab {
+    background-color: #2e2e2e;
+    color: #b1b1b1;
+    padding: 8px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: #3a3a3a;
+    color: white;
+}</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1881</width>
+     <height>621</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="outside_expense_planning_label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>421</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 22pt &quot;Nirmala UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Next Outside Budget Expense</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="monthly_review_tableView_5">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>180</y>
+      <width>881</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 0);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="new_yearly_savings_amount_label">
+    <property name="geometry">
+     <rect>
+      <x>1710</x>
+      <y>160</y>
+      <width>150</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 800 16pt &quot;Nirmala UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>$1,555,555.55</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="new_yearly_savings_label">
+    <property name="geometry">
+     <rect>
+      <x>1390</x>
+      <y>160</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 800 16pt &quot;Nirmala UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>New Yearly Savings :</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>180</y>
+      <width>351</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="description_label">
+       <property name="styleSheet">
+        <string notr="true">font: 500 16pt &quot;Nirmala UI&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Description</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="description_lineEdit"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="date_label">
+       <property name="styleSheet">
+        <string notr="true">font: 500 16pt &quot;Nirmala UI&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Date </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="date_dateEdit">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="amount_label">
+       <property name="styleSheet">
+        <string notr="true">font: 500 16pt &quot;Nirmala UI&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Amount</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="amount_doubleSpinBox">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="evaluate_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>580</y>
+      <width>164</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>Evaluate</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="undo_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>1390</x>
+      <y>500</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #c30000;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #ff5a5a;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #8c0000;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>Undo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="redo_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>1390</x>
+      <y>550</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #00aa00;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #00ff00;
+    border: 1px solid #5a5a5a;
+}
+QPushButton:pressed {
+	background-color: #007900;
+    border: 1px solid #5a5a5a;
+}</string>
+    </property>
+    <property name="text">
+     <string>Redo</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

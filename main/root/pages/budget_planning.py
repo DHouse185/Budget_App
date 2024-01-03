@@ -18,6 +18,7 @@ from root.database import Database
 from root.pages.components.budget_planning import Budget_Plan 
 from root.pages.components.budget_planning_spec import Budget_Breakdown 
 from root.pages.components.budget_planning_lc_1 import Budget_Plan_LineChart 
+from root.pages.components.expense_planning import Expense_planning 
 ########################################################################################
             
 class Budget_Planning(QWidget):
@@ -88,7 +89,8 @@ class Budget_Planning(QWidget):
                                                            self.budget_planning_plan.expenses_dict, 
                                                            self.database)
         self.bp_linechart = Budget_Plan_LineChart(self.budget_p_main_scrollAreaWidgetContents, self.budget_planning_breakdown.row_names)
-        
+        self.expense_planning = Expense_planning(self.budget_p_main_scrollAreaWidgetContents, self.budget_planning_breakdown.row_names)
+        # self.expense_planning_line_chart()
         # Update and stats widget
         # year var. & dict stats var. pass to -> stats Widget
         
@@ -99,6 +101,7 @@ class Budget_Planning(QWidget):
         
         # Signals
         self.budget_planning_breakdown.confirm_pushButton.clicked.connect(self.project_earnings)
+        self.expense_planning.confirm_pushButton.clicked.connect(self.expense_plan_fill_chart)
         # Update signal
         
         # Add account signal
@@ -128,8 +131,11 @@ class Budget_Planning(QWidget):
         self.bp_linechart.fill_chart(self.budget_planning_breakdown.account_data_point)
         
         self.amount_yearly_savings_label.setText(f"$ {round(self.budget_planning_breakdown.account_data_point[-1], 2)}")
+        self.expense_planning.confirm_pushButton.setEnabled(True)
         
-    def load(self):
+    def expense_plan_fill_chart(self):
+        data_points = self.budget_planning_breakdown.account_data_point
+        self.expense_planning.fill_chart(data_points)
         ...
         
         
