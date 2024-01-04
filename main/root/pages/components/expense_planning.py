@@ -10,7 +10,7 @@ import datetime
 from PyQt6.QtWidgets import (QDateEdit, 
                              QWidget, 
                              QMessageBox, 
-                             QPushButton, 
+                             QSizePolicy, 
                              QWidget,
                              QGridLayout,
                              QLabel,
@@ -98,7 +98,9 @@ class Expense_planning(Ui_Form):
 
         chart_view = QChartView(self.chart, self.expense_plan)
         chart_view.setRenderHint(QPainter.RenderHint.Antialiasing)
-        chart_view.setGeometry(QRect(1000, 60, 881, 481))
+        chart_view.setGeometry(QRect(1000, 25, 881, 526))
+        chart_view.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        chart_view.setMinimumSize(500, 300)  # Adjust the minimum size as needed
         
         ##################################################################################
         # Signals                                                                        #

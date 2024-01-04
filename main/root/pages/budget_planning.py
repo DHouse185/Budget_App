@@ -19,6 +19,7 @@ from root.pages.components.budget_planning import Budget_Plan
 from root.pages.components.budget_planning_spec import Budget_Breakdown 
 from root.pages.components.budget_planning_lc_1 import Budget_Plan_LineChart 
 from root.pages.components.expense_planning import Expense_planning 
+from root.pages.components.outside_expense import Outside_Expense 
 ########################################################################################
             
 class Budget_Planning(QWidget):
@@ -49,7 +50,6 @@ class Budget_Planning(QWidget):
         self.budget_p_main_scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.budget_p_main_scrollArea.setWidgetResizable(True)
         self.budget_p_main_scrollArea.setObjectName("budget_p_main_scrollArea")
-
         
         self.budget_p_main_scrollAreaWidgetContents = QWidget()
         self.budget_p_main_scrollAreaWidgetContents.setEnabled(True)
@@ -89,26 +89,16 @@ class Budget_Planning(QWidget):
                                                            self.budget_planning_plan.expenses_dict, 
                                                            self.database)
         self.bp_linechart = Budget_Plan_LineChart(self.budget_p_main_scrollAreaWidgetContents, self.budget_planning_breakdown.row_names)
-        self.expense_planning = Expense_planning(self.budget_p_main_scrollAreaWidgetContents, self.budget_planning_breakdown.row_names)
-        # self.expense_planning_line_chart()
-        # Update and stats widget
-        # year var. & dict stats var. pass to -> stats Widget
-        
-        
-        # Chart widget
-        # pass dict stats widget var. -> chart widget
+        self.x_axis_names = self.budget_planning_breakdown.row_names.copy()
+        for name in self.x_axis_names:
+            name.replace('Week ', 'W')
+        self.expense_planning = Expense_planning(self.budget_p_main_scrollAreaWidgetContents, self.x_axis_names)
+        self.outside_expense = Outside_Expense(self.budget_p_main_scrollAreaWidgetContents, self.x_axis_names)
 
-        
         # Signals
         self.budget_planning_breakdown.confirm_pushButton.clicked.connect(self.project_earnings)
         self.expense_planning.confirm_pushButton.clicked.connect(self.expense_plan_fill_chart)
-        # Update signal
-        
-        # Add account signal
-        
-        # Remove account signal
-        
-        # Chart signal
+        self.outside_expense.evaluate_pushButton.clicked.connect(self.outside_expense_plan)
         
         self.budget_p_main_scrollArea.setWidget(self.budget_p_main_scrollAreaWidgetContents)
         
@@ -136,7 +126,12 @@ class Budget_Planning(QWidget):
     def expense_plan_fill_chart(self):
         data_points = self.budget_planning_breakdown.account_data_point
         self.expense_planning.fill_chart(data_points)
-        ...
+        self.outside_expense.evaluate_pushButton.setEnabled(True)
+    
+    def outside_expense_plan(self):
+        data_points = self.expense_planning.expense_data_points
+        self.outside_expense.evaluate_expense(data_points)
+        
         
         
         
