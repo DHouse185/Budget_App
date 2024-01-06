@@ -169,7 +169,7 @@ class Portfolio_Stats(Ui_Form):
         
         account = next(
             (
-                acc for acc in self.database.app_data['account_management']['old'] if acc.year == update_year
+                acc for acc in self.database.app_data['account_management']['start_data'] if acc.year == update_year
                 and acc.month == update_month
                 and acc.account_id == account_id
              ),
@@ -177,7 +177,7 @@ class Portfolio_Stats(Ui_Form):
         if account is not None:
             setattr(account, 'amount', amount)  
         else:
-            self.database.app_data['account_management']['old'].append(
+            self.database.app_data['account_management']['start_data'].append(
                 Account_Management(
                     (
                         (1000000 * account_id) + (10000 * update_month) + int(update_year),
@@ -212,7 +212,7 @@ class Portfolio_Stats(Ui_Form):
         # If user chooses to change amount
         if ret == QMessageBox.StandardButton.Yes:
             # add_ac = self.database.add_account(account_)
-            _ac = next((acc.account for acc in self.database.app_data['account']['old'] if acc.account == account_), False)
+            _ac = next((acc.account for acc in self.database.app_data['account']['start_data'] if acc.account == account_), False)
             
             if not _ac:
                 QMessageBox.information(self.portfolio_stats, "Error",
@@ -221,15 +221,15 @@ class Portfolio_Stats(Ui_Form):
                 return
             
             elif _ac:
-                account_id = max([id.id for id in self.database.app_data['account']['old']])  
-                self.database.app_data['account']['old'].append(Account((account_id, account_)))
+                account_id = max([id.id for id in self.database.app_data['account']['start_data']])  
+                self.database.app_data['account']['start_data'].append(Account((account_id, account_)))
                 # account_id_ = self.database.account_id_request(account_)
                 # account_id_ = account_id_[0][0]
 
                 # self.database.insert_account_data(update_year, update_month, account_id, amount)
                 account = next(
                     (
-                        acc for acc in self.database.app_data['account_management']['old'] if acc.year == update_year
+                        acc for acc in self.database.app_data['account_management']['start_data'] if acc.year == update_year
                         and acc.month == update_month
                         and acc.account_id == account_id
                         ),
@@ -238,7 +238,7 @@ class Portfolio_Stats(Ui_Form):
                 if account is not None:
                     setattr(account, 'amount', amount)  
                 else:
-                    self.database.app_data['account_management']['old'].append(
+                    self.database.app_data['account_management']['start_data'].append(
                         Account_Management(
                             (
                                 (1000000 * account_id) + (10000 * update_month) + int(update_year),
@@ -274,7 +274,7 @@ class Portfolio_Stats(Ui_Form):
                     account_id = query_account[0][2]
                     
                     # find_account = self.database.account_id_request(account_)
-                    find_account = next((id for id in self.database.app_data['account']['old'] if id.account == account_ and id.id == account_id), None)
+                    find_account = next((id for id in self.database.app_data['account']['start_data'] if id.account == account_ and id.id == account_id), None)
                     
                     if find_account is None:
                         QMessageBox.information(self.portfolio_stats, "Error",
@@ -282,7 +282,7 @@ class Portfolio_Stats(Ui_Form):
                                     QMessageBox.StandardButton.Ok)
                         return
                     
-                    self.database.app_data['account']['old'].remove(find_account)
+                    self.database.app_data['account']['start_data'].remove(find_account)
                     # self.database.remove_account(account_, account_id)
                         
                     # print("Successfully removed")        

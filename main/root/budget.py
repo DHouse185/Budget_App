@@ -69,11 +69,11 @@ class Budget(QWidget):
         self.actionSave_Workspace.setText("Save Workspace")
         
         # Action of "Save Workspace" in menu bar
-        #               self.actionSave_Workspace.triggered.connect(self._save_workspace)
+        self.actionSave_Workspace.triggered.connect(self.save_changes)
         
         # On the menu bar there will be a menu called "Workspace"
         workspace_menu = self.menu_bar.addMenu('&Workspace')
-        #           workspace_menu.addAction(self.actionSave_Workspace)
+        workspace_menu.addAction(self.actionSave_Workspace)
         
         # Prepare Pages (i.e. Stack Widgets) for Main Window
         # Mainwindow -> central widget -> StackWidget
@@ -172,7 +172,30 @@ class Budget(QWidget):
         self.side_menu.portfolio_pushButton.clicked.connect(self.change_to_portfolio_page)
         self.side_menu.budget_planning_pushButton.clicked.connect(self.change_to_budget_planning_page)
     
-    
+    def save_changes(self):
+        unsaved_data_list = self.database.app_data['unsaved_data']
+        proceed = rfunc.unsave_message(self.centralwidget, unsaved_data_list)
+        if proceed:
+            for change_type in unsaved_data_list.keys():
+                if change_type == 'INSERT':
+                    for model in unsaved_data_list[change_type]:
+                        insert_constructor = 'INSERT INTO ' + model.get_table() + 'test ' + model.insert_column()
+                        print(insert_constructor)
+                        self.database.insert_data(insert_constructor, model)
+                        
+                elif change_type == 'DELETE':
+                    for model_type in unsaved_data_list[change_type]:
+                        ...
+
+                            
+                if change_type == 'UPDATE':
+                    for model_type in unsaved_data_list[change_type]: 
+                        ...
+            self.database.clear_unsave_data()      
+            QMessageBox.information(self, "Data Saved",
+                                 "Data was successfully saved",
+                                 QMessageBox.StandardButton.Close)
+        
     def closeEvent(self, event):
         """
         Custom close event handler\n

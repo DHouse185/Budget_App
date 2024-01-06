@@ -30,6 +30,7 @@ class Yearly_Stats(Ui_Form):
         self.stats.setGeometry(QRect(0, 0, 390, 1650))
         self.database = database
         self.update_data()
+        self.stats_Year_comboBox.currentIndexChanged.connect(self.update_data)
 
     def update_data(self):
         self.year = int(self.stats_Year_comboBox.currentText())
@@ -50,7 +51,7 @@ class Yearly_Stats(Ui_Form):
         
         self.year_starting_budg: Optional[Decimal] = next(
             (
-                start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["old"] 
+                start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["start_data"] 
                 if start_budg.month == 1 and start_budg.year == self.year
                 ),
             Decimal(0.00)
@@ -58,16 +59,17 @@ class Yearly_Stats(Ui_Form):
         self.amount_Starting_Budget_label.setText(f"${self.year_starting_budg}")
         self.budget_for_year: Decimal = sum(
             [
-                year_budg.total for year_budg in self.database.app_data["month_budget"]["old"] 
+                year_budg.total for year_budg in self.database.app_data["month_budget"]["start_data"] 
                 if year_budg.year == self.year
                 ]
             )
         self.amount_Budget_For_Year_label.setText(f"${self.budget_for_year}")
-        self.total_spent = self.transaction_df.loc[self.transaction_df['Transaction Type'] == 'Expense', 'Amount'].sum() # I believe this is used somewhere else in the code. Perhaps move to App_Database
+        self.year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year)]
+        self.total_spent = self.year_df.loc[self.year_df['Transaction Type'] == 'Expense', 'Amount'].sum() # I believe this is used somewhere else in the code. Perhaps move to App_Database
         self.amount_Total_Spent_label.setText(f"${self.total_spent}")
         self.planned_savings: Decimal = sum(
             [
-                plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["old"] 
+                plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["start_data"] 
                 if plan_sav.year == self.year
                 ]
             )
@@ -105,7 +107,7 @@ class Yearly_Stats(Ui_Form):
         
         earnings_for_year: Decimal = sum(
             [
-                year_earn.earnings for year_earn in self.database.app_data["month_budget"]["old"] 
+                year_earn.earnings for year_earn in self.database.app_data["month_budget"]["start_data"] 
                 if year_earn.year == self.year
                 ]
             )
@@ -113,10 +115,10 @@ class Yearly_Stats(Ui_Form):
         
         self.amount_Balance_Left_in_Budget_Salary_label.setText(f"${balance_left_in_budg_salary}")
         
-        daily_exp_goal = round((self.budget_for_year / self.year_range), 2) if self.year_range != 0 else Decimal(0.00)
+        daily_exp_goal = Decimal(round((self.budget_for_year / self.year_range), 2)) if self.year_range != 0 else Decimal(0.00)
         self.amount_Daily_Expense_Goal_label.setText(f"${daily_exp_goal}")
         
-        daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
+        daily_avg_exp = Decimal(round((self.total_spent / self.days_passed), 2)) if self.days_passed != 0 else Decimal(0.00)
         self.amount_Daily_Average_Expense_label.setText(f"${daily_avg_exp}")
             
         current_savings = round((daily_exp_goal - daily_avg_exp), 2)

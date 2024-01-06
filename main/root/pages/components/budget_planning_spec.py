@@ -37,7 +37,7 @@ class Budget_Breakdown(Ui_Form):
         self.current_savings_lineEdit.setValidator(self._valid_float)
         
         # states = self.database.retrieve_states()
-        self.states_ls: typing.List[str] = [state.state_name for state in self.database.app_data['states']['old']]
+        self.states_ls: typing.List[str] = [state.state_name for state in self.database.app_data['states']['start_data']]
         self.state_comboBox.addItems(self.states_ls)
         self.amount_fica_label.setText("7.65 %")
         
@@ -135,9 +135,9 @@ class Budget_Breakdown(Ui_Form):
             total_after_tax = 0
             savings = round(float(savings), 2)
             state_name = self.state_comboBox.currentText()
-            state_id = next(state.state_id for state in self.database.app_data['states']['old'] if state.state_name == state_name)
+            state_id = next(state.state_id for state in self.database.app_data['states']['start_data'] if state.state_name == state_name)
             state_tax_data: typing.List(typing.Tuple(float, int)) = [(filer.single_filer_rates, filer.single_filer_brackets) 
-                                                                     for filer in self.database.app_data['state_income_tax']['old']
+                                                                     for filer in self.database.app_data['state_income_tax']['start_data']
                                                                      if filer.state_id == state_id]
             federal_tax_data = [(0.1, 0), (0.12, 11001), (0.22, 44726), (0.24, 95376),
                                 (0.32, 182101), (0.35, 231251), (0.37, 578126)]

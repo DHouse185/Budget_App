@@ -53,7 +53,7 @@ class Popup_window(QWidget):
         self.grid_frame.setSpacing(5)
         self.vertical_pop_up.addLayout(self.grid_frame)
         self.vertical_pop_up.setAlignment(Qt.AlignmentFlag.AlignTop)
-        self.payback_data = database.app_data['payback']['old']
+        self.payback_data = database.app_data['payback']['start_data']
         ################### Test ######################################################
         test_payback_data = Payback((2, 'test', 'test', Decimal(50.00), Decimal(500.00)))
         self.payback_data.append(test_payback_data)
@@ -495,28 +495,28 @@ class Add_Transaction(Ui_Form):
         self.create_table_dict()
         
         # Add Transfer to Accounts
-        self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['old']]
+        self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
         for _, account in enumerate(self.accounts):  
             self.transfer_To_comboBox.addItem(account)
             self.account_comboBox.addItem(account)
         # Add category type
-        self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['old']]
+        self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['start_data']]
         for _, category_type in enumerate(self.category_types):  
             self.category_Type_comboBox.addItem(category_type)
         # Add sub categories
-        self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['old']]
+        self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['start_data']]
         for _, sub_category in enumerate(self.sub_categories):  
             self.sub_Category_comboBox.addItem(sub_category)   
         # Add Categories
-        self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['old']]
+        self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['start_data']]
         for _, category in enumerate(self.categories):  
             self.category_comboBox.addItem(category)
         # Add Accounting type
-        self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['old']]
+        self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['start_data']]
         for _, accounting in enumerate(self.accountings):  
             self.credit_Debit_comboBox.addItem(accounting)
         # Add Frequency
-        self.frequencies: List[str] = [freq.frequency for freq in self.database.app_data['frequency']['old']]
+        self.frequencies: List[str] = [freq.frequency for freq in self.database.app_data['frequency']['start_data']]
         for _, frequency in enumerate(self.frequencies):  
             self.frequency_comboBox.addItem(frequency)
         
@@ -556,28 +556,28 @@ class Add_Transaction(Ui_Form):
         self.accountings_dict = dict()
         self.frequency_dict = dict()
         
-        accounts: List[Account] = self.database.app_data['account']['old']
+        accounts: List[Account] = self.database.app_data['account']['start_data']
         ######## POTENTIALLY ADD TO DATABASE APP_DATA? ######################################## 
         for _, account in enumerate(accounts):  
             self.accounts_dict[account.account] = account.id
         # Add category type
-        category_types: List[Category_Type] = self.database.app_data['category_type']['old']
+        category_types: List[Category_Type] = self.database.app_data['category_type']['start_data']
         for _, category_type in enumerate(category_types):  
             self.category_type_dict[category_type.category_type] = category_type.id
         # Add sub categories
-        sub_categories: List[Sub_Category] = self.database.app_data['sub_category']['old']
+        sub_categories: List[Sub_Category] = self.database.app_data['sub_category']['start_data']
         for _, sub_category in enumerate(sub_categories):  
             self.sub_categories_dict[sub_category.sub_category] = sub_category.id
         # Add Categories
-        categories: List[Category] = self.database.app_data['category']['old']
+        categories: List[Category] = self.database.app_data['category']['start_data']
         for _, category in enumerate(categories):  
             self.categories_dict[category.category] = category.id
         # Add Accounting type
-        accountings : List[Accounting_Type]= self.database.app_data['accounting_type']['old']
+        accountings : List[Accounting_Type]= self.database.app_data['accounting_type']['start_data']
         for _, accounting in enumerate(accountings):  
             self.accountings_dict[accounting.type] = accounting.id
         # Add Frequency
-        frequencies : List[Frequency]= self.database.app_data['frequency']['old']
+        frequencies : List[Frequency]= self.database.app_data['frequency']['start_data']
         for _, frequency in enumerate(frequencies):  
             self.frequency_dict[frequency.frequency] = frequency.id
         ######## POTENTIALLY ADD TO DATABASE APP_DATA? ########################################
@@ -637,7 +637,7 @@ class Add_Transaction(Ui_Form):
         category_type = self.category_Type_comboBox.currentText()
         category_type_id = self.category_type_dict[category_type]
         
-        max_id = max([trans.id for trans in self.database.app_data['transaction_data']['old']])
+        max_id = max([trans.id for trans in self.database.app_data['transaction_data']['start_data']])
         trans_temp_id = random.randint((max_id + 1), (max_id + 10))
         
         transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id]
@@ -651,7 +651,8 @@ class Add_Transaction(Ui_Form):
             else:
                 pass
         transaction = Transaction((max_id, date_datetime, account, description, round(Decimal(amount), 2), category, sub_category, category_type, payback, payback_id, frequency, accounting))
-        self.database.app_data['transaction_data']['old'].append(transaction) # Change to 'unsaved' or 'new' later
+        self.database.app_data['transaction_data']['start_data'].append(transaction) # Change to 'unsaved' or 'new' later
+        self.database.app_data['unsaved_data']['INSERT'].append(transaction)
         # Add Transaction to insert dictionary
         self.payback_popup.update_payback_dict(round(Decimal(amount), 2))
         df2 = {'ID': trans_temp_id, 'Account': account, 'Description': description, 'Amount': round(Decimal(amount), 2), 'Category': category, 'SubCategory': sub_category, 'Transaction Type': category_type}

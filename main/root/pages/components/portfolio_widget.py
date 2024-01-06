@@ -51,7 +51,7 @@ class Portfolio_Widget(QWidget):
         self.stats_Year_comboBox.setStyleSheet("font: 14pt \"Nirmala UI\";")
         self.stats_Year_comboBox.setObjectName("stats_Year_comboBox")
         # Default years
-        self.default_years_list = ["2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"] # Place somewhere in Databse?
+        self.default_years_list = ["2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"] # Place somewhere in Databse?
         self.stats_Year_comboBox.addItems(self.default_years_list)
         self.stats_Year_comboBox.setCurrentIndex(0)
         # Get year
@@ -78,7 +78,7 @@ class Portfolio_Widget(QWidget):
                     month_label_x_start += param["x_space"]
 
         # Get account list
-        account_ls: typing.List[Account] = self.database.app_data['account']['old']
+        account_ls: typing.List[Account] = self.database.app_data['account']['start_data']
         self.account_dict = dict()
 
         for account in account_ls:
@@ -141,7 +141,7 @@ class Portfolio_Widget(QWidget):
 
     def get_account_amount(self, year, month, account):
         return next(
-            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['old']
+            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['start_data']
             if mon_amount.month_id == month and mon_amount.account_id == account["account_id"] 
             and mon_amount.year == account["year"][str(year)]["year"]),
             None
@@ -191,7 +191,7 @@ class Portfolio_Widget(QWidget):
 
     def fill_in_from_previous_year(self, account, year, month, sum_total):
         amount = next(
-            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['old']
+            (mon_amount.amount for mon_amount in self.database.app_data['account_management']['start_data']
             if mon_amount.month_id == 12 and mon_amount.account_id == account["account_id"] 
             and mon_amount.year == (account["year"][str(year)]["year"] - 1)),
             None

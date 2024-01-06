@@ -160,9 +160,10 @@ class Transactions(QWidget):
 
             if ret == QMessageBox.StandardButton.Yes:
                 # Utilizing the transaction ID# put in remove transaction dictionary. if in unsaved dictionary remove from that dictionary
-                transaction = next((trans for trans in self.database.app_data['transaction_data']['old'] if trans.id == int(row_data["ID"])), None)
+                transaction = next((trans for trans in self.database.app_data['transaction_data']['start_data'] if trans.id == int(row_data["ID"])), None)
                 if transaction is not None:
-                    self.database.app_data['transaction_data']['old'].remove(transaction)
+                    self.database.app_data['transaction_data']['start_data'].remove(transaction)
+                    # self.database.app_data['unsaved_data']['DELETE'].remove(transaction)
                 # Remove the row from the model and DataFrame
                 self.transaction_model.removeRow(row)
                 self.transaction_stats.update_data()

@@ -60,6 +60,7 @@ class Expense_planning(Ui_Form):
         # Chart                                                                          #
         ##################################################################################
         self.x_axis_name = x_axis_names
+        self.x_axis_name[:] = self.x_axis_name[::2]
 
         self.qline_norm = QLineSeries()
         self.qline_norm.setName("Portfolio Chart")

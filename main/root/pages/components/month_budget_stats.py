@@ -25,7 +25,7 @@ class Month_Budget_Stats(Ui_Form):
         
         self.database = database        
         self.year = int(self.month_budget_year_comboBox.currentText())
-        self.categories = [cat.category for cat in self.database.app_data['category']['old']]
+        self.categories = [cat.category for cat in self.database.app_data['category']['start_data']]
         self.categories.remove('Payment')
         self.categories.append('total')
         self.categories.append('left_amount')
@@ -43,15 +43,15 @@ class Month_Budget_Stats(Ui_Form):
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict[category_title.lower()].setText(f"${category_budget}")
         
     def change_year(self, year: str):
@@ -74,13 +74,13 @@ class Month_Budget_Stats(Ui_Form):
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year])
+                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
                 self.new_label_dict[category_title.lower()].setText(f"${category_budget}")

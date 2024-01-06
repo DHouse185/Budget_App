@@ -1,16 +1,54 @@
 ########## Python IMPORTs  #############################################################
 import os
+import typing
 from datetime import datetime
 ########################################################################################
 
 ########## Third Party Python IMPORTs  #################################################
 from cryptography.fernet import Fernet
+from PyQt6.QtWidgets import QWidget, QMessageBox
 ########################################################################################
 
 ##########  Created files IMPORTS  #####################################################
-
+from root.models import (Transaction, Month_Budget, Accounting_Type, Sub_Category,
+                         Category, Account, Category_Type, App_Month, Account_Management,
+                         Goal, Frequency, States, States_Income_Taxes, Payback)
+import root.helper.root_variables as rvar
 ########################################################################################
-
+def unsave_message(parent: QWidget, unsaved_data_list: typing.List) -> bool:
+    for changes in unsaved_data_list.values():
+        if changes != []:
+            unsaved_detected = True
+            break
+    if unsaved_detected:
+        message = 'The following data has not been saved yet. Would you like to save it?\n'
+        for change_type in unsaved_data_list.keys():
+            if change_type == 'INSERT':
+                for model_type in unsaved_data_list[change_type]:
+                    if model_type.__class__ == Transaction:
+                        message += "\n".join([f"Add Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+            elif change_type == 'DELETE':
+                for model_type in unsaved_data_list[change_type]:
+                    
+                    ...
+                    # if model_type.__class__ == Transaction:
+                    #     message += "\n".join([f"Transaction {model_type.description} - Amount: {model_type.amount} Account:{model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+                        
+            elif change_type == 'UPDATE':
+                for model_type in unsaved_data_list[change_type]:
+                    ...
+                    # if model_type.__class__ == Transaction:
+                    #     message += "\n".join([f"Transaction {model_type.description} - Amount: {model_type.amount} Account:{model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+        ret = QMessageBox.question(parent, "Unsaved Data", message, QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        
+        if ret == QMessageBox.StandardButton.Yes:
+            return True
+        else:
+            return False
+    
+def save_handeler(unsaved_data_list):
+    ...
+    
 def decrypt(text, key):
         """"
         Description: This program will read the key and encrypted pwd generated

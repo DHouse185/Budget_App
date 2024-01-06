@@ -49,6 +49,28 @@ class Transaction:
         self.month = self.date.month
         self.year = self.date.year
         
+    def get_table(self):
+        return 'transaction_'
+
+    def insert_column(self):
+        return '(transaction_date, transaction_name, amount, category_id, sub_category_id, account_id, category_type_id, \
+month_id, accounting_id, frequency_id, payback_id) VALUES \
+(%(date)s, %(name)s, %(amount)s, %(cate)s, %(sub_cate)s, %(acc)s, %(cate_typ)s, %(month)s, %(accing)s, %(freq)s, %(pay)s)'
+            
+    def insert_data(self, app_data) -> dict:
+        values = {'date' : self.date,
+                  'name' : self.description,
+                  'amount' : self.amount,
+                  'cate' : next(cate.id for cate in app_data['category']['start_data'] if cate.category == self.category),
+                  'sub_cate' : next(cate.id for cate in app_data['sub_category']['start_data'] if cate.sub_category == self.sub_category),
+                  'acc' : next(cate.id for cate in app_data['account']['start_data'] if cate.account == self.account),
+                  'cate_typ' : next(cate.id for cate in app_data['category_type']['start_data'] if cate.category_type == self.category_type),
+                  'month' : self.month,
+                  'accing' : next(cate.id for cate in app_data['accounting_type']['start_data'] if cate.type == self.accounting_type),
+                  'freq' : next(cate.id for cate in app_data['frequency']['start_data'] if cate.frequency == self.frequency),
+                  'pay' : self.payback_id,}
+        return values
+        
 class Month_Budget:
     
     def __init__(self, data: tuple):
@@ -90,43 +112,86 @@ class Month_Budget:
         self.total = self.food + self.bills + self.grocery + self.transportation + self.free_expense + self.investment + self.support
         self.left_amount = self.earnings + self.total
         self.expected_ending_budget = self.starting_budget + self.left_amount
-        
+
+    def get_table(self):
+        return 'month_budget_'
+    
+    def insert_column(self):
+        return '(month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense, investment,\
+            support, goal, starting_budget)'
+
 class Accounting_Type:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.type = data[1]
-        
+
+    def get_table(self):
+        return 'accounting_type_'
+    
+    def insert_column(self):
+        return '(accounting)'
+
 class Sub_Category:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.sub_category = data[1]
         
+    def get_table(self):
+        return 'sub_category_'
+    
+    def insert_column(self):
+        return '(sub_category)'
+
 class Category:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.category = data[1]
         
+    def get_table(self):
+        return 'category_'
+    
+    def insert_column(self):
+        return '(category)'
+
 class Account:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.account = data[1]
         
+    def get_table(self):
+        return 'account_'
+    
+    def insert_column(self):
+        return '(account)'
+
 class Category_Type:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.category_type = data[1]
         
+    def get_table(self):
+        return 'category_type_'
+    
+    def insert_column(self):
+        return '(category_type)'
+
 class App_Month:
     
     def __init__(self, data: tuple):
         self.id = data[0]
         self.month = data[1]
         
+    def get_table(self):
+        return 'month_'
+    
+    def insert_column(self):
+        return '(month)'
+
 class Account_Management:
     
     def __init__(self, data: tuple):
@@ -141,6 +206,12 @@ class Account_Management:
             self.month_id = 0
             self.year = self.month_year_id
         
+    def get_table(self):
+        return 'account_management_'
+    
+    def insert_column(self):
+        return '(month_year_account_id, month_year_id, month_id, account_id, amount)'
+
 class Goal:
 
     def __init__(self, data: tuple):
@@ -154,6 +225,12 @@ class Goal:
         self.end_date = data[7]
         self.complete = data[8]
         
+    def get_table(self):
+        return 'goals_'
+    
+    def insert_column(self):
+        return '(goal_description, goal_account_id, goal_asset, goal_amount, goal_perc, goal_start_date, goal_end_date, goal_complete)'
+
 class Frequency:
 
     def __init__(self, data: tuple):
@@ -162,6 +239,12 @@ class Frequency:
         self.month = data[2]
         self.days = data[3]
         
+    def get_table(self):
+        return 'frequency_'
+    
+    def insert_column(self):
+        return '(frequency, frequency_month, frequency_days)'
+
 class Payback:
     
     def __init__(self, data: tuple):
@@ -171,12 +254,24 @@ class Payback:
         self.payback_amount = data[3]
         self.paid_back_amount = data[4]
 
+    def get_table(self):
+        return 'payback_'
+    
+    def insert_column(self):
+        return '(payback_name, payback_description, payback_amount, paid_back_amount)'
+
 class States:
     def __init__(self, data: tuple):
         self.state_id = data[0]
         self.state_name = data[1]
         self.state_abbreviation = data[2]
         
+    def get_table(self):
+        return 'states_'
+    
+    def insert_column(self):
+        return '(state_name, state_abbreviation)'
+
 class States_Income_Taxes:
     def __init__(self, data: tuple):
         self.year = data[0]
@@ -190,3 +285,11 @@ class States_Income_Taxes:
         self.personal_exemption_single = data[8]
         self.personal_exemption_couple = data[9]
         self.personal_exemption_dependent = data[10]
+
+    def get_table(self):
+        return 'states_income_tax_'
+    
+    def insert_column(self):
+        return '(year, state_id, single_filer_rates, single_filer_brackets, married_filing_jointly_rates, \
+            married_filing_jointly_brackets, standard_deduction_single, standard_deduction_couple, \
+                personal_exemption_single, personal_exemption_couple, personal_exemption_dependent)'

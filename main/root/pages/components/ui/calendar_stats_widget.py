@@ -460,6 +460,7 @@ class Ui_Form(object):
         self.stats_Year_comboBox.addItem("")
         self.stats_Year_comboBox.addItem("")
         self.stats_Year_comboBox.addItem("")
+        self.stats_Year_comboBox.addItem("")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -531,15 +532,16 @@ class Ui_Form(object):
         self.amount_Week_5_Earning_label.setText(_translate("Form", "$1,555,555.00"))
         self.amount_Week_3_Earning_label.setText(_translate("Form", "$1,555,555.00"))
         self.amount_Weekly_Average_Expense_label.setText(_translate("Form", "$1,555,555.00"))
-        self.stats_Year_comboBox.setItemText(0, _translate("Form", "2023"))
-        self.stats_Year_comboBox.setItemText(1, _translate("Form", "2022"))
-        self.stats_Year_comboBox.setItemText(2, _translate("Form", "2021"))
-        self.stats_Year_comboBox.setItemText(3, _translate("Form", "2020"))
-        self.stats_Year_comboBox.setItemText(4, _translate("Form", "2019"))
-        self.stats_Year_comboBox.setItemText(5, _translate("Form", "2018"))
-        self.stats_Year_comboBox.setItemText(6, _translate("Form", "2017"))
-        self.stats_Year_comboBox.setItemText(7, _translate("Form", "2016"))
-        self.stats_Year_comboBox.setItemText(8, _translate("Form", "2015"))
+        self.stats_Year_comboBox.setItemText(0, _translate("Form", "2024"))
+        self.stats_Year_comboBox.setItemText(1, _translate("Form", "2023"))
+        self.stats_Year_comboBox.setItemText(2, _translate("Form", "2022"))
+        self.stats_Year_comboBox.setItemText(3, _translate("Form", "2021"))
+        self.stats_Year_comboBox.setItemText(4, _translate("Form", "2020"))
+        self.stats_Year_comboBox.setItemText(5, _translate("Form", "2019"))
+        self.stats_Year_comboBox.setItemText(6, _translate("Form", "2018"))
+        self.stats_Year_comboBox.setItemText(7, _translate("Form", "2017"))
+        self.stats_Year_comboBox.setItemText(8, _translate("Form", "2016"))
+        self.stats_Year_comboBox.setItemText(9, _translate("Form", "2015"))
 
 
 if __name__ == "__main__":

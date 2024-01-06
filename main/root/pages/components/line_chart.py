@@ -21,7 +21,7 @@ from root.models import Category
 ########################################################################################
 
 class LineChart(QWidget):
-    def __init__(self, parent, database: Database):
+    def __init__(self, parent, database: Database, year: int):
         # Create Transaction Addition widget for Transaction page
         # Mainwindow -> central widget -> StackWidget -> Transaction Page
         # -> Add Transaction
@@ -35,10 +35,10 @@ class LineChart(QWidget):
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
         # This is just for testing purposes
-        self.year = 2023
+        self.year = year
         
         self.months_rng = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        self.categories: List[Category] = [cat.category for cat in self.database.app_data['category']['old']]
+        self.categories: List[Category] = [cat.category for cat in self.database.app_data['category']['start_data']]
         self.line_series_list = list()
         color_palatte = [Qt.GlobalColor.darkGreen, Qt.GlobalColor.darkRed, Qt.GlobalColor.darkBlue, 
                          Qt.GlobalColor.cyan, Qt.GlobalColor.blue, Qt.GlobalColor.gray, 
@@ -121,3 +121,46 @@ class LineChart(QWidget):
         layout = QVBoxLayout()
         layout.addWidget(chart_view)
         self.setLayout(layout)
+        
+    def chart_update(self, year: int):
+        self.year = year
+        for series in self.line_series_list:
+            series.clear()
+        # COLLECT DATA FOR BARGRAPH
+        max_amount = 0
+        min_amount = 0
+        for idx, month_id in enumerate(rvar.month_dict.values()):
+            # Get first day of the month
+            first_date = (datetime.datetime(year=int(self.year), month=(month_id), day=1)).strftime('%Y-%m-%d')
+            
+            # Get last day of the month
+            months_range = calendar.monthrange(int(self.year), (month_id))
+            days_in_month = months_range[1]
+            last_date = (datetime.datetime(year=int(self.year), month=(month_id), day=int(days_in_month))).strftime('%Y-%m-%d')
+            
+            for cat_num, line_serie in enumerate(self.line_series_list):
+                # Get earnings
+                exp_amount = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
+                                                                 & (self.transaction_df_no_date_idx['Date'] <= last_date)
+                                                                 & (self.transaction_df_no_date_idx['Transaction Type'] == 'Expense')
+                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}'),
+                                                                 'Amount'].sum() 
+                line_serie.append(QPointF(idx, exp_amount))
+                
+                if idx == 0 and cat_num == 0:
+                    min_amount = exp_amount
+                
+                if exp_amount < min_amount:
+                    min_amount = exp_amount
+                       
+                if exp_amount > max_amount:
+                    max_amount = exp_amount
+        # ADD BARSET TO BARSERIES
+        if min_amount <= 50:
+            min_amount = 0
+        else:
+            min_amount -= 50
+        max_amount += 100
+        self._axis_y.setRange(min_amount, max_amount)
+
+        

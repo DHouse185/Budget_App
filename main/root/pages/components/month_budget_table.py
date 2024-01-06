@@ -31,7 +31,7 @@ class Month_Budget_Table(Ui_Form):
         
         self.database = database
         self.year = year
-        self.columns_query: typing.List[Category] = [cat.category for cat in self.database.app_data['category']['old']]
+        self.columns_query: typing.List[Category] = [cat.category for cat in self.database.app_data['category']['start_data']]
         self.columns = self.columns_query.copy()
 
         self.columns.remove('Payment')
@@ -63,7 +63,7 @@ class Month_Budget_Table(Ui_Form):
                     item.setFlags(Qt.ItemFlag.ItemIsEnabled)
 
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
                     Decimal(0.00)
                     )
                 item.setText(f"${results}")
@@ -95,7 +95,7 @@ class Month_Budget_Table(Ui_Form):
                                     f"{value} is not a valid number")
                     value = next(
                         (
-                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['old'] 
+                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
                             if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]
                          ),
                         Decimal(0.00)
@@ -109,7 +109,7 @@ class Month_Budget_Table(Ui_Form):
             elif ret == QMessageBox.StandardButton.Cancel:
                 value = next(
                         (
-                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['old'] 
+                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
                             if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]
                          ),
                         Decimal(0.00)
@@ -139,7 +139,7 @@ class Month_Budget_Table(Ui_Form):
             
             ################# NEEDS UPDATE FOR SELF.DATABASE.APP_DATA['MONTH_BUDGET']['NEW'] and POSTGRESQL###############################
             # self.database.change_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column], str(value))
-            for month_budg in self.database.app_data['month_budget']['old']:
+            for month_budg in self.database.app_data['month_budget']['start_data']:
                 if month_budg.year == self.year and month_budg.month == rvar.month_dict[self.row_names[row]]:
                     setattr(month_budg, self.columns[column].lower(), Decimal(value))
                     month_budg.update()
@@ -159,7 +159,7 @@ class Month_Budget_Table(Ui_Form):
                 
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]),
                     Decimal(0.00)
                     )
                 altered_item.setText(f"${results}")
@@ -182,7 +182,7 @@ class Month_Budget_Table(Ui_Form):
                     item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['old'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
                     Decimal(0.00)
                     )
                 item.setText(f"${results}")

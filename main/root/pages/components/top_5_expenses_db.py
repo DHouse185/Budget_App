@@ -1,9 +1,10 @@
 ##########  Python IMPORTs  ############################################################
 from collections import namedtuple
+import typing 
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QWidget 
+from PyQt6.QtWidgets import QWidget, QPushButton
 from PyQt6.QtCore import QRect
 ########################################################################################
 
@@ -16,7 +17,7 @@ from root.database import Database
 ########################################################################################
 
 class Top_5(Ui_top_5_expense):
-    def __init__(self, parent, database: Database, year):
+    def __init__(self, parent, database: Database, year, month_ls: typing.List[QPushButton]):
         # Create header widget for Dashboard
         # Mainwindow -> central widget -> StackWidget -> Dashboard Page
         # -> top_5_expense
@@ -24,15 +25,27 @@ class Top_5(Ui_top_5_expense):
         self.Dashboard_top_5 = QWidget(parent=parent)
         self.setupUi(self.Dashboard_top_5)
         self.Dashboard_top_5.setGeometry(QRect(680, 1020, 541, 281))
-        
         self.database = database
-        self.year = year
+        self.top_5_update(year, month_ls)
         
+    def top_5_update(self, year, month_ls: typing.List[QPushButton]):
+        
+        self.year = year
+        self.month_abbrv = [abbr.text() for abbr in month_ls]
+        self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]
+        self.month_list = sorted(self.month_list, key=lambda x: rvar.month_dict[x])
+        self.month_num_list = [rvar.month_dict[month_name] for month_name in self.month_list]
+        self.top_5_calc()
+        
+    def top_5_calc(self):    
         subcategory_totals = dict()
-        sub_category_ls = [sub_c.sub_category for sub_c in self.database.app_data['sub_category']['old']]
+        sub_category_ls = [sub_c.sub_category for sub_c in self.database.app_data['sub_category']['start_data']]
         # Calculate the total amount for each subcategory
         for sub_category in sub_category_ls:
-            subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['old'] if trans.sub_category == sub_category and trans.accounting_type != "Credit"])
+            subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['start_data'] if trans.sub_category == sub_category
+                and trans.accounting_type != "Credit"
+                and trans.year == self.year
+                and trans.month in self.month_num_list])
             
         # Named tuple to store subcategory information
         SubcategoryInfo = namedtuple('SubcategoryInfo', ['name', 'total_amount'])
@@ -40,7 +53,7 @@ class Top_5(Ui_top_5_expense):
         # Create a list of named tuples for each subcategory
         subcategory_info_list = [SubcategoryInfo(name=sub, total_amount=subcategory_totals[sub]) for sub in subcategory_totals]
         self.database.app_data['sub_category_yearly_total'] = dict()
-        self.database.app_data['sub_category_yearly_total']['old'] = subcategory_info_list
+        self.database.app_data['sub_category_yearly_total']['start_data'] = subcategory_info_list
 
         # Get the top five subcategories based on total amount
         top_five_subcategories = sorted(subcategory_info_list, key=lambda x: x.total_amount, reverse=True)[:5] 

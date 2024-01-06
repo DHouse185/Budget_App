@@ -56,7 +56,7 @@ class Month_progress(Ui_Form):
             year = int(self.Stats_Year_comboBox.currentText())
             self.budget_data = None
             
-            for month_budget in self.database.app_data['month_budget']['old']:
+            for month_budget in self.database.app_data['month_budget']['start_data']:
                 if month_budget.month == month_id and month_budget.year == year:
                     self.budget_data = month_budget
                     break
@@ -78,7 +78,7 @@ class Month_progress(Ui_Form):
                 spent_sum = 0
                 for idx, label in enumerate(self.spent_array):
                     if idx <= 8:
-                        text = sum(spent.amount for spent in self.database.app_data['transaction_data']['old'] 
+                        text = sum(spent.amount for spent in self.database.app_data['transaction_data']['start_data'] 
                                    if spent.year == year 
                                    and spent.month == month_id 
                                    and spent.category == self.category_array[idx])
@@ -127,7 +127,7 @@ class Month_progress(Ui_Form):
             month_id = rvar.month_dict[self.month_progress_comboBox.currentText()]
             year = int(self.Stats_Year_comboBox.currentText())
             
-            for month_budget in self.database.app_data['month_budget']['old']:
+            for month_budget in self.database.app_data['month_budget']['start_data']:
                 if month_budget.month == month_id and month_budget.year == year:
                     self.budget_data = month_budget
                     break
@@ -149,7 +149,7 @@ class Month_progress(Ui_Form):
                 spent_sum = 0
                 for idx, label in enumerate(self.spent_array):
                     if idx <= 7:
-                        text = sum(spent.amount for spent in self.database.app_data['transaction_data']['old'] 
+                        text = sum(spent.amount for spent in self.database.app_data['transaction_data']['start_data'] 
                                    if spent.year == year 
                                    and spent.month == month_id 
                                    and spent.category == self.category_array[idx])

@@ -35,7 +35,7 @@ class Expense_Bar_Graph(QWidget):
         super().__init__(parent=parent)
         self.setGeometry(QRect(0, 130, 680, 380))
         self.setObjectName("Expense_Bar_Graph")
-        self.transaction_data = database_conn.app_data['transaction_data']['old']
+        self.transaction_data = database_conn.app_data['transaction_data']['start_data']
         self.year = year
         self.month_abbrv = [abbr.text() for abbr in month_ls]
         self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]

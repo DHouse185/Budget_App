@@ -66,11 +66,11 @@ class Dashboard(QWidget):
         self.button_content = ButtonContent(self.scrollAreaWidgetContents)
         self.year = self.button_content.year 
         self.month_list = self.button_content.selected_month_list
-        self.header = Header(self.scrollAreaWidgetContents, self.database, self.year)
-        self.top_5 = Top_5(self.scrollAreaWidgetContents, self.database, self.year)
+        self.header = Header(self.scrollAreaWidgetContents, self.database, self.year, self.month_list)
+        self.top_5 = Top_5(self.scrollAreaWidgetContents, self.database, self.year, self.month_list)
         self.month_progress = Month_progress(self.scrollAreaWidgetContents, self.database)
-        self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database)
-        self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database)
+        self.spend_doughnut_chart = Doughnut(self.scrollAreaWidgetContents, self.database, self.year, self.month_list)
+        self.spend_line_chart = LineChart(self.scrollAreaWidgetContents, self.database, self.year)
         self.expense_bar_graph = Expense_Bar_Graph(self.scrollAreaWidgetContents, self.database, self.month_list, self.year)
         self.net_income_chart = Net_Income_Bar_Graph(self.scrollAreaWidgetContents, self.database, self.month_list, self.year)
         # self.waterfall_chart = Water_Fall_Chart()
@@ -86,6 +86,11 @@ class Dashboard(QWidget):
         self.year = self.button_content.year 
         self.month_list = self.button_content.selected_month_list
         self.expense_bar_graph.chart_update(self.month_list, self.year)
+        self.net_income_chart.chart_update(self.month_list, self.year)
+        self.spend_line_chart.chart_update(self.year)
+        self.spend_doughnut_chart.chart_update(self.year, self.month_list)
+        self.header.update_header(self.year, self.month_list)
+        self.top_5.top_5_update(self.year, self.month_list)
         # self.top_5.update_list()
 # """
 #         self.graphicsView_4 = QtWidgets.QGraphicsView(parent=self.scrollAreaWidgetContents)
