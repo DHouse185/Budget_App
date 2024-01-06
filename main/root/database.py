@@ -597,6 +597,7 @@ class Database:
 
         self.app_data['transaction_dataframe'] = pd.DataFrame(raw_df_data, columns=['Date', 'ID', 'Account', 'Description', 'Amount', 'Category', 'SubCategory', 'Transaction Type'])
         self.app_data['transaction_dataframe'] = self.app_data['transaction_dataframe'].set_index('Date')
+        self.app_data['transaction_dataframe'].sort_index(inplace=True, ascending=False)
 
         # APP MONTH BUDGET DATA
         self.app_data['month_budget'] = dict()
@@ -796,16 +797,11 @@ class Database:
     def delete_data() -> str:
         ...
     
-    def update_data() -> str:
-        ...
-        #     """UPDATE {table}
-        #         SET {column} = {value}
-        #         WHERE {row} = {criteria};"""
-
-        #     self.cur.execute(f"""UPDATE {table} SET {column} = {value}
-        #                      WHERE {row} = {criteria};""")
-
-        #     self.connection.commit()
+    def update_data(self, constructor: str, model: typing.Union[Transaction, Month_Budget, Accounting_Type, Sub_Category,
+                                                                Category, Account, Category_Type, App_Month, Account_Management,
+                                                                Goal, Frequency, States, States_Income_Taxes, Payback]):
+        values = model.update_data(self.app_data)
+        self.execute_update(constructor, values)
             
     def insert_transaction_data(self, transaction_list: list):
         """
@@ -831,13 +827,16 @@ class Database:
         #print(self)
 
         # Test 1
-        m_int = rvar.month_dict["January"]
-        month_budget = next(
-            (
-                jan_budg for jan_budg in self.app_data['month_budget']['start_data'] if jan_budg.month == m_int and jan_budg.year == year
-                ),
-            False
-            )
+        m_int_list = [rvar.month_dict[m_int] for m_int in rvar.MONTHS_SHORT_DICT.values()]
+        for month in m_int_list:
+            month_budget = next(
+                (
+                    mon_budg for mon_budg in self.app_data['month_budget']['start_data'] if mon_budg.month == month and mon_budg.year == int(year)
+                    ),
+                False
+                )
+            if month_budget:
+                break
 
         if not month_budget:
             # Validate Input
@@ -852,7 +851,7 @@ class Database:
 
                     month_budget = next(
                         (
-                            month_info for month_info in self.app_data['month_budget']['start_data'] if month_info.month == m_int and month_info.year == year
+                            month_info for month_info in self.app_data['month_budget']['start_data'] if month_info.month == month_int and month_info.year == year
                             ),
                         False
                         )
@@ -862,15 +861,9 @@ class Database:
 
                         month_budget_id = int((int(month_int) * 10000) + int(year))
 
-
-                        ##### ADD TO CODE LATER #########################################################################
-                        # self.execute_query(f"""INSERT INTO month_budget_test
-                        #         (month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense,
-                        #         investment, support, goal, starting_budget)
-                        #         VALUES ({month_budget_id}, {month_int}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                        #         ;""")
                         month_attr = [month_budget_id, month_int, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
                         month_data = Month_Budget(month_attr)  ### REFERENCE ###
+                        self.app_data['month_budget']['start_data'].append(month_data)
                         self.app_data['unsaved_data']['INSERT'].append(month_data)
 
                 QMessageBox.information(parent, "Success",

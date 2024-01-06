@@ -142,6 +142,7 @@ class Month_Budget_Table(Ui_Form):
             for month_budg in self.database.app_data['month_budget']['start_data']:
                 if month_budg.year == self.year and month_budg.month == rvar.month_dict[self.row_names[row]]:
                     setattr(month_budg, self.columns[column].lower(), Decimal(value))
+                    self.database.app_data['unsaved_data']['UPDATE'].append(month_budg)
                     month_budg.update()
                     # Add change to update dictionary
                     break
@@ -171,7 +172,7 @@ class Month_Budget_Table(Ui_Form):
     
     def update_table(self, year: str):
         self.itemchange = 1
-        self.year = year
+        self.year = int(year)
         
         # Update each item
         for i, column in enumerate(self.columns):

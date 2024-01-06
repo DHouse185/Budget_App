@@ -27,6 +27,8 @@ def unsave_message(parent: QWidget, unsaved_data_list: typing.List) -> bool:
                 for model_type in unsaved_data_list[change_type]:
                     if model_type.__class__ == Transaction:
                         message += "\n".join([f"Add Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+                    if model_type.__class__ == Month_Budget:
+                        message += "\n".join([f"Add Monthly Budget data for {model_type.month_name} {model_type.year}"])
             elif change_type == 'DELETE':
                 for model_type in unsaved_data_list[change_type]:
                     
@@ -36,7 +38,8 @@ def unsave_message(parent: QWidget, unsaved_data_list: typing.List) -> bool:
                         
             elif change_type == 'UPDATE':
                 for model_type in unsaved_data_list[change_type]:
-                    ...
+                    if model_type.__class__ == Month_Budget:
+                        message += "\n".join([f"Update Monthly Budget data for {model_type.month_name} {model_type.year}"])
                     # if model_type.__class__ == Transaction:
                     #     message += "\n".join([f"Transaction {model_type.description} - Amount: {model_type.amount} Account:{model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
         ret = QMessageBox.question(parent, "Unsaved Data", message, QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)

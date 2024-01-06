@@ -118,8 +118,53 @@ class Month_Budget:
     
     def insert_column(self):
         return '(month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense, investment,\
-            support, goal, starting_budget)'
+            support, goal, starting_budget) VALUES \
+(%(month_year_id)s, %(month_id)s, %(earnings)s, %(food)s, %(bills)s, %(grocery)s, %(transportation)s, %(free_expense)s, %(investment)s, %(support)s, %(goal)s, %(starting_budget)s)'
 
+    def insert_data(self, _) -> dict:
+        values = {'month_year_id' : self.id,
+                  'month_id' : self.month,
+                  'earnings' : self.earnings,
+                  'food' : self.food,
+                  'bills' : self.bills,
+                  'grocery' : self.grocery,
+                  'transportation' : self.transportation,
+                  'free_expense' : self.free_expense,
+                  'investment' : self.investment,
+                  'support' : self.support,
+                  'goal' : self.goal,
+                  'starting_budget' : self.starting_budget}
+        return values
+    
+    def update_column(self):
+        return '''SET month_id = %(month_id)s, 
+    earnings = %(earnings)s, 
+    food = %(food)s, 
+    bills = %(bills)s, 
+    grocery = %(grocery)s, 
+    transportation = %(transportation)s, 
+    free_expense = %(free_expense)s, 
+    investment = %(investment)s, 
+    support = %(support)s, 
+    goal = %(goal)s, 
+    starting_budget = %(starting_budget)s
+    WHERE month_year_id = %(month_year_id)s;'''
+        
+    def update_data(self, _) -> dict:
+        values = {'month_year_id' : self.id,
+                  'month_id' : self.month,
+                  'earnings' : self.earnings,
+                  'food' : self.food,
+                  'bills' : self.bills,
+                  'grocery' : self.grocery,
+                  'transportation' : self.transportation,
+                  'free_expense' : self.free_expense,
+                  'investment' : self.investment,
+                  'support' : self.support,
+                  'goal' : self.goal,
+                  'starting_budget' : self.starting_budget}
+        return values
+    
 class Accounting_Type:
     
     def __init__(self, data: tuple):
@@ -131,6 +176,15 @@ class Accounting_Type:
     
     def insert_column(self):
         return '(accounting)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Sub_Category:
     
@@ -143,6 +197,15 @@ class Sub_Category:
     
     def insert_column(self):
         return '(sub_category)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Category:
     
@@ -155,6 +218,15 @@ class Category:
     
     def insert_column(self):
         return '(category)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Account:
     
@@ -167,6 +239,15 @@ class Account:
     
     def insert_column(self):
         return '(account)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Category_Type:
     
@@ -179,6 +260,15 @@ class Category_Type:
     
     def insert_column(self):
         return '(category_type)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class App_Month:
     
@@ -191,6 +281,15 @@ class App_Month:
     
     def insert_column(self):
         return '(month)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Account_Management:
     
@@ -211,6 +310,15 @@ class Account_Management:
     
     def insert_column(self):
         return '(month_year_account_id, month_year_id, month_id, account_id, amount)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Goal:
 
@@ -230,6 +338,15 @@ class Goal:
     
     def insert_column(self):
         return '(goal_description, goal_account_id, goal_asset, goal_amount, goal_perc, goal_start_date, goal_end_date, goal_complete)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Frequency:
 
@@ -244,6 +361,15 @@ class Frequency:
     
     def insert_column(self):
         return '(frequency, frequency_month, frequency_days)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class Payback:
     
@@ -259,6 +385,15 @@ class Payback:
     
     def insert_column(self):
         return '(payback_name, payback_description, payback_amount, paid_back_amount)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class States:
     def __init__(self, data: tuple):
@@ -271,6 +406,15 @@ class States:
     
     def insert_column(self):
         return '(state_name, state_abbreviation)'
+    
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...
 
 class States_Income_Taxes:
     def __init__(self, data: tuple):
@@ -293,3 +437,12 @@ class States_Income_Taxes:
         return '(year, state_id, single_filer_rates, single_filer_brackets, married_filing_jointly_rates, \
             married_filing_jointly_brackets, standard_deduction_single, standard_deduction_couple, \
                 personal_exemption_single, personal_exemption_couple, personal_exemption_dependent)'
+                
+    def insert_data(self, _) -> None:
+        ...
+        
+    def update_column(self) -> None:
+        ...
+        
+    def update_data(self, _) -> None:
+        ...

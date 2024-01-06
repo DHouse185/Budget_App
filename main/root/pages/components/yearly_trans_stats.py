@@ -42,12 +42,17 @@ class Yearly_Stats(Ui_Form):
             
         self.amount_Max_Days_label.setText(f"{self.year_range}")
         today_day = datetime.datetime.now()
-        self.days_passed = (today_day.timetuple()).tm_yday
+        if today_day.year == self.year:
+            self.days_passed = (today_day.timetuple()).tm_yday
+        elif today_day.year > self.year:
+            self.days_passed = self.year_range
+        elif today_day.year < self.year:
+            self.days_passed = 0
         self.amount_Days_Passed_label.setText(f"{self.days_passed}")
         
         self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
-        self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
+        self.transaction_df_no_date_idx['Date'] = pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         
         self.year_starting_budg: Optional[Decimal] = next(
             (

@@ -2,6 +2,8 @@
 from typing import List, Tuple, Dict, Union
 import random
 from decimal import Decimal
+import pandas as pd
+import datetime
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -618,11 +620,11 @@ class Add_Transaction(Ui_Form):
         accounting = self.credit_Debit_comboBox.currentText()
         accounting_id = self.accountings_dict[accounting]
         transfer_account = self.transfer_To_comboBox.currentText()
-        payback = self.payback_popup.name
-        payback_id = self.payback_popup.payback_id
+        payback: str = self.payback_popup.name
+        payback_id: int = self.payback_popup.payback_id
         frequency = self.frequency_comboBox.currentText()
-        self.payback = self.payback_popup.payback_id
-        self.payback_name = self.payback_popup.name
+        self.payback: int = self.payback_popup.payback_id
+        self.payback_name: str = self.payback_popup.name
         if transfer_account == 'None':
             pass
         else:
@@ -655,8 +657,15 @@ class Add_Transaction(Ui_Form):
         self.database.app_data['unsaved_data']['INSERT'].append(transaction)
         # Add Transaction to insert dictionary
         self.payback_popup.update_payback_dict(round(Decimal(amount), 2))
-        df2 = {'ID': trans_temp_id, 'Account': account, 'Description': description, 'Amount': round(Decimal(amount), 2), 'Category': category, 'SubCategory': sub_category, 'Transaction Type': category_type}
-        self.database.app_data['transaction_dataframe'].loc[date_datetime] = df2
+        data_dict = {'ID': [trans_temp_id], 'Account': [account], 'Description': [description], 'Amount': [round(Decimal(amount), 2)], 'Category': [category], 'SubCategory': [sub_category], 'Transaction Type': [category_type]}
+        df2 = pd.DataFrame(data=data_dict)
+        df2['Date'] = [date_datetime] * len(df2)
+        df2.index = pd.to_datetime(df2.index).date
+        df2.set_index('Date', inplace=True)
+        # df2.index.name = 'Date'
+        # self.database.app_data['transaction_dataframe'].loc[date_datetime] = df2
+        self.database.app_data['transaction_dataframe'] = pd.concat([self.database.app_data['transaction_dataframe'], df2])
+        self.database.app_data['transaction_dataframe'].sort_index(inplace=True, ascending=False)
         return True
         
     def discard_check(self):
