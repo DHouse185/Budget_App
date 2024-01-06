@@ -32,12 +32,14 @@ class Budget(QWidget):
     def __init__(self,
                  MainWindow: QMainWindow,
                  logger,
-                 database):
+                 database,
+                 user_id):
         super().__init__(MainWindow)
 
         # initiate logger in this class
         self.logger = logger
         self.conn = database
+        self.user_id = user_id
 
         # Prepare MainWindow
         MainWindow.setObjectName("MainWindow")
@@ -143,7 +145,7 @@ class Budget(QWidget):
         self.animation_creation()
 
         # Database
-        self.database = Database(self.conn, self.logger)
+        self.database = Database(self.conn, self.logger, self.user_id)
 
         # Dashboard: -> Main Page
         self.dashboard = Dashboard(self.dashboard_page, self.database)
@@ -179,7 +181,7 @@ class Budget(QWidget):
             for change_type in unsaved_data_list.keys():
                 if change_type == 'INSERT':
                     for model in unsaved_data_list[change_type]:
-                        insert_constructor = 'INSERT INTO ' + model.get_table() + 'test ' + model.insert_column()
+                        insert_constructor = 'INSERT INTO ' + model.get_table() + f'{self.user_id} ' + model.insert_column()
                         self.database.insert_data(insert_constructor, model)
 
                 elif change_type == 'DELETE':
@@ -189,7 +191,7 @@ class Budget(QWidget):
 
                 if change_type == 'UPDATE':
                     for model in unsaved_data_list[change_type]:
-                        insert_constructor = 'UPDATE ' + model.get_table() + 'test ' + model.update_column()
+                        insert_constructor = 'UPDATE ' + model.get_table() + f'{self.user_id} ' + model.update_column()
                         self.database.update_data(insert_constructor, model)
 
             self.database.clear_unsave_data()
