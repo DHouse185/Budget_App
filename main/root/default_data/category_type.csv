@@ -1,0 +1,6 @@
+category_type_id,category_type
+1,Expense
+2,Income
+3,Investment
+4,Payback
+5,Transfer

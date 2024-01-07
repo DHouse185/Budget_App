@@ -32,21 +32,25 @@ class Root:
                        self.user_id)
         Form.show()
         
-    def create_database_if_not_exists(database_name, password):
+    def create_database_if_not_exists(self, database_name, password):
         # Connect to the default PostgreSQL database
         conn = pg2.connect(user='postgres', password=password)
         conn.autocommit = True
 
-        # Check if the database already exists
-        with conn.cursor() as cursor:
-            cursor.execute(
-                sql.SQL("SELECT 1 FROM pg_database WHERE datname = {}").format(sql.Identifier(database_name))
-            )
-            exists = cursor.fetchone()
+        try:
+            # Check if the database already exists
+            with conn.cursor() as cursor:
+                cursor.execute(f"SELECT 1 FROM pg_database WHERE datname = '{database_name}';"
+                )
+                exists = cursor.fetchone()
 
-            if not exists:
-                # Create the database if it doesn't exist
-                cursor.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(database_name)))
+                if not exists:
+                    # Create the database if it doesn't exist
+                    cursor.execute(sql.SQL("CREATE DATABASE '{}'").format(sql.Identifier(database_name)))
+        except pg2.Error as e:
+                # Handle the error (optional)
+                print(f"Error checking or creating the database: {e}")            
 
-        # Close the connection to the default database
-        conn.close()
+        finally:
+            # Close the connection to the default database
+            conn.close()

@@ -1,0 +1,9 @@
+frequency_id,frequency,frequency_month,frequency_days
+1,DAILY,0,1
+2,WEEKLY,0,7
+3,BIWEEKLY,0,14
+4,MONTHLY,1,0
+5,QUARTERLY,3,0
+6,SEMI-ANNUALLY,6,0
+7,YEARLY,12,0
+8,ONCE,0,0

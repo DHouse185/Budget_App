@@ -308,16 +308,16 @@ class Database:
                         for row in csv_reader:
                             # Assuming the CSV file has one column for 'states_income_tax_{self.user_id}'
                             year = row[0]
-                            state_id = row[1]
-                            single_file_rate = row[2]
-                            single_file_bracket = row[3]
-                            married_file_rate = row[4]
-                            married_file_bracket = row[5]
-                            standard_duc_single = row[6]
-                            standard_duc_couple = row[7]
-                            personal_exmpt_single = row[8]
-                            personal_exmpt_couple = row[9]
-                            personal_exmpt_dependent = row[10]
+                            state_id = row[1] 
+                            single_file_rate = row[2] if row[2] != 'NULL' else None
+                            single_file_bracket = row[3] if row[3] != 'NULL' else None
+                            married_file_rate = row[4] if row[4] != 'NULL' else None
+                            married_file_bracket = row[5] if row[5] != 'NULL' else None
+                            standard_duc_single = row[6] if row[6] != 'NULL' else None
+                            standard_duc_couple = row[7] if row[7] != 'NULL' else None
+                            personal_exmpt_single = row[8] if row[8] != 'NULL' else None
+                            personal_exmpt_couple = row[9] if row[9] != 'NULL' else None
+                            personal_exmpt_dependent = row[10] if row[10] != 'NULL' else None
 
                             self.execute_update(f"""INSERT INTO states_income_tax_{self.user_id}
                                         (year, state_id, single_filer_rates, single_filer_brackets,
