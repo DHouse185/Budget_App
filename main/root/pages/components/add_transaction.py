@@ -631,7 +631,7 @@ class Add_Transaction(Ui_Form):
         category_type_id = self.category_type_dict[category_type]
         
         max_id = max(([trans.id for trans in self.database.app_data['transaction_data']['start_data']]), default=0)
-        trans_temp_id = random.randint((max_id + 1), (max_id + 10))
+        trans_temp_id = max_id + 1
         
         transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id]
         
@@ -643,7 +643,7 @@ class Add_Transaction(Ui_Form):
                 return False
             else:
                 pass
-        transaction = Transaction((max_id, date_datetime, account, description, round(Decimal(amount), 2), category, sub_category, category_type, payback, payback_id, frequency, accounting))
+        transaction = Transaction((trans_temp_id, date_datetime, account, description, round(Decimal(amount), 2), category, sub_category, category_type, payback, payback_id, frequency, accounting))
         self.database.app_data['transaction_data']['start_data'].append(transaction) # Change to 'unsaved' or 'new' later
         self.database.app_data['unsaved_data']['INSERT'].append(transaction)
         # Add Transaction to insert dictionary
