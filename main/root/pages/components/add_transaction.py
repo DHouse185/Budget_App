@@ -692,30 +692,35 @@ class Add_Transaction(Ui_Form):
         self.category_Type_comboBox.setCurrentIndex(0)
         
     def update_component(self):
-        self.create_table_dict()
-        
         # Add Transfer to Accounts
         self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
+        self.transfer_To_comboBox.clear()
+        self.account_comboBox.clear()
         for _, account in enumerate(self.accounts):  
             self.transfer_To_comboBox.addItem(account)
             self.account_comboBox.addItem(account)
         # Add category type
         self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['start_data']]
+        self.category_Type_comboBox.clear()
         for _, category_type in enumerate(self.category_types):  
             self.category_Type_comboBox.addItem(category_type)
         # Add sub categories
         self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['start_data']]
+        self.sub_Category_comboBox.clear()  
         for _, sub_category in enumerate(self.sub_categories):  
             self.sub_Category_comboBox.addItem(sub_category)   
         # Add Categories
         self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['start_data']]
+        self.category_comboBox.clear()
         for _, category in enumerate(self.categories):  
             self.category_comboBox.addItem(category)
         # Add Accounting type
         self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['start_data']]
+        self.credit_Debit_comboBox.clear()
         for _, accounting in enumerate(self.accountings):  
             self.credit_Debit_comboBox.addItem(accounting)
         # Add Frequency
         self.frequencies: List[str] = [freq.frequency for freq in self.database.app_data['frequency']['start_data']]
+        self.frequency_comboBox.clear()
         for _, frequency in enumerate(self.frequencies):  
             self.frequency_comboBox.addItem(frequency) 
