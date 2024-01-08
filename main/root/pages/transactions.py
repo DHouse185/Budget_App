@@ -171,6 +171,11 @@ class Transactions(QWidget):
                 if transaction is not None:
                     self.database.app_data['unsaved_data']['DELETE'].append(transaction)
                     self.database.app_data['transaction_data']['start_data'].remove(transaction)
+                    # self.database.app_data['unsaved_data']['DELETE'] check for 'INSERT' occurance
+                    if transaction in self.database.app_data['unsaved_data']['DELETE'] and transaction in self.database.app_data['unsaved_data']['INSERT']:
+                        self.database.app_data['unsaved_data']['INSERT'].remove(transaction)
+                        self.database.app_data['unsaved_data']['DELETE'].remove(transaction)
+
                 # Remove the row from the model and DataFrame
                 self.transaction_model.removeRow(row)
                 
