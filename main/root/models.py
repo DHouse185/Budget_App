@@ -1,5 +1,6 @@
 ##########  Python IMPORTs  ############################################################
 import datetime
+from decimal import Decimal
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -116,9 +117,9 @@ class Month_Budget:
         }
     
     def update(self):
-        self.total = self.food + self.bills + self.grocery + self.transportation + self.free_expense + self.investment + self.support
-        self.left_amount = self.earnings + self.total
-        self.expected_ending_budget = self.starting_budget + self.left_amount
+        self.total = Decimal(self.food) + Decimal(self.bills) + Decimal(self.grocery) + Decimal(self.transportation) + Decimal(self.free_expense) + Decimal(self.investment) + Decimal(self.support)
+        self.left_amount = Decimal(self.earnings) + self.total
+        self.expected_ending_budget = Decimal(self.starting_budget) + self.left_amount
 
     def get_table(self):
         return 'month_budget_'

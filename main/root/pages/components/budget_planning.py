@@ -290,7 +290,7 @@ class Budget_Plan(Ui_Form):
                     
     def total_adjust(self):
         sum_cost = sum(item[1] for item in self.expenses_dict["cost"])
-        self.total_cost_label.setText(f"$ {sum_cost}")
+        self.total_cost_label.setText(f"$ {'{:.2f}'.format(sum_cost)}")
         
         monthly_wage = "{:.2f}".format(sum_cost / 0.70)
         self.monthly_wage_cost_label.setText(f"$ {monthly_wage}")
