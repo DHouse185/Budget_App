@@ -387,7 +387,31 @@ class Database:
                                 payback_description VARCHAR(100) NOT NULL,
                                 payback_amount NUMERIC(13, 2) NOT NULL,
                                 paid_back_amount NUMERIC(13, 2) NOT NULL);""")
+                # Load and insert initial default data
+                payb_csv = os.path.join(os.path.dirname(__file__), "default_data", "payback.csv")  # Update this with the path to your CSV file
 
+                if not os.path.isfile(payb_csv):
+                    pass
+
+                else:
+
+                    with open(payb_csv, 'r') as csv_file:
+                        csv_reader = csv.reader(csv_file)
+                        next(csv_reader)  # Skip header if present
+
+                        for row in csv_reader:
+                            # Assuming the CSV file has one column for 'frequency_{self.user_id}'
+                            payback_id = row[1]
+                            payback_name = row[2]
+                            payback_description = row[3]
+                            payback_amount = row[4]
+                            payback_back_amount = row[5]
+
+                            self.execute_update(f"INSERT INTO payback_test ((payback_id, payback_name, payback_description, payback_amount, paid_back_amount)
+VALUES (%s, %s, %s, %s, %s);", (payback_id, payback_name, payback_description, payback_amount, payback_back_amount))
+
+                    self.logger.debug(f"Initial default data inserted into 'payback_test' table.")
+                    
             # GOALS TABLE
 
             cur.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'goals_test');")
