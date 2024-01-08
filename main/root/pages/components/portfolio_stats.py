@@ -291,7 +291,8 @@ class Portfolio_Stats(Ui_Form):
 
                     self.database.app_data['unsaved_data']['DELETE'].append(find_account)
                     self.database.app_data['account']['start_data'].remove(find_account)
-                    # self.database.remove_account(account_, account_id)
-                        
-                    # print("Successfully removed")        
+                    if find_account in self.database.app_data['unsaved_data']['DELETE'] and find_account in self.database.app_data['unsaved_data']['INSERT']:
+                        self.database.app_data['unsaved_data']['INSERT'].remove(find_account)
+                        self.database.app_data['unsaved_data']['DELETE'].remove(find_account)
+    
         
