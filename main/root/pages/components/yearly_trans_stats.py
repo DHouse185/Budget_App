@@ -70,7 +70,7 @@ class Yearly_Stats(Ui_Form):
             )
         self.amount_Budget_For_Year_label.setText(f"${self.budget_for_year}")
         self.year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year)]
-        self.total_spent = self.year_df.loc[self.year_df['Transaction Type'] == 'Expense', 'Amount'].sum() # I believe this is used somewhere else in the code. Perhaps move to App_Database
+        self.total_spent = self.year_df.loc[self.year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if self.year_df.columns != [] else 0 # I believe this is used somewhere else in the code. Perhaps move to App_Database
         self.amount_Total_Spent_label.setText(f"${self.total_spent}")
         self.planned_savings: Decimal = sum(
             [

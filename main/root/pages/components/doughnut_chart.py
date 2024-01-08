@@ -37,7 +37,7 @@ class Doughnut(QWidget):
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year and x.month in self.month_num_list)]
-        self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() 
+        self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if year_df.columns != [] else 0
         self.accounts: List[Account] = [acc.account for acc in self.database.app_data['account']['start_data']]
         
         self.series = QPieSeries()
@@ -52,7 +52,7 @@ class Doughnut(QWidget):
         
         for account in self.accounts:
             # print(f'account: {account[0]}')
-            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() 
+            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() if year_df.columns != [] else 0
             try:
                 spent_ratio = round((account_spent / self.total_spent), 2)
                 slice_ = QPieSlice(f'{account}', spent_ratio)
@@ -127,7 +127,7 @@ class Doughnut(QWidget):
         self.month_list = sorted(self.month_list, key=lambda x: rvar.month_dict[x])
         self.month_num_list = [rvar.month_dict[month_name] for month_name in self.month_list]
         year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year and x.month in self.month_num_list)]
-        self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() 
+        self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if year_df.columns != [] else 0 
         self.accounts: List[Account] = [acc.account for acc in self.database.app_data['account']['start_data']]
         
         self.series.clear()
@@ -142,7 +142,7 @@ class Doughnut(QWidget):
         
         for account in self.accounts:
             # print(f'account: {account[0]}')
-            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() 
+            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() if year_df.columns != [] else 0
             try:
                 spent_ratio = round((account_spent / self.total_spent), 2)
                 slice_ = QPieSlice(f'{account}', spent_ratio)
