@@ -60,36 +60,36 @@ class Portfolio_Stats(Ui_Form):
                     
     def eval_year(self): 
         account = next(account for account in self.account_dict.values() if account['name'] == "Total")
-        self.amount_total_label.setText(f"${account['year'][self.year]['sum']}") 
-        self.amount_year_start_total_label.setText(f"${account['year'][self.year]['unfiltered_data'][0][1]}")
+        self.amount_total_label.setText(f"${'{:.2f}'.format(account['year'][self.year]['sum'])}") 
+        self.amount_year_start_total_label.setText(f"${'{:.2f}'.format(account['year'][self.year]['unfiltered_data'][0][1])}")
         average_change = round(account['year'][self.year]['average_change'], 2)
         
         if average_change > 0:
-            self.amount_avg_change_label.setText(f"{average_change} %")
+            self.amount_avg_change_label.setText(f"{'{:.2f}'.format(average_change)} %")
             self.amount_avg_change_label.setStyleSheet("color: #00aa00")
         
         else:
-            self.amount_avg_change_label.setText(f"{average_change} %")
+            self.amount_avg_change_label.setText(f"{'{:.2f}'.format(average_change)} %")
             self.amount_avg_change_label.setStyleSheet("color: #c30000")
         
         month_change = account['year'][self.year]['percent_change'][-1][1]
         if month_change > 0:
-            self.amount_last_month_change_label.setText(f"{month_change} %")
+            self.amount_last_month_change_label.setText(f"{'{:.2f}'.format(month_change)} %")
             self.amount_last_month_change_label.setStyleSheet("color: #00aa00")
         
         else:
-            self.amount_last_month_change_label.setText(f"{month_change} %")
+            self.amount_last_month_change_label.setText(f"{'{:.2f}'.format(month_change)} %")
             self.amount_last_month_change_label.setStyleSheet("color: #c30000")
             
         expected_end = account['year'][self.year]['expected_data']
         if expected_end != []:
             expected_end = round(expected_end[-1][1], 2)
-            self.amount_exp_end_label.setText(f"${expected_end}")
+            self.amount_exp_end_label.setText(f"${'{:.2f}'.format(expected_end)}")
             
         else:
             expected_end = round(account['year'][self.year]['unfiltered_data'][-1][1], 2)
             
-            self.amount_exp_end_label.setText(f"${expected_end}")   
+            self.amount_exp_end_label.setText(f"${'{:.2f}'.format(expected_end)}")   
             
     def eval_month(self):
         eval_date = self.evaluate_Month_dateEdit_2.date()
@@ -99,11 +99,11 @@ class Portfolio_Stats(Ui_Form):
         if eval_year <= datetime.datetime.now().year:
             account = next(account for account in self.account_dict.values() if account['name'] == "Total")       
             start_amount = next((item[1] for item in account['year'][str(eval_year)]['unfiltered_data'] if item[0] == (eval_month - 1)), "N / A")
-            self.amount_start_month_label.setText(f"${start_amount}")
+            self.amount_start_month_label.setText(f"${'{:.2f}'.format(start_amount)}")
             end_total = next((item[1] for item in account['year'][str(eval_year)]['unfiltered_data'] if item[0] == (eval_month)), "N / A")
-            self.amount_month_end_label.setText(f"${end_total}") 
+            self.amount_month_end_label.setText(f"${'{:.2f}'.format(end_total)}") 
             eval_month_change = next((item[1] for item in account['year'][str(eval_year)]['percent_change'] if item[0] == (eval_month)), "N / A")
-            self.amount_month_change_label.setText(f"{round(eval_month_change, 2)} %") 
+            self.amount_month_change_label.setText(f"{'{:.2f}'.format(round(eval_month_change, 2))} %") 
                 
             if eval_month_change > 0:
                 self.amount_month_change_label.setStyleSheet("color: #00aa00")
