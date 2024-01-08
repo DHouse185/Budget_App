@@ -402,7 +402,7 @@ class Database:
                         next(csv_reader)  # Skip header if present
 
                         for row in csv_reader:
-                            # Assuming the CSV file has one column for 'frequency_{self.user_id}'
+                            # Assuming the CSV file has one column for 'payback_{self.user_id}'
                             payback_id = row[1]
                             payback_name = row[2]
                             payback_description = row[3]
