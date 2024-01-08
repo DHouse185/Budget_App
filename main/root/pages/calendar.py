@@ -82,3 +82,6 @@ class Calendar(QWidget):
         self.month = self.calendar_stats.month
         self.calendar_img.month_change(self.month)
         self.calendar_stats.month_change_2(self.calendar_img.credit_list, self.calendar_img.debit_list)
+        
+    def update_page(self):
+        self.year_change()

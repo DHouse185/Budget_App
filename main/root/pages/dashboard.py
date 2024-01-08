@@ -83,6 +83,9 @@ class Dashboard(QWidget):
         
     def button_click(self, push_button: QPushButton):
         self.button_content.select(push_button)
+        self.update_page()
+        
+    def update_page(self):
         self.year = self.button_content.year 
         self.month_list = self.button_content.selected_month_list
         self.expense_bar_graph.chart_update(self.month_list, self.year)

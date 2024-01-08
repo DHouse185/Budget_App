@@ -26,12 +26,23 @@ class Portfolio_Stats(Ui_Form):
         self.setupUi(self.portfolio_stats)
         self.portfolio_stats.setGeometry(QRect(950, 820, 960, 680))
         self.database = database
+        self.update_component(account_dict, year)
+        
+        self.update_confirm_pushButton.clicked.connect(self.update_check)
+        self.add_confirm_pushButton.clicked.connect(self.add_account)
+        self.remove_confirm_pushButton.clicked.connect(self.remove_account)
+        self.evaluate_Month_dateEdit_2.dateChanged.connect(self.eval_month)
+        
+    def update_component(self, account_dict, year):
         self.year = year
         self.account_dict = account_dict
-        
+        self.add_accounts()
+        self.eval_year()
+        self.eval_month()
+            
+    def add_accounts(self):
         self.name_ls = list()
         self.q_name_ls = list()
-        
         for account in self.account_dict.values():
             name = account['name']
             q_name = account['query_name']
@@ -44,17 +55,8 @@ class Portfolio_Stats(Ui_Form):
                 self.name_ls.append(name)
                 self.q_name_ls.append((name, q_name, id))
 
-        
         self.update_account_comboBox.addItems(self.name_ls)
         self.remove_account_comboBox.addItems(self.name_ls)
-        
-        self.eval_year()
-        self.eval_month()
-        
-        self.update_confirm_pushButton.clicked.connect(self.update_check)
-        self.add_confirm_pushButton.clicked.connect(self.add_account)
-        self.remove_confirm_pushButton.clicked.connect(self.remove_account)
-        self.evaluate_Month_dateEdit_2.dateChanged.connect(self.eval_month)
                     
     def eval_year(self): 
         account = next(account for account in self.account_dict.values() if account['name'] == "Total")
@@ -111,6 +113,8 @@ class Portfolio_Stats(Ui_Form):
     
     def update_check(self):
         account_ = self.update_account_comboBox.currentText()
+        if account_ == '':
+            return
         # Get date
         update_date = self.update_month_dateEdit.date()
         update_month = update_date.month()
@@ -150,8 +154,8 @@ class Portfolio_Stats(Ui_Form):
     def update_account_amount(self):
         # get account
         account_ = self.update_account_comboBox.currentText()
-        query_account = [item for item in self.q_name_ls if item[0] == account_]
-        account_id = query_account[0][2]
+        query_account = next(item for item in self.q_name_ls if item[0] == account_)
+        account_id = query_account[2]
         # print(account_id)
         
         # get amount
@@ -170,15 +174,16 @@ class Portfolio_Stats(Ui_Form):
         account = next(
             (
                 acc for acc in self.database.app_data['account_management']['start_data'] if acc.year == update_year
-                and acc.month == update_month
+                and acc.month_id == update_month
                 and acc.account_id == account_id
              ),
             None)
         if account is not None:
             setattr(account, 'amount', amount)  
+            setattr(account, 'account_name', account_)  
+            self.database.app_data['unsaved_data']['UPDATE'].append(account)
         else:
-            self.database.app_data['account_management']['start_data'].append(
-                Account_Management(
+            acc_man = Account_Management(
                     (
                         (1000000 * account_id) + (10000 * update_month) + int(update_year),
                         (10000 * int(update_month)) + int(update_year),
@@ -187,15 +192,14 @@ class Portfolio_Stats(Ui_Form):
                         amount
                                     )
                     )
-                )
+            acc_man.get_accout_name(account_)
+            self.database.app_data['account_management']['start_data'].append(acc_man)
+            self.database.app_data['unsaved_data']['INSERT'].append(acc_man)
         # print("Successfully updated")
         
     def add_account(self):
         # get account
-        account_ = self.account_name_lineEdit.text()
-
-        # print(account_)
-        
+        account_ = self.account_name_lineEdit.text()        
         # get amount
         amount = self.add_account_doubleSpinBox.value()
         
@@ -211,18 +215,18 @@ class Portfolio_Stats(Ui_Form):
         
         # If user chooses to change amount
         if ret == QMessageBox.StandardButton.Yes:
-            # add_ac = self.database.add_account(account_)
-            _ac = next((acc.account for acc in self.database.app_data['account']['start_data'] if acc.account == account_), False)
+            _ac = next((acc.account for acc in self.database.app_data['account']['start_data'] if acc.account == account_), None)
             
-            if not _ac:
+            if _ac is not None:
                 QMessageBox.information(self.portfolio_stats, "Error",
                                     "Can't add the account. It would seem that there is already an account with that name",
                                     QMessageBox.StandardButton.Ok)
                 return
             
-            elif _ac:
-                account_id = max([id.id for id in self.database.app_data['account']['start_data']])  
+            else:
+                account_id = max([id.id for id in self.database.app_data['account']['start_data']]) + 1  
                 self.database.app_data['account']['start_data'].append(Account((account_id, account_)))
+                self.database.app_data['unsaved_data']['INSERT'].append(Account((account_id, account_)))
                 # account_id_ = self.database.account_id_request(account_)
                 # account_id_ = account_id_[0][0]
 
@@ -230,16 +234,17 @@ class Portfolio_Stats(Ui_Form):
                 account = next(
                     (
                         acc for acc in self.database.app_data['account_management']['start_data'] if acc.year == update_year
-                        and acc.month == update_month
+                        and acc.month_id == update_month
                         and acc.account_id == account_id
                         ),
                     None
                     )
                 if account is not None:
                     setattr(account, 'amount', amount)  
+                    setattr(account, 'account_name', account_) 
+                    self.database.app_data['unsaved_data']['UPDATE'].append(account)
                 else:
-                    self.database.app_data['account_management']['start_data'].append(
-                        Account_Management(
+                    acc_man = Account_Management(
                             (
                                 (1000000 * account_id) + (10000 * update_month) + int(update_year),
                                 (10000 * int(update_month)) + int(update_year),
@@ -248,7 +253,9 @@ class Portfolio_Stats(Ui_Form):
                                 amount
                                             )
                             )
-                        )
+                    acc_man.get_accout_name(account_)
+                    self.database.app_data['account_management']['start_data'].append(acc_man)
+                    self.database.app_data['unsaved_data']['INSERT'].append(acc_man)
                      # print("Successfully updated")
 
     
@@ -281,7 +288,8 @@ class Portfolio_Stats(Ui_Form):
                                     "Can't find the account. It would seem that the account is already removed",
                                     QMessageBox.StandardButton.Ok)
                         return
-                    
+
+                    self.database.app_data['unsaved_data']['DELETE'].append(find_account)
                     self.database.app_data['account']['start_data'].remove(find_account)
                     # self.database.remove_account(account_, account_id)
                         

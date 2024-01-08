@@ -7,7 +7,7 @@ import datetime
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
-from PyQt6.QtWidgets import QWidget, QMessageBox, QVBoxLayout, QGridLayout, QLabel, QPushButton, QDoubleSpinBox, QLineEdit, QComboBox
+from PyQt6.QtWidgets import QWidget, QMessageBox, QVBoxLayout, QGridLayout, QLabel, QPushButton, QDoubleSpinBox, QLineEdit, QComboBox, QInputDialog
 from PyQt6.QtCore import QRect, QDateTime, QDate, QTime, Qt
 ########################################################################################
 
@@ -494,37 +494,28 @@ class Add_Transaction(Ui_Form):
         self.database = database
         self.tables_array = ['category_test', 'sub_category_test', 'account_test', 'category_type_test',
                              'accounting_type_test', 'month_test']
-        self.create_table_dict()
-        
-        # Add Transfer to Accounts
-        self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
-        for _, account in enumerate(self.accounts):  
-            self.transfer_To_comboBox.addItem(account)
-            self.account_comboBox.addItem(account)
-        # Add category type
-        self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['start_data']]
-        for _, category_type in enumerate(self.category_types):  
-            self.category_Type_comboBox.addItem(category_type)
-        # Add sub categories
-        self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['start_data']]
-        for _, sub_category in enumerate(self.sub_categories):  
-            self.sub_Category_comboBox.addItem(sub_category)   
-        # Add Categories
-        self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['start_data']]
-        for _, category in enumerate(self.categories):  
-            self.category_comboBox.addItem(category)
-        # Add Accounting type
-        self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['start_data']]
-        for _, accounting in enumerate(self.accountings):  
-            self.credit_Debit_comboBox.addItem(accounting)
-        # Add Frequency
-        self.frequencies: List[str] = [freq.frequency for freq in self.database.app_data['frequency']['start_data']]
-        for _, frequency in enumerate(self.frequencies):  
-            self.frequency_comboBox.addItem(frequency)
+        self.update_component()
         
         self.category_Type_comboBox.currentTextChanged.connect(self.check_category_type)    
         self.discard_pushButton.clicked.connect(self.discard_check)
         self.payback_pushButton.clicked.connect(self.payback_window)
+        self.add_sub_pushButton.clicked.connect(self.add_sub_category)
+        
+    def add_sub_category(self):
+        # Have user make a file name
+        sub_category_name, ok_pressed = QInputDialog.getText(self.add_trans_widget, '', 'Please type a name for the new Sub Category: ')
+
+        # Check if the user pressed OK
+        if ok_pressed:
+            self.sub_Category_comboBox.addItem(sub_category_name)
+            generated_id = max([sub_c.id for sub_c in self.database.app_data['sub_category']['start_data']]) + 1
+            sub_cate_obj = Sub_Category((generated_id, sub_category_name))
+            self.database.app_data['sub_category']['start_data'].append(sub_cate_obj)
+            self.database.app_data['unsaved_data']['INSERT'].append(sub_cate_obj)
+            QMessageBox.information(self.add_trans_widget, "Success",
+                                f"Successfully add {sub_category_name} to Sub Category",)
+        else:
+            return
         
     def check_category_type(self, text):
         if text == 'Payback':
@@ -699,3 +690,32 @@ class Add_Transaction(Ui_Form):
         self.sub_Category_comboBox.setCurrentIndex(0)
         self.category_comboBox.setCurrentIndex(0)
         self.category_Type_comboBox.setCurrentIndex(0)
+        
+    def update_component(self):
+        self.create_table_dict()
+        
+        # Add Transfer to Accounts
+        self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
+        for _, account in enumerate(self.accounts):  
+            self.transfer_To_comboBox.addItem(account)
+            self.account_comboBox.addItem(account)
+        # Add category type
+        self.category_types: List[str] = [cat_type.category_type for cat_type in self.database.app_data['category_type']['start_data']]
+        for _, category_type in enumerate(self.category_types):  
+            self.category_Type_comboBox.addItem(category_type)
+        # Add sub categories
+        self.sub_categories: List[str] = [sub_cat_type.sub_category for sub_cat_type in self.database.app_data['sub_category']['start_data']]
+        for _, sub_category in enumerate(self.sub_categories):  
+            self.sub_Category_comboBox.addItem(sub_category)   
+        # Add Categories
+        self.categories: List[str] = [cat.category for cat in self.database.app_data['category']['start_data']]
+        for _, category in enumerate(self.categories):  
+            self.category_comboBox.addItem(category)
+        # Add Accounting type
+        self.accountings: List[str] = [acc_type.type for acc_type in self.database.app_data['accounting_type']['start_data']]
+        for _, accounting in enumerate(self.accountings):  
+            self.credit_Debit_comboBox.addItem(accounting)
+        # Add Frequency
+        self.frequencies: List[str] = [freq.frequency for freq in self.database.app_data['frequency']['start_data']]
+        for _, frequency in enumerate(self.frequencies):  
+            self.frequency_comboBox.addItem(frequency) 

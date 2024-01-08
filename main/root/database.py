@@ -793,21 +793,25 @@ class Database:
         
     def clear_unsave_data(self):
         for ls in self.app_data['unsaved_data'].keys():
-            ls.clear()
+            self.app_data['unsaved_data'][ls].clear()
         
-    def delete_data() -> str: ...
-        
+    def delete_data(self, constructor: str, model: typing.Union[Transaction, Month_Budget, Accounting_Type, Sub_Category,
+                                                                Category, Account, Category_Type, App_Month, Account_Management,
+                                                                Goal, Frequency, States, States_Income_Taxes, Payback]):
+        values = model.delete_data(self.app_data)
+        self.execute_update(constructor, values)
+    
     def update_data(self, constructor: str, model: typing.Union[Transaction, Month_Budget, Accounting_Type, Sub_Category,
                                                                 Category, Account, Category_Type, App_Month, Account_Management,
                                                                 Goal, Frequency, States, States_Income_Taxes, Payback]):
         values = model.update_data(self.app_data)
         self.execute_update(constructor, values)
-
+            
     def month_budget_check_stats(self, parent, year: str):
         # if no data is entered in the database for month budget
         """
         Gets month budget data to be utilized by the
-        appication upon start up.
+        application upon start up.
         Returns: pd.dataframe
         """
         #print(self)

@@ -70,6 +70,13 @@ month_id, accounting_id, frequency_id, payback_id) VALUES \
                   'freq' : next(cate.id for cate in app_data['frequency']['start_data'] if cate.frequency == self.frequency),
                   'pay' : self.payback_id,}
         return values
+    
+    def delete_column(self): 
+        return "WHERE transaction_id = %(transaction_id)s;"
+    
+    def delete_data(self, _):
+        values = {'transaction_id': self.id}
+        return values
         
 class Month_Budget:
     
@@ -196,16 +203,21 @@ class Sub_Category:
         return 'sub_category_'
     
     def insert_column(self):
-        return '(sub_category)'
+        return '(sub_category, sub_category_id) VALUES (%(sub_category)s, %(sub_category_id)s)'
     
-    def insert_data(self, _) -> None:
-        ...
+    def insert_data(self, _):
+        values = {'sub_category' : self.sub_category,
+                  'sub_category_id' : self.id}
+        return values
         
-    def update_column(self) -> None:
-        ...
+    def update_column(self):
+        return '''SET sub_category = %(sub_category)s, 
+    WHERE sub_category_id = %(sub_category_id)s;'''
         
-    def update_data(self, _) -> None:
-        ...
+    def update_data(self, _):
+        values = {'sub_category' : self.sub_category,
+                  'sub_category_id' : self.id}
+        return values
 
 class Category:
     
@@ -217,16 +229,21 @@ class Category:
         return 'category_'
     
     def insert_column(self):
-        return '(category)'
+        return '(category) VALUES %(category)s'
     
-    def insert_data(self, _) -> None:
-        ...
+    def insert_data(self, _):
+        values = {'category' : self.category
+                  }
+        return values
         
-    def update_column(self) -> None:
-        ...
+    def update_column(self):
+        return '''SET category = %(category)s, 
+    WHERE category_id = %(category_id)s;'''
         
-    def update_data(self, _) -> None:
-        ...
+    def update_data(self, _):
+        values = {'category' : self.category,
+                  'category_id' : self.id}
+        return values
 
 class Account:
     
@@ -238,16 +255,28 @@ class Account:
         return 'account_'
     
     def insert_column(self):
-        return '(account)'
+        return '(account_id, account) VALUES (%(account_id)s, %(account)s);'
     
     def insert_data(self, _) -> None:
-        ...
+        values = {'account': self.account,
+                  'account_id': self.id}
+        return values
         
     def update_column(self) -> None:
-        ...
+        return 'SET account = %(account)s WHERE account_id = %(account_id)s;'
         
     def update_data(self, _) -> None:
-        ...
+        values = {'account_id' : self.id,
+                  'account' : self.account
+                  }
+        return values
+
+    def delete_column(self): 
+        return "WHERE account_id = %(account_id)s;"
+    
+    def delete_data(self, _):
+        values = {'account_id': self.id}
+        return values
 
 class Category_Type:
     
@@ -300,25 +329,52 @@ class Account_Management:
         self.account_id = data[3]
         self.amount = data[4]
         self.year = self.month_year_id - (self.month_id * 10000)
+        self.account_name = None
         
         if self.year < 0:
             self.month_id = 0
             self.year = self.month_year_id
-        
+            
+    def get_accout_name(self, acc_name):
+        self.account_name = acc_name
+           
     def get_table(self):
         return 'account_management_'
     
     def insert_column(self):
-        return '(month_year_account_id, month_year_id, month_id, account_id, amount)'
+        return '(month_year_account_id, month_year_id, month_id, account_id, amount) VALUES (%(month_year_account_id)s, %(month_year_id)s, %(month_id)s, %(account_id)s, %(amount)s);'
     
     def insert_data(self, _) -> None:
-        ...
+        values = {'month_year_account_id': self.id,
+                  'month_year_id': self.month_year_id,
+                  'month_id': self.month_id,
+                  'account_id': self.account_id,
+                  'amount': self.amount,
+            }
+        return values
         
     def update_column(self) -> None:
-        ...
+        return '''SET month_year_id = %(month_year_id)s, 
+    month_id = %(month_id)s, 
+    account_id = %(account_id)s, 
+    amount = %(amount)s
+    WHERE month_year_account_id = %(month_year_account_id)s;'''
         
     def update_data(self, _) -> None:
-        ...
+        values = {'month_year_account_id': self.id,
+                  'month_year_id': self.month_year_id,
+                  'month_id': self.month_id,
+                  'account_id': self.account_id,
+                  'amount': self.amount,
+            }
+        return values
+
+    def delete_column(self): 
+        return "WHERE month_year_account_id = %(month_year_account_id)s;"
+    
+    def delete_data(self, _):
+        values = {'month_year_account_id': self.id}
+        return values
 
 class Goal:
 
