@@ -118,7 +118,7 @@ class Month_Budget:
     
     def update(self):
         self.total = Decimal(self.food) + Decimal(self.bills) + Decimal(self.grocery) + Decimal(self.transportation) + Decimal(self.free_expense) + Decimal(self.investment) + Decimal(self.support)
-        self.left_amount = Decimal(self.earnings) + self.total
+        self.left_amount = Decimal(self.earnings) - self.total
         self.expected_ending_budget = Decimal(self.starting_budget) + self.left_amount
 
     def get_table(self):
