@@ -322,7 +322,7 @@ class Portfolio_Widget(QWidget):
                     year["data_label"][month].setAlignment(Qt.AlignmentFlag.AlignCenter)
                     if fill: # input data not available for month
                         year["data_label"][month].setStyleSheet("font-weight: bold;") # Visually indicate that data is made up
-                    year["data_label"][month].setText(f"${text}")
+                    year["data_label"][month].setText(f"${'{:.2f}'.format(text)}")
                         
                     if str(year["year"]) == self.year: # make it visible 
                         year["data_label"][month].setParent(self.scrollAreaWidgetContents)
