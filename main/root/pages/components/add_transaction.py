@@ -321,7 +321,7 @@ class Popup_window(QWidget):
                 else:
                     pass
             if validate:
-                self.payback_id = max([payback.payback_id for payback in self.payback_data]) + 1
+                self.payback_id = max(([payback.payback_id for payback in self.payback_data]), default=0) + 1
                 self.close()
                     
         elif self.pay_to_payback == True:
@@ -508,7 +508,7 @@ class Add_Transaction(Ui_Form):
         # Check if the user pressed OK
         if ok_pressed:
             self.sub_Category_comboBox.addItem(sub_category_name)
-            generated_id = max([sub_c.id for sub_c in self.database.app_data['sub_category']['start_data']]) + 1
+            generated_id = max(([sub_c.id for sub_c in self.database.app_data['sub_category']['start_data']]), default=0) + 1
             sub_cate_obj = Sub_Category((generated_id, sub_category_name))
             self.database.app_data['sub_category']['start_data'].append(sub_cate_obj)
             self.database.app_data['unsaved_data']['INSERT'].append(sub_cate_obj)
@@ -630,7 +630,7 @@ class Add_Transaction(Ui_Form):
         category_type = self.category_Type_comboBox.currentText()
         category_type_id = self.category_type_dict[category_type]
         
-        max_id = max([trans.id for trans in self.database.app_data['transaction_data']['start_data']])
+        max_id = max(([trans.id for trans in self.database.app_data['transaction_data']['start_data']]), default=0)
         trans_temp_id = random.randint((max_id + 1), (max_id + 10))
         
         transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id]
@@ -692,8 +692,6 @@ class Add_Transaction(Ui_Form):
         self.category_Type_comboBox.setCurrentIndex(0)
         
     def update_component(self):
-        self.create_table_dict()
-        
         # Add Transfer to Accounts
         self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
         self.transfer_To_comboBox.clear()
