@@ -351,6 +351,24 @@ class Ui_Form(object):
 "    border: 1px solid #5a5a5a;\n"
 "}")
         self.add_pushButton.setObjectName("add_pushButton")
+        self.add_sub_pushButton = QtWidgets.QPushButton(parent=Form)
+        self.add_sub_pushButton.setGeometry(QtCore.QRect(180, 305, 30, 30))
+        self.add_sub_pushButton.setStyleSheet("QPushButton {\n"
+"    background-color: #00aa00;\n"
+"    border: 1px solid #4d4d4d;\n"
+"    border-radius: 4px;\n"
+"    color: #ffffff;\n"
+"    padding: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #00ff00;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #007900;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}")
+        self.add_sub_pushButton.setObjectName("add_sub_pushButton")
         self.payback_pushButton = QtWidgets.QPushButton(parent=Form)
         self.payback_pushButton.setGeometry(QtCore.QRect(1110, 290, 161, 41))
         self.payback_pushButton.setStyleSheet("""QPushButton {
@@ -442,6 +460,7 @@ class Ui_Form(object):
         self.transfer_To_label.setText(_translate("Form", "Transfer To"))
         self.credit_Debit_label.setText(_translate("Form", "Credit/Debit"))
         self.frequency_label.setText(_translate("Form", "Frequency"))
+        self.add_sub_pushButton.setText(_translate("Form", "+"))
 
 
 if __name__ == "__main__":

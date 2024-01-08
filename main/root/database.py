@@ -792,10 +792,13 @@ class Database:
         
     def clear_unsave_data(self):
         for ls in self.app_data['unsaved_data'].keys():
-            ls.clear()
+            self.app_data['unsaved_data'][ls].clear()
         
-    def delete_data() -> str:
-        ...
+    def delete_data(self, constructor: str, model: typing.Union[Transaction, Month_Budget, Accounting_Type, Sub_Category,
+                                                                Category, Account, Category_Type, App_Month, Account_Management,
+                                                                Goal, Frequency, States, States_Income_Taxes, Payback]):
+        values = model.delete_data(self.app_data)
+        self.execute_update(constructor, values)
     
     def update_data(self, constructor: str, model: typing.Union[Transaction, Month_Budget, Accounting_Type, Sub_Category,
                                                                 Category, Account, Category_Type, App_Month, Account_Management,
@@ -803,25 +806,11 @@ class Database:
         values = model.update_data(self.app_data)
         self.execute_update(constructor, values)
             
-    def insert_transaction_data(self, transaction_list: list):
-        """
-        list: [transaction_date (2023-01-01), transaction_name, amount (10.00), category_id,
-                sub_category_id, account_id, category_type_id, month_id, accounting_id]
-        """
-        with self.cursor() as cur:
-            self.execute_update(f"""INSERT INTO transaction_test (transaction_date, transaction_name,
-                            amount, category_id, sub_category_id, account_id, category_type_id,
-                            month_id, accounting_id)
-                            VALUES
-                            ('{transaction_list[0]}', '{transaction_list[1]}', {transaction_list[2]},
-                            {transaction_list[3]}, {transaction_list[4]}, {transaction_list[5]},
-                            {transaction_list[6]}, {transaction_list[7]}, {transaction_list[8]});""")
-
     def month_budget_check_stats(self, parent, year: str):
         # if no data is entered in the database for month budget
         """
         Gets month budget data to be utilized by the
-        appication upon start up.
+        application upon start up.
         Returns: pd.dataframe
         """
         #print(self)
@@ -877,160 +866,4 @@ class Database:
 
                 return False
 
-        # query_results = self.cur.fetchall()
-        # print(query_results)
         return True
-    
-    
-    # def single_data_request(self, table, column, row, criteria):
-    #     """SELECT {table}.{column} FROM {table}
-    #         WHERE {row} = {criteria};"""
-
-    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table}
-    #                      WHERE {row} = {criteria};""")
-
-    #     query_results = self.cur.fetchall()
-    #     #print(query_results)
-    #     self.connection.commit()
-
-    #     return query_results
-
-    # def single_data_request_2(self, table, column, row, criteria, row_2, criteria_2):
-    #     """SELECT {table}.{column} FROM {table}
-    #         WHERE {row} = {criteria}
-    #         AND {row_2} = {criteria_2};"""
-
-    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table}
-    #                      WHERE {row} = {criteria}
-    #                      AND {row_2} = {criteria_2};""")
-
-    #     query_results = self.cur.fetchall()
-    #     #print(query_results)
-    #     self.connection.commit()
-
-    #     return query_results
-
-    # def all_data_request(self, table, column=None):
-    #     if column is None:
-    #         column = '*'
-    #     self.cur.execute(f"""SELECT {column} FROM {table};""")
-
-    #     query_results = self.cur.fetchall()
-    #     #print(query_results)
-    #     self.connection.commit()
-
-    #     return query_results
-
-
-    # def query_column(self, table, column):
-    #     self.cur.execute(f"""SELECT {table}.{column} FROM {table};""")
-
-    #     query_results = self.cur.fetchall()
-    #     # print(query_results)
-    #     self.connection.commit()
-
-    #     return query_results
-
-    # def update_value(self, table, column, row, criteria, value):
-    #     """UPDATE {table}
-    #         SET {column} = {value}
-    #         WHERE {row} = {criteria};"""
-
-    #     self.cur.execute(f"""UPDATE {table} SET {column} = {value}
-    #                      WHERE {row} = {criteria};""")
-
-    #     self.connection.commit()
-
-
-
-
-
-
-    # def change_budget(self, year: int, month: int, column: str, value: str):
-    #     table = "month_budget_test"
-    #     row = "month_year_id"
-    #     criteria = (10000 * month) + int(year)
-
-    #     self.update_value(table, column, row, criteria, value)
-
-
-
-
-    # def insert_account_data(self, year, month, account_id, amount):
-    #     """
-    #     month_year_id = (10000 * int(month)) + int(year)
-    #     self.cur.execute(f'INSERT INTO account_management_test
-    #                      (month_year_account_id, month_year_id, month_id, account_id, amount)
-    #                      VALUES
-    #                      ('{month_year_id}', '{month}', {account_id}, {amount});')
-    #     """
-    #     month_year_id = (10000 * int(month)) + int(year)
-    #     month_year_account_id = (1000000 * account_id) + (10000 * month) + int(year)
-
-    #     if month == 0:
-    #         month = 1
-
-    #     self.cur.execute(f"""SELECT * FROM account_management_test
-    #                              WHERE month_year_account_id = {month_year_account_id}
-    #                              AND month_year_id = {month_year_id}
-    #                              AND account_id = {int(account_id)}
-    #                              AND month_id = {int(month)};""")
-
-    #     query = self.cur.fetchall()
-
-    #     print(f"query: {query}")
-    #     self.connection.commit()
-
-    #     if query == []:
-    #         self.cur.execute(f"""INSERT INTO account_management_test
-    #                         (month_year_account_id, month_year_id, month_id, account_id, amount)
-    #                         VALUES
-    #                         ({month_year_account_id}, {month_year_id}, {month}, {account_id}, {amount});""")
-
-    #         self.connection.commit()
-
-    #         # For Debugging purposes
-    #         print('Account data added')
-
-    #     if query != []:
-    #         self.cur.execute(f"""UPDATE account_management_test SET amount = {amount}
-    #                          WHERE month_year_account_id = {month_year_account_id}
-    #                          AND month_year_id = {month_year_id}
-    #                          AND account_id = {account_id}
-    #                          AND month_id = {month};""")
-
-    #         self.connection.commit()
-
-    #         # For Debugging purposes
-    #         print('Account data updated')
-
-    # def add_account(self, account_name: str):
-    #     table = "account_test"
-
-    #     self.cur.execute(f"""SELECT * FROM {table}
-    #                       WHERE account = '{account_name}';""")
-
-    #     query = self.cur.fetchall()
-    #     self.connection.commit()
-
-    #     if query == []:
-    #         self.cur.execute(f"""INSERT INTO {table}
-    #                         (account)
-    #                         VALUES ('{account_name}');""")
-
-    #         self.connection.commit()
-
-    #         # For Debugging purposes
-    #         print('Account added')
-    #         return True
-
-    #     if query != []:
-    #         return False
-
-    # def remove_account(self, account_name: str, account_id: str):
-
-    #     self.cur.execute(f"""DELETE FROM account_test
-    #                      WHERE account = '{account_name}'
-    #                      AND account_id = {account_id};""")
-
-    #     self.connection.commit()

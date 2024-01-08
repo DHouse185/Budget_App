@@ -79,16 +79,6 @@ class Portfolio(QWidget):
         # Signals
         self.portfolio_wid.stats_Year_comboBox.currentTextChanged.connect(self.update_year)
         
-        # Evaluate signal
-        
-        # Update signal
-        
-        # Add account signal
-        
-        # Remove account signal
-        
-        # Chart signal
-        
         self.portfolio_main_scrollArea.setWidget(self.portfolio_main_scrollAreaWidgetContents)
         
     def update_year(self):
@@ -99,16 +89,11 @@ class Portfolio(QWidget):
         
         self.portfolio_stats.eval_year()
         self.portfolio_wid.year_change(prev_year=self.prev_year, new_year=self.year)
-    # def update_account(self):
-    #     ...
-    
-    # def add_account(self):
-    #     ...
-    
-    # def remove_account(self):
-    #     ...
-    
-    # def charting(self):
-    #     ...
-            
+        
+    def update_page(self):
+        self.portfolio_wid.update_component()
+        self.year = self.portfolio_wid.year
+        self.account_dictionary = self.portfolio_wid.account_dict
+        self.portfolio_stats.update_component(self.account_dictionary, self.year)
+        self.line_chart_wid.update_component(self.account_dictionary, self.year)
             

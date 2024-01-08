@@ -131,6 +131,12 @@ class Transactions(QWidget):
         
         self.transaction_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
+    def update_page(self):
+        self.transaction_addition.update_component()
+        updated_df = self.database.app_data['transaction_dataframe']
+        self.transaction_model.resetData(updated_df)
+        self.transaction_stats.update_data()
+            
     def add_transaction_to_table(self):
         trans_conf = self.transaction_addition.add_check()
         if trans_conf:
@@ -162,8 +168,8 @@ class Transactions(QWidget):
                 # Utilizing the transaction ID# put in remove transaction dictionary. if in unsaved dictionary remove from that dictionary
                 transaction = next((trans for trans in self.database.app_data['transaction_data']['start_data'] if trans.id == int(row_data["ID"])), None)
                 if transaction is not None:
+                    self.database.app_data['unsaved_data']['DELETE'].append(transaction)
                     self.database.app_data['transaction_data']['start_data'].remove(transaction)
-                    # self.database.app_data['unsaved_data']['DELETE'].remove(transaction)
                 # Remove the row from the model and DataFrame
                 self.transaction_model.removeRow(row)
                 self.transaction_stats.update_data()

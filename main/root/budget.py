@@ -67,14 +67,26 @@ class Budget(QWidget):
         self.actionSave_Workspace = QAction(MainWindow)
         self.actionSave_Workspace.setObjectName(u"actionSave_Workspace")
         self.actionSave_Workspace.setText("Save Workspace")
+        self.actionUpdate_Workspace = QAction(MainWindow)
+        self.actionUpdate_Workspace.setObjectName(u"actionUpdate_Workspace")
+        self.actionUpdate_Workspace.setText("Update Workspace")
+        self.actionSide_Menu = QAction(MainWindow)
+        self.actionSide_Menu.setObjectName(u"actionSide_Menu")
+        self.actionSide_Menu.setText("Side Menu")
 
         # Action of "Save Workspace" in menu bar
         self.actionSave_Workspace.triggered.connect(self.save_changes)
+        self.actionUpdate_Workspace.triggered.connect(self.update_changes)
+        self.actionSide_Menu.triggered.connect(self.side_menu_trigger)
 
         # On the menu bar there will be a menu called "Workspace"
         workspace_menu = self.menu_bar.addMenu('&Workspace')
         workspace_menu.addAction(self.actionSave_Workspace)
-
+        workspace_menu.addAction(self.actionUpdate_Workspace)
+        self.menu_bar.addAction(self.actionSide_Menu)
+        # side_menu_menu = self.menu_bar.addAction('&Side_Menu')
+        # side_menu_menu.addAction(self.actionSave_Workspace)
+        
         # Prepare Pages (i.e. Stack Widgets) for Main Window
         # Mainwindow -> central widget -> StackWidget
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -131,10 +143,10 @@ class Budget(QWidget):
         self.side_menu = Side_Menu(self.centralwidget)
         self.side_menu.side_menu_widget.raise_()
 
-        # Prepare page swap button
-        self.side_menu_button = QPushButton(self.centralwidget)
-        self.side_menu_button.setObjectName("side_menu_button")
-        self.side_menu_button.setGeometry(QRect(10, 40, 50, 50))
+        # # Prepare page swap button
+        # self.side_menu_button = QPushButton(self.centralwidget)
+        # self.side_menu_button.setObjectName("side_menu_button")
+        # self.side_menu_button.setGeometry(QRect(10, 40, 50, 50))
         # indicator for side menu button position
         # 0 means off. 1 means active
         self.side_menu_position = 0
@@ -164,7 +176,7 @@ class Budget(QWidget):
         self.budget_planning = Budget_Planning(self.budget_planning_page, self.database)
 
         # Triggers and events
-        self.side_menu_button.clicked.connect(self.side_menu_trigger)
+        # self.side_menu_button.clicked.connect(self.side_menu_trigger)
         self.side_menu.dashboard_pushButton.clicked.connect(self.change_to_dashboard_page)
         self.side_menu.calendar_pushButton.clicked.connect(self.change_to_calendar_page)
         self.side_menu.transaction_pushButton.clicked.connect(self.change_to_transaction_page)
@@ -172,6 +184,13 @@ class Budget(QWidget):
         self.side_menu.portfolio_pushButton.clicked.connect(self.change_to_portfolio_page)
         self.side_menu.budget_planning_pushButton.clicked.connect(self.change_to_budget_planning_page)
 
+    def update_changes(self):
+        self.dashboard.update_page()
+        self.calendar.update_page()
+        self.transaction.update_page()
+        self.monthly_budget.update_page()
+        self.portfolio.update_page()
+    
     def save_changes(self):
         unsaved_data_list = self.database.app_data['unsaved_data']
         proceed = rfunc.unsave_message(self.centralwidget, unsaved_data_list)
@@ -183,9 +202,9 @@ class Budget(QWidget):
                         self.database.insert_data(insert_constructor, model)
 
                 elif change_type == 'DELETE':
-                    for model_type in unsaved_data_list[change_type]:
-                        ...
-
+                    for model in unsaved_data_list[change_type]:
+                        insert_constructor = 'DELETE FROM ' + model.get_table() + 'test ' + model.delete_column()
+                        self.database.insert_data(insert_constructor, model)
 
                 if change_type == 'UPDATE':
                     for model in unsaved_data_list[change_type]:
@@ -235,27 +254,27 @@ class Budget(QWidget):
         return: void
         """
 
-        # side menu button animation showing menu
-        self.sm_button_show = QPropertyAnimation(self.side_menu_button, b"pos")
-        self.sm_button_show.setEndValue(QPoint(280, 40))
-        self.sm_button_show.setEasingCurve(QEasingCurve.Type.OutQuad)
-        self.sm_button_show.setDuration(1000)  # time in ms
+        # # side menu button animation showing menu
+        # self.sm_button_show = QPropertyAnimation(self.side_menu_button, b"pos")
+        # self.sm_button_show.setEndValue(QPoint(280, 40))
+        # self.sm_button_show.setEasingCurve(QEasingCurve.Type.OutQuad)
+        # self.sm_button_show.setDuration(1000)  # time in ms
 
-        # side menu button animation closing menu
-        self.sm_button_close = QPropertyAnimation(self.side_menu_button, b"pos")
-        self.sm_button_close.setEndValue(QPoint(10, 40))
-        self.sm_button_close.setEasingCurve(QEasingCurve.Type.OutCubic)
-        self.sm_button_close.setDuration(1200)  # time in ms
+        # # side menu button animation closing menu
+        # self.sm_button_close = QPropertyAnimation(self.side_menu_button, b"pos")
+        # self.sm_button_close.setEndValue(QPoint(10, 40))
+        # self.sm_button_close.setEasingCurve(QEasingCurve.Type.OutCubic)
+        # self.sm_button_close.setDuration(1200)  # time in ms
 
         # Close side menu animation
         self.close_group_animation = QParallelAnimationGroup()
         self.close_group_animation.addAnimation(self.side_menu.anim_group_disappear)
-        self.close_group_animation.addAnimation(self.sm_button_close)
+        # self.close_group_animation.addAnimation(self.sm_button_close)
 
         # Open side menu animation
         self.show_group_animation = QParallelAnimationGroup()
         self.show_group_animation.addAnimation(self.side_menu.anim_group_appear)
-        self.show_group_animation.addAnimation(self.sm_button_show)
+        # self.show_group_animation.addAnimation(self.sm_button_show)
 
     def side_menu_trigger(self):
         if not self.side_menu_position:

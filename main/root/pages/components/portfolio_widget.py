@@ -55,7 +55,6 @@ class Portfolio_Widget(QWidget):
         self.stats_Year_comboBox.addItems(self.default_years_list)
         self.stats_Year_comboBox.setCurrentIndex(0)
         # Get year
-        self.year = self.stats_Year_comboBox.currentText()
         self.widget_parameters = [
             {"code_name": "month", "widget": QLabel, "data_type": str, "height": 45, "width": 185, "x_space": 190, "y_space": 50},
             {"code_name": "value", "widget": QLabel, "data_type": str, "height": 45, "width": 185, "x_space": 190, "y_space": 50},
@@ -76,11 +75,24 @@ class Portfolio_Widget(QWidget):
                 if param["code_name"] == "month":
                     label.setGeometry(QRect(month_label_x_start, 30, param["width"], param["height"]))
                     month_label_x_start += param["x_space"]
-
+        self.initialize_signal = 0
+        self.update_component()
+        self.portfolio_scrollArea.setWidget(self.scrollAreaWidgetContents)
+    
+    def remove_accountName_labels(self):
+        # Use account dictionary to create labels and their locations dynamically
+        for account in self.account_dict.values():
+            if account.get('account_label') is not None:
+                account["account_label"]["name"].setParent(None)
+                del account["account_label"]["name"]
+        
+    def update_component(self):
         # Get account list
+        self.year = self.stats_Year_comboBox.currentText()
         account_ls: typing.List[Account] = self.database.app_data['account']['start_data']
+        if self.initialize_signal:
+            self.remove_accountName_labels() 
         self.account_dict = dict()
-
         for account in account_ls:
             self.account_dict[account.account] = dict()
             self.account_dict[account.account]["query_name"] = account.account
@@ -118,7 +130,7 @@ class Portfolio_Widget(QWidget):
         # Add account label widgets and data labels to scrollAreaWidgetContents
         self.add_account_name_widgets()
         self.add_account_data_label()
-        self.portfolio_scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.initialize_signal = 1
            
     def add_data(self):
         # Use year to get account data
@@ -150,7 +162,7 @@ class Portfolio_Widget(QWidget):
     def update_account_data(self, account, year, month, amount, sum_total):
         if amount is not None:
             account["year"][str(year)]["data"].append((month, amount))
-            sum_total += amount
+            sum_total += Decimal(amount)
         else:
             # If data is not found for the requested month
             sum_total = self.fill_in_data(account, year, month, sum_total)
@@ -172,7 +184,7 @@ class Portfolio_Widget(QWidget):
                 # We make sure we are getting the right previous month
                 amount = data_point[1]
                 account["year"][str(year)]["fill_in_data"].append((month, amount))
-                sum_total += amount
+                sum_total += Decimal(amount)
                 break
         # If there is no data filled into the "data" list for the previous month
         else:
@@ -182,7 +194,7 @@ class Portfolio_Widget(QWidget):
                 if data_point[0] == (month - 1):
                     amount = data_point[1]
                     account["year"][str(year)]["fill_in_data"].append((month, amount))
-                    sum_total += amount
+                    sum_total += Decimal(amount)
                     break
             # If no data is found in "filled_in_data" list either, we just fill it in with 0
             else:
@@ -199,7 +211,7 @@ class Portfolio_Widget(QWidget):
         # If data was found in the previous year's December end
         if amount is not None:
             account["year"][str(year)]["fill_in_data"].append((month, amount))
-            sum_total += amount
+            sum_total += Decimal(amount)
         # If data was not found in the previous year's December end
         else:
             # Check previous year's December end Fill in data
@@ -238,22 +250,22 @@ class Portfolio_Widget(QWidget):
                                 result_2 = next((item[1] for item in fill_in_only_list if item[0] == (month - 1)), None)
 
                                 try:
-                                    percent_change = (result_1 - result_2) / abs(result_2) * 100 if result_2 != 0 else Decimal(0.00) # CHECK AGAIN DURING DEBUGGING
+                                    percent_change = (result_1 - result_2) / abs(result_2) * 100 if (result_2 != 0) and (result_2 is not None) else Decimal(0.00) # CHECK AGAIN DURING DEBUGGING
                                 except ZeroDivisionError:
                                     percent_change = (result_1 - result_2) / (abs(result_2) + 1) * 100
 
                                 fill_in_perc_ls.append((month, percent_change))
                             else:
                                 try:
-                                    percent_change = (result_1 - result_2) / abs(result_2) * 100 if result_2 is not None or result_2 != 0 else Decimal(0.00)
-                                    percent_ls.append((month, percent_change))
+                                    percent_change = (result_1 - result_2) / abs(result_2) * 100 if (result_2 is not None) and (result_2 != 0) and (result_1 is not None) else Decimal(0.00)
+                                    percent_ls.append((month, Decimal(percent_change)))
                                 
                                 except ZeroDivisionError:
                                     percent_ls.append((month, Decimal(0.00)))
                         else:
-                            try:
-                                percent_change = (result_1 - result_2) / abs(result_2) * 100 if result_2 is not None or result_2 != 0 else Decimal(0.00)
-                                percent_ls.append((month, percent_change))
+                            try:    
+                                percent_change = (float(result_1) - float(result_2)) / abs(float(result_2)) * 100 if (result_2 is not None) and (result_2 != 0) and (result_1 is not None) else Decimal(0.00)
+                                percent_ls.append((month, round(Decimal(percent_change), 2)))
                             
                             except ZeroDivisionError:
                                 percent_ls.append((month, Decimal(0.00)))
@@ -281,6 +293,7 @@ class Portfolio_Widget(QWidget):
             for param in self.widget_parameters:
                 if param["code_name"] == "account":
                     account["account_label"]["name"].setGeometry(QRect(account_label_x_start, account_label_y_start, param["width"], param["height"]))
+                    account["account_label"]["name"].setVisible(True)
                     account_label_y_start += param["y_space"]
 
     def add_account_data_label(self):
@@ -292,6 +305,10 @@ class Portfolio_Widget(QWidget):
             # Loop through each account
             for year in account["year"].values():
                 # loop through each year dictionary in each account dictionary
+                if year.get('data_label') is not None:
+                    for label in year["data_label"]:
+                        label.setParent(None)
+                        del label
                 year["data_label"] = [QLabel() for _ in range(len(year["unfiltered_data"]))]
                 
                 unfiltered_data = year["unfiltered_data"]

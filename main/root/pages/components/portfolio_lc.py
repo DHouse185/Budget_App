@@ -66,16 +66,7 @@ class Portfolio_LineChart(QWidget):
         min_amount = 0
                 
         for point, value in enumerate(self.account_dict[self.account_name]['year'][self.year]['unfiltered_data']):
-                
-            # For Debugging purposes
-            print(f"Series point Before Change: {value[0]}")
-            print(f"Series value Before Change: {value[1]}")
-            
             value_ad = float("{:.2f}".format(value[1]))
-            
-            # For Debugging purposes
-            print(f'Data point value after format: {value_ad}')
-                    
             self.qline_norm.append(QPointF(value[0], value_ad))
             
             if value[0] == 0 or point == 0:
@@ -91,16 +82,7 @@ class Portfolio_LineChart(QWidget):
             
             if point == 0 and value[0] != 0:
                 value_ex_start = self.account_dict[self.account_name]['year'][self.year]['unfiltered_data'][-1]
-                
-                # For Debugging purposes
-                print(f"Series Expected point 0 Before Change: {value_ex_start[0]}")
-                print(f"Series Expected value 0 Before Change: {value_ex_start[1]}")
-                
                 value_ex_start_num = float("{:.2f}".format(value_ex_start[1]))
-                
-                # For Debugging purposes
-                print(f'Data point Expected value 0 after format: {value_ex_start_num}')
-                        
                 self.qline_expected.append(QPointF(value_ex_start[0], value_ex_start_num))
                             
                 if value_ex_start_num < min_amount:
@@ -108,16 +90,7 @@ class Portfolio_LineChart(QWidget):
                         
                 if value_ex_start_num > max_amount:
                     max_amount = value_ex_start_num
-                    
-            # For Debugging purposes
-            print(f"Series Expected point Before Change: {value[0]}")
-            print(f"Series Expected value Before Change: {value[1]}")
-            
-            value_ad_ex = float("{:.2f}".format(value[1]))
-            
-            # For Debugging purposes
-            print(f'Data point Expected value after format: {value_ad_ex}')
-                    
+            value_ad_ex = float("{:.2f}".format(value[1]))                    
             self.qline_expected.append(QPointF(value[0], value_ad_ex))
                         
             if value_ad_ex < min_amount:
@@ -169,6 +142,19 @@ class Portfolio_LineChart(QWidget):
         self.setLayout(layout)
         
         self.account_comboBox.currentTextChanged.connect(self.change_account)
+    
+    def update_component(self, dict: typing.Dict, year: str):
+        self.account_dict = dict
+        self.year = year
+        self.name_ls.clear()
+        for account in self.account_dict.values(): # Have this somewhere else in my code. Might be able to take it.
+            name = account['name']
+                        
+            self.name_ls.append(name)
+        self.account_comboBox.clear()    
+        self.account_comboBox.addItems(self.name_ls)
+        self.account_name_box = self.account_comboBox.currentText()
+        self.change_account(self.account_name_box)
                 
     def change_account(self, text: str):
         # Clear the current data
@@ -182,16 +168,7 @@ class Portfolio_LineChart(QWidget):
                 self.account_name = account['query_name']
         
         for point, value in enumerate(self.account_dict[self.account_name]['year'][self.year]['unfiltered_data']):
-                
-            # For Debugging purposes
-            print(f"Series point Before Change: {value[0]}")
-            print(f"Series value Before Change: {value[1]}")
-            
             value_ad = float("{:.2f}".format(value[1]))
-            
-            # For Debugging purposes
-            print(f'Data point value after format: {value_ad}')
-                    
             self.qline_norm.append(QPointF(value[0], value_ad))
             
             if value[0] == 0 or point == 0:
@@ -207,16 +184,7 @@ class Portfolio_LineChart(QWidget):
             
             if point == 0 and value[0] != 0:
                 value_ex_start = self.account_dict[self.account_name]['year'][self.year]['unfiltered_data'][-1]
-                
-                # For Debugging purposes
-                print(f"Series Expected point 0 Before Change: {value_ex_start[0]}")
-                print(f"Series Expected value 0 Before Change: {value_ex_start[1]}")
-                
                 value_ex_start_num = float("{:.2f}".format(value_ex_start[1]))
-                
-                # For Debugging purposes
-                print(f'Data point Expected value 0 after format: {value_ex_start_num}')
-                        
                 self.qline_expected.append(QPointF(value_ex_start[0], value_ex_start_num))
                             
                 if value_ex_start_num < min_amount:
@@ -225,15 +193,7 @@ class Portfolio_LineChart(QWidget):
                 if value_ex_start_num > max_amount:
                     max_amount = value_ex_start_num
                     
-            # For Debugging purposes
-            print(f"Series Expected point Before Change: {value[0]}")
-            print(f"Series Expected value Before Change: {value[1]}")
-            
-            value_ad_ex = float("{:.2f}".format(value[1]))
-            
-            # For Debugging purposes
-            print(f'Data point Expected value after format: {value_ad_ex}')
-                    
+            value_ad_ex = float("{:.2f}".format(value[1]))                    
             self.qline_expected.append(QPointF(value[0], value_ad_ex))
                         
             if value_ad_ex < min_amount:

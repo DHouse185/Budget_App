@@ -15,43 +15,68 @@ from root.models import (Transaction, Month_Budget, Accounting_Type, Sub_Categor
                          Goal, Frequency, States, States_Income_Taxes, Payback)
 import root.helper.root_variables as rvar
 ########################################################################################
+
 def unsave_message(parent: QWidget, unsaved_data_list: typing.List) -> bool:
     for changes in unsaved_data_list.values():
         if changes != []:
             unsaved_detected = True
             break
+        else:
+            unsaved_detected = False
+             
     if unsaved_detected:
         message = 'The following data has not been saved yet. Would you like to save it?\n'
         for change_type in unsaved_data_list.keys():
             if change_type == 'INSERT':
                 for model_type in unsaved_data_list[change_type]:
                     if model_type.__class__ == Transaction:
-                        message += "\n".join([f"Add Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+                        message += "\n".join([f"Add Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}\n" ])
                     if model_type.__class__ == Month_Budget:
-                        message += "\n".join([f"Add Monthly Budget data for {model_type.month_name} {model_type.year}"])
+                        message += "\n".join([f"Add Monthly Budget data for {model_type.month_name} {model_type.year}\n"])
+                    if model_type.__class__ == Account:
+                        message += "\n".join([f"Add Account {model_type.account}\n"])
+                    if model_type.__class__ == Account_Management:
+                        message += "\n".join([f"Add Account data for {model_type.account_name} in {next((key for key, value in rvar.month_dict.items() if value == model_type.month_id), 'Year Starting Amount')} for the year {model_type.year}: Amount - {model_type.amount}\n"])
+                    if model_type.__class__ == Category:
+                        message += "\n".join([f"Add Category {model_type.category}\n"])
+                    if model_type.__class__ == Sub_Category:
+                        message += "\n".join([f"Add Sub Category {model_type.sub_category}\n"])                                                
             elif change_type == 'DELETE':
                 for model_type in unsaved_data_list[change_type]:
-                    
-                    ...
-                    # if model_type.__class__ == Transaction:
-                    #     message += "\n".join([f"Transaction {model_type.description} - Amount: {model_type.amount} Account:{model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
-                        
+                    if model_type.__class__ == Transaction:
+                        message += "\n".join([f"Delete Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}\n" ])
+                    if model_type.__class__ == Month_Budget:
+                        message += "\n".join([f"Delete Monthly Budget data for {model_type.month_name} {model_type.year}\n"])
+                    if model_type.__class__ == Account:
+                        message += "\n".join([f"Delete Account {model_type.account}\n"])
+                    if model_type.__class__ == Account_Management:
+                        message += "\n".join([f"Delete Account data for {model_type.account_name} in {next((key for key, value in rvar.month_dict.items() if value == model_type.month_id), 'Year Starting Amount')} for the year {model_type.year}: Amount - {model_type.amount}\n"])
+                    if model_type.__class__ == Category:
+                        message += "\n".join([f"Delete Category {model_type.category}\n"])
+                    if model_type.__class__ == Sub_Category:
+                        message += "\n".join([f"Delete Sub Category {model_type.sub_category}\n"])                                                                        
             elif change_type == 'UPDATE':
                 for model_type in unsaved_data_list[change_type]:
                     if model_type.__class__ == Month_Budget:
-                        message += "\n".join([f"Update Monthly Budget data for {model_type.month_name} {model_type.year}"])
-                    # if model_type.__class__ == Transaction:
-                    #     message += "\n".join([f"Transaction {model_type.description} - Amount: {model_type.amount} Account:{model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}" ])
+                        message += "\n".join([f"Update Monthly Budget data for {model_type.month_name} {model_type.year}\n"])
+                    if model_type.__class__ == Transaction:
+                        message += "\n".join([f"Update Transaction {model_type.description} - Amount: {model_type.amount} Account: {model_type.account} Date: {model_type.date} Type: {model_type.accounting_type}\n" ])
+                    if model_type.__class__ == Account:
+                        message += "\n".join([f"Update Account {model_type.account}\n"])
+                    if model_type.__class__ == Account_Management:
+                        message += "\n".join([f"Update Account data for {model_type.account_name} in {next((key for key, value in rvar.month_dict.items() if value == model_type.month_id), 'Year Starting Amount')} for the year {model_type.year}: Amount - {model_type.amount}\n"])
+                    if model_type.__class__ == Category:
+                        message += "\n".join([f"Update Category {model_type.category}\n"])
+                    if model_type.__class__ == Sub_Category:
+                        message += "\n".join([f"Update Sub Category {model_type.sub_category}\n"])                                                                        
+
         ret = QMessageBox.question(parent, "Unsaved Data", message, QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         
         if ret == QMessageBox.StandardButton.Yes:
             return True
         else:
             return False
-    
-def save_handeler(unsaved_data_list):
-    ...
-    
+        
 def decrypt(text, key):
         """"
         Description: This program will read the key and encrypted pwd generated

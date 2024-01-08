@@ -92,3 +92,5 @@ class Monthly_Budget(QWidget):
         self.month_budget_statistics.change_stats(self.data_year)
         self.line_chart_wid.update_data(self.month_budget_tbl.budget_plan_tableWidget)
         
+    def update_page(self) -> None: ...
+        
