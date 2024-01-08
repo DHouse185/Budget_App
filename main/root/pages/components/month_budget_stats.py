@@ -1,4 +1,5 @@
 ##########  Python IMPORTs  ############################################################
+from decimal import Decimal
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -74,13 +75,13 @@ class Month_Budget_Stats(Ui_Form):
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                category_budget = sum([Decimal(cat_budg.total) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                category_budget = sum([Decimal(cat_budg.left_amount) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                category_budget = sum([Decimal(getattr(cat_budg, category.lower())) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
                 self.new_label_dict[category_title.lower()].setText(f"${category_budget}")

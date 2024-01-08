@@ -5,6 +5,7 @@ import typing
 import os
 import csv
 from contextlib import contextmanager
+from decimal import Decimal
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -851,7 +852,7 @@ class Database:
 
                         month_budget_id = int((int(month_int) * 10000) + int(year))
 
-                        month_attr = [month_budget_id, month_int, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+                        month_attr = [month_budget_id, month_int, Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00)]
                         month_data = Month_Budget(month_attr)  ### REFERENCE ###
                         self.app_data['month_budget']['start_data'].append(month_data)
                         self.app_data['unsaved_data']['INSERT'].append(month_data)
