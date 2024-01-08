@@ -224,7 +224,7 @@ class Portfolio_Stats(Ui_Form):
                 return
             
             else:
-                account_id = max(([id.id for id in self.database.app_data['account']['start_data']]), default=0) + 1  
+                account_id = max((([id.id for id in self.database.app_data['account']['start_data']]), default=0), default=0) + 1    
                 self.database.app_data['account']['start_data'].append(Account((account_id, account_)))
                 self.database.app_data['unsaved_data']['INSERT'].append(Account((account_id, account_)))
                 # account_id_ = self.database.account_id_request(account_)
