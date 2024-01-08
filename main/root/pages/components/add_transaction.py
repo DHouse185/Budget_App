@@ -693,6 +693,7 @@ class Add_Transaction(Ui_Form):
         
     def update_component(self):
         # Add Transfer to Accounts
+        self.create_table_dict()
         self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
         self.transfer_To_comboBox.clear()
         self.account_comboBox.clear()
