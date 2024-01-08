@@ -54,9 +54,9 @@ class Transaction:
         return 'transaction_'
 
     def insert_column(self):
-        return '(transaction_date, transaction_name, amount, category_id, sub_category_id, account_id, category_type_id, \
+        return '(transaction_id, transaction_date, transaction_name, amount, category_id, sub_category_id, account_id, category_type_id, \
 month_id, accounting_id, frequency_id, payback_id) VALUES \
-(%(date)s, %(name)s, %(amount)s, %(cate)s, %(sub_cate)s, %(acc)s, %(cate_typ)s, %(month)s, %(accing)s, %(freq)s, %(pay)s)'
+(%(transaction_id)s, %(date)s, %(name)s, %(amount)s, %(cate)s, %(sub_cate)s, %(acc)s, %(cate_typ)s, %(month)s, %(accing)s, %(freq)s, %(pay)s)'
             
     def insert_data(self, app_data) -> dict:
         values = {'date' : self.date,
@@ -69,7 +69,8 @@ month_id, accounting_id, frequency_id, payback_id) VALUES \
                   'month' : self.month,
                   'accing' : next(cate.id for cate in app_data['accounting_type']['start_data'] if cate.type == self.accounting_type),
                   'freq' : next(cate.id for cate in app_data['frequency']['start_data'] if cate.frequency == self.frequency),
-                  'pay' : self.payback_id,}
+                  'pay' : self.payback_id,
+                  'transaction_id' : self.id}
         return values
     
     def delete_column(self): 
