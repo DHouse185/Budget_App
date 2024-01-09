@@ -1,4 +1,5 @@
 ##########  Python IMPORTs  ############################################################
+import pandas as pd
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -84,4 +85,7 @@ class Calendar(QWidget):
         self.calendar_stats.month_change_2(self.calendar_img.credit_list, self.calendar_img.debit_list)
         
     def update_page(self):
+        self.calendar_img.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
+        self.calendar_img.transaction_df_no_date_idx = self.calendar_img.transaction_df.reset_index()
+        self.calendar_img.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
         self.year_change()
