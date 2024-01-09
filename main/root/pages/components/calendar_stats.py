@@ -99,10 +99,10 @@ class Calendar_Stats(Ui_Form):
     def init_2(self, credit_list: typing.List, debit_list: typing.List):
         self.stats_credit_list = credit_list
         self.stats_debit_list = debit_list
-        self.total_spent = sum(self.stats_debit_list)        
+        self.total_spent = Decimal(sum(self.stats_debit_list))        
         self.amount_Total_Spent_Months_label.setText(f"${self.total_spent}")
         self.left_in_budget_month = round(self.budget_for_month - self.total_spent, 2)
-        self.amount_Left_in_Budget_Months_label.setText(f"${self.left_in_budget_month}")  
+        self.amount_Left_in_Budget_Months_label.setText(f"${self.left_in_budget_month}")
         
         # Weeks earnings
         self.amount_Week_1_Earning_label.setText(f"${round(sum(self.stats_credit_list[0:7]), 2)}") 
@@ -111,36 +111,36 @@ class Calendar_Stats(Ui_Form):
         self.amount_Week_4_Earning_label.setText(f"${round(sum(self.stats_credit_list[21:28]), 2)}") 
         self.amount_Week_5_Earning_label.setText(f"${round(sum(self.stats_credit_list[28:35]), 2)}") 
         self.amount_Week_6_Earning_label.setText(f"${round(sum(self.stats_credit_list[35:]), 2)}") 
-        self.monthly_earnings = round(sum(self.stats_credit_list), 2)
+        self.monthly_earnings = Decimal(round(sum(self.stats_credit_list), 2))
         self.amount_Yearly_Earnings_label.setText(f"${self.monthly_earnings}")
 
         self.current_expense_balance = self.month_starting_budg + self.monthly_earnings - self.total_spent
-        self.amount_Current_Expense_Balance_Months_label.setText(f"${self.current_expense_balance}")
-        
+        self.amount_Current_Expense_Balance_Months_label.setText(f"${'{:.2f}'.format(self.current_expense_balance)}")
+
         self.profit_loss = self.current_expense_balance - self.month_starting_budg
-        self.amount_Current_ProfitLoss_Months_label.setText(f"${self.profit_loss}")
+        self.amount_Current_ProfitLoss_Months_label.setText(f"${'{:.2f}'.format(self.profit_loss)}")
         
-        self.balance_left_in_budg = self.current_expense_balance - int(self.budget_for_month)
-        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${(-1)*self.balance_left_in_budg}")
+        self.balance_left_in_budg = self.current_expense_balance - self.left_in_budget_month
+        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${'{:.2f}'.format(self.balance_left_in_budg)}")
         
         self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month - self.monthly_earnings
-        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${(-1)*self.balance_left_in_budg_salary}")
-  
-        self.daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
-        self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
-        self.current_savings = round((self.daily_exp_goal - self.daily_avg_exp), 2)
-        self.amount_Current_Savings_Daily_label.setText(f"${self.current_savings}")
-        self.new_daily_expense = round((((self.daily_exp_goal * self.month_range) / (self.month_range - self.days_passed)) - (((self.daily_avg_exp * self.month_range)) \
-            / (self.month_range - self.days_passed))), 2) if (self.month_range - self.days_passed) != 0 else Decimal(0.00)
-        self.amount_New_Daily_Expense_Planned_label.setText(f"${self.new_daily_expense}")
-        
+        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${'{:.2f}'.format(self.balance_left_in_budg_salary)}")
+
+        self.daily_avg_exp = Decimal(round((self.total_spent / self.days_passed), 2)) if self.days_passed != 0 else Decimal(0.00)
+        self.amount_Daily_Average_Expense_label.setText(f"${'{:.2f}'.format(self.daily_avg_exp)}")
+            
+        self.current_savings = round((self.daily_exp_goal - decimal.Decimal(self.daily_avg_exp)), 2)
+        self.amount_Current_Savings_Daily_label.setText(f"${'{:.2f}'.format(self.current_savings)}")
+
+        self.new_daily_expense = round((((decimal.Decimal(self.daily_exp_goal) * decimal.Decimal(self.month_range)) / (decimal.Decimal(self.month_range - self.days_passed))) \
+            - (((decimal.Decimal(self.daily_avg_exp * self.month_range))) / (decimal.Decimal(self.month_range - self.days_passed)))), 2) if decimal.Decimal(self.month_range - self.days_passed) != 0 else Decimal(0.00)
+        self.amount_New_Daily_Expense_Planned_label.setText(f"${'{:.2f}'.format(self.new_daily_expense)}")
         weekly_avg_exp = self.daily_avg_exp * 7
         predicted_yearly_expense = self.daily_avg_exp * self.month_range
         predicted_savings = self.current_savings * self.month_range
-        
-        self.amount_Weekly_Average_Expense_label.setText(f"${weekly_avg_exp}")
-        self.amount_Predicted_Monthly_Expense_label.setText(f"${predicted_yearly_expense}")
-        self.amount_Predicted_Total_Savings_label.setText(f"${predicted_savings}")
+        self.amount_Weekly_Average_Expense_label.setText(f"${'{:.2f}'.format(weekly_avg_exp)}")
+        self.amount_Predicted_Monthly_Expense_label.setText(f"${'{:.2f}'.format(predicted_yearly_expense)}")
+        self.amount_Predicted_Total_Savings_label.setText(f"${'{:.2f}'.format(predicted_savings)}")
     
     def month_change_1(self):
         self.month = self.stats_Month_comboBox.currentText()
