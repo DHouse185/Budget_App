@@ -205,7 +205,7 @@ class Budget(QWidget):
 
                 elif change_type == 'DELETE':
                     for model in unsaved_data_list[change_type]:
-                        insert_constructor = 'DELETE FROM ' + model.get_table() + 'test ' + model.delete_column()
+                        insert_constructor = 'DELETE FROM ' + model.get_table() + f'{self.user_id} ' + model.delete_column()
                         self.database.insert_data(insert_constructor, model)
 
                 if change_type == 'UPDATE':
