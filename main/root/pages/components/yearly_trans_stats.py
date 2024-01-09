@@ -79,7 +79,7 @@ class Yearly_Stats(Ui_Form):
                 ]
             )
         self.amount_Planned_Savings_label.setText(f"${self.planned_savings}")
-        self.left_in_budget_year = self.budget_for_year-self.total_spent
+        self.left_in_budget_year = self.budget_for_year - self.total_spent
         self.amount_Left_in_Budget_label.setText(f"${self.left_in_budget_year}")
         
         # Set Earnings for months
@@ -107,7 +107,7 @@ class Yearly_Stats(Ui_Form):
         profit_loss = current_expense_balance - self.year_starting_budg
         self.amount_Current_ProfitLoss_label.setText(f"{profit_loss}")
         
-        balance_left_in_budg = current_expense_balance - self.budget_for_year
+        balance_left_in_budg = current_expense_balance - self.left_in_budget_year
         self.amount_Balance_Left_in_Budget_label.setText(f"${balance_left_in_budg}")
         
         earnings_for_year: Decimal = sum(
