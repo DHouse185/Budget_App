@@ -128,7 +128,6 @@ class Doughnut(QWidget):
         self.month_num_list = [rvar.month_dict[month_name] for month_name in self.month_list]
         year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year and x.month in self.month_num_list)]
         self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if (not year_df.columns.empty) and (not year_df.empty) else 0 
-        self.total_spent = year_df.loc[year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if year_df.columns != [] else 0
         self.accounts: List[Account] = [acc.account for acc in self.database.app_data['account']['start_data']]
         
         self.series.clear()

@@ -87,5 +87,5 @@ class Calendar(QWidget):
     def update_page(self):
         self.calendar_img.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.calendar_img.transaction_df_no_date_idx = self.calendar_img.transaction_df.reset_index()
-        self.calendar_img.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
+        self.calendar_img.transaction_df_no_date_idx['Date']= pd.to_datetime(self.calendar_img.transaction_df_no_date_idx['Date'])
         self.year_change()

@@ -121,10 +121,10 @@ class Calendar_Stats(Ui_Form):
         self.amount_Current_ProfitLoss_Months_label.setText(f"${self.profit_loss}")
         
         self.balance_left_in_budg = self.current_expense_balance - int(self.budget_for_month)
-        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${self.balance_left_in_budg}")
+        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${(-1)*self.balance_left_in_budg}")
         
         self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month - self.monthly_earnings
-        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${self.balance_left_in_budg_salary}")
+        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${(-1)*self.balance_left_in_budg_salary}")
   
         self.daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
         self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
@@ -227,10 +227,10 @@ class Calendar_Stats(Ui_Form):
         self.amount_Current_ProfitLoss_Months_label.setText(f"${self.profit_loss}")
         
         self.balance_left_in_budg = self.current_expense_balance - int(self.budget_for_month)
-        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${self.balance_left_in_budg}")
+        self.amount_Balance_Left_in_Budget_Months_label.setText(f"${(-1)*self.balance_left_in_budg}")
         
         self.balance_left_in_budg_salary = self.balance_left_in_budg + self.earnings_for_month - self.monthly_earnings
-        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${self.balance_left_in_budg_salary}")
+        self.amount_Balance_Left_in_Budget_Salary_Months_label.setText(f"${(-1)*self.balance_left_in_budg_salary}")
 
         self.daily_avg_exp = round((self.total_spent / self.days_passed), 2) if self.days_passed != 0 else Decimal(0.00)
         self.amount_Daily_Average_Expense_label.setText(f"${self.daily_avg_exp}")
