@@ -74,7 +74,7 @@ class Month_progress(Ui_Form):
                         label.setText(f"${str(text)}")
                 
                 # Fill data for spent section
-                self.category_array = ["Earnings", "Food", "Bills", "Grocery", "Transportation","Free Expense", "Investment", "Support", "Goal"]
+                self.category_array = ["Earnings", "Food", "Grocery", "Transportation","Free Expense", "Investment", "Bills", "Support", "Goal"]
                 spent_sum = 0
                 for idx, label in enumerate(self.spent_array):
                     if idx <= 8:
@@ -145,7 +145,7 @@ class Month_progress(Ui_Form):
                         label.setText(f"${str(text)}")
                 
                 # Fill data for spent section
-                self.category_array = ["Earnings", "Food", "Bills", "Grocery", "Transportation","Free Expense", "Investment", "Support", "Goal"]
+                self.category_array = ["Earnings", "Food", "Grocery", "Transportation","Free Expense", "Investment", "Bills", "Support", "Goal"]
                 spent_sum = 0
                 for idx, label in enumerate(self.spent_array):
                     if idx <= 7:
