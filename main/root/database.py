@@ -409,8 +409,7 @@ class Database:
                             payback_amount = row[4]
                             payback_back_amount = row[5]
 
-                            self.execute_update(f"INSERT INTO payback_{self.user_id} ((payback_id, payback_name, payback_description, payback_amount, paid_back_amount)
-VALUES (%s, %s, %s, %s, %s);", (payback_id, payback_name, payback_description, payback_amount, payback_back_amount))
+                            self.execute_update(f"INSERT INTO payback_{self.user_id} ((payback_id, payback_name, payback_description, payback_amount, paid_back_amount) VALUES (%s, %s, %s, %s, %s);", (payback_id, payback_name, payback_description, payback_amount, payback_back_amount))
 
                     self.logger.debug(f"Initial default data inserted into 'payback_{self.user_id}' table.")
 
