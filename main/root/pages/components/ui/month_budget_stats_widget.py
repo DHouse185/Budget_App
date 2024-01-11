@@ -259,24 +259,24 @@ class Ui_Form(object):
 "    background-color: #3a3a3a;\n"
 "    color: white;\n"
 "}")
-        self.reset_pushButton = QtWidgets.QPushButton(parent=Form)
-        self.reset_pushButton.setGeometry(QtCore.QRect(350, 10, 180, 40))
-        self.reset_pushButton.setStyleSheet("QPushButton {\n"
-"    background-color: #c30000;\n"
-"    border: 1px solid #4d4d4d;\n"
-"    border-radius: 4px;\n"
-"    color: #ffffff;\n"
-"    padding: 5px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #ff5a5a;\n"
-"    border: 1px solid #5a5a5a;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #8c0000;\n"
-"    border: 1px solid #5a5a5a;\n"
-"}")
-        self.reset_pushButton.setObjectName("reset_pushButton")
+#         self.reset_pushButton = QtWidgets.QPushButton(parent=Form)
+#         self.reset_pushButton.setGeometry(QtCore.QRect(350, 10, 180, 40))
+#         self.reset_pushButton.setStyleSheet("QPushButton {\n"
+# "    background-color: #c30000;\n"
+# "    border: 1px solid #4d4d4d;\n"
+# "    border-radius: 4px;\n"
+# "    color: #ffffff;\n"
+# "    padding: 5px;\n"
+# "}\n"
+# "QPushButton:hover {\n"
+# "    background-color: #ff5a5a;\n"
+# "    border: 1px solid #5a5a5a;\n"
+# "}\n"
+# "QPushButton:pressed {\n"
+# "    background-color: #8c0000;\n"
+# "    border: 1px solid #5a5a5a;\n"
+# "}")
+#         self.reset_pushButton.setObjectName("reset_pushButton")
         self.month_budget_year_comboBox = QtWidgets.QComboBox(parent=Form)
         self.month_budget_year_comboBox.setGeometry(QtCore.QRect(0, 10, 121, 28))
         self.month_budget_year_comboBox.setStyleSheet("font: 14pt \"Nirmala UI\";")
@@ -291,24 +291,32 @@ class Ui_Form(object):
         self.month_budget_year_comboBox.addItem("")
         self.month_budget_year_comboBox.addItem("")
         self.month_budget_year_comboBox.addItem("")
-        self.update_pushButton = QtWidgets.QPushButton(parent=Form)
-        self.update_pushButton.setGeometry(QtCore.QRect(140, 10, 180, 40))
-        self.update_pushButton.setStyleSheet("QPushButton {\n"
-"    background-color: #00aa00;\n"
-"    border: 1px solid #4d4d4d;\n"
-"    border-radius: 4px;\n"
-"    color: #ffffff;\n"
-"    padding: 5px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #00ff00;\n"
-"    border: 1px solid #5a5a5a;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #007900;\n"
-"    border: 1px solid #5a5a5a;\n"
-"}")
-        self.update_pushButton.setObjectName("update_pushButton")
+#         self.update_pushButton = QtWidgets.QPushButton(parent=Form)
+#         self.update_pushButton.setGeometry(QtCore.QRect(140, 10, 180, 40))
+#         self.update_pushButton.setStyleSheet("QPushButton {\n"
+# "    background-color: #00aa00;\n"
+# "    border: 1px solid #4d4d4d;\n"
+# "    border-radius: 4px;\n"
+# "    color: #ffffff;\n"
+# "    padding: 5px;\n"
+# "}\n"
+# "QPushButton:hover {\n"
+# "    background-color: #00ff00;\n"
+# "    border: 1px solid #5a5a5a;\n"
+# "}\n"
+# "QPushButton:pressed {\n"
+# "    background-color: #007900;\n"
+# "    border: 1px solid #5a5a5a;\n"
+# "}")
+#         self.update_pushButton.setObjectName("update_pushButton")
+        self.select_account_label = QtWidgets.QLabel(parent=Form)
+        self.select_account_label.setObjectName("amount_total_support_label")
+        self.select_account_label.setGeometry(QtCore.QRect(140, 10, 200, 28))
+        self.select_account_comboBox = QtWidgets.QComboBox(parent=Form)
+        self.select_account_comboBox.setGeometry(QtCore.QRect(350, 10, 300, 28))
+        self.select_account_comboBox.setStyleSheet("font: 14pt \"Nirmala UI\";")
+        self.select_account_comboBox.setObjectName("select_account_comboBox")
+        self.select_account_comboBox.addItem("")
         self.layoutWidget = QtWidgets.QWidget(parent=Form)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 60, 681, 361))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -406,7 +414,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.reset_pushButton.setText(_translate("Form", "Reset"))
+        # self.reset_pushButton.setText(_translate("Form", "Reset"))
         self.month_budget_year_comboBox.setItemText(0, _translate("Form", "2024"))
         self.month_budget_year_comboBox.setItemText(1, _translate("Form", "2023"))
         self.month_budget_year_comboBox.setItemText(2, _translate("Form", "2022"))
@@ -417,7 +425,9 @@ class Ui_Form(object):
         self.month_budget_year_comboBox.setItemText(7, _translate("Form", "2017"))
         self.month_budget_year_comboBox.setItemText(8, _translate("Form", "2016"))
         self.month_budget_year_comboBox.setItemText(9, _translate("Form", "2015"))
-        self.update_pushButton.setText(_translate("Form", "Update"))
+        self.select_account_comboBox.setItemText(0, _translate("Form", "All"))
+        self.select_account_label.setText(_translate("Form", "Select Account Budget: "))
+        # self.update_pushButton.setText(_translate("Form", "Update"))
         self.amount_total_earnings_label.setText(_translate("Form", "$ - "))
         self.total_spend_label.setText(_translate("Form", "Total Spend :"))
         self.amount_total_spend_label.setText(_translate("Form", "$ - "))

@@ -160,6 +160,7 @@ class Portfolio_LineChart(QWidget):
         # Clear the current data
         self.qline_norm.clear()
         self.qline_expected.clear()
+        self.chart.setTitle(f"{self.account_name_box} for Year {self.year}")
         max_amount = 0
         min_amount = 0
         

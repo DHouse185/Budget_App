@@ -52,7 +52,7 @@ class Doughnut(QWidget):
         
         for account in self.accounts:
             # print(f'account: {account[0]}')
-            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() if (not year_df.columns.empty) and (not year_df.empty)  else 0
+            account_spent = year_df.loc[(year_df['Account'] == f'{account}') & (year_df['Transaction Type'] == 'Expense'), 'Amount'].sum() if (not year_df.columns.empty) and (not year_df.empty) else 0
             try:
                 spent_ratio = round((account_spent / self.total_spent), 2)
                 slice_ = QPieSlice(f'{account}', spent_ratio)

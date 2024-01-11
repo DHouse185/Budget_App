@@ -30,19 +30,21 @@ from root.database import Database
 ########################################################################################
 
 class Expense_Bar_Graph(QWidget):
-    def __init__(self, parent: QWidget, database_conn: Database, month_ls: List[QPushButton], year: int): # WILL ADD CATEGORY OPTION LATER
+    def __init__(self, parent: QWidget, database_conn: Database, month_ls: List[QPushButton], year: int, account: str): # WILL ADD CATEGORY OPTION LATER
         # WILL ADD TREND LINE LATER
         super().__init__(parent=parent)
         self.setGeometry(QRect(0, 130, 680, 380))
         self.setObjectName("Expense_Bar_Graph")
         self.transaction_data = database_conn.app_data['transaction_data']['start_data']
+        self.database = database_conn
         self.year = year
         self.month_abbrv = [abbr.text() for abbr in month_ls]
         self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]
         # SORT DATA BY MONTH
         self.month_list = sorted(self.month_list, key=lambda x: rvar.month_dict[x])
         self.month_abbrv.sort(key=lambda x: rvar.month_dict[rvar.MONTHS_SHORT_DICT[x]])
-            # COLLECT DATA FOR BARGRAPH
+        self.account = account
+        # COLLECT DATA FOR BARGRAPH
         self.data: List[Decimal] = self.collect_data()
         month_set = QBarSet("Month")
         for value in self.data:
@@ -78,11 +80,20 @@ class Expense_Bar_Graph(QWidget):
         self.setLayout(layout)
         
     def collect_data(self) -> List[Decimal]:
-        data: List[Decimal] = [sum([trans.amount for trans in self.transaction_data if trans.month == rvar.month_dict[month] and trans.accounting_type == 'Debit' and trans.year == self.year]) for month in self.month_list]
+        data: List[Decimal] = [
+            sum(
+            [trans.amount for trans in self.transaction_data 
+             if trans.month == rvar.month_dict[month] 
+             and trans.accounting_type == 'Debit' 
+             and trans.year == self.year
+             and (self.account == 'All' or trans.account == self.account)] 
+            ) 
+            for month in self.month_list]
         return data
     
-    def chart_update(self, month_ls: List[QPushButton], year: int):
+    def chart_update(self, month_ls: List[QPushButton], year: int, account: str):
         self.year = year
+        self.account = account
         self.bar_series.clear()
         self.month_abbrv = [abbr.text() for abbr in month_ls]
         self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]

@@ -66,31 +66,50 @@ class Monthly_Budget(QWidget):
         # Add Calendar Widget
         self.month_budget_statistics = Month_Budget_Stats(self.scrollAreaWidgetContents, self.database)
         self.data_year = self.month_budget_statistics.year
-        self.month_budget_tbl = Month_Budget_Table(self.scrollAreaWidgetContents, self.database, self.data_year)
+        account_nm = self.month_budget_statistics.select_account_comboBox.currentText()
+        if account_nm == 'All':
+            account_id = 0
+        else:
+            account_id = next(acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == account_nm)
+        self.month_budget_tbl = Month_Budget_Table(self.scrollAreaWidgetContents, self.database, self.data_year, account_id)
         self.line_chart_wid = MB_LineChart(self.scrollAreaWidgetContents, 
                                            self.month_budget_tbl.budget_plan_tableWidget,
                                            self.data_year)
+        self.line_chart_wid.chart.setTitle(f"{account_nm} Expected Finance for the Year {self.data_year}")
         
         self.monthly_budget_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
         self.month_budget_statistics.month_budget_year_comboBox.currentTextChanged.connect(self.year_change)
+        self.month_budget_statistics.select_account_comboBox.currentTextChanged.connect(self.year_change)
         self.month_budget_tbl.budget_plan_tableWidget.itemChanged.connect(self.update_data)
         
-    def year_change(self, year: str):
-        self.data_year = year
+    def year_change(self):
+        self.data_year = self.month_budget_statistics.month_budget_year_comboBox.currentText()
         check = self.month_budget_statistics.change_year(self.data_year)
+        account_nm = self.month_budget_statistics.select_account_comboBox.currentText()
+        account_id = next((acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == account_nm), 0)
 
         if not check:
             return
         
         else:
-            self.month_budget_tbl.update_table(self.data_year)
+            self.month_budget_tbl.update_table(self.data_year, account_id)
+            self.line_chart_wid.chart.setTitle(f"{account_nm} Expected Finance for the Year {self.data_year}") 
             self.month_budget_tbl.budget_plan_tableWidget.viewport().update()
             
     def update_data(self, item: QTableWidgetItem):
-        self.month_budget_tbl.adjust_budget(item)
-        self.month_budget_statistics.change_stats(self.data_year)
+        account_nm = self.month_budget_statistics.select_account_comboBox.currentText()
+        if account_nm == 'All':
+            account_id = 0
+        else:
+            account_id = next(acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == account_nm)
+        
+        self.month_budget_tbl.adjust_budget(item, account_id)
+        self.month_budget_statistics.change_stats(self.data_year, account_id)
         self.line_chart_wid.update_data(self.month_budget_tbl.budget_plan_tableWidget)
         
-    def update_page(self) -> None: ...
+    def update_page(self) -> None: 
+        self.month_budget_statistics.select_account_comboBox.currentTextChanged.disconnect(self.year_change)
+        self.month_budget_statistics.add_account()
+        self.month_budget_statistics.select_account_comboBox.currentTextChanged.connect(self.year_change)
         

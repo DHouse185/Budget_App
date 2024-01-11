@@ -1,4 +1,5 @@
 ##########  Python IMPORTs  ############################################################
+from typing import List
 ########################################################################################
 
 ##########  Python THIRD PARTY IMPORTs  ################################################
@@ -25,6 +26,10 @@ class Month_progress(Ui_Form):
         self.setupUi(self.month_progress)
         self.month_progress.setGeometry(QRect(0, 1310, 1910, 251))
         self.database = database
+        account_ls: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
+        self.account_budget_comboBox.addItems(account_ls)
+        self.account = self.account_budget_comboBox.currentText()
+        self.account_id = next((acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == self.account), 0)
         
         self.budget_array = [self.month_col_label, self.month_col_Income_label, self.month_col_Eating_Out_label, 
                         self.month_col_Groceries_label, self.month_col_Transportation_label, 
@@ -49,6 +54,7 @@ class Month_progress(Ui_Form):
         
         self.month_progress_comboBox.currentTextChanged.connect(self.select_month_year)
         self.Stats_Year_comboBox.currentTextChanged.connect(self.select_month_year)
+        self.account_budget_comboBox.currentIndexChanged.connect(self.select_month_year)
         
         try:
             # Fill data for budget section
@@ -57,7 +63,7 @@ class Month_progress(Ui_Form):
             self.budget_data = None
             
             for month_budget in self.database.app_data['month_budget']['start_data']:
-                if month_budget.month == month_id and month_budget.year == year:
+                if month_budget.month == month_id and month_budget.year == year and (month_budget.account_id == self.account_id if self.account_id !=0 else True):
                     self.budget_data = month_budget
                     break
                 
@@ -81,7 +87,8 @@ class Month_progress(Ui_Form):
                         text = sum(spent.amount for spent in self.database.app_data['transaction_data']['start_data'] 
                                    if spent.year == year 
                                    and spent.month == month_id 
-                                   and spent.category == self.category_array[idx])
+                                   and spent.category == self.category_array[idx]
+                                   and (self.account == 'Total' or spent.account == self.account))
                         
                         label.setText(f"${str(text)}")
                         spent_sum += round(float(text), 2)
@@ -123,12 +130,15 @@ class Month_progress(Ui_Form):
         When another year or month is selected
         """
         try:
+            
+            self.account = self.account_budget_comboBox.currentText()
+            self.account_id = next((acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == self.account), 0)
             # Fill data for budget section
             month_id = rvar.month_dict[self.month_progress_comboBox.currentText()]
             year = int(self.Stats_Year_comboBox.currentText())
             
             for month_budget in self.database.app_data['month_budget']['start_data']:
-                if month_budget.month == month_id and month_budget.year == year:
+                if month_budget.month == month_id and month_budget.year == year and (month_budget.account_id == self.account_id if self.account_id !=0 else True):
                     self.budget_data = month_budget
                     break
                 
@@ -152,7 +162,8 @@ class Month_progress(Ui_Form):
                         text = sum(spent.amount for spent in self.database.app_data['transaction_data']['start_data'] 
                                    if spent.year == year 
                                    and spent.month == month_id 
-                                   and spent.category == self.category_array[idx])
+                                   and spent.category == self.category_array[idx]
+                                   and (self.account == 'Total' or spent.account == self.account))
                         
                         label.setText(f"${str(text)}")
                         spent_sum += round(float(text), 2)
@@ -197,4 +208,7 @@ class Month_progress(Ui_Form):
             print("No data for this timeframe: list index out of range")
             
     def update_data(self):
-        ... 
+        account_ls: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
+        self.account_budget_comboBox.clear()
+        self.account_budget_comboBox.addItem('All')
+        self.account_budget_comboBox.addItems(account_ls) 

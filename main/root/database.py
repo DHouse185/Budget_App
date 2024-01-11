@@ -562,6 +562,7 @@ class Database:
                                 investment NUMERIC(13, 2) NOT NULL,
                                 support NUMERIC(13, 2) NOT NULL,
                                 goal NUMERIC(13, 2) NOT NULL,
+                                account_id INTEGER REFERENCES account_{self.user_id}(account_id) NOT NULL,
                                 starting_budget NUMERIC(13, 2) NOT NULL,
                                 total NUMERIC(13, 2) GENERATED ALWAYS AS (food + bills + grocery + transportation + free_expense + investment + support) STORED NOT NULL,
                                 left_amount NUMERIC(13, 2) GENERATED ALWAYS AS (earnings - (food + bills + grocery + transportation + free_expense + investment + support)) STORED NOT NULL,
@@ -633,7 +634,7 @@ class Database:
                             food, bills, grocery,
                             transportation, free_expense, investment,
                             support, goal, starting_budget,
-                            total, left_amount, expected_ending_budget
+                            total, left_amount, expected_ending_budget, account_id
                             FROM month_budget_{self.user_id};""")
 
         for row in month_budget_results:
@@ -832,7 +833,7 @@ class Database:
         values = model.update_data(self.app_data)
         self.execute_update(constructor, values)
             
-    def month_budget_check_stats(self, parent, year: str):
+    def month_budget_check_stats(self, parent, year: str, account_id: int):
         # if no data is entered in the database for month budget
         """
         Gets month budget data to be utilized by the
@@ -840,13 +841,16 @@ class Database:
         Returns: pd.dataframe
         """
         #print(self)
-
+        account_name = next(acc_name.account for acc_name in self.app_data['account']['start_data'] if acc_name.id == account_id)
         # Test 1
         m_int_list = [rvar.month_dict[m_int] for m_int in rvar.MONTHS_SHORT_DICT.values()]
         for month in m_int_list:
             month_budget = next(
                 (
-                    mon_budg for mon_budg in self.app_data['month_budget']['start_data'] if mon_budg.month == month and mon_budg.year == int(year)
+                    mon_budg for mon_budg in self.app_data['month_budget']['start_data'] 
+                    if (mon_budg.month == month)
+                    and (mon_budg.year == int(year)) 
+                    and (mon_budg.account_id == account_id)
                     ),
                 False
                 )
@@ -856,7 +860,7 @@ class Database:
         if not month_budget:
             # Validate Input
             ret = QMessageBox.question(parent, "No Data Available",
-                                    f"There seems to be no data available for the year {year}. Do you want to make template data for this year?",
+                                    f"There seems to be no data available for the year {year} for account {account_name}. Do you want to make template data for this year?",
                                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel)
 
             # If User decides to add psuedo data
@@ -866,7 +870,10 @@ class Database:
 
                     month_budget = next(
                         (
-                            month_info for month_info in self.app_data['month_budget']['start_data'] if month_info.month == month_int and month_info.year == year
+                            month_info for month_info in self.app_data['month_budget']['start_data'] 
+                            if (month_info.month == month_int) 
+                            and (month_info.year == year) 
+                            and (month_info.account_id == account_id)
                             ),
                         False
                         )
@@ -874,9 +881,9 @@ class Database:
                     # Test 2
                     if not month_budget:
 
-                        month_budget_id = int((int(month_int) * 10000) + int(year))
+                        month_budget_id = int((int(month_int) * 100000) + (int(year)*10) + account_id)
 
-                        month_attr = [month_budget_id, month_int, Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00)]
+                        month_attr = [month_budget_id, month_int, Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), Decimal(0.00), account_id]
                         month_data = Month_Budget(month_attr)  ### REFERENCE ###
                         self.app_data['month_budget']['start_data'].append(month_data)
                         self.app_data['unsaved_data']['INSERT'].append(month_data)

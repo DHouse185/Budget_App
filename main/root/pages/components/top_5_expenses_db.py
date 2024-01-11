@@ -17,7 +17,7 @@ from root.database import Database
 ########################################################################################
 
 class Top_5(Ui_top_5_expense):
-    def __init__(self, parent, database: Database, year, month_ls: typing.List[QPushButton]):
+    def __init__(self, parent, database: Database, year, month_ls: typing.List[QPushButton], account: str):
         # Create header widget for Dashboard
         # Mainwindow -> central widget -> StackWidget -> Dashboard Page
         # -> top_5_expense
@@ -26,11 +26,11 @@ class Top_5(Ui_top_5_expense):
         self.setupUi(self.Dashboard_top_5)
         self.Dashboard_top_5.setGeometry(QRect(680, 1020, 541, 281))
         self.database = database
-        self.top_5_update(year, month_ls)
+        self.top_5_update(year, month_ls, account)
         
-    def top_5_update(self, year, month_ls: typing.List[QPushButton]):
-        
+    def top_5_update(self, year, month_ls: typing.List[QPushButton], account):
         self.year = year
+        self.account = account
         self.month_abbrv = [abbr.text() for abbr in month_ls]
         self.month_list = [rvar.MONTHS_SHORT_DICT[month] for month in self.month_abbrv]
         self.month_list = sorted(self.month_list, key=lambda x: rvar.month_dict[x])
@@ -45,7 +45,8 @@ class Top_5(Ui_top_5_expense):
             subcategory_totals[sub_category] = sum([trans.amount for trans in self.database.app_data['transaction_data']['start_data'] if trans.sub_category == sub_category
                 and trans.accounting_type != "Credit"
                 and trans.year == self.year
-                and trans.month in self.month_num_list])
+                and trans.month in self.month_num_list
+                and (self.account == 'All' or trans.account == self.account)])
             
         # Named tuple to store subcategory information
         SubcategoryInfo = namedtuple('SubcategoryInfo', ['name', 'total_amount'])

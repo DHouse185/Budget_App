@@ -34,33 +34,41 @@ class Month_Budget_Stats(Ui_Form):
         self.label_check_list = [''.join(ele.text().split('Total ')) for ele in self.label_list]
         self.label_check_list = [''.join(ele.split(' :')) for ele in self.label_check_list]
         self.new_label_dict = dict()
-        
+        self.add_account()
+        account_nm = self.select_account_comboBox.currentText()
+        if account_nm == 'All':
+            account_id = 0
+        else:
+            account_id = next(acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == account_nm)
+            
         for text in self.label_dict.keys():
            for label in self.label_check_list:
                if label in text:
                    self.new_label_dict[label.lower()] = self.label_dict[text]  
                 
-        for category in self.categories:
-            category_title = category.replace('_', ' ')
+        self.change_stats(self.year, account_id)
+    
+    def add_account(self):
+        account_ls = list()
+        self.select_account_comboBox.clear()
+        for account in self.database.app_data['account']['start_data']:
+            account_ls.append(account.account)
             
-            if category_title.lower() == 'total':
-                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
-                self.new_label_dict['spend'].setText(f"${category_budget}")
-                
-            elif category_title.lower() == 'left amount':
-                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
-                self.new_label_dict['extra'].setText(f"${category_budget}")
-                
-            else:
-                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year])
-                self.new_label_dict[category_title.lower()].setText(f"${category_budget}")
-        
+        self.select_account_comboBox.addItem('All')    
+        self.select_account_comboBox.addItems(account_ls)
+            
     def change_year(self, year: str):
         self.year = year
-        check = self.database.month_budget_check_stats(self.stats, self.year)
+        account_nm = self.select_account_comboBox.currentText()
+        if account_nm == 'All':
+            account_id = 0
+            check = True
+        else:
+            account_id = next(acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == account_nm)
+            check = self.database.month_budget_check_stats(self.stats, self.year, account_id)
         
         if check:
-            self.change_stats(self.year)
+            self.change_stats(self.year, account_id)
             
         else:
             QMessageBox.information(self.stats, "Update Fail",
@@ -69,19 +77,35 @@ class Month_Budget_Stats(Ui_Form):
             
         return check
   
-    def change_stats(self, year):
-        
-        for category in self.categories:
+    def change_stats(self, year, account_id):
+        if account_id == 0:
+           for category in self.categories:
             category_title = category.replace('_', ' ')
             
             if category_title.lower() == 'total':
-                category_budget = sum([Decimal(cat_budg.total) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                category_budget = sum([cat_budg.total for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
                 self.new_label_dict['spend'].setText(f"${category_budget}")
                 
             elif category_title.lower() == 'left amount':
-                category_budget = sum([Decimal(cat_budg.left_amount) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                category_budget = sum([cat_budg.left_amount for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
                 self.new_label_dict['extra'].setText(f"${category_budget}")
                 
             else:
-                category_budget = sum([Decimal(getattr(cat_budg, category.lower())) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
-                self.new_label_dict[category_title.lower()].setText(f"${category_budget}")
+                category_budget = sum([getattr(cat_budg, category.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                self.new_label_dict[category_title.lower()].setText(f"${category_budget}") 
+                
+        else:
+            for category in self.categories:
+                category_title = category.replace('_', ' ')
+                
+                if category_title.lower() == 'total':
+                    category_budget = sum([Decimal(cat_budg.total) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year)])
+                    self.new_label_dict['spend'].setText(f"${category_budget}")
+                    
+                elif category_title.lower() == 'left amount':
+                    category_budget = sum([Decimal(cat_budg.left_amount) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year) and cat_budg.account_id == account_id])
+                    self.new_label_dict['extra'].setText(f"${category_budget}")
+                    
+                else:
+                    category_budget = sum([Decimal(getattr(cat_budg, category.lower())) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == int(self.year) and cat_budg.account_id == account_id])
+                    self.new_label_dict[category_title.lower()].setText(f"${category_budget}")

@@ -495,14 +495,18 @@ class Add_Transaction(Ui_Form):
         self.tables_array = ['category_test', 'sub_category_test', 'account_test', 'category_type_test',
                              'accounting_type_test', 'month_test']
         self.update_component()
+        self.transfer_to_pushButton.setEnabled(False)
+        # Signals
         
         self.category_Type_comboBox.currentTextChanged.connect(self.check_category_type)    
         self.discard_pushButton.clicked.connect(self.discard_check)
         self.payback_pushButton.clicked.connect(self.payback_window)
         self.add_sub_pushButton.clicked.connect(self.add_sub_category)
+        self.transfer_To_comboBox.currentIndexChanged.connect(self.dis_en_able_transfer)
+        self.transfer_to_pushButton.clicked.connect(self.transfer_category)
         
     def add_sub_category(self):
-        # Have user make a file name
+        # Have user make a subcategory name
         sub_category_name, ok_pressed = QInputDialog.getText(self.add_trans_widget, '', 'Please type a name for the new Sub Category: ')
 
         # Check if the user pressed OK
@@ -514,6 +518,26 @@ class Add_Transaction(Ui_Form):
             self.database.app_data['unsaved_data']['INSERT'].append(sub_cate_obj)
             QMessageBox.information(self.add_trans_widget, "Success",
                                 f"Successfully add {sub_category_name} to Sub Category",)
+        else:
+            return
+        
+    def transfer_category(self):
+        # Have user select Transfer Account Type
+        transfer_to_cat, ok_pressed = QInputDialog.getItem(self.add_trans_widget, 'Transfered Account Category', 'Please Select a Category for the Transfered Account: ', self.categories)
+
+        # Check if the user pressed OK
+        if ok_pressed:
+            self.transfer_cat = transfer_to_cat
+            transfer_to_type, ok_pressed_2 = QInputDialog.getItem(self.add_trans_widget, 'Transfered Account Category Type', 'Please Select a Category Type for the Transfered Account: ', self.category_types)
+            if ok_pressed_2:
+                self.transfer_type = transfer_to_type
+                transfer_to_accounting, ok_pressed_3 = QInputDialog.getItem(self.add_trans_widget, 'Transfered Accounting Type', 'Please Select the Accounting Type for the Transfered Account: ', self.accountings)
+                if ok_pressed_3:
+                    self.transfer_accounting = transfer_to_accounting                
+                else:
+                    pass
+            else:
+                pass
         else:
             return
         
@@ -597,6 +621,7 @@ class Add_Transaction(Ui_Form):
             return False
                         
     def add_transaction(self):
+        self.create_table_dict()
         account = self.account_comboBox.currentText()
         account_id = self.accounts_dict[account]
         
@@ -627,16 +652,19 @@ class Add_Transaction(Ui_Form):
         category = self.category_comboBox.currentText()
         category_id = self.categories_dict[category]
         
+        # For Main Transaction
         category_type = self.category_Type_comboBox.currentText()
         category_type_id = self.category_type_dict[category_type]
         
         max_id = max(([trans.id for trans in self.database.app_data['transaction_data']['start_data']]), default=0)
         trans_temp_id = max_id + 1
         
-        transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id]
+        transaction_list = [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id] \
+            if transfer_account == 'None' \
+            else [date_formatted, description, amount, category_id, sub_category_id, account_id, category_type_id, month_id, accounting_id, transfer_account_id, self.transfer_cat, self.transfer_accounting, self.transfer_to_type]
         
         for _, check in enumerate(transaction_list):
-            if check == '':
+            if check == '' or check == 'None':
                 QMessageBox.information(self.add_trans_widget, "Empty input",
                                  "One of the inputs is not valid for adding to transactions",
                                  QMessageBox.StandardButton.Ok)
@@ -657,6 +685,28 @@ class Add_Transaction(Ui_Form):
         # self.database.app_data['transaction_dataframe'].loc[date_datetime] = df2
         self.database.app_data['transaction_dataframe'] = pd.concat([self.database.app_data['transaction_dataframe'], df2])
         self.database.app_data['transaction_dataframe'].sort_index(inplace=True, ascending=False)
+        
+        if transfer_account != 'None':
+            # For Transfer Transaction
+            max_id_2 = max(([trans.id for trans in self.database.app_data['transaction_data']['start_data']]), default=0)
+            trans_temp_id_2 = max_id_2 + 1
+            transaction_2 = Transaction((trans_temp_id_2, date_datetime, account, description, round(Decimal(amount), 2), self.transfer_cat, sub_category, self.transfer_to_type, payback, payback_id, frequency, self.transfer_accounting))
+            self.database.app_data['transaction_data']['start_data'].append(transaction_2) # Change to 'unsaved' or 'new' later
+            self.database.app_data['unsaved_data']['INSERT'].append(transaction_2)
+            # Add Transaction to insert dictionary
+            data_dict_2 = {'ID': [trans_temp_id_2], 'Account': [transfer_account], 'Description': [description], 'Amount': [round(Decimal(amount), 2)], 'Category': [category], 'SubCategory': [sub_category], 'Transaction Type': [self.transfer_cat]}
+            df3 = pd.DataFrame(data=data_dict_2)
+            df3['Date'] = [date_datetime] * len(df3)
+            df3.index = pd.to_datetime(df3.index).date
+            df3.set_index('Date', inplace=True)
+            # df2.index.name = 'Date'
+            # self.database.app_data['transaction_dataframe'].loc[date_datetime] = df2
+            self.database.app_data['transaction_dataframe'] = pd.concat([self.database.app_data['transaction_dataframe'], df3])
+            self.database.app_data['transaction_dataframe'].sort_index(inplace=True, ascending=False)
+            self.transfer_cat = ''
+            self.transfer_accounting = ''
+            self.transfer_to_type = ''
+        
         return True
         
     def discard_check(self):
@@ -696,7 +746,10 @@ class Add_Transaction(Ui_Form):
         self.create_table_dict()
         self.accounts: List[str] = [acc.account for acc in self.database.app_data['account']['start_data']]
         self.transfer_To_comboBox.clear()
+        self.transfer_To_comboBox.addItem('None')
+        self.transfer_To_comboBox.setCurrentIndex(0)
         self.account_comboBox.clear()
+        self.transfer_to_type = None
         for _, account in enumerate(self.accounts):  
             self.transfer_To_comboBox.addItem(account)
             self.account_comboBox.addItem(account)
@@ -725,3 +778,13 @@ class Add_Transaction(Ui_Form):
         self.frequency_comboBox.clear()
         for _, frequency in enumerate(self.frequencies):  
             self.frequency_comboBox.addItem(frequency) 
+    
+        
+    def dis_en_able_transfer(self):
+        if self.transfer_To_comboBox.currentText() == 'None':
+            self.transfer_to_pushButton.setEnabled(False)
+        else:
+            self.transfer_to_pushButton.setEnabled(True)
+            self.transfer_cat = ''
+            self.transfer_accounting = ''
+            self.transfer_to_type = ''

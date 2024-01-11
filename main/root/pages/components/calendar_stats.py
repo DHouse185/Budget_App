@@ -63,7 +63,7 @@ class Calendar_Stats(Ui_Form):
                 start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["start_data"] 
                 if start_budg.month == self.month_int and start_budg.year == self.year
                 ),
-            0.00
+            Decimal(0.00)
             )
         self.amount_Starting_Budget_Months_label.setText(f"${self.month_starting_budg}")
         self.budget_for_month: Optional[Decimal] = next(
@@ -71,7 +71,7 @@ class Calendar_Stats(Ui_Form):
                 budg_for_mon.total for budg_for_mon in self.database.app_data["month_budget"]["start_data"] 
                 if budg_for_mon.month == self.month_int and budg_for_mon.year == self.year
                 ),
-            0.00
+            Decimal(0.00)
             )
         self.amount_Budget_For_Month_label.setText(f"${self.budget_for_month}")
         self.planned_savings: Optional[Decimal] = next(
@@ -79,7 +79,7 @@ class Calendar_Stats(Ui_Form):
                 plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["start_data"] 
                 if plan_sav.month == self.month_int and plan_sav.year == self.year
                 ),
-            0.00
+            Decimal(0.00)
             )
         self.amount_Planned_Savings_Months_label.setText(f"${self.planned_savings}")
         self.earnings_for_month: Optional[Decimal] = next(
@@ -87,7 +87,7 @@ class Calendar_Stats(Ui_Form):
                 earn_for_month.earnings for earn_for_month in self.database.app_data["month_budget"]["start_data"] 
                 if earn_for_month.month == self.month_int and earn_for_month.year == self.year
                 ),
-            0.00
+            Decimal(0.00)
             )
         
         self.daily_exp_goal = round((self.budget_for_month / self.month_range), 2) if self.month_range != 0 else Decimal(0.00)

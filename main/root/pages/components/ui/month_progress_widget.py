@@ -535,6 +535,11 @@ class Ui_Form(object):
         self.Stats_Year_comboBox.addItem("")
         self.Stats_Year_comboBox.addItem("")
         self.Stats_Year_comboBox.addItem("")
+        self.account_budget_comboBox = QtWidgets.QComboBox(parent=Form)
+        self.account_budget_comboBox.setGeometry(QtCore.QRect(577, 4, 267, 28))
+        self.account_budget_comboBox.setStyleSheet("font: 14pt \"Nirmala UI\";")
+        self.account_budget_comboBox.setObjectName("account_budget_comboBox")
+        self.account_budget_comboBox.addItem("")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -611,3 +616,13 @@ class Ui_Form(object):
         self.Stats_Year_comboBox.setItemText(7, _translate("Form", "2017"))
         self.Stats_Year_comboBox.setItemText(8, _translate("Form", "2016"))
         self.Stats_Year_comboBox.setItemText(9, _translate("Form", "2015"))
+        self.account_budget_comboBox.setItemText(0, _translate("Form", "Total"))
+        
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec())

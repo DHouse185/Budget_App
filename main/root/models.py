@@ -98,7 +98,8 @@ class Month_Budget:
         self.total = data[12]
         self.left_amount = data[13]
         self.expected_ending_budget = data[14]
-        self.year = self.id - (self.month * 10000)
+        self.account_id = data[15]
+        self.year = int((self.id - (self.month * 100000) - self.account_id) / 10)
         self.month_name = next(month for month, month_id in rvar.month_dict.items() if month_id == self.month)
         
         self.dashbord_list = [self.month_name, self.earnings, self.food, self.grocery, self.transportation,
@@ -127,8 +128,8 @@ class Month_Budget:
     
     def insert_column(self):
         return '(month_year_id, month_id, earnings, food, bills, grocery, transportation, free_expense, investment,\
-            support, goal, starting_budget) VALUES \
-(%(month_year_id)s, %(month_id)s, %(earnings)s, %(food)s, %(bills)s, %(grocery)s, %(transportation)s, %(free_expense)s, %(investment)s, %(support)s, %(goal)s, %(starting_budget)s)'
+            support, goal, starting_budget, account_id) VALUES \
+(%(month_year_id)s, %(month_id)s, %(earnings)s, %(food)s, %(bills)s, %(grocery)s, %(transportation)s, %(free_expense)s, %(investment)s, %(support)s, %(goal)s, %(starting_budget)s, %(account_id)s)'
 
     def insert_data(self, _) -> dict:
         values = {'month_year_id' : self.id,
@@ -142,7 +143,8 @@ class Month_Budget:
                   'investment' : self.investment,
                   'support' : self.support,
                   'goal' : self.goal,
-                  'starting_budget' : self.starting_budget}
+                  'starting_budget' : self.starting_budget,
+                  'account_id' : self.account_id}
         return values
     
     def update_column(self):
@@ -157,6 +159,7 @@ class Month_Budget:
     support = %(support)s, 
     goal = %(goal)s, 
     starting_budget = %(starting_budget)s
+    account_id = %(account_id)s
     WHERE month_year_id = %(month_year_id)s;'''
         
     def update_data(self, _) -> dict:
@@ -171,7 +174,8 @@ class Month_Budget:
                   'investment' : self.investment,
                   'support' : self.support,
                   'goal' : self.goal,
-                  'starting_budget' : self.starting_budget}
+                  'starting_budget' : self.starting_budget,
+                  'account_id' : self.account_id}
         return values
     
 class Accounting_Type:

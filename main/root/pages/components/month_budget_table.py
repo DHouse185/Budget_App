@@ -20,7 +20,7 @@ from root.pages.components.ui.month_budget_plan_table import Ui_Form
 ########################################################################################
 
 class Month_Budget_Table(Ui_Form):
-    def __init__(self, parent, database: Database, year: str):
+    def __init__(self, parent, database: Database, year: str, account_id: int):
         # Create Transaction Addition widget for Transaction page
         # Mainwindow -> central widget -> StackWidget -> Transaction Page
         # -> Add Transaction
@@ -49,7 +49,7 @@ class Month_Budget_Table(Ui_Form):
         
         self.budget_plan_tableWidget.setColumnCount((len(self.columns)))
         self.budget_plan_tableWidget.setWordWrap(True)
-                
+        # self.block_query = False
         # Create columns
         for idx, column in enumerate(self.columns_query):
             item = QTableWidgetItem()
@@ -63,15 +63,21 @@ class Month_Budget_Table(Ui_Form):
                     item.setFlags(Qt.ItemFlag.ItemIsEnabled)
 
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
+                     if cat_budg.year == self.year 
+                     and cat_budg.month == rvar.month_dict[row] 
+                     and ((account_id == 0) or (cat_budg.account_id == account_id))),
                     Decimal(0.00)
                     )
                 item.setText(f"${results}")
+                if account_id == 0:
+                    item.setFlags(Qt.ItemFlag.ItemIsEnabled)
                 self.budget_plan_tableWidget.setItem(j, i, item)
                 
         self.itemchange = 0
         
-    def adjust_budget(self, item: QTableWidgetItem):
+    def adjust_budget(self, item: QTableWidgetItem, account_id):
+        
         if self.itemchange == 0:
             self.itemchange = 1
             # Get the column and row of the changed item
@@ -81,24 +87,24 @@ class Month_Budget_Table(Ui_Form):
             # Validate Input
             ret = QMessageBox.question(self.table, "Confirmation",
                                     f"Do you want to change the amount for {self.columns_query[column]} in {self.row_names[row]}?",
-                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel)
+                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel)# if not self.block_query else QMessageBox.StandardButton.Yes
             
             # If user chooses to change amount
             if ret == QMessageBox.StandardButton.Yes:
                 value = item.text()
                 try:
+                    value.replace('$', '')
                     value = float(value)
                     value = "{:.2f}".format(value)
                     
                 except ValueError:
                     QMessageBox.information(self.table, "Value Error",
                                     f"{value} is not a valid number")
-                    value = next(
-                        (
-                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
-                            if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]
-                         ),
-                        Decimal(0.00)
+                    value = sum(
+                        getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
+                        if cat_budg.year == self.year 
+                        and cat_budg.month == rvar.month_dict[self.row_names[row]]
+                        and ((account_id == 0) or (cat_budg.account_id == account_id))
                         )
                     item.setText(f"${value}")
                     self.itemchange = 0
@@ -107,21 +113,15 @@ class Month_Budget_Table(Ui_Form):
                     
             # If user chooses not to close application
             elif ret == QMessageBox.StandardButton.Cancel:
-                value = next(
-                        (
-                            getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
-                            if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]
-                         ),
-                        Decimal(0.00)
+                value = sum(
+                        getattr(cat_budg, self.columns[column].lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
+                            if cat_budg.year == self.year 
+                            and cat_budg.month == rvar.month_dict[self.row_names[row]]
+                            and ((account_id == 0) or (cat_budg.account_id == account_id))
                         )
                 
-                # For Debugging purposes
-                print(f"Cancelled change -- value changed to {value}")
                 item.setText(f"${value}")
-                # For Debugging purposes
-                print(f"Changed cell at column {column}, row {row} to {value}")
                 self.itemchange = 0
-                
                 return
 
             # Close event will be ignored if neither are selected
@@ -134,22 +134,17 @@ class Month_Budget_Table(Ui_Form):
                 return
             
             item.setText(f"${value}")
-            # For Debugging purposes
-            print(f"Changed cell at column {column}, row {row} to {value}")
             
-            ################# NEEDS UPDATE FOR SELF.DATABASE.APP_DATA['MONTH_BUDGET']['NEW'] and POSTGRESQL###############################
-            # self.database.change_budget(self.year, rvar.month_dict[self.row_names[row]], self.columns[column], str(value))
+            # Update month budget start data dictionary and placed in unsaved data waiting to be updated
             for month_budg in self.database.app_data['month_budget']['start_data']:
-                if month_budg.year == self.year and month_budg.month == rvar.month_dict[self.row_names[row]]:
+                if month_budg.year == self.year \
+                and month_budg.month == rvar.month_dict[self.row_names[row]] \
+                and month_budg.account_id == account_id:
                     setattr(month_budg, self.columns[column].lower(), Decimal(value))
                     self.database.app_data['unsaved_data']['UPDATE'].append(month_budg)
                     month_budg.update()
                     # Add change to update dictionary
                     break
-            ################# NEEDS UPDATE FOR SELF.DATABASE.APP_DATA['MONTH_BUDGET']['NEW']###############################
-            
-            # For Debugging purposes
-            print("Database updated")
             
             changing_columns = ['expected_ending_budget', 'left_amount', 'total']
             col_len = len(self.columns) - 1
@@ -160,7 +155,10 @@ class Month_Budget_Table(Ui_Form):
                 
                 altered_item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[self.row_names[row]]),
+                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
+                     if cat_budg.year == self.year 
+                     and cat_budg.month == rvar.month_dict[self.row_names[row]]
+                     and ((account_id == 0) or (cat_budg.account_id == account_id))),
                     Decimal(0.00)
                     )
                 altered_item.setText(f"${results}")
@@ -170,7 +168,8 @@ class Month_Budget_Table(Ui_Form):
             self.budget_plan_tableWidget.viewport().update()
             self.itemchange = 0
     
-    def update_table(self, year: str):
+    def update_table(self, year: str, account_id: int):
+        # self.block_query = True
         self.itemchange = 1
         self.year = int(year)
         
@@ -179,17 +178,20 @@ class Month_Budget_Table(Ui_Form):
             for j, row in enumerate(self.row_names):
                 item = self.budget_plan_tableWidget.item(j, i)
                 
-                if i >= len(self.columns) - 3:
-                    item.setFlags(Qt.ItemFlag.ItemIsEditable)
+                # if i >= len(self.columns) - 3 or account_id == 0:
+                item.setFlags(Qt.ItemFlag.ItemIsEditable)
                 
-                results = next(
-                    (getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] if cat_budg.year == self.year and cat_budg.month == rvar.month_dict[row]),
-                    Decimal(0.00)
+                results = sum(
+                    getattr(cat_budg, column.lower()) for cat_budg in self.database.app_data['month_budget']['start_data'] 
+                     if cat_budg.year == self.year 
+                     and cat_budg.month == rvar.month_dict[row] 
+                     and ((account_id == 0) or (cat_budg.account_id == account_id))
                     )
                 item.setText(f"${results}")
                 
-                if i >= len(self.columns) - 3:
+                if i >= len(self.columns) - 3  or account_id == 0:
                     item.setFlags(Qt.ItemFlag.ItemIsEnabled)
         
         self.itemchange = 0
+        # self.block_query = False
                 

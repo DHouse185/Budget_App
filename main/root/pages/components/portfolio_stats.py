@@ -43,6 +43,8 @@ class Portfolio_Stats(Ui_Form):
     def add_accounts(self):
         self.name_ls = list()
         self.q_name_ls = list()
+        self.update_account_comboBox.clear()
+        self.remove_account_comboBox.clear()
         for account in self.account_dict.values():
             name = account['name']
             q_name = account['query_name']

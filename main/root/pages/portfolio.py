@@ -78,7 +78,6 @@ class Portfolio(QWidget):
         
         # Signals
         self.portfolio_wid.stats_Year_comboBox.currentTextChanged.connect(self.update_year)
-        
         self.portfolio_main_scrollArea.setWidget(self.portfolio_main_scrollAreaWidgetContents)
         
     def update_year(self):

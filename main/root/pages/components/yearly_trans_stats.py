@@ -30,10 +30,14 @@ class Yearly_Stats(Ui_Form):
         self.stats.setGeometry(QRect(0, 0, 390, 1650))
         self.database = database
         self.update_data()
+        accounts_ls = [acc.account for acc in self.database.app_data['account']['start_data']]
+        self.stats_Account_comboBox.addItems(accounts_ls)
         self.stats_Year_comboBox.currentIndexChanged.connect(self.update_data)
 
     def update_data(self):
         self.year = int(self.stats_Year_comboBox.currentText())
+        self.account = self.stats_Account_comboBox.currentText()
+        self.account_id = next((acc.id for acc in self.database.app_data['account']['start_data'] if acc.account == self.account), 0)
         
         if self.year % 4 == 0:
             self.year_range = 366
@@ -57,7 +61,9 @@ class Yearly_Stats(Ui_Form):
         self.year_starting_budg: Optional[Decimal] = next(
             (
                 start_budg.starting_budget for start_budg in self.database.app_data["month_budget"]["start_data"] 
-                if start_budg.month == 1 and start_budg.year == self.year
+                if start_budg.month == 1 
+                and start_budg.year == self.year
+                and (self.account == 'All' or start_budg.account_id == self.account_id)
                 ),
             Decimal(0.00)
             )
@@ -66,16 +72,24 @@ class Yearly_Stats(Ui_Form):
             [
                 year_budg.total for year_budg in self.database.app_data["month_budget"]["start_data"] 
                 if year_budg.year == self.year
+                and (self.account == 'All' or year_budg.account_id == self.account_id)
                 ]
             )
         self.amount_Budget_For_Year_label.setText(f"${self.budget_for_year}")
         self.year_df = self.transaction_df_no_date_idx[self.transaction_df_no_date_idx['Date'].apply(lambda x: x.year == self.year)]
-        self.total_spent = self.year_df.loc[self.year_df['Transaction Type'] == 'Expense', 'Amount'].sum() if (not self.year_df.columns.empty) and (not self.year_df.empty) else Decimal(0) # I believe this is used somewhere else in the code. Perhaps move to App_Database
+        self.total_spent = (
+            self.year_df.loc[
+                (self.year_df['Transaction Type'] == 'Expense') 
+                & ((self.account == 'All') or (self.year_df['Account'] == self.account)), 
+                'Amount'].sum()
+            if (not self.year_df.empty) else Decimal(0))
+
         self.amount_Total_Spent_label.setText(f"${self.total_spent}")
         self.planned_savings: Decimal = sum(
             [
                 plan_sav.left_amount for plan_sav in self.database.app_data["month_budget"]["start_data"] 
                 if plan_sav.year == self.year
+                and ((self.account == 'All') or (plan_sav.account_id == self.account_id))
                 ]
             )
         self.amount_Planned_Savings_label.setText(f"${self.planned_savings}")
@@ -93,8 +107,11 @@ class Yearly_Stats(Ui_Form):
             last_date = (datetime.datetime(year=self.year, month=(idx + 1), day=int(days_in_month))).strftime('%Y-%m-%d')
             
             # Get earnings
-            earnings = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) & (self.transaction_df_no_date_idx['Date'] <= last_date)
-                                               & (self.transaction_df_no_date_idx['Transaction Type'] == 'Income'), 'Amount'].sum() 
+            earnings = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
+                                                           & (self.transaction_df_no_date_idx['Date'] <= last_date)
+                                                           & (self.transaction_df_no_date_idx['Transaction Type'] == 'Income') 
+                                                           & ((self.account == 'All') or (self.transaction_df_no_date_idx['Account'] == self.account)), 
+                                                           'Amount'].sum()
             label.setText(f"${earnings}")
             
             self.yearly_earnings += earnings # Probably used this somewhere in the code too. Add to App Data later
@@ -113,9 +130,11 @@ class Yearly_Stats(Ui_Form):
         earnings_for_year: Decimal = sum(
             [
                 year_earn.earnings for year_earn in self.database.app_data["month_budget"]["start_data"] 
-                if year_earn.year == self.year
+                if (year_earn.year == self.year)
+                and ((self.account == 'All') or (year_earn.account_id == self.account_id))
                 ]
             )
+        
         balance_left_in_budg_salary = balance_left_in_budg + earnings_for_year - self.yearly_earnings
         
         self.amount_Balance_Left_in_Budget_Salary_label.setText(f"${balance_left_in_budg_salary}")

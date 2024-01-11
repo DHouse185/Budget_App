@@ -109,7 +109,14 @@ class Transactions(QWidget):
         self.transaction_table.setStyleSheet(rvar.DARK_MODE_TRANS_TABLE)
         self.transaction_table.setGeometry(QRect(415, 420, 1490, 1230))
         self.transaction_table.horizontalHeader().setDefaultSectionSize(175)
-        self.transaction_model = TableModel(self.database.app_data['transaction_dataframe'])
+
+        # Add Transaction Widget
+        self.transaction_addition = Add_Transaction(self.scrollAreaWidgetContents, self.database)
+        self.transaction_stats = Yearly_Stats(self.scrollAreaWidgetContents, self.database)
+        self.account_name = self.transaction_stats.stats_Account_comboBox.currentText()
+        self.table_df = self.database.app_data['transaction_dataframe'].query("Account == @self.account_name") \
+            if self.account_name != 'All' else self.database.app_data['transaction_dataframe']
+        self.transaction_model = TableModel(self.table_df)
         self.transaction_table.setModel(self.transaction_model)
         filter_model = FilterProxyModel()
         filter_model.setSourceModel(self.transaction_model)
@@ -117,13 +124,9 @@ class Transactions(QWidget):
         self.transaction_table.setModel(filter_model)
         # Set the filter key column (the column on which filtering will be applied)
         filter_model.setFilterKeyColumn(-1)  # Set to -1 to filter on all columns
-
-        # Add Transaction Widget
-        self.transaction_addition = Add_Transaction(self.scrollAreaWidgetContents, self.database)
-        self.transaction_stats = Yearly_Stats(self.scrollAreaWidgetContents, self.database)
-
         self.transaction_addition.add_pushButton.clicked.connect(self.add_transaction_to_table)
         self.transaction_addition.remove_pushButton.clicked.connect(self.remove_selected_row)
+        self.transaction_stats.stats_Account_comboBox.currentIndexChanged.connect(self.update_account)
         # self.expense_bar_graph = Expense_Bar_Graph()
         # Connect a signal (e.g., from a QLineEdit for user input) to update the filter
         # For example, a QLineEdit named filterLineEdit:
@@ -131,11 +134,26 @@ class Transactions(QWidget):
         
         self.transaction_scrollArea.setWidget(self.scrollAreaWidgetContents)
         
-    def update_page(self):
-        self.transaction_addition.update_component()
-        updated_df = self.database.app_data['transaction_dataframe']
+    def update_account(self):
+        self.account_name = self.transaction_stats.stats_Account_comboBox.currentText()
+        updated_df = self.database.app_data['transaction_dataframe'].query("Account == @self.account_name") \
+            if self.account_name != 'All' else self.database.app_data['transaction_dataframe']
         self.transaction_model.resetData(updated_df)
         self.transaction_stats.update_data()
+        
+    def update_page(self):
+        self.transaction_addition.update_component()
+        self.transaction_stats.stats_Account_comboBox.currentIndexChanged.disconnect(self.update_page)
+        accounts_ls = [acc.account for acc in self.database.app_data['account']['start_data']]
+        self.transaction_stats.stats_Account_comboBox.clear()
+        self.transaction_stats.stats_Account_comboBox.addItem('All')
+        self.transaction_stats.stats_Account_comboBox.addItems(accounts_ls)
+        self.account_name = self.transaction_stats.stats_Account_comboBox.currentText()
+        updated_df = self.database.app_data['transaction_dataframe'].query("Account == @self.account_name") \
+            if self.account_name != 'All' else self.database.app_data['transaction_dataframe']
+        self.transaction_model.resetData(updated_df)
+        self.transaction_stats.update_data()
+        self.transaction_stats.stats_Account_comboBox.currentIndexChanged.connect(self.update_page)
             
     def add_transaction_to_table(self):
         trans_conf = self.transaction_addition.add_check()

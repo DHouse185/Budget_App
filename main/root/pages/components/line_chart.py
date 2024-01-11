@@ -21,7 +21,7 @@ from root.models import Category
 ########################################################################################
 
 class LineChart(QWidget):
-    def __init__(self, parent, database: Database, year: int):
+    def __init__(self, parent, database: Database, year: int, account: str):
         # Create Transaction Addition widget for Transaction page
         # Mainwindow -> central widget -> StackWidget -> Transaction Page
         # -> Add Transaction
@@ -30,6 +30,7 @@ class LineChart(QWidget):
         self.setObjectName("Line_chart")
         
         self.database = database
+        self.account = account
         self.transaction_df: pd.DataFrame = self.database.app_data['transaction_dataframe']
         self.transaction_df_no_date_idx = self.transaction_df.reset_index()
         self.transaction_df_no_date_idx['Date']= pd.to_datetime(self.transaction_df_no_date_idx['Date'])
@@ -67,7 +68,8 @@ class LineChart(QWidget):
                 exp_amount = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
                                                                  & (self.transaction_df_no_date_idx['Date'] <= last_date)
                                                                  & (self.transaction_df_no_date_idx['Transaction Type'] == 'Expense')
-                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}'),
+                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}')
+                                                                 & ((self.account == 'All') or (self.transaction_df_no_date_idx['Account'] == self.account)),
                                                                  'Amount'].sum() 
                 line_serie.append(QPointF(idx, exp_amount))
                 
@@ -122,8 +124,10 @@ class LineChart(QWidget):
         layout.addWidget(chart_view)
         self.setLayout(layout)
         
-    def chart_update(self, year: int):
+    def chart_update(self, year: int, account: str):
         self.year = year
+        self.account = account
+        self.chart.setTitle(f"Expense Chart per Category for {self.year}")
         for series in self.line_series_list:
             series.clear()
         # COLLECT DATA FOR BARGRAPH
@@ -143,7 +147,8 @@ class LineChart(QWidget):
                 exp_amount = self.transaction_df_no_date_idx.loc[(self.transaction_df_no_date_idx['Date'] >= first_date) 
                                                                  & (self.transaction_df_no_date_idx['Date'] <= last_date)
                                                                  & (self.transaction_df_no_date_idx['Transaction Type'] == 'Expense')
-                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}'),
+                                                                 & (self.transaction_df_no_date_idx['Category'] == f'{self.categories[cat_num]}')
+                                                                 & ((self.account == 'All') or (self.transaction_df_no_date_idx['Account'] == self.account)),
                                                                  'Amount'].sum() 
                 line_serie.append(QPointF(idx, exp_amount))
                 

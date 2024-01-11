@@ -408,6 +408,24 @@ class Ui_Form(object):
         self.transfer_To_label.setGeometry(QtCore.QRect(630, 190, 121, 31))
         self.transfer_To_label.setStyleSheet("font: 700 14pt \"Nirmala UI\";")
         self.transfer_To_label.setObjectName("transfer_To_label")
+        self.transfer_to_pushButton = QtWidgets.QPushButton(parent=Form)
+        self.transfer_to_pushButton.setGeometry(QtCore.QRect(762, 190, 30, 30))
+        self.transfer_to_pushButton.setStyleSheet("QPushButton {\n"
+"    background-color: #00aa00;\n"
+"    border: 1px solid #4d4d4d;\n"
+"    border-radius: 4px;\n"
+"    color: #ffffff;\n"
+"    padding: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #00ff00;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #007900;\n"
+"    border: 1px solid #5a5a5a;\n"
+"}")
+        self.transfer_to_pushButton.setObjectName("transfer_to_pushButton")
         self.sub_Category_comboBox = QtWidgets.QComboBox(parent=Form)
         self.sub_Category_comboBox.setGeometry(QtCore.QRect(20, 340, 301, 41))
         self.sub_Category_comboBox.setObjectName("sub_Category_comboBox")
@@ -461,6 +479,7 @@ class Ui_Form(object):
         self.credit_Debit_label.setText(_translate("Form", "Credit/Debit"))
         self.frequency_label.setText(_translate("Form", "Frequency"))
         self.add_sub_pushButton.setText(_translate("Form", "+"))
+        self.transfer_to_pushButton.setText(_translate("Form", "+"))
 
 
 if __name__ == "__main__":
